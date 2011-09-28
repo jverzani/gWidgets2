@@ -15,7 +15,7 @@ gpanedgroup <- function(horizontal = TRUE,  container = NULL , ...,
                        container=container, ...
                 )
 
-  check_return_class(obj, "GNotebook")
+  check_return_class(obj, "GPanedGroup")
   obj   
   
 }

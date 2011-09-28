@@ -68,5 +68,5 @@ glayout <- function(
   anchor <- getWithDefault(theArgs$anchor, NULL)
   fill <- getWithDefault(theArgs$fill, "x") # "", x, y or both
 
-  x$set_items(x, i, j, expand, fill, anchor, value)
+  x$set_items(value, i, j, expand, fill, anchor)
 }

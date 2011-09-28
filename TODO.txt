@@ -6,6 +6,8 @@
 * comment on deriving subclasses
 * Work on documentation
 * write examples into subdirectory (how to include then through dontrun?)
+* work on tests
+* replace icons
 
 DONE * gstackwidget (notebook without tabs)
 DONE * check class of widget on return (is(obj, "GButton"))
