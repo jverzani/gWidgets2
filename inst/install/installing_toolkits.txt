@@ -1,0 +1,56 @@
+== Installing gWidgets toolkits
+
+
+The gWidgets package provides a programming interface in R for creating Graphical User Interfaces (GUIs) within R. The gWidgets package interacts with an underlying toolkit package. Currently, _RGtk2_, _tcltk_, _Qt_, and _ExtJS_ have some support. In order to use a GUI toolkit:
+
+* the appropriate libraries must be installed
+
+* the appropriate R package must be installed
+
+* the appropriate gWidgets2XXX package must be installed.
+
+The latter two steps are easy, as the packages all reside on CRAN (RGtk2, gWidgetsXXX), bioconductor (qtbase), github (gWidgets2XXX). r-forge (gWidgetsXXX in development), and can be installed through the *install.packages* command or *devtools* package, but successful installation requires prior installation of the proper libraries.
+
+The installation of libraries is OS and toolkit specific:
+
+=== RGtk2
+
+ RGtk2 requires a version of the GTK+ libraries 2.8.0 or newer.
+
+* Linux: Most modern versions of linux ship with a the necessary GTK
+  libraries.
+ 
+* Mac OS X: The R binary works with a disk image of of the GTK
+  libraries provided by Simon Urbanek. This is the suggested means. (_http://r.research.att.com/_)
+
+  If you install R from source, then the libraries provided by Fink
+  will work.
+
+* Windows: See _http://cran.r-project.org/web/packages/RGtk2/INSTALL_
+
+=== tcltk
+
+     gWidgetstcltk uses the newer 8.5 version orhigher of tk. This
+     version introduced theming and many new widgets
+
+* Linux: Many versions of Linux come with the 8.4 version. For Ubuntu,
+  the 8.5 versions are available as a pre-built package.
+
+* Mac OS X: Mac OS X ships with the 8.4 version of tcl/tk. Upgrading
+  is necessary and can be done through fink if one compiles R from source.
+
+* Windows: This version comes bundled into the windows binary
+
+=== Qt
+
+The qtbase package provides an interface with the Qt libraries. These are available from _http://qt.nokia.com_. The qtbase package is on bioconductor:
+
+-----
+source("http://www.bioconductor.org/biocLite.R")
+biocLite("qtbase")
+-----
+
+[NOTE]
+======
+Okay, this stuff changes much faster than this document, sorry if it is out of date. 
+======

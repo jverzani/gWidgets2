@@ -1,0 +1,11 @@
+Style for programming:
+
+gwidgets constructors: gedit, same for S3 methods
+gwidgets handlers: addHandlerChanged (camelcase)
+gWidgets methods: svalue (camel case, but nore really needed)
+gWidgets arguments: use.toolbutton (a dot)
+
+For the classes
+gedit -> GEdit is class
+methods use _: GEdit$add_handler_changed
+arguments: use dots? XXX

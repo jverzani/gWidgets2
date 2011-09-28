@@ -1,0 +1,54 @@
+##' @include methods.R
+NULL
+
+##' Basic label widget
+##'
+##' @param text character. Collapsed using a newline to a single string.
+##' @param markup logical. If toolkit supports markup, this indicates it will be used
+##' @param editable. If TRUE, then clicking on label will enable editing of value
+##' @param handler optional handler. If given added through addHandlerChanged. Overridden if \code{editable=TRUE}.
+##' @param action passed to handler through \code{action} component of first argument of handler. For buttons, this may also be a \code{GAction} instance.
+##' @param container parent container (Optional for some toolkits, but not all).
+##' @param ... passed to \code{add} method of parent container
+##' @param toolkit toolkit instance 
+##' @return a \code{GLabel} instance. While this object has its own (reference) methods, one primarily interacts with it through S3 methods defined within the package.
+##' @export
+glabel <- function(text="", markup=FALSE, editable=FALSE,
+                   handler=NULL, action=NULL, container=NULL,
+                    ..., toolkit=guiToolkit()) {
+  text <- paste(text, collapse="\n")
+
+  if(is.character(toolkit))
+    toolkit <- guiToolkit(toolkit)
+  
+  obj <- .glabel(toolkit, text, markup, editable, handler, action, container, ...)
+
+  check_return_class(obj, "GLabel")
+  obj   
+  
+}
+
+##' S3 generic whose methods are implemented in the toolkit packages
+##'
+##' @rdname glabel
+##' @export
+##' @author john verzani
+.glabel <- function(toolkit, text, markup=FALSE, editable=FALSE,
+                                           handler=NULL, action=NULL, container=NULL,
+                                           ...) UseMethod(".glabel")
+
+
+##' \code{svalue<-} method for a glabel
+##'
+##' Set the main property of the label, its text
+##' @param index ignored
+##' @param ... ignored
+##' @param value integer amount of spacing
+##' @export
+##' @rdname glabel
+"svalue<-.GLabel" <- function(obj, index=TRUE,  ..., value) {
+  value <- paste(value, collapse="\n")
+  NextMethod()
+}
+
+

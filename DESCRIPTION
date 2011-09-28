@@ -1,0 +1,42 @@
+Package: gWidgets2
+Type: Package
+Title: rewrite of gWidgets
+Version: 1.0
+Date: 2011-09-18
+Author: John Verzani
+Maintainer: john verzani <jverzani@gmail.com>
+Description: re-implementation of gWidgets API
+Depends:
+    methods
+License: GPL
+LazyLoad: yes
+Collate:
+    'guiToolkit.R'
+    'BasicInterface.R'
+    'misc.R'
+    'S3-methods.R'
+    'methods.R'
+    'gaction.R'
+    'gbutton.R'
+    'gcalendar.R'
+    'gcheckbox.R'
+    'gcheckboxgroup.R'
+    'gcombobox.R'
+    'gedit.R'
+    'ggroup.R'
+    'gframe.R'
+    'gexpandgroup.R'
+    'glabel.R'
+    'gnotebook.R'
+    'gradio.R'
+    'gslider.R'
+    'gspinbutton.R'
+    'gstackwidget.R'
+    'gtimer.R'
+    'gwindow.R'
+    'handler-methods.R'
+    'icons.R'
+    'glayout.R'
+    'gpanedgroup.R'
+    'gseparator.R'
+    'gtext.R'

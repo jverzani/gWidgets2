@@ -1,0 +1,86 @@
+\name{gtext}
+\alias{.gtext}
+\alias{dispose.GText}
+\alias{gtext}
+\alias{insert}
+\alias{insert.GText}
+\title{Multiline text edit constructor}
+\usage{
+  gtext(text = NULL, width = NULL, height = 300, font.attr
+  = NULL, wrap = TRUE, handler = NULL, action = NULL,
+  container = NULL, ..., toolkit = guiToolkit())
+
+  .gtext(toolkit, text = NULL, width = NULL, height = 300,
+  font.attr = NULL, wrap = TRUE, handler = NULL, action =
+  NULL, container = NULL, ...)
+
+  insert(obj, value, where = c("end", "beginning",
+  "at.cursor"), font.attr = NULL, do.newline = TRUE, ...)
+
+  insert.GText(obj, value, where = c("end", "beginning",
+  "at.cursor"), font.attr = NULL, do.newline = TRUE, ...)
+
+  dispose.GText(obj, ...)
+}
+\arguments{
+  \item{text}{initial text}
+
+  \item{width}{width of widget}
+
+  \item{height}{height of widget (when width is specified)}
+
+  \item{font.attr}{font attributes for text buffer. One can
+  also specify font attributes for insertion. The font
+  attributes are specified with a named vector or list,
+  with names and values coming from: \describe{
+  \item{weight}{ in c("light", "normal", "bold", "heavy")}
+  \item{style}{inc("normal", "oblique", "italic")}
+  \item{family}{in c("sans", "helvetica", "times",
+  "monospace")} \item{size}{in c("xx-small", "x-small",
+  "small", "medium", "large", "x-large", "xx-large")}
+  \item{foreground}{a value in colors()}
+  \item{background}{a value in colors()} }}
+
+  \item{wrap}{logical do lines wrap}
+
+  \item{handler}{default handler}
+
+  \item{action}{passed to handler}
+
+  \item{container}{parent container}
+
+  \item{...}{passed to add method of parent container}
+
+  \item{toolkit}{}
+
+  \item{obj}{gtext instance}
+
+  \item{value}{text to insert}
+
+  \item{where}{position of insertion}
+
+  \item{font.attr}{font attributes for text}
+
+  \item{do.newline}{logical add a newline at end}
+
+  \item{...}{ignored}
+}
+\value{
+  called for side effect
+}
+\description{
+  The multiline text widget has its main property the text
+  contained within. \itemize{ \item{The \code{svalue} will
+  return a string (length-1 character vector) with embedded
+  newlines} \item{The "change" handler is
+  \code{addHandlerKeystroke}} }
+
+  generic for toolkit dispatch
+
+  insert text into a gtext buffer
+
+  insert method for gtext
+
+  dispose method for gtext clears buffer
+}
+

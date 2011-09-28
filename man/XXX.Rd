@@ -1,0 +1,14 @@
+\name{XXX}
+\alias{XXX}
+\title{Functions to message something needs doing. Easy to search for}
+\usage{
+  XXX(msg)
+}
+\arguments{
+  \item{msg}{optional message to emit}
+}
+\description{
+  Functions to message something needs doing. Easy to
+  search for
+}
+
