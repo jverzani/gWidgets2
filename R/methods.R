@@ -285,6 +285,22 @@ size.default <- function(obj) {
   obj
 }
 
+##' Get a tooltip for the widget
+##'
+##' @param obj object
+##' @export
+##' @rdname tooltip
+"tooltip" <- function(obj) UseMethod("tooltip")
+
+##' Basic S3 method for tooltip<-
+##'
+##' @export
+##' @rdname tooltip
+"tooltip<-.default" <- function(obj) {
+  if(isExtant(obj))
+    obj$get_tooltip()
+}
+
 ##' Set a tooltip for the widget
 ##'
 ##' @param obj object
