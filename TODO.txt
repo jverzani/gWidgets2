@@ -1,4 +1,8 @@
 * gwsmodel (use object signals)
+* ghelp
+* gdfnotebook
+* ggraphicsnotebook
+* 
 * comment on deriving subclasses
 * Work on documentation
 * write examples into subdirectory (how to include then through dontrun?)

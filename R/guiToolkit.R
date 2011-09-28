@@ -64,7 +64,7 @@ guiToolkit <- function(name=NULL) {
     if(interactive()) {
       if(length(choices) == 0) {
         message("No toolkit packages are installed. Opening browser to some details for that.")
-        browseURL(sprintf("file://%s", system.file("install/installing_toolkits.html", package="gWidgets2")
+        browseURL(sprintf("file://%s", system.file("install/installing_toolkits.html", package="gWidgets2")))
         return(NULL)
       } else if(length(choices) == 1) {
         theChoice <- choices
