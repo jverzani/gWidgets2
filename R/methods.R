@@ -18,14 +18,14 @@ NULL
 ##' @param ... passed on to call
 ##' @rdname svalue
 ##' @export
-svalue <- function(obj, index=FALSE, drop=TRUE, ...) UseMethod("svalue")
+svalue <- function(obj, index=FALSE, drop=NULL, ...) UseMethod("svalue")
 
 ##' default svalue instance
 ##'
 ##' Calls coerce_with when available
 ##' @export
 ##' @rdname svalue
-svalue.default <- function(obj, index=NULL, drop=TRUE, ...) {
+svalue.default <- function(obj, index=NULL, drop=NULL, ...) {
   if(!isExtant(obj)) {
     return()
   }
@@ -194,7 +194,17 @@ font.default <- function(obj) {
 }
 ##' Set font for a widget
 ##'
-##' @param value The font specification ... XXX ...
+##' @param value The font specification is given in terms of a named vector or list where the names indicate a font attribute and the value a reasonable choice:
+##' \describe{
+##' \item{weight}{c("light", "normal", "medium", "bold", "heavy")}
+##' \item{style}{c("normal", "oblique", "italic")}
+##' \item{family}{c("sans", "helvetica", "times", "monospace")}
+##' \item{size}{an integer, say c(6,8,10,11,12,14,16,18,20, 24,36,72)}
+##' \item{color (or foreground)}{One of colors()}
+##' \item{background}{One of colors()}
+##' \item{scale}{c("xx-large", "x-large",  "large" ,   "medium",   "small",    "x-small",  "xx-small")}
+##' }
+##' These are from Gtk's font specs, which though fairly standard, may not be totally supported in the other toolkits.
 ##' @export
 ##' @usage font(obj) <- value
 ##' @rdname font

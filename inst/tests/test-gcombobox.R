@@ -4,6 +4,7 @@ test.gcombobox <- function() {
     g <- ggroup(cont = w, horiz = FALSE)
     
     items <- letters
+    ## value, icon, tooltip
     m <- data.frame(letters[1:4], rep("quit",4), toupper(letters[1:4]))
     
     ## basic
@@ -11,7 +12,7 @@ test.gcombobox <- function() {
     
     ## svalue
     checkEquals(svalue(widget), items[1])
-  checkEquals(svalue(widget, index=TRUE), 1) # index=TRUE
+    checkEquals(svalue(widget, index=TRUE), 1) # index=TRUE
 
     ## svalue<-
     svalue(widget) <- "b"
@@ -25,9 +26,9 @@ test.gcombobox <- function() {
     ## [
     checkEquals(widget[], items)
     
-    ## [<-
-    widget[] <- m[,1, drop=TRUE]
-    checkEquals(widget[], as.character(m[,1,drop=TRUE]))
+    ## [<-; not dimension of widget[] is 1, but replacement mustmatch initial
+    widget[] <- m[1:2,, drop=TRUE]
+    checkEquals(widget[], as.character(m[1:2,1,drop=TRUE]))
     
     
     ## data frame

@@ -1,6 +1,4 @@
 require(RUnit)
-require(gWidgets)
-options("guiToolkit"="tcltk")
 
 test.gcalendar <- function() {
   w <- gwindow()

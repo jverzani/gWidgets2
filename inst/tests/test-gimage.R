@@ -1,7 +1,6 @@
 
 test.gimage <- function() {
   require(RUnit)
-  library(gWidgets)
   
   w <- gwindow()
   g <- ggroup(cont = w, horizontal=FALSE)
@@ -9,7 +8,7 @@ test.gimage <- function() {
   ## stock icon
   im <- gimage("help", dirname="stock", cont = g)
 
-  checkEquals(svalue(im), system.file("images/help.gif",package="gWidgets"))
+  checkEquals(svalue(im), system.file("images/help.gif",package="gWidgets2"))
 
   ## svalue<-
   svalue(im) <- "open"
@@ -30,7 +29,7 @@ test.gimage <- function() {
 
 test.icons <- function() {
   
-  icon <- system.file("images/help.gif",package="gWidgets")
+  icon <- system.file("images/help.gif",package="gWidgets2")
 
   ## addStockIcons
   addStockIcons("testing",icon)

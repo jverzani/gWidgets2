@@ -42,6 +42,6 @@ svalue(nb) <- 1
 names(nb)[2] <- "TAB LABEL"
 
 size(w) <- c(400,400)
-svalue(pg) <- 0.5
 
 visible(w) <- TRUE
+svalue(pg) <- 0.5
