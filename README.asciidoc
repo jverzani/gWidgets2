@@ -7,17 +7,18 @@ Why?
   based on S4 methods. This rewrite uses a lighter-weight S3 dispatch
   and reference classes.
 
-  The gbutton function calls +.gbutton+ (an +S3_ generic) which dispatches
-  on the value of toolkit. In the toolkit packages, a
-  +.gbutton.guiWidgetsToolkitRGtk2+ method is defined, say . This would
-  basically call +GButton$new(...)+, where +GButton+ is a reference class
-  where all the hard work is done. As the +GButton+ class is not
-  exported, only the one in the toolkit is found.
+  
+  - The gbutton function calls +.gbutton+ (an +S3_ generic) which
+  dispatches on the value of toolkit. In the toolkit packages, a
+  +.gbutton.guiWidgetsToolkitRGtk2+ method is defined, say . This
+  would basically call +GButton$new(...)+, where +GButton+ is a
+  reference class where all the hard work is done. As the +GButton+
+  class is not exported, only the one in the toolkit is found.
 
-  New toolkits can be added, and work independently: just provide the
-  +S3+ methods, and the underlying reference classes. These reference
-  classes have many prescribed method names, as the methods to
-  interact with the objects expect a given interface. The basic
+  - New toolkits can be added, and work independently: just provide
+  the +S3+ methods, and the underlying reference classes. These
+  reference classes have many prescribed method names, as the methods
+  to interact with the objects expect a given interface. The basic
   interface is provided in an exported class to derive a subclass from
 
 * Should be easier to maintain. The documentation will be done with
