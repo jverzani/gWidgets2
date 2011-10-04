@@ -34,23 +34,16 @@
 }
 \value{
   Returns an object of class \code{GCheckboxGroup} for
-  which the following methods are overridden: % \itemize{
-
+  which the following methods are overridden: \itemize{
   \item{ \code{svalue} Return the selected values or an
   empty character vector. If \code{index=TRUE}, returns
-  indices of selected values.}
-
-  \item{ \code{svalue<-} Set the selected values one of
-  three ways: by label name, by a logical variable
-  indicating which are selected (if ambigous, logical
-  wins), if \code{index=TRUE} by the indices to select.}
-
-  \item{ \code{[} returns labels}
-
+  indices of selected values.} \item{ \code{svalue<-} Set
+  the selected values one of three ways: by label name, by
+  a logical variable indicating which are selected (if
+  ambigous, logical wins), if \code{index=TRUE} by the
+  indices to select.} \item{ \code{[} returns labels}
   \item{ \code{[<-} set the label values. Should be able to
-  shorten or lengthen list}
-
-  }
+  shorten or lengthen list} }
 }
 \description{
   Constructor for checkbox group. A linked group of

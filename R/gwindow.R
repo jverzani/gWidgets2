@@ -67,7 +67,7 @@ gwindow <- function(title="Window", visible=TRUE, name=title, width=NULL, height
 
 ##' add method for top-level windows
 ##'
-##' Dispatches on type of child (menubar, toolbar, widget)
+##' Dispatches on type of child (menubar, toolbar, statusbar, widget)
 ##' @param obj \code{gwindow} object
 ##' @param child child object to add
 ##' @param expand ignored
@@ -82,7 +82,8 @@ add.GWindow <- function(obj, child, expand=NULL, fill=NULL, anchor=NULL, ...) {
   .add.default <- function(child, obj, ...) obj$add_child(child)
   .add.GMenu <- function(child, obj, ...) obj$add_menu(child)
   .add.GToolbar <- function(child, obj, ...) obj$add_toolbar(child)
-
+  .add.GStatusbar <- function(child, obj, ...) obj$add_statusbar(child)
+  
   .add(child, obj, ...)
 }
   

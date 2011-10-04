@@ -14,23 +14,17 @@ NULL
 ##' @param ... passed to \code{add} method of parent
 ##' @param toolkit toolkit
 ##' @return Returns an object of class \code{GCheckboxGroup} for which the following methods are overridden:
-##' %
 ##' \itemize{
-##'
 ##' \item{ \code{svalue} Return the selected values or an empty
 ##' character vector. If \code{index=TRUE}, returns indices of
 ##' selected values.}
-##' 
 ##' \item{ \code{svalue<-} Set the selected values one of three ways:
 ##' by label name, by a logical variable indicating which are selected
 ##' (if ambigous, logical wins), if \code{index=TRUE} by the indices
 ##' to select.}
-##' 
 ##' \item{ \code{[} returns labels}
-##' 
 ##' \item{ \code{[<-} set the label values. Should be able to shorten
 ##' or lengthen list}
-##' 
 ##' }
 gcheckboxgroup <- function(
                            items, checked = FALSE, horizontal = FALSE,
@@ -48,7 +42,7 @@ gcheckboxgroup <- function(
                           handler=handler, action=action, container=container, ...
                           )
 
-  check_return_class(obj,  "GCheckboxGroup")
+  check_return_class(obj,  c("GCheckboxGroup","GCheckboxGroupTable"))
   obj
   
  

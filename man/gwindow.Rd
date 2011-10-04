@@ -77,7 +77,8 @@
   S3 generic whose methods are implemented in the toolkit
   packages
 
-  Dispatches on type of child (menubar, toolbar, widget)
+  Dispatches on type of child (menubar, toolbar, statusbar,
+  widget)
 
   dispose method for gwindow
 }

@@ -349,6 +349,21 @@ addDragMotion <- function(obj, handler, action=NULL, ...) UseMethod("addDragMoti
 addDragMotion.default <-  function(obj, handler, action=NULL, ...)
   obj$add_drag_motion( handler, action=action, ...)
 
+##' block all handlers for object
+##'
+##' Block all handlers for an object. Removed via unblockHandlers.
+##' @return NULL
+##' @export
+##' @rdname gWidgets-handlers
+blockHandlers <- function(obj, ...) UseMethod("blockHandlers")
+
+
+
+##' S3 method to block all handlers
+##'
+##' @export
+##' @rdname gWidgets-handlers
+blockHandlers.default <- function(obj, ...) obj$block_handlers(...)
 
 
 ##' Block a handler
@@ -366,6 +381,24 @@ blockHandler <- function(obj, ID, ...) UseMethod("blockHandler")
 ##' @export
 ##' @rdname gWidgets-handlers
 blockHandler.default <- function(obj, ID, ...) obj$block_handler(ID)
+
+
+
+##' method call to unblock global handler block.
+##'
+##' The block is a counter that gets decremented. If more
+##' blockHandlers call are made than unblockHandlers, the handlers
+##' will still be blocked.
+##' @export
+##' @rdname gWidgets-handlers
+unblockHandlers <- function(obj, ...) UseMethod("unblockHandlers")
+
+
+##' S3 method to block handler
+##'
+##' @export
+##' @rdname gWidgets-handlers
+unblockHandlers.default <- function(obj, ...) obj$unblock_handlers()
 
 ##' method call to unblock a blocked handler
 ##'

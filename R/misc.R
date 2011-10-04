@@ -1,5 +1,6 @@
 ## miscellaneous functions
 
+
 ##' Return x unless NULL, NA, length 0, ..., in which case we give default
 ##'
 ##' @param x value to return or its default
@@ -53,9 +54,9 @@ check_deprecated <- function(deprecated_args=list(), ...) {
 ##'
 ##' The S3 dispatch assumes naming conventions in the class names. This offers some check.
 check_return_class <- function(obj, ret_class) {
-  if(!is(obj, ret_class))
+  if(!any(sapply(ret_class, is, object=obj)))
     stop(sprintf("Expecting toolkit object of class (or subclass) %s. Got one of class %s",
-                 ret_class, class(obj)[1]))
+                 paste(ret_class, collapse="; "), class(obj)[1]))
 }
   
 ##' blurb about installation

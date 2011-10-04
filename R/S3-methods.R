@@ -1,4 +1,4 @@
-##' @include misc.R
+##' @include S4-methods.R
 NULL
 
 ## Methods using a previously defined S3 generic

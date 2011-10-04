@@ -5,9 +5,9 @@
 \alias{svalue<-.default}
 \title{svalue}
 \usage{
-  svalue(obj, index = FALSE, drop = TRUE, ...)
+  svalue(obj, index = FALSE, drop = NULL, ...)
 
-  svalue.default(obj, index = NULL, drop = TRUE, ...)
+  svalue.default(obj, index = NULL, drop = NULL, ...)
 }
 \arguments{
   \item{obj}{object of method call}

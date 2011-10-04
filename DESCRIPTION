@@ -40,3 +40,7 @@ Collate:
     'gpanedgroup.R'
     'gseparator.R'
     'gtext.R'
+    'gfile.R'
+    'gstatusbar.R'
+    'ggraphics.R'
+    'gimage.R'

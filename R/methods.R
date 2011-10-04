@@ -141,6 +141,44 @@ visible.default <- function(obj) {
   obj
 }
 
+##' Does widget have focus
+##'
+##' a widget has focus if it will receive input events
+##' @param obj object
+##' @export
+##' @rdname focus
+focus <- function(obj) UseMethod("focus")
+
+##' Basic S3 method
+##'
+##' @export
+##' @rdname focus
+focus.default <- function(obj) {
+  if(isExtant(obj))
+    obj$get_focus()
+}
+
+##' Set focus onto object. 
+##'
+##' For some widgets, this sets user focus (e.g. gedit gets focus for
+##' typing). For others, settig the focus calls the raise
+##' methods. (gor gwindow, it will raise the window)
+##' @param value logical. Set focus state.
+##' @export
+##' @usage focus(obj) <- value
+##' @rdname focus
+"focus<-" <- function(obj, value) UseMethod("focus<-")
+
+##' Basic S3 method for focus
+##'
+##' @export
+##' @rdname focus
+"focus<-.default" <- function(obj, value) {
+  if(isExtant(obj))
+    obj$set_focus(as.logical(value))
+  obj
+}
+
 
 ##' Controls whether widget is editable or not
 ##'

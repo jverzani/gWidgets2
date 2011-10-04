@@ -44,10 +44,14 @@
 \alias{addPopupMenu.default}
 \alias{blockHandler}
 \alias{blockHandler.default}
+\alias{blockHandlers}
+\alias{blockHandlers.default}
 \alias{removeHandler}
 \alias{removeHandler.default}
 \alias{unblockHandler}
 \alias{unblockHandler.default}
+\alias{unblockHandlers}
+\alias{unblockHandlers.default}
 \title{Generic method to add a handler passing a signal}
 \usage{
   addHandler(obj, signal, handler, action = NULL, ...)
@@ -153,9 +157,17 @@
 
   addDragMotion.default(obj, handler, action = NULL, ...)
 
+  blockHandlers(obj, ...)
+
+  blockHandlers.default(obj, ...)
+
   blockHandler(obj, ID, ...)
 
   blockHandler.default(obj, ID, ...)
+
+  unblockHandlers(obj, ...)
+
+  unblockHandlers.default(obj, ...)
 
   unblockHandler(obj, ID, ...)
 
@@ -191,6 +203,8 @@
 \value{
   a handler ID which can be used to block/unblock or remove
   the handler
+
+  NULL
 }
 \description{
   Generic method to add a handler passing a signal
@@ -290,7 +304,18 @@
 
   Default S3 method
 
+  Block all handlers for an object. Removed via
+  unblockHandlers.
+
+  S3 method to block all handlers
+
   Block a handler
+
+  S3 method to block handler
+
+  The block is a counter that gets decremented. If more
+  blockHandlers call are made than unblockHandlers, the
+  handlers will still be blocked.
 
   S3 method to block handler
 

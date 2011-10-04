@@ -1,0 +1,61 @@
+##' @include methods.R
+NULL
+
+##' Constructor for an embeddable graphics device
+##'
+##' Some toolkits provide an embeddable graphics device. When this is the case, this widget provides same.
+##' @param width width of device (pixels)
+##' @param height hieght of widget (pixels)
+##' @param dpi dots per inch
+##' @param ps pointsize
+##' @param handler handler
+##' @param action action
+##' @param container parent container
+##' @param ... passed to add method
+##' @param toolkit 
+##' @export
+ggraphics <- function(
+                      width = dpi * 6, height = dpi * 6, dpi = 75, ps = 12,
+                      handler = NULL,action = NULL, container = NULL, ... ,
+                      toolkit=guiToolkit()){
+  obj <- .ggraphics (toolkit,
+                     width=width, height=height, dpi=dpi, ps=ps,
+                     handler = NULL,action = NULL, container=container ,...
+                     )
+  check_return_class(obj, "GGraphics")
+  return(obj)
+}
+
+
+##' generic for toolkit dispatch
+##'
+##' @export
+##' @rdname ggraphics
+.ggraphics <-  function(toolkit,
+                        width = dpi * 6, height = dpi * 6, dpi = 75, ps = 12,
+                        container = NULL, ... )
+  UseMethod( '.ggraphics' )
+
+
+
+## ##' constructor for notebook to hold multiple graphics devices
+## ##'
+## ##' @export
+## ggraphicsnotebook <- function(
+##                               width = dpi * 6, height = dpi * 6, dpi = 75, container = NULL,      ... ,
+##                               toolkit=guiToolkit()){
+##   widget <- .ggraphicsnotebook (toolkit,
+##                                 width=width, height=height, dpi=dpi, container=container ,...
+##                                 )
+##   obj <- new( 'gGraphicsNotebook',widget=widget,toolkit=toolkit) 
+##   return(obj)
+## }
+
+
+## ##' generic for toolkit dispatch
+## ##' @alias ggraphicsnotebook
+## setGeneric( '.ggraphicsnotebook' ,
+##            function(toolkit,
+##                     width = dpi * 6, height = dpi * 6, dpi = 75,
+##                     container = NULL,      ... )
+##            standardGeneric( '.ggraphicsnotebook' ))

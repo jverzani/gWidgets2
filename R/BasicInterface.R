@@ -43,7 +43,7 @@ Observable <- setRefClass("Observable",
                           fields=list(
                             ..observers="list",
                             ..blocked_observers = "list",
-                            ..blocked="logical"
+                            ..blocked="integer"
                             ),
                           methods=list(
                             add_observer=function(o, signal="DEFAULT") {
@@ -69,10 +69,28 @@ Observable <- setRefClass("Observable",
                                 ..observers[[signal]][[which(ind)]] <<- NULL
                               
                             },
+                            block_observers=function() {
+                              "Block all observers"
+                              if(is("..blocked", "uninitializedField") || length(..blocked) == 0) {
+                                ..blocked <<- 1L
+                              } else {
+                                ..blocked <<- ..blocked + 1L
+                              }
+                            },
+                            unblock_observers=function() {
+                              "Remove block of all observers. Keeps count, so may need to call again"
+                              if(is("..blocked", "uninitializedField") || length(..blocked) == 0) {
+                                ..blocked <<- 0L
+                              } else {
+                                ..blocked <<- max(..blocked - 1L, 0L)
+                              }
+                              invisible(..blocked)
+                            },
+                            
                             block_observer=function(id) {
                               "Block observers. If o missing, block all"
                               if(missing(id) || is.null(id)) {
-                                ..blocked <<- TRUE
+                                block_observers()
                               } else {
                                 if(is.null(..blocked_observers[[id$signal]]))
                                   ..blocked_observers[[id$signal]] <<- list(id$o)
@@ -84,7 +102,7 @@ Observable <- setRefClass("Observable",
                             unblock_observer=function(id) {
                               "Unblock observer. If id missing, unblock global block"
                               if(missing(id) || is.null(id)) {
-                                ..blocked <<- FALSE
+                                unblock_observers()
                               } else {
                                 signal <- id$signal
                                 ind <- lapply(..blocked_observers[[signal]], function(i) identical(i, id$o))
@@ -94,9 +112,9 @@ Observable <- setRefClass("Observable",
                             },
                             notify_observers=function(..., signal="DEFAULT") {
                               "Call each non-blocked observer"
-                              if(length(..blocked) && ..blocked)
+                              if(!is("..blocked", "uninitializedField") && length(..blocked) && ..blocked > 0)
                                 return()
-                              lapply(..observers[[signal]], function(o) {
+                              QT <- lapply(..observers[[signal]], function(o) {
                                 ind <- lapply(..blocked_observers[[signal]], function(i) identical(i, o))
                                 if(!any(unlist(ind))) 
                                   o$update(...)
@@ -129,6 +147,8 @@ BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                        set_visible=define_me, # visible<-
                                        get_editable=define_me, # editable
                                        set_editable=define_me, # editable<-
+                                       get_focus=define_me,    # foucs
+                                       set_focus=define_me,    # focus<-
                                        get_font=define_me,    # font
                                        set_font=define_me,    # font<-
                                        get_length=define_me,  # length
