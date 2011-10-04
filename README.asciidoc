@@ -30,7 +30,7 @@ Why?
 * rethinking some of the arguments, functions. I don't think we need
   gcommandline, gformlayout, ggenericwidget, etc. These are best left
   to a separate package, if at all. (Personally, the traitr package
-  does the last two better, and gcommandline just isn't very goo.)
+  does the last two better, and gcommandline just isn't very good.)
 
 * putting more structure on the toolkit. Before the class structure
   was left alone, leaving open the possibility that it could be made
