@@ -7,8 +7,8 @@
   "warning", "error", "question"), parent = NULL, ...,
   toolkit = guiToolkit())
 
-  .gmessage(toolkit, msg = msg, title = title, icon = icon,
-  parent = parent, ...)
+  .gmessage(toolkit, msg, title = "message", icon = "",
+  parent = NULL, ...)
 }
 \arguments{
   \item{msg}{Character. message to display.}

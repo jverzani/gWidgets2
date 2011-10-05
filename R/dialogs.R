@@ -56,8 +56,8 @@ gmessage <- function(msg,
 ##' @export
 ##' @rdname gmessage
 .gmessage <- function(toolkit,
-                      msg=msg, title=title, icon=icon,
-                      parent = parent,
+                      msg, title="message", icon="",
+                      parent = NULL,
                       ...)
   UseMethod(".gmessage")
 
