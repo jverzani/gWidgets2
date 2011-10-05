@@ -5,9 +5,9 @@
 \alias{visible<-.default}
 \title{Controls whether widget is visible or not}
 \usage{
-  visible(obj)
+  visible(obj, ...)
 
-  visible.default(obj)
+  visible.default(obj, ...)
 
   visible(obj) <- value
 }

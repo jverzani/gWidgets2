@@ -128,3 +128,11 @@ update.GComponent <- function(object, ...) {
   if(isExtant(object))
     object$update_widget(...)
 }
+
+
+##' str method for widgets
+##'
+##' @export
+##' @rdname gWidgets2-S3methods
+str.GComponent <- function(object, ...) cat(sprintf("Object of class %s\n", class(object)))
+

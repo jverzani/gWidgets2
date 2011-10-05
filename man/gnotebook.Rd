@@ -1,6 +1,7 @@
 \name{gnotebook}
 \alias{.gnotebook}
 \alias{add.GNotebook}
+\alias{addHandlerChanged}
 \alias{dispose.GNotebook}
 \alias{gnotebook}
 \alias{names.GNotebook}
@@ -16,6 +17,8 @@
   close.button = FALSE, ...)
 
   dispose.GNotebook(obj, ...)
+
+  addHandlerChanged(obj, handler, action = NULL, ...)
 }
 \arguments{
   \item{tab.pos}{integer. Position of tabs, 1 on bottom, 2
@@ -57,6 +60,10 @@
   get tab names of notebook
 
   set tab names for object
+
+  the change handler for the notebook is called when the
+  page changes. If possible, the new page number is passed
+  back in the \code{page.no} component of 'h'
 }
 \note{
   the button arguments of the gWidgets constructor are

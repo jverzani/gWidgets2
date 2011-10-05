@@ -1,0 +1,30 @@
+\name{ginput}
+\alias{ginput}
+\title{Constructor for modal dialog to collect a line of text}
+\usage{
+  ginput(msg, text = "", title = "Input", icon = c("info",
+  "warning", "error", "question"), parent = NULL, ...,
+  toolkit = guiToolkit())
+}
+\arguments{
+  \item{msg}{Character. Message to display.}
+
+  \item{text}{Character. Initial text}
+
+  \item{title}{Character. Title of window}
+
+  \item{icon}{which icon to display}
+
+  \item{parent}{gives hint as to where to place dialog}
+
+  \item{...}{ignored}
+
+  \item{toolkit}{toolkit}
+}
+\value{
+  value typed into box or \code{character(0)}
+}
+\description{
+  Constructor for modal dialog to collect a line of text
+}
+

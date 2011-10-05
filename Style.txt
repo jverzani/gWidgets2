@@ -8,4 +8,6 @@ gWidgets arguments: use.toolbutton (a dot)
 For the classes
 gedit -> GEdit is class
 methods use _: GEdit$add_handler_changed
-arguments: use dots? XXX
+arguments: use dots? properties use _ coerce.with, coerce_with
+
+getBlock some exported methods are camelcase

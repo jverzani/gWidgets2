@@ -78,3 +78,11 @@ dispose.GNotebook <- function(obj, ...) {
   x
 }
 
+##' add change handler
+##'
+##' the change handler for the notebook is called when the page changes. If possible, the new page number is passed back in the \code{page.no} component of 'h'
+##' @export
+##' @rdname gnotebook
+addHandlerChanged <- function(obj, handler, action=NULL, ...) {
+  NextMethod()
+}

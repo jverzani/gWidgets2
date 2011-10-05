@@ -14,6 +14,7 @@ Collate:
     'guiToolkit.R'
     'BasicInterface.R'
     'misc.R'
+    'S4-methods.R'
     'S3-methods.R'
     'methods.R'
     'gaction.R'
@@ -44,3 +45,4 @@ Collate:
     'gstatusbar.R'
     'ggraphics.R'
     'gimage.R'
+    'dialogs.R'

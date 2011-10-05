@@ -112,13 +112,13 @@ enabled.default <- function(obj) {
 ##' @param obj object
 ##' @export
 ##' @rdname visible
-visible <- function(obj) UseMethod("visible")
+visible <- function(obj, ...) UseMethod("visible")
 
 ##' Basic S3 method
 ##'
 ##' @export
 ##' @rdname visible
-visible.default <- function(obj) {
+visible.default <- function(obj, ...) {
   if(isExtant(obj))
     obj$get_visible()
 }

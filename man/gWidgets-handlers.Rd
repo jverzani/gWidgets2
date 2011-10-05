@@ -193,6 +193,15 @@
 
   \item{...}{passed along}
 
+  \item{obj}{object receiving events}
+
+  \item{handler}{handler called when event occurs}
+
+  \item{action}{passed to handler via \code{action}
+  component}
+
+  \item{...}{ignored}
+
   \item{menulist}{a list of \code{gaction} items}
 
   \item{menulist}{a list of \code{gaction} items}

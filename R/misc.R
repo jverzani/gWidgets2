@@ -1,6 +1,5 @@
 ## miscellaneous functions
 
-
 ##' Return x unless NULL, NA, length 0, ..., in which case we give default
 ##'
 ##' @param x value to return or its default

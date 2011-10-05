@@ -32,6 +32,10 @@ addHandler.default <- function(obj, signal, handler, action=NULL, ...)
 ##' Add a handler to the generic "changed" event, which is the main event for a widget
 ##'
 ##' The "changed" event is also the one that a handler passed to the constructor is called on
+##' @param obj object receiving events
+##' @param handler handler called when event occurs
+##' @param action passed to handler via \code{action} component
+##' @param ... ignored
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerChanged <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerChanged")
