@@ -67,3 +67,18 @@ installing_gWidgets_toolkits <- function() {
   for(i in tmp) cat(i,"\n")
 
 }
+
+##' merge two lists
+##' 
+##' @param x a list
+##' @param y a list
+##' @param overwrite logical should we overright values in x
+##' @nord
+merge.list <- function(x, y, overwrite=TRUE) {
+  if(missing(y) || is.null(y))
+    return(x)
+  for(i in names(y))
+    if(overwrite || !(i %in% names(x)))
+      x[[i]] <- y[[i]]
+  x
+}
