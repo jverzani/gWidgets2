@@ -1,6 +1,7 @@
 \name{getToolkitWidget}
 \alias{getBlock}
 \alias{getBlock.GComponent}
+\alias{getBlock.GWindow}
 \alias{getToolkitWidget}
 \alias{getToolkitWidget.default}
 \alias{getTopLevel}
@@ -20,6 +21,8 @@
   getBlock(obj)
 
   getBlock.GComponent(obj)
+
+  getBlock.GWindow(obj)
 
   getTopLevel(obj)
 
@@ -46,6 +49,8 @@
   Get underlying toolkit object from block slot
 
   S3 method for getBlock generic
+
+  For GWindow, the block is NULL
 
   Get toplevel window containing object
 

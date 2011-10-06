@@ -81,7 +81,7 @@ add.GWindow <- function(obj, child, expand=NULL, fill=NULL, anchor=NULL, ...) {
   .add <- function(child, obj, ...) UseMethod(".add")
   .add.default <- function(child, obj, ...) obj$add_child(child)
   .add.GMenu <- function(child, obj, ...) obj$add_menu(child)
-  .add.GToolbar <- function(child, obj, ...) obj$add_toolbar(child)
+  .add.GToolBar <- function(child, obj, ...) obj$add_toolbar(child)
   .add.GStatusbar <- function(child, obj, ...) obj$add_statusbar(child)
   
   .add(child, obj, ...)

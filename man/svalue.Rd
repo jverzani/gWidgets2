@@ -2,6 +2,7 @@
 \alias{svalue}
 \alias{svalue.default}
 \alias{svalue<-}
+\alias{svalue<-.GToolBar}
 \alias{svalue<-.default}
 \title{svalue}
 \usage{
@@ -36,5 +37,8 @@
   This method sets the main property of the widget.
 
   Base S3 method
+
+  for a list, svalue replaces the toolbar items with new
+  ones specified by value
 }
 

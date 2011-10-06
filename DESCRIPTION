@@ -46,3 +46,4 @@ Collate:
     'ggraphics.R'
     'gimage.R'
     'dialogs.R'
+    'gtoolbar.R'

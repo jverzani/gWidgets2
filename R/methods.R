@@ -444,9 +444,27 @@ add <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) UseMethod
 ##' @export
 ##' @rdname add
 add.default <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) {
-  if(isExtant(obj))  
-    obj$add_child(child, expand=expand, fill=fill, anchor=anchor, ...)
+  if(!isExtant(obj))  return()
+
+  ## second dispatch based on type of child
+  .add <- function(child, obj, ...) UseMethod(".add")  
+  .add.GMenu <- function(child, obj, ...) {
+    stop("Parent must be gwindow instance to add a menu")
+  }
+  .add.GToolBar <- function(child, obj, ...) {
+    stop("Parent must be gwindow instance to add a toolbar")
+  }
+  .add.GStatusbar <- function(child, obj, ...) {
+    stop("Parent must be gwindow instance to add a statusbar")
+  }
+  .add.default <- function(child, obj, expand, fill, anchor, ...) obj$add_child(child, expand=expand, fill=fill, anchor=anchor, ...)
+
+  .add(child, obj, expand=expand, fill=fill, anchor=anchor, ...)
+  
 }
+
+
+
 ##' Delete child object from parent
 ##'
 ##' Delete may or may note remove a child. This is toolkit
@@ -525,6 +543,13 @@ getBlock <- function(obj) UseMethod("getBlock")
 ##' @export
 getBlock.GComponent <- function(obj) getBlock(obj$block)
 
+
+##' S3 method for getBlock generic
+##'
+##' For GWindow, the block is NULL
+##' @rdname getToolkitWidget
+##' @export
+getBlock.GWindow <- function(obj) obj$widget
              
 ##' Get toplevel window containing object
 ##'
