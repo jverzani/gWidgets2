@@ -147,8 +147,14 @@ str.GComponent <- function(object, ...) cat(sprintf("Object of class %s\n", clas
 merge.list <- function(x, y, overwrite=TRUE) {
   if(missing(y) || is.null(y))
     return(x)
-  for(i in names(y))
-    if(overwrite || !(i %in% names(x)))
-      x[[i]] <- y[[i]]
+  nms <- names(y)
+  for(i in seq_along(y)) {
+    nm <- nms[i]                        # possibly NULL
+    if(is.null(nm)) {
+      x[[length(x) + 1]] <- y[[i]]
+    } else if(overwrite || !(nm %in% names(x))) {
+      x[[nm]] <- y[[i]]
+    }
+  }
   x
 }

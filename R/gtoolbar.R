@@ -4,7 +4,7 @@ NULL
 
 ##' A toolbar constructor
 ##'
-##' @param toolbar.list list. A one-level list of \code{gaction} items or \code{gseparator} items
+##' @param toolbar.list list. A one-level list of \code{gaction} items, \code{gseparator} items or possibly other widgets. In the latter cases the \code{container} argument is not specified prior. (XXX Need to work this out with gWidgetstcltk)
 ##' @param style style for icon or text.
 ##' @param container a GWindow instance
 ##' @param ... ignored

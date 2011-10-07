@@ -47,3 +47,4 @@ Collate:
     'gimage.R'
     'dialogs.R'
     'gtoolbar.R'
+    'gmenu.R'

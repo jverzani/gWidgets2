@@ -38,7 +38,10 @@
 
   Base S3 method
 
-  for a list, svalue replaces the toolbar items with new
-  ones specified by value
+  for a toolbar, \code{svalue<-} replaces the toolbar items
+  with new ones specified by value.
+
+  for a menubar, \code{svalue<-} replaces the menubar items
+  with new ones specified by value.
 }
 
