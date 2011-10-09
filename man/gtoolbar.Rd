@@ -1,5 +1,6 @@
 \name{gtoolbar}
 \alias{.gtoolbar}
+\alias{add.GMenuBar}
 \alias{add.GToolBar}
 \alias{gtoolbar}
 \title{A toolbar constructor}
@@ -13,6 +14,9 @@
   NULL, ...)
 
   add.GToolBar(obj, child, expand = FALSE, fill = NULL,
+  anchor = NULL, ...)
+
+  add.GMenuBar(obj, child, expand = FALSE, fill = NULL,
   anchor = NULL, ...)
 }
 \arguments{
@@ -29,6 +33,16 @@
   \item{...}{ignored}
 
   \item{toolkit}{toolkit}
+
+  \item{obj}{parent object}
+
+  \item{child}{child widget}
+
+  \item{expand}{NULL or logical. XXX}
+
+  \item{fill}{NULL or logical. XXX}
+
+  \item{anchor}{NULL or logical. XXX}
 }
 \description{
   A toolbar constructor
@@ -36,5 +50,7 @@
   generic for toolkit dispatch
 
   add toolbar items to toolbar
+
+  add menubar items to a menu
 }
 

@@ -11,21 +11,6 @@
 \arguments{
   \item{text}{label text. If text matches a stock icon
   name, that is used as well}
-
-  \item{handler}{optional handler. If given added through
-  addHandlerChanged}
-
-  \item{action}{passed to handler through \code{action}
-  component of first argument of handler. For buttons, this
-  may also be a \code{GAction} instance.}
-
-  \item{container}{parent container (Optional for some
-  toolkits, but not all).}
-
-  \item{...}{passed to \code{add} method of parent
-  container}
-
-  \item{toolkit}{toolkit instance}
 }
 \value{
   a \code{GButton} instance. While this object has its own
@@ -33,13 +18,14 @@
   through S3 methods defined within the package.
 }
 \description{
-  button widget
+  The basic button widget is a common means to allow the
+  user to invoke an action. This action may be specified by
+  a handler or by a \code{GAction} object. The main
+  property for \code{GButton} is the label text. If this
+  text matches a stock icon name and the toolkit supports
+  it, an icon will accompany the button.
 
   S3 generic whose methods are implemented in the toolkit
   packages
-}
-\note{
-  removed the border option. This may be supported in the
-  toolkit object
 }
 

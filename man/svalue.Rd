@@ -2,6 +2,7 @@
 \alias{svalue}
 \alias{svalue.default}
 \alias{svalue<-}
+\alias{svalue<-.GMenuBar}
 \alias{svalue<-.GToolBar}
 \alias{svalue<-.default}
 \title{svalue}
@@ -40,6 +41,13 @@
 
   for a toolbar, \code{svalue<-} replaces the toolbar items
   with new ones specified by value.
+
+  For a menubar, \code{svalue} returns the list of action
+  items etc. that defined the menubar. This can be useful
+  to access the underlying item being proxied. (For
+  \code{gaction} items the \code{enabled<-} method may be
+  used on the item, but this may not extend to
+  \code{gradio} and \code{gcheckbox} items)
 
   for a menubar, \code{svalue<-} replaces the menubar items
   with new ones specified by value.

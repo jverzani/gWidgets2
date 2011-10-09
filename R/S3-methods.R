@@ -75,6 +75,11 @@ dimnames.GComponent <- function(x) {
 
 ##' Get items of object
 ##'
+##' @param x \code{GComponent} object
+##' @param i main index or row index (if implemented)
+##' @param j column index (if implemented)
+##' @param ... ignored
+##' @param drop logical. If \code{TRUE} return value is simplified, if possible. 
 ##' @export
 ##' @rdname gWidgets-S3methods
 "[.GComponent" <- function(x, i, j, ..., drop=TRUE) {
@@ -93,6 +98,7 @@ dimnames.GComponent <- function(x) {
 
 ##' Set object's items
 ##'
+##' @param value value to set
 ##' @export
 ##' @rdname gWidgets-S3methods
 "[<-.GComponent" <- function(x, i, j, ..., value) {

@@ -31,31 +31,18 @@
 
   \item{toolkit}{toolkit}
 
-  \item{x}{GCheckbox instance}
-
-  \item{i}{ignored}
-
-  \item{j}{ignored}
-
-  \item{...}{ignored}
-
   \item{value}{Value coerced to character, then only first
   element used for checkbox label}
 }
 \value{
-  Returns an object of class \code{GCheckbox} for which the
-  following methods are overridden: % \itemize{
-  \item{\code{svalue} gets state, boolean value}
-
-  \item{ \code{svalue<-} sets state by boolean value}
-
-  \item{ \code{[} returns label}
-
-  \item{ \code{[<-} sets label} }
+  Returns an object of class \code{GCheckbox}.
 }
 \description{
-  A checkbox widget has a checkbox or toggle button to
-  indicate selection or not
+  A checkbox widget is used to toggle the state of a
+  labeled boolean variable. The main property of this
+  widget is that state, not the label. This variable may be
+  proxied in the usual way -- with a box that indicates or
+  check if \code{TRUE} -- or through a toggle button.
 
   Generic for toolkit dispatch
 

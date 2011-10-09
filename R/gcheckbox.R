@@ -3,7 +3,11 @@ NULL
 
 ##' constructor for checkbox widget
 ##'
-##' A checkbox widget has a checkbox or toggle button to indicate selection or not
+##' A checkbox widget is used to toggle the state of a labeled boolean
+##' variable. The main property of this widget is that state, not the
+##' label. This variable may be proxied in the usual way -- with a box
+##' that indicates or check if \code{TRUE} -- or through a toggle
+##' button. 
 ##' @param text label text
 ##' @param checked is button selected
 ##' @param use.togglebutton Use a toggle button (shows depressed) not a check box
@@ -13,18 +17,7 @@ NULL
 ##' @param ... passed to \code{add} method of container
 ##' @param toolkit toolkit
 ##' @export
-##' @return Returns an object of class \code{GCheckbox} for which the
-##' following methods are overridden:
-##' %
-##' \itemize{
-##' \item{\code{svalue} gets state, boolean value}
-##' 
-##' \item{ \code{svalue<-} sets state by boolean value}
-##' 
-##' \item{ \code{[} returns label}
-##' 
-##' \item{ \code{[<-} sets label}
-##' }
+##' @return Returns an object of class \code{GCheckbox}.
 gcheckbox <- function(
                       text="", checked = FALSE, use.togglebutton=FALSE,
                       handler = NULL, action = NULL, container = NULL, ... ,
@@ -70,10 +63,7 @@ gcheckbox <- function(
 
 ##' items assignment takes string
 ##'
-##' @param x GCheckbox instance
-##' @param i ignored
-##' @param j ignored
-##' @param ... ignored
+##' @inheritParams base::Extract
 ##' @param value Value coerced to character, then only first element
 ##' used for checkbox label
 ##' @export

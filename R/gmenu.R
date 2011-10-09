@@ -8,7 +8,7 @@ NULL
 ##' through submenus. More generally, a widget may replace the
 ##' button. This widget intends to support buttons (gactions),
 ##' separators (gseparator), radio button (gradio) and checkbutton
-##' (gcheckbox).
+##' (gcheckbox), but this may be toolkit independent.
 ##' @param menu.list A list defining the menu structure. Named sub
 ##' lists determine the submenu titles and structure. The list may
 ##' have components of class: \code{GAction}, mapped to a button;
@@ -50,14 +50,38 @@ gmenu <- function(
                     ... )
   UseMethod( '.gmenu' )
 
+##' add menubar items to a menu
+##'
+##' @inheritParams add
+##' @child list. a menubar list or gmenu instance.
+##' @export
+##' @rdname gtoolbar
+add.GMenuBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) {
+  dispatcher <- function(obj, child) UseMethod("dispatcher")
+  dispatcher.GMenuBar <- function(child, obj) obj$add_menu_items(obj$widget, svalue(child))
+  dispatcher.list <- function(obj, child) obj$add_menu_items(obj$widget, child)
+  dispatcher(child, obj)
+}
 
-## svalue, add, 
 
+##' "svalue" method
+##'
+##' For a menubar, \code{svalue} returns the list of action items
+##' etc. that defined the menubar. This can be useful to access the
+##' underlying item being proxied. (For \code{gaction} items the
+##' \code{enabled<-} method may be used on the item, but this may not
+##' extend to \code{gradio} and \code{gcheckbox} items)
+##' @inheritParams svalue
+##' @value for a menubar, a list of action items etc. defining the new menubar.
+##' @export
+##' @rdname svalue
+"svalue<-.GMenuBar" <- function(obj, index=NULL, ..., value) NextMethod()
 
 ##' "svalue<-" method
 ##'
 ##' for a menubar, \code{svalue<-} replaces the menubar items with new ones specified by value.
-##' @InheritParams "svalue<-"
+##' @inheritParams svalue
+##' @value for a menubar, a list of action items etc. defining the new menubar.
 ##' @export
 ##' @rdname svalue
-"svalue<-.GToolBar" <- function(obj, index=NULL, ..., value) NextMethod()
+"svalue<-.GMenuBar" <- function(obj, index=NULL, ..., value) NextMethod()

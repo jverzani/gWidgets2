@@ -34,7 +34,8 @@
   buttons are exposed through submenus. More generally, a
   widget may replace the button. This widget intends to
   support buttons (gactions), separators (gseparator),
-  radio button (gradio) and checkbutton (gcheckbox).
+  radio button (gradio) and checkbutton (gcheckbox), but
+  this may be toolkit independent.
 
   generic for toolkit dispatch
 }

@@ -24,6 +24,19 @@
 }
 \arguments{
   \item{x}{object}
+
+  \item{x}{\code{GComponent} object}
+
+  \item{i}{main index or row index (if implemented)}
+
+  \item{j}{column index (if implemented)}
+
+  \item{...}{ignored}
+
+  \item{drop}{logical. If \code{TRUE} return value is
+  simplified, if possible.}
+
+  \item{value}{value to set}
 }
 \value{
   length of object

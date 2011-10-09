@@ -3,6 +3,11 @@ NULL
 
 ##' Basic label widget
 ##'
+##' The basic label widget allows one to label areas of a GUI using
+##' text. The most common use would be to label fields in a form. For
+##' \pkg{gWidgets2} labels may be editable or responsive to mouse
+##' clicks, although it is the author's experience that such uses are
+##' not expected by the end user.
 ##' @param text character. Collapsed using a newline to a single string.
 ##' @param markup logical. If toolkit supports markup, this indicates it will be used
 ##' @param editable. If TRUE, then clicking on label will enable editing of value
@@ -41,8 +46,7 @@ glabel <- function(text="", markup=FALSE, editable=FALSE,
 ##' \code{svalue<-} method for a glabel
 ##'
 ##' Set the main property of the label, its text
-##' @param index ignored
-##' @param ... ignored
+##' @inheritParams svalue
 ##' @param value integer amount of spacing
 ##' @export
 ##' @rdname glabel

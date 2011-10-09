@@ -193,15 +193,6 @@
 
   \item{...}{passed along}
 
-  \item{obj}{object receiving events}
-
-  \item{handler}{handler called when event occurs}
-
-  \item{action}{passed to handler via \code{action}
-  component}
-
-  \item{...}{ignored}
-
   \item{menulist}{a list of \code{gaction} items}
 
   \item{menulist}{a list of \code{gaction} items}
@@ -216,12 +207,34 @@
   NULL
 }
 \description{
-  Generic method to add a handler passing a signal
+  A GUI is made interactive by assigning handlers to
+  user-generated events, such as a mouse click, change of
+  widget state, or keyboard press. In \pkg{gWidgets2}
+  handlers are assigned through the \code{addHandlerXXX}
+  methods. The handlers are functions whose first argument
+  should expect a list with components \code{obj} (to pass
+  in the receiver object) and \code{action} (to pass in any
+  user-supplied value to the \code{action} argument). Some
+  handlers add other components, such as mouse position
+  information on a click, or key information on a keyboard
+  event.  Although this method is basically the workhorse
+  to add a handler to response to a signal, it generally
+  isn't called directly, as its use is not cross toolkit.
+  Rather, if possible, one should use the
+  \code{addHandlerXXX} methods to add a handler. These
+  dispatch do this (basically) but do so in a toolkit
+  independent manner. This call (and the others) returns a
+  handler ID which may be used for some toolkitst later on
+  to remove, block or unblock the call. All handlers for a
+  widget may be blocked or unblocked via
+  \code{blockHandlers} and \code{unblockHandlers}.
 
   Default S3 method
 
   The "changed" event is also the one that a handler passed
-  to the constructor is called on
+  to the constructor is called on. This is a real generic
+  function, in that each widget has one, but it is
+  interpreted quite differently for each.
 
   Default S3 method
 
@@ -343,5 +356,11 @@
   For the gWidgets2Qt package one can not block, unblock or
   remove a single handler, but rather must do all the
   objects handlers at once. Specify no ID in this case.
+}
+\seealso{
+  \code{\link{blockHandlers}},
+  \code{\link{unblockHandlers}},
+  \code{\link{blockHandler}}, \code{\link{unblockHandler}},
+  and \code{\link{removeHandler}}
 }
 

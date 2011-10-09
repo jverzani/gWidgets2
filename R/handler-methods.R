@@ -7,6 +7,24 @@ NULL
 
 ##' Generic method to add a handler passing a signal
 ##'
+##' A GUI is made interactive by assigning handlers to user-generated
+##' events, such as a mouse click, change of widget state, or keyboard
+##' press. In \pkg{gWidgets2} handlers are assigned through the
+##' \code{addHandlerXXX} methods. The handlers are functions whose
+##' first argument should expect a list with components \code{obj} (to
+##' pass in the receiver object) and \code{action} (to pass in any
+##' user-supplied value to the \code{action} argument). Some handlers
+##' add other components, such as mouse position information on a
+##' click, or key information on a keyboard event.  Although this
+##' method is basically the workhorse to add a handler to response to
+##' a signal, it generally isn't called directly, as its use is not
+##' cross toolkit. Rather, if possible, one should use the
+##' \code{addHandlerXXX} methods to add a handler. These dispatch do
+##' this (basically) but do so in a toolkit independent manner. This
+##' call (and the others) returns a handler ID which may be used for
+##' some toolkitst later on to remove, block or unblock the call. All
+##' handlers for a widget may be blocked or unblocked via
+##' \code{blockHandlers} and \code{unblockHandlers}.
 ##' @param obj object receiving event and emitting a signal to the handler
 ##' @param signal toolkit signal, e.g. "clicked"
 ##' @param handler handler to assign when signal is emitted. A handler
@@ -17,6 +35,9 @@ NULL
 ##' @param ... passed along
 ##' @note This method is not toolkit independent, as the signal value depends on the toolkit
 ##' @return a handler ID which can be used to block/unblock or remove the handler
+##' @seealso \code{\link{blockHandlers}},
+##' \code{\link{unblockHandlers}}, \code{\link{blockHandler}},
+##' \code{\link{unblockHandler}}, and \code{\link{removeHandler}}
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandler <- function(obj, signal, handler, action=NULL, ...) UseMethod("addHandler")
@@ -31,18 +52,16 @@ addHandler.default <- function(obj, signal, handler, action=NULL, ...)
 
 ##' Add a handler to the generic "changed" event, which is the main event for a widget
 ##'
-##' The "changed" event is also the one that a handler passed to the constructor is called on
-##' @param obj object receiving events
-##' @param handler handler called when event occurs
-##' @param action passed to handler via \code{action} component
-##' @param ... ignored
-##' @export
+##' The "changed" event is also the one that a handler passed to the
+##' constructor is called on. This is a real generic function, in that
+##' each widget has one, but it is interpreted quite differently for
+##' each.
 ##' @rdname gWidgets-handlers
 addHandlerChanged <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerChanged")
 
 ##' Default S3 method
 ##'
-##' @inheritParams addHandlerChanged
+##' @inheritParams addHandler
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerChanged.default <- function(obj, handler, action=NULL, ...)
@@ -56,7 +75,7 @@ addHandlerClicked <- function(obj, handler, action=NULL, ...) UseMethod("addHand
 
 ##' Default S3 method
 ##'
-##' @inheritParams addHandlerChanged
+##' @inheritParams addHandler
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerClicked.default <-  function(obj, handler, action=NULL, ...)
@@ -70,7 +89,7 @@ addHandlerDoubleclick <- function(obj, handler, action=NULL, ...) UseMethod("add
 
 ##' Default S3 method
 ##'
-##' @inheritParams addHandlerChanged
+##' @inheritParams addHandler
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerDoubleclick.default <- function(obj, handler, action=NULL, ...)
@@ -85,7 +104,7 @@ addHandlerRightclick <- function(obj, handler, action=NULL, ...) UseMethod("addH
 
 ##' Default S3 method
 ##'
-##' @inheritParams addHandlerChanged
+##' @inheritParams addHandler
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerRightclick.default <- function(obj, handler, action=NULL, ...)
@@ -102,7 +121,7 @@ addHandlerColumnclicked <- function(obj, handler, action=NULL, ...) UseMethod("a
 
 ##' Default S3 method
 ##'
-##' @inheritParams addHandlerChanged
+##' @inheritParams addHandler
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerColumnclicked.default <- function(obj, handler, action=NULL, ...)
@@ -116,7 +135,7 @@ addHandlerColumnDoubleclicked <- function(obj, handler, action=NULL, ...) UseMet
 
 ##' Default S3 method
 ##'
-##' @inheritParams addHandlerChanged
+##' @inheritParams addHandler
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerColumnDoubleclicked.default <- function(obj, handler, action=NULL, ...)
@@ -131,7 +150,7 @@ addHandlerColumnRightclicked <- function(obj, handler, action=NULL, ...) UseMeth
 
 ##' Default S3 method
 ##'
-##' @inheritParams addHandlerChanged
+##' @inheritParams addHandler
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerColumnRightclicked.default <- function(obj, handler, action=NULL, ...)

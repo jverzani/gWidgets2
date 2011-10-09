@@ -36,10 +36,6 @@
 
   \item{toolkit}{toolkit instance}
 
-  \item{index}{ignored}
-
-  \item{...}{ignored}
-
   \item{value}{integer amount of spacing}
 }
 \value{
@@ -48,7 +44,12 @@
   through S3 methods defined within the package.
 }
 \description{
-  Basic label widget
+  The basic label widget allows one to label areas of a GUI
+  using text. The most common use would be to label fields
+  in a form. For \pkg{gWidgets2} labels may be editable or
+  responsive to mouse clicks, although it is the author's
+  experience that such uses are not expected by the end
+  user.
 
   S3 generic whose methods are implemented in the toolkit
   packages

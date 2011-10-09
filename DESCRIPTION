@@ -48,3 +48,4 @@ Collate:
     'dialogs.R'
     'gtoolbar.R'
     'gmenu.R'
+    'gtable.R'

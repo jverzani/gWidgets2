@@ -9,20 +9,17 @@ NULL
 ##'
 ##' The tabular widget allows a user to select one (or more) row(s)
 ##' using the mouse or keyboard selection. The selected rows are the
-##' main property and are returne by svalue through their key (from
+##' main property and are returned by svalue through their key (from
 ##' the column specified by \code{chosen.col}), or by index. The
-##' change handler changes on change of selection. Use add handler
-##' click and add handler double click as well.
+##' change handler changes on double clicke event. Use add handler
+##' click to respond to a change in selection.
 ##' @param items data.frame specifies items for selection. May be a vector, matrix or data frame
 ##' @param multiple logical allow  multiple selectino
 ##' @param chosen.col which value from the row is returned by selection
 ##' @param icon.col NULL or integer. If latter, specifies column containing stock icon
 ##' @param tooltip.col NULL or integer. If latter, specifies column containing tooltip
-##' @param handler
-##' @param action 
-##' @param container 
-##' @param ... 
-##' @param toolkit
+##' @param inheritParams gwidget
+##' @return Returns an object of class \code{GTable}
 ##' @export
 gtable <- function(
                    items,
@@ -41,13 +38,14 @@ gtable <- function(
     )
   check_deprecated(deprecated_args)
   
-  ## coerce items
+  ## coerce items to data frame
   if(!missing(items)) {
     if (is.vector(items))
       items <- data.frame(Values=items, stringsAsFactors=FALSE)
     if(is.matrix(items))
       items <- data.frame(items, stringsAsFactors=FALSE)
   }
+
   
   obj <- .gtable (toolkit,
                   items=items,
@@ -59,14 +57,12 @@ gtable <- function(
                   action=action,
                   container=container ,...
                      )
-
-  obj <- new( 'gTable',widget=widget,toolkit=toolkit) 
   check_return_class(obj, "GTable")
   return(obj)
 }
 
 
-##' generic for toolkit dispatch
+##' .gtable generic for toolkit dispatch
 ##'
 ##' @export
 ##' @rdname gtable
@@ -82,7 +78,57 @@ gtable <- function(
            UseMethod( '.gtable' )
 
 
-## example with filter
-## add change, doubleclick
-## svlaue by chosencol (or index=TRUE)
-## visible does filtering
+
+
+
+##' "svalue" method
+##'
+##' For gtable one can pass in row(s) to select by index (when index=TRUE) or by match among the values in the chosen column
+##' @inheritParams svalue
+##' @export
+##' @rdname gtable
+svalue.GTable <- function(obj, index=NULL, ..., value) NextMethod()
+
+##' "[" method
+##'
+##' For \code{GTable} objects the \code{[} and \code{[<-} methods are (mostly)
+##' implemented. The \code{[} method allows one to access the object
+##' using the regular matrix notation (but there is no list notation,
+##' e.g. \code{$} or \code{[[}, defined). The \code{[<-} method is
+##' available, but for most toolkits is restricted: one can not add
+##' columns, add rows, remove columns, remove rows, or change the type of the column. For all
+##' of these actions, one can reassign the items being displayed through the
+##' idiom \code{obj[] <- new_items}. This allows the widget to redo the column renderers.
+##' @inheritParams base::Extract
+##' @export
+##' @rdname gtable
+"[.GTable" <- function(x, i, j, ..., drop=TRUE) NextMethod()
+
+
+##' addHandlerChanged method
+##'
+##' The change handler for \code{GTable} is called when a row is
+##' activated, such as when it is double clicked. A single click is
+##' for adjusting the selection.
+##' @inheritParams addHandler
+##' @export
+##' @rdname gtable
+addHandlerChanged.GTable <- function(obj, handler, action=NULL, ...) NextMethod()
+
+
+##' visible
+##'
+##' For \code{GTable}, visibility refers to which rows are currently
+##' shown, not whether the widget itself is shown or hidden. (For the
+##' latter, place the widget into a container and adjust that). One
+##' can use this method to perform filtering by adjusting which rows
+##' are displayed according to some criteria that returns a logical.
+##' @inheritParams svalue
+##' @export
+##' @rdname gtable
+visible.GTable <- function(obj, ...) NextMethod()
+
+##' Set size of table widget
+##'
+##' For \code{GTable} the \code{size<-}  method is overridden to allow one to specify the column widths
+"size<-.GTable" <- function(obj, value) NextMethod()
