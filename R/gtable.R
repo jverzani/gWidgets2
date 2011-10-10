@@ -107,9 +107,10 @@ svalue.GTable <- function(obj, index=NULL, ..., value) NextMethod()
 
 ##' addHandlerChanged method
 ##'
-##' The change handler for \code{GTable} is called when a row is
-##' activated, such as when it is double clicked. A single click is
-##' for adjusting the selection.
+##' The change handler for \code{GTable} is called when the selection
+##' changes. This is often the result of a click event (but need not
+##' bo), although we alias to \code{addHandlerClicked}. For double
+##' click events, see \code{addHandlerDoubleclick}.
 ##' @inheritParams addHandler
 ##' @export
 ##' @rdname gtable
@@ -130,5 +131,12 @@ visible.GTable <- function(obj, ...) NextMethod()
 
 ##' Set size of table widget
 ##'
-##' For \code{GTable} the \code{size<-}  method is overridden to allow one to specify the column widths
+##' For \code{GTable} the \code{size<-}  method is overridden to allow
+##' one to specify the column widths. To do so, pass in the values for
+##' \code{width}, \code{height} or \code{column.widths} as named components
+##' of a list. The value of \code{column.widths} should be a numeric
+##' vector of pixel widths of length matching the number of columns.
+##' @inheritParam size
+##' @export
+##' @rdname gtable
 "size<-.GTable" <- function(obj, value) NextMethod()
