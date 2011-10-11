@@ -329,17 +329,18 @@ add3rdmousePopupMenu.default <-  function(obj, menulist, action=NULL, ...)
 ##' will appear as the \code{dropdata} component of the list passed in
 ##' as the first argument of the handler
 ##' @inheritParams addHandler
+##' @param data.type Type of data returned. It is either text or an object
 ##' @export
 ##' @rdname gWidgets-handlers
-addDropSource <- function(obj, handler, action=NULL, ...) UseMethod("addDropSource")
+addDropSource <- function(obj, handler, action=NULL, data.type=c("text", "object"), ...) UseMethod("addDropSource")
 
 ##' Default S3 method
 ##'
 ##' @inheritParams addHandler
 ##' @export
 ##' @rdname gWidgets-handlers
-addDropSource.default <-  function(obj, handler, action=NULL, ...)
-  obj$add_drop_source(handler, action=action, ...)
+addDropSource.default <-  function(obj, handler, action=NULL, data.type=c("text", "object"), ...)
+  obj$add_drop_source(handler, action=action, data.type=match.arg(data.type), ...)
 
 ##' Specify that a widget is a drop target
 ##'

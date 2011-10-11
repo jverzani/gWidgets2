@@ -145,9 +145,11 @@
   add3rdmousePopupMenu.default(obj, menulist, action =
   NULL, ...)
 
-  addDropSource(obj, handler, action = NULL, ...)
+  addDropSource(obj, handler, action = NULL, data.type =
+  c("text", "object"), ...)
 
-  addDropSource.default(obj, handler, action = NULL, ...)
+  addDropSource.default(obj, handler, action = NULL,
+  data.type = c("text", "object"), ...)
 
   addDropTarget(obj, handler, action = NULL, ...)
 
@@ -196,6 +198,9 @@
   \item{menulist}{a list of \code{gaction} items}
 
   \item{menulist}{a list of \code{gaction} items}
+
+  \item{data.type}{Type of data returned. It is either text
+  or an object}
 
   \item{ID}{returned by addHandler. If missing will try to
   block handler passed to constructor}
