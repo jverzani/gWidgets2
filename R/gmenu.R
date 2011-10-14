@@ -53,7 +53,7 @@ gmenu <- function(
 ##' add menubar items to a menu
 ##'
 ##' @inheritParams add
-##' @child list. a menubar list or gmenu instance.
+##' @param child list. a menubar list or gmenu instance.
 ##' @export
 ##' @rdname gtoolbar
 add.GMenuBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) {
@@ -72,7 +72,7 @@ add.GMenuBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) 
 ##' \code{enabled<-} method may be used on the item, but this may not
 ##' extend to \code{gradio} and \code{gcheckbox} items)
 ##' @inheritParams svalue
-##' @value for a menubar, a list of action items etc. defining the new menubar.
+##' @param value for a menubar, a list of action items etc. defining the new menubar.
 ##' @export
 ##' @rdname svalue
 "svalue<-.GMenuBar" <- function(obj, index=NULL, ..., value) NextMethod()
@@ -81,7 +81,7 @@ add.GMenuBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) 
 ##'
 ##' for a menubar, \code{svalue<-} replaces the menubar items with new ones specified by value.
 ##' @inheritParams svalue
-##' @value for a menubar, a list of action items etc. defining the new menubar.
+##' @param value for a menubar, a list of action items etc. defining the new menubar.
 ##' @export
 ##' @rdname svalue
 "svalue<-.GMenuBar" <- function(obj, index=NULL, ..., value) NextMethod()

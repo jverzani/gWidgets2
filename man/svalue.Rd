@@ -23,6 +23,15 @@
   means.}
 
   \item{...}{passed on to call}
+
+  \item{value}{For a toolbar, a list defining the new
+  toolbar.}
+
+  \item{value}{for a menubar, a list of action items etc.
+  defining the new menubar.}
+
+  \item{value}{for a menubar, a list of action items etc.
+  defining the new menubar.}
 }
 \description{
   This returns the "selected" value in a widget. Selection

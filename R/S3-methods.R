@@ -84,7 +84,7 @@ dimnames.GComponent <- function(x) {
 ##' @rdname gWidgets-S3methods
 "[.GComponent" <- function(x, i, j, ..., drop=TRUE) {
   if(isExtant(x))
-    x$get_items(i, j, ..., drop=TRUE)
+    x$get_items(i, j, ..., drop=drop)
 }
 
 ##' Return children of a parent container

@@ -50,3 +50,4 @@ Collate:
     'gtoolbar.R'
     'gmenu.R'
     'gtable.R'
+    'gtree.R'

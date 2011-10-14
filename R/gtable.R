@@ -136,7 +136,7 @@ visible.GTable <- function(obj, ...) NextMethod()
 ##' \code{width}, \code{height} or \code{column.widths} as named components
 ##' of a list. The value of \code{column.widths} should be a numeric
 ##' vector of pixel widths of length matching the number of columns.
-##' @inheritParam size
+##' @inheritParams size
 ##' @export
 ##' @rdname gtable
 "size<-.GTable" <- function(obj, value) NextMethod()

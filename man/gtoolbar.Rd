@@ -34,9 +34,12 @@
 
   \item{toolkit}{toolkit}
 
-  \item{obj}{parent object}
+  \item{child}{list. a toolbar list (one-level named list
+  of \code{gaction} or \code{gseparator} objects.)}
 
-  \item{child}{child widget}
+  \item{child}{list. a menubar list or gmenu instance.}
+
+  \item{obj}{parent object}
 
   \item{expand}{NULL or logical. XXX}
 

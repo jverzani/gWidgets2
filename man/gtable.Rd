@@ -48,8 +48,8 @@
   supports it an index, instead of a value will be
   returned.}
 
-  \item{value}{typically an array-like \R object of a
-  similar class as \code{x}.}
+  \item{value}{For a toolbar, a list defining the new
+  toolbar.}
 
   \item{handler}{handler to assign when signal is emitted.
   A handler is a function, its first argument should expect

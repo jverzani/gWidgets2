@@ -46,7 +46,7 @@ gtoolbar <- function(
 ##' add toolbar items to toolbar
 ##'
 ##' @inheritParams add
-##' @child list. a toolbar list (one-level named list of \code{gaction} or \code{gseparator} objects.)
+##' @param child list. a toolbar list (one-level named list of \code{gaction} or \code{gseparator} objects.)
 ##' @export
 ##' @rdname gtoolbar
 add.GToolBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) {
@@ -63,7 +63,7 @@ add.GToolBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) 
 ##'
 ##' for a toolbar, \code{svalue<-} replaces the toolbar items with new ones specified by value.
 ##' @inheritParams svalue
-##' @value For a toolbar, a list defining the new toolbar.
+##' @param value For a toolbar, a list defining the new toolbar.
 ##' @export
 ##' @rdname svalue
 "svalue<-.GToolBar" <- function(obj, index=NULL, ..., value) NextMethod()
