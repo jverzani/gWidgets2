@@ -51,3 +51,6 @@ Collate:
     'gmenu.R'
     'gtable.R'
     'gtree.R'
+    'gdf.R'
+    'ws-model.R'
+    'gvarbrowser.R'

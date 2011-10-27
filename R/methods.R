@@ -596,3 +596,24 @@ getTopLevel.GComponent <- function(obj) {
   else
     getTopLevel(obj$parent)
 }
+
+
+## Container methods
+
+##' Add a spring to a container objects
+##'
+##' @param obj GContainer object
+##' @return NULL
+##' @export
+##' @rdname methods
+addSpring <- function(obj) UseMethod("addSpring")
+
+##' basic S3 generic to dispatch on
+##'
+##' Add spring to GContainer class
+##' @export
+##' @rdname methods
+addSpring.GContainer <- function(obj) {
+  obj$add_spring()
+}
+

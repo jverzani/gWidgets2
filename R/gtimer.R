@@ -24,7 +24,7 @@ NULL
 ##' hold_breath <- gtimer(1000*60, FUN, one.shot=TRUE)
 ##' }
 gtimer <- function(ms, FUN, data=NULL,  one.shot=FALSE, start=TRUE, toolkit=guiToolkit()) {
-  .gtimer(toolkit, ms, FUN, data, one.shot, start)
+  .gtimer(toolkit=toolkit, ms=ms, FUN=FUN, data=data, one.shot=one.shot, start=start)
 }
 
 ##' S3 generic for dispatch

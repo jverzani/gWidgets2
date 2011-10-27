@@ -1,0 +1,71 @@
+##' @include methods.R
+NULL
+
+##' Constructor for a data frame editor
+##'
+##' Implementation varies wildly, but should provide at minimum functionality of \code{edit.data.frame}.
+##' @param items data frame to edit
+##' @param name name of data frame (for saving, but not really needed)
+##' @param container parent container
+##' @param handler called on cell change
+##' @param action passed to handler
+##' @param ... passed to container's \code{add} method
+##' @param toolkit toolkit
+##' @export
+##' @return An object of class \code{gDf}.
+##' @note need example of do.subset feature using visible<-
+gdf <- function(
+                items = NULL, name = deparse(substitute(items)),
+                handler=NULL, action=NULL,
+                container = NULL, ... ,
+                toolkit=guiToolkit()){
+  obj <- .gdf (toolkit,
+               items=items, name=name,
+               handler=handler, action=action, container=container ,...
+               )
+
+  deprecated_args <- list(do.subset=c("do.subset argument has been deprecated.","See examples for how to create that functionality"))
+  check_deprecated(deprecated_args, ...)
+
+  check_return_class(obj, "GDf")
+  return(obj)
+}
+
+
+##' generic for toolkit dispatch
+##' @rdname gdf
+.gdf <- function(toolkit,
+                 items = NULL, name = deparse(substitute(items)),
+                 handler=NULL, action=NULL, container = NULL, ... )
+  UseMethod( '.gdf' )
+
+
+## methods
+## addHandlerChanged, addHandlerClicked, addHandlerDoubleClicked
+## addHandlerColumnClicked, addHandlerColumnDoubleClicked
+
+##' Change handler for GDf
+##'
+##' Assign handler to be called when a cell, row or column changes
+##' @inheritParams addHandler
+##' @export
+##' @rdname gdf
+addHandlerChanged.GDf <- function(obj, handler, action=NULL, ...) NextMethod()
+  
+
+##' "svalue" method
+##'
+##' For gdf svalue refers to the selected values.
+##' @inheritParams svalue
+##' @export
+##' @rdname gdf
+svalue.GDf <- function(obj, index=NULL, drop=TRUE) NextMethod()
+
+
+##' "visible" method
+##'
+##' visible is used to refer to which rows are being shown
+##' @inheritParams visible
+##' @export
+##' @rdname gdf
+"visible<-.GDf" <- function(obj, value) NextMethod()
