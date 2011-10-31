@@ -68,3 +68,20 @@ installing_gWidgets_toolkits <- function() {
 
 }
 
+
+##' Return logical indicating if we are on a macintosh machine
+##'
+##' @return logical
+##' @export
+is_MacOSX <- function() {
+  grepl("darwin", R.Version()$os)
+}
+
+##' Return logical indicating if we are on a Windows machine
+##'
+##' @return logical
+##' @export
+is_Windows <- function() {
+  grepl("Windows", R.Version()$os)
+}
+  

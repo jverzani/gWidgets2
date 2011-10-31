@@ -21,12 +21,12 @@ WSWatcherModel <-  setRefClass("WSWatcherModel",
                                methods=list(
                                  initialize=function(toolkit=NULL, ...) {
                                    "Initialze state of cached objects"
+
+                                   timer <<- gtimer(ms=1000, FUN=function(ws_model) {
+                                     ws_model$update_state()
+                                   }, data=.self, start=FALSE, toolkit=toolkit)
                                    
-                                   timer <<- gtimer(ms=1000, FUN=function(...) {
-                                     .self$update_state()
-                                   }, start=FALSE, toolkit=toolkit)
-                                   
-                                   update_state()
+                                   update_state() # initial
                                    old_nms <<- nms
                                    old_digests <<- digests
                                    callSuper(...)
@@ -64,11 +64,11 @@ WSWatcherModel <-  setRefClass("WSWatcherModel",
                                  any_changes=function(...) {
                                    "Report  if any changes"
                                    if(length(old_nms) == 0) {
-                                     TRUE
-                                   } else  {                             
-                                     (length(old_digests) != length(digests)) ||
-                                     any(old_digests != digests)
+                                     out <- TRUE
+                                   } else  {
+                                     out <- (length(old_digests) != length(digests)) || any(old_digests != digests)
                                    }
+                                   out
                                  },
                                  start_timer=function(ms) {
                                    "Start timer. Can modify ms here"
@@ -89,8 +89,8 @@ WSWatcherModel <-  setRefClass("WSWatcherModel",
                                  },
                                  get_by_function= function(f) {
                                    "Filter objects by function f"
-                                   update_state()
-                                   Filter(f, mget(nms, .GlobalEnv))
+                                   objs <- mget(nms, .GlobalEnv, ifnotfound=list(function(x) {}))
+                                   Filter(f, objs)
                                  },
                                  get_changes=function() {
                                    "Return list of changes"

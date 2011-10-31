@@ -12,28 +12,45 @@ define_me <- function(...) {
 
 Observer <- setRefClass("Observer",
                         fields=list(
-                          o = "ANY",    # want "function", but doesn't work with proto objects
-                          obj="ANY",
-                          action="ANY"
+                          o = "ANY",   
+                          obj="ANY"
                           ),
                         methods=list(
-                          initialize=function(o,  obj, action=NULL) {
-                            initFields(o=o, obj=obj, action=action)
-                            .self
+                          initialize=function(o=NULL, obj=NULL) {
+                            initFields(o=o, obj=obj)
+                            callSuper()
                           },
                           update=function(...) {
                             "Call self."
-                            h <- list(obj=obj, action=action)
-                            o(h, ...)
+                            o(obj, ...)
                           }
                           )
                         )
-##' constructor for observer object
+
+## Handler is a special observer with obj and actino passed as first argument
+Handler <- setRefClass("Handler",
+                       contains="Observer",
+                       fields=list(
+                         action="ANY"
+                         ),
+                        methods=list(
+                          initialize=function(o=NULL, obj=NULL, action=NULL) {
+                            initFields(action=action)
+                            callSuper(o=o, obj=obj)
+                          },
+                          update=function(...) {
+                            "Call self."
+                            o(list(obj=obj, action=action), ...)
+                          }
+                          )
+                        )
+
+##' constructor for handler object
 ##'
 ##' not exported, call using :::
 ##' 
 observer <- function(receiver, handler, action=NULL) 
-  Observer$new(handler, receiver, action)
+  Handler$new(handler, receiver, action)
 
 
 ##' Observable class sets up objects that can be observed. Inherited by template
