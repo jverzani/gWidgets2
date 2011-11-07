@@ -6,12 +6,10 @@
 \alias{visible<-.GDf}
 \title{Constructor for a data frame editor}
 \usage{
-  gdf(items = NULL, name = deparse(substitute(items)),
-  handler = NULL, action = NULL, container = NULL, ...,
-  toolkit = guiToolkit())
+  gdf(items = NULL, handler = NULL, action = NULL,
+  container = NULL, ..., toolkit = guiToolkit())
 
-  .gdf(toolkit, items = NULL, name =
-  deparse(substitute(items)), handler = NULL, action =
+  .gdf(toolkit, items = NULL, handler = NULL, action =
   NULL, container = NULL, ...)
 
   addHandlerChanged.GDf(obj, handler, action = NULL, ...)
@@ -62,6 +60,6 @@
   visible is used to refer to which rows are being shown
 }
 \note{
-  need example of do.subset feature using visible<-
+  need example of do.subset feature using \code{visible<-}
 }
 

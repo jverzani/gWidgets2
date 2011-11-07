@@ -13,18 +13,20 @@ NULL
 ##' @param toolkit toolkit
 ##' @export
 ##' @return An object of class \code{gDf}.
-##' @note need example of do.subset feature using visible<-
+##' @note need example of do.subset feature using \code{visible<-}
 gdf <- function(
-                items = NULL, name = deparse(substitute(items)),
+                items = NULL, 
                 handler=NULL, action=NULL,
                 container = NULL, ... ,
                 toolkit=guiToolkit()){
   obj <- .gdf (toolkit,
-               items=items, name=name,
+               items=items, 
                handler=handler, action=action, container=container ,...
                )
 
-  deprecated_args <- list(do.subset=c("do.subset argument has been deprecated.","See examples for how to create that functionality"))
+  deprecated_args <- list(do.subset=c("do.subset argument has been deprecated.","See examples for how to create that functionality"),
+                          name=c("name argument is deprecated, as this should be managed by programmer")
+                          )
   check_deprecated(deprecated_args, ...)
 
   check_return_class(obj, "GDf")
@@ -35,7 +37,7 @@ gdf <- function(
 ##' generic for toolkit dispatch
 ##' @rdname gdf
 .gdf <- function(toolkit,
-                 items = NULL, name = deparse(substitute(items)),
+                 items = NULL,
                  handler=NULL, action=NULL, container = NULL, ... )
   UseMethod( '.gdf' )
 

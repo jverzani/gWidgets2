@@ -61,8 +61,10 @@ CommandList <- setRefClass("CommandList",
                              l="list"
                              ),
                            methods=list(
-                             initialize=function(...) {
-                               initFields(l=list(...))
+                             initialize=function(..., lst) {
+                               if(missing(lst))
+                                 lst <- list(...)
+                               initFields(l=lst)
                                callSuper()
                              },
                              add=function(cmd) {
