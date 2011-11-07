@@ -1,6 +1,6 @@
 \name{observer}
 \alias{observer}
-\title{constructor for observer object}
+\title{constructor for handler object}
 \usage{
   observer(receiver, handler, action = NULL)
 }

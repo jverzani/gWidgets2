@@ -54,3 +54,4 @@ Collate:
     'gdf.R'
     'ws-model.R'
     'gvarbrowser.R'
+    'command-stack.R'
