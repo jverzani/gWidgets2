@@ -83,7 +83,8 @@ gtable <- function(
 
 ##' "svalue" method
 ##'
-##' For gtable one can pass in row(s) to select by index (when index=TRUE) or by match among the values in the chosen column
+##' For gtable one can pass in row(s) to select by index (when index=TRUE) or by match among the values in the chosen column.
+##' For setting by index, a value of 0L or integer(0) will clear the current selection
 ##' @inheritParams svalue
 ##' @export
 ##' @rdname gtable
