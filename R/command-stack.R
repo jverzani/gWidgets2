@@ -71,13 +71,13 @@ CommandList <- setRefClass("CommandList",
                                l[[length(l) + 1]] <<- cmd
                              },
                              do=function() {
-                               sapply(l, function(i) i$do())
+                               lapply(l, function(i) i$do())
                              },
                              redo=function() {
-                               sapply(l, function(i) i$redo())
+                               lapply(l, function(i) i$redo())
                              },
                              undo=function() {
-                               sapply(l, function(i) i$undo())
+                               lapply(l, function(i) i$undo())
                              }
                              ))
 
