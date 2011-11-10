@@ -13,8 +13,8 @@ License: GPL
 LazyLoad: yes
 Collate:
     'guiToolkit.R'
-    'BasicInterface.R'
     'misc.R'
+    'BasicInterface.R'
     'S4-methods.R'
     'S3-methods.R'
     'methods.R'
@@ -55,3 +55,6 @@ Collate:
     'ws-model.R'
     'gvarbrowser.R'
     'command-stack.R'
+    'gdfnotebook.R'
+    'ggraphicsnotebook.R'
+    'gWidgets2-package.R'

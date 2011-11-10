@@ -1,4 +1,5 @@
 ##' @include guiToolkit.R
+##' @include misc.R
 NULL
 
 ## simple message function
@@ -153,6 +154,14 @@ Observable <- setRefClass("Observable",
 ##' @exportClass BasicToolkitInterface
 BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                      contains="Observable",
+                                     fields=list(
+                                       toolkit="ANY",
+                                       widget="ANY",
+                                       block="ANY",
+                                       parent="ANY", # NULL for gwindow, else parent container
+                                       default_expand="LogicalCharacterOrNULL",
+                                       default_fill="LogicalCharacterOrNULL"
+                                       ),
                                      methods=list(
                                        get_value=define_me, # svalue
                                        set_value=define_me, # svalue<-
@@ -205,7 +214,10 @@ BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                        add_drop_source=define_me,
                                        add_drop_target=define_me,
                                        add_drag_Motion=define_me,
-                                       emit_signal=define_me # gSignalEmit, ... to invoke. Signal missing do change one
-
+                                       emit_signal=define_me, # gSignalEmit, ... to invoke. Signal missing do change one
+                                       ## show method
+                                       show=function() {
+                                         cat(sprintf("An object of class %s\n", class(.self)[1]))
+                                       }
                                        ))
 

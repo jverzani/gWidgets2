@@ -208,7 +208,7 @@ svalue.GTree <-  function(obj, index=FALSE, drop=TRUE, ...) NextMethod()
 ##' @inheritParams svalue
 ##' @export
 ##' @rdname gtree
-"svalue<-.GTree" <-  function(obj, index=TRUE, drop=TRUE, ...) NextMethod()
+"svalue<-.GTree" <-  function(obj, index=TRUE,  ..., value) NextMethod()
 
 
 ##' extract method for gtree

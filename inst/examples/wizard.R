@@ -8,7 +8,8 @@ WizardPage <- setRefClass("WizardPage",
                           fields=list(
                             wizard="ANY",
                             prev_button="ANY",
-                            next_button="ANY"
+                            next_button="ANY",
+                            widgets="list"
                             ),
                           methods=list(
                             initialize=function(wizard=NULL, ...) {
@@ -32,7 +33,7 @@ WizardPage <- setRefClass("WizardPage",
                             },
                             get_values=function() {
                               "Return values in a named list"
-                              list()
+                              sapply(widgets, svalue, simplify=FALSE)
                             }
                           ))
 
@@ -111,7 +112,8 @@ Wizard <- setRefClass("Wizard",
                         },
                         get_values=function() {
                           "Return values from page"
-                          lapply(pages, function(page) page$get_values())
+                          out <- sapply(pages, function(page) page$get_values(), simplify=FALSE)
+                          unlist(out, recursive=FALSE)
                         }
                         ))
                       
@@ -121,27 +123,24 @@ wizard <- Wizard$new(title="test")
 
 page1 <- setRefClass("Page1",
                      contains="WizardPage",
-                     fields=list(
-                       ed1="ANY",
-                       ed2="ANY"
-                       ),
                      methods=list(
                        can_next = function() {
-                         nchar(svalue(ed1)) > 0 && nchar(svalue(ed2)) > 0
+                         with(widgets,
+                              nchar(svalue(ed1)) > 0 && nchar(svalue(ed2)) > 0
+                              )
                        },
                        can_prev=function() FALSE,
                        make_page=function(content_area) {
                          lyt <- glayout(cont=content_area)
                          lyt[1,1] <- "Edit area 1"
-                         lyt[1,2] <- (ed1 <<- gedit("", cont=lyt))
+                         lyt[1,2] <- (widgets$ed1 <<- gedit("", cont=lyt))
                          
                          lyt[2,1] <- "Edit area 2"
-                         lyt[2,2] <- (ed2 <<- gedit("", cont=lyt))
+                         lyt[2,2] <- (widgets$ed2 <<- gedit("", cont=lyt))
 
-                         sapply(list(ed1, ed2), function(obj)
+                         sapply(widgets, function(obj)
                                 addHandlerKeystroke(obj, handler=function(h,...) h$action$update_page(), action=.self))
-                       },
-                       get_values=function() sapply(list(ed1, ed2), svalue, simplify=FALSE)
+                       }
                        ))$new()
                        
 
@@ -149,27 +148,24 @@ page1 <- setRefClass("Page1",
 
 page2 <- setRefClass("Page2",
                      contains="WizardPage",
-                     fields=list(
-                       rb="ANY",
-                       cb="ANY"
-                       ),
                      methods=list(
                        can_next = function() {
-                         svalue(cb)
+                         with(widgets,
+                              svalue(cb)
+                              )
                        },
                        can_prev=function() TRUE,
                        make_page=function(content_area) {
                          lyt <- glayout(cont=content_area)
                          lyt[1,1] <- "radio group"
-                         lyt[1,2] <- (rb <<- gradio(state.name[1:4], cont=lyt))
+                         lyt[1,2] <- (widgets$rb <<- gradio(state.name[1:4], cont=lyt))
                          
                          lyt[2,1] <- "checkbox"
-                         lyt[2,2] <- (cb <<- gcheckbox("all ready?", checked=FALSE, cont=lyt))
+                         lyt[2,2] <- (widgets$cb <<- gcheckbox("all ready?", checked=FALSE, cont=lyt))
 
-                         sapply(list(rb, cb), function(obj)
+                         sapply(widgets, function(obj)
                                 addHandlerChanged(obj, handler=function(h,...) h$action$update_page(), action=.self))
-                       },
-                       get_values=function() sapply(list(rb, cb), svalue, simplify=FALSE)
+                       }
                        ))$new()
 
 

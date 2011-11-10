@@ -61,7 +61,7 @@ addHandlerChanged.GDf <- function(obj, handler, action=NULL, ...) NextMethod()
 ##' @inheritParams svalue
 ##' @export
 ##' @rdname gdf
-svalue.GDf <- function(obj, index=NULL, drop=TRUE) NextMethod()
+svalue.GDf <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 
 
 ##' "visible" method

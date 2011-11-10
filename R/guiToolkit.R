@@ -11,7 +11,6 @@ setClass("guiWidgetsToolkit",
 ## setClass("guiWidgetsToolkitRGtk2",
 ##          contains="guiWidgetsToolkit")
 
-
 ##################################################
 
 
@@ -41,9 +40,10 @@ guiToolkit <- function(name=NULL) {
     if(is(x, "guiWidgetsToolkit")) {
       name <- x
     } else {
-      name = getOption("guiToolkit")
+      name <- getOption("guiToolkit")
     }
   }
+
   if(!is.null(name) && is.na(name)) {
     message("Choice overridden")
     return(NULL)          # use NA to override choice

@@ -32,6 +32,9 @@ glayout <- function(
 ##' @rdname glayout
 "[.GLayout" <- function(x, i, j, ..., drop=TRUE) {
   getWithDefault(drop, TRUE)
+
+  if(missing(i)) i <- seq_len(dim(x)[1])
+  if(missing(j)) j <- seq_len(dim(x)[2])
   
   if(length(i) == 1 && length(j) == 1)
     return(x$get_items(i, j, ..., drop=drop))

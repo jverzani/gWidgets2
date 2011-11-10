@@ -135,18 +135,4 @@ CommandStack <- setRefClass("CommandStack",
                               }
                               ))
                             
-                            
-                            
-
-## ## Test commands
-## cs <- CommandStack$new()
-## cmd1 <- Command$new(.GlobalEnv, "print", x=1)
-## cs$add(cmd1)
-## cmd2 <- Command$new(.GlobalEnv, "print", x=2)
-## cmd3 <- Command$new(.GlobalEnv, "print", x=3)
-## cs$add(cmd2)
-## cs$undo()
-## cs$do()
-## cs$undo()
-## cs$add(cmd3)
 

@@ -3,10 +3,15 @@ NULL
 
 ##' Constructor for a tabbed notebook container
 ##'
-##' @note the button arguments of the gWidgets constructor are
-##' removed. One passes the close button request to the \code{add}
-##' method.
+##' The tabbed notebook container allows one to hold many different
+##' pages with a mechanism to switch between them. In \code{gWidgets2}
+##' new pages are added through the \code{add} method. One passes in
+##' the tab label through the extra \code{label} argument, or
+##' subsequently through \code{names<-}.
 ##' @param tab.pos integer. Position of tabs, 1 on bottom, 2 left, 3 top, 4 right. (If supported)
+##' @note In \pkg{gWidgets2} the button arguments of the
+##' \code{gWidgets} constructor are removed. One passes the close
+##' button request to the \code{add} method.
 ##' @export
 gnotebook <- function(
                       tab.pos = 3, 
@@ -33,6 +38,7 @@ gnotebook <- function(
                         container = NULL, ... )
   UseMethod( '.gnotebook' )
 
+
 ##' add method for notebooks
 ##'
 ##' Children added to notebooks need a label, a position and
@@ -40,20 +46,32 @@ gnotebook <- function(
 ##' fill, anchor are not specified -- children expand and fill.
 ##' @param obj gnotebook object
 ##' @param child some child component to add
-##' @param label character. Label text for tab
-##' @param i integer. Position in 0..length(obj) to insert child. If empty at end, if 0 or less at beginning.
-##' @param close.button logical Do we add a close button (toolkit dependent)
 ##' @param ... 
-##' @return adds child
+##' @note To keep the signature the same as the generic, several arguments are passed in via ...:
+##' \describe{
+##' \item{label}{ A character. Label text for tab}
+##' \item{i}{An integer in \code{0} to \code{length(obj)} indicating the position to insert child. The new page is inserted to the right of page  number \code{i}. When \code{i=0}, the page appears at the front, when \code{i} is not specified it appears at the end.
+##' \item{close.button}{A logical. If \code{TRUE} -- and the toolkit supports it -- the page tab will include a close button.
+##' }
+##' @return none. called for its side effect.
 ##' @export
 ##' @rdname gnotebook
-add.GNotebook <- function(obj, child, label="", i=length(obj), close.button=FALSE, ...) {
+add.GNotebook <- function(obj, child, expand, fill, anchor, ...) {
+  ## process passed in args
+  args <- list(...)
+  label <- getWithDefault(args$label, "")
+  i <- getWithDefault(args$i, length(obj))
+  close.button <- getWithDefault(args$close.button, FALSE)
+  
   obj$add_child(child, label, i, close.button, ...)
 }
 
 
 ##' Remove current page from notebook
 ##'
+##' Dispose deletes the current page, not the entire notebook
+##' object. To delete a specific page, a combination of
+##' \code{svalue<-} and \code{dispose} may be used.
 ##' @export
 ##' @rdname gnotebook
 dispose.GNotebook <- function(obj, ...) {
@@ -63,20 +81,11 @@ dispose.GNotebook <- function(obj, ...) {
 
 ##' get tab names of notebook
 ##'
+##' The \code{names} of a notebook are the page tab labels. These may be retrieved and set through the \code{names} method.
 ##' @export
 ##' @rdname gnotebook
 "names.GNotebook" <- function(x) x$get_names()
 
-##' set tab names for object
-##'
-##' @param x notebook object
-##' @param value new label text
-##' @export
-##' @rdname gnotebook
-"names<-.GNotebook" <- function(x, value) {
-  x$set_names(value)
-  x
-}
 
 ##' add change handler
 ##'

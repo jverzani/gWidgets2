@@ -143,27 +143,3 @@ update.GComponent <- function(object, ...) {
 str.GComponent <- function(object, ...) cat(sprintf("Object of class %s\n", class(object)))
 
 
-##' merge two lists
-##' 
-##' @param x a list
-##' @param y a list
-##' @param overwrite logical should we overright values in x
-##' @export
-##' @rdname  gWidgets2-S3methods
-merge.list <- function(x, y, overwrite=TRUE) {
-  if(missing(y) || is.null(y))
-    return(x)
-  nms <- names(y)
-  for(i in seq_along(y)) {
-    nm <- nms[i]                        # possibly NULL
-    if(is.null(nm)) {
-      x[[length(x) + 1]] <- y[[i]]
-    } else if(overwrite || !(nm %in% names(x))) {
-      x[[nm]] <- y[[i]]
-    }
-  }
-  x
-}
-
-
-

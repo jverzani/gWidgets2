@@ -14,7 +14,7 @@
 
   addHandlerChanged.GDf(obj, handler, action = NULL, ...)
 
-  svalue.GDf(obj, index = NULL, drop = TRUE)
+  svalue.GDf(obj, index = NULL, drop = TRUE, ...)
 }
 \arguments{
   \item{items}{data frame to edit}

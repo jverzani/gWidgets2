@@ -1,5 +1,33 @@
 ## miscellaneous functions
 
+##' merge two lists
+##' 
+##' @param x a list
+##' @param y a list
+##' @param overwrite logical should we overright values in x
+##' @export
+##' @rdname  gWidgets2-S3methods
+merge.list <- function(x, y, ...) {
+  args <- list(...)
+  overwrite <- getWithDefault(args$overwrite, TRUE)
+  
+  if(missing(y) || is.null(y))
+    return(x)
+  nms <- names(y)
+  for(i in seq_along(y)) {
+    nm <- nms[i]                        # possibly NULL
+    if(is.null(nm)) {
+      x[[length(x) + 1]] <- y[[i]]
+    } else if(overwrite || !(nm %in% names(x))) {
+      x[[nm]] <- y[[i]]
+    }
+  }
+  x
+}
+
+
+
+
 ##' Return x unless NULL, NA, length 0, ..., in which case we give default
 ##'
 ##' @param x value to return or its default
@@ -85,3 +113,8 @@ is_Windows <- function() {
   grepl("Windows", R.Version()$os)
 }
   
+## some special class unions so we can have easier to deal with default
+setClassUnion("IntegerOrNULL", c("integer", "NULL"))
+setClassUnion("CharacterOrNULL", c("character", "NULL"))
+setClassUnion("LogicalOrNULL", c("logical", "NULL"))
+setClassUnion("LogicalCharacterOrNULL", c("logical", "character", "NULL"))

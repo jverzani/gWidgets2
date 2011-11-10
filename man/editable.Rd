@@ -5,9 +5,9 @@
 \alias{editable<-.default}
 \title{Controls whether widget is editable or not}
 \usage{
-  editable(obj)
+  editable(obj, j)
 
-  editable.default(obj)
+  editable.default(obj, j)
 
   editable(obj) <- value
 }

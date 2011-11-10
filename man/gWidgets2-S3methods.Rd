@@ -1,11 +1,11 @@
-\name{str.GComponent}
+\name{merge.list}
 \alias{merge.list}
 \alias{str.GComponent}
-\title{str method for widgets}
+\title{merge two lists}
 \usage{
-  str.GComponent(object, ...)
+  merge.list(x, y, ...)
 
-  merge.list(x, y, overwrite = TRUE)
+  str.GComponent(object, ...)
 }
 \arguments{
   \item{x}{a list}
@@ -15,8 +15,8 @@
   \item{overwrite}{logical should we overright values in x}
 }
 \description{
-  str method for widgets
-
   merge two lists
+
+  str method for widgets
 }
 

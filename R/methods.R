@@ -213,15 +213,15 @@ focus.default <- function(obj) {
 ##' @param obj object
 ##' @export
 ##' @rdname editable
-editable <- function(obj) UseMethod("editable")
+editable <- function(obj, j) UseMethod("editable")
 
 ##' Basic S3 method
 ##'
 ##' @export
 ##' @rdname editable
-editable.default <- function(obj) {
+editable.default <- function(obj, j) {
   if(isExtant(obj))
-    obj$get_editable()
+    obj$get_editable(j)
 }
 ##' Set whether an object can be edited
 ##'
@@ -229,15 +229,15 @@ editable.default <- function(obj) {
 ##' @export
 ##' @usage editable(obj) <- value
 ##' @rdname editable
-"editable<-" <- function(obj, value) UseMethod("editable<-")
+"editable<-" <- function(obj, i, ..., value) UseMethod("editable<-")
 
 ##' Basic S3 method for editable
 ##'
 ##' @export
 ##' @rdname editable
-"editable<-.default" <- function(obj, value) {
+"editable<-.default" <- function(obj, i, ..., value) {
   if(isExtant(obj))
-    obj$set_editable(as.logical(value))
+    obj$set_editable(as.logical(value, i))
   obj
 }
 

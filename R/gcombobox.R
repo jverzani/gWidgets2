@@ -21,7 +21,7 @@ NULL
 ##' \enumerate{
 ##' \item \code{svalue} Return selected value by name or (if \code{index=TRUE} by index). The latter only if \code{editable=FALSE}.
 ##' 
-##' \item \code{\svalue<-} Set the selected value by value or if \code{index=TRUE} by index.
+##' \item \code{svalue<-} Set the selected value by value or if \code{index=TRUE} by index.
 ##'
 ##' \item \code{[} return items to select from
 ##'
@@ -60,7 +60,7 @@ gcombobox <- function(
 ##' @export
 ##' @rdname gcombobox
 gdroplist <- function(...) {
-  deprecated("Use gcombobox, not gdroplist")
+  .Deprecated("Use gcombobox, not gdroplist")
   gcombobox(...)
 }
 
@@ -97,7 +97,7 @@ gdroplist <- function(...) {
 ##' @param ... ignored
 ##' @param value new items for selection
 ##' @export
-##' @rdname GCombobox
+##' @rdname gcombobox
 "[<-.GComboBox" <- function(x,i,j,...,value) {
 
   value <- .make_gcombobox_items(value)

@@ -30,8 +30,6 @@ ggroup <- function(horizontal=TRUE, spacing=5, use.scrollwindow=FALSE, container
 ##' @export
 .ggroup <- function(toolkit, horizontal=TRUE, spacing=5, use.scrollwindow=FALSE, container=NULL, ...) UseMethod(".ggroup")
 
-
-
 ##' \code{svalue<-} method for a ggroup
 ##'
 ##' The main property of the box container is the spacing. There are
