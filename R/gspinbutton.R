@@ -3,7 +3,15 @@ NULL
 
 ##'  Spinbutton constructor
 ##'
-##' @export
+##' 
+##' @param from from value
+##' @param to to value
+##' @param by step length
+##' @param length.out number of steps. Only one of \code{by} or \code{length.out} is used.
+##' @param along.with Take from
+##' @param value initial value
+##' @param digits number of digits to display, should the toolkit support it
+##' @inheritParams gwidget
 ##' @rdname gspinbutton
 gspinbutton =function(
   from = 0, to = 10, by = 1,

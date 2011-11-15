@@ -8,12 +8,12 @@
   add(obj, child, expand = FALSE, fill = NULL, anchor =
   NULL, ...)
 
-  add.default(obj, child, expand = FALSE, fill = NULL,
-  anchor = NULL, ...)
+  \method{add}{default} (obj, child, expand = FALSE, fill =
+  NULL, anchor = NULL, ...)
 
   delete(obj, child)
 
-  delete.GContainer(obj, child)
+  \method{delete}{GContainer} (obj, child)
 }
 \arguments{
   \item{obj}{parent object}

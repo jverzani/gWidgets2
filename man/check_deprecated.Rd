@@ -4,6 +4,11 @@
 \usage{
   check_deprecated(deprecated_args = list(), ...)
 }
+\arguments{
+  \item{deprecated_args}{named list of deprecated args}
+
+  \item{...}{named avlues}
+}
 \description{
   Many arguments were deprecated due to various reasons.
   This is meant to ease porting of code.

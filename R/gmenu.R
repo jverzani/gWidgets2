@@ -16,9 +16,7 @@ NULL
 ##' \code{GRadio}, mapped to linked buttons; or \code{GCheckbox},
 ##' mapped to a checkbox button.
 ##' @param popup logical. If true, make a popup window to be added through a handler call
-##' @param container For non-popup menus, a top-level \code{GWindow} instance to place the menu bar within.
-##' @param ... 
-##' @param toolkit 
+##' @inheritParams gcontainer
 ##' @export
 gmenu <- function(
                   menu.list,
@@ -55,7 +53,9 @@ gmenu <- function(
 ##' @inheritParams add
 ##' @param child list. a menubar list or gmenu instance.
 ##' @export
-##' @rdname gtoolbar
+##' @rdname gmenu
+##' @method add GMenuBar
+##' @S3method add GMenuBar
 add.GMenuBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) {
   dispatcher <- function(obj, child) UseMethod("dispatcher")
   dispatcher.GMenuBar <- function(child, obj) obj$add_menu_items(obj$widget, svalue(child))
@@ -71,17 +71,17 @@ add.GMenuBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) 
 ##' underlying item being proxied. (For \code{gaction} items the
 ##' \code{enabled<-} method may be used on the item, but this may not
 ##' extend to \code{gradio} and \code{gcheckbox} items)
-##' @inheritParams svalue
-##' @param value for a menubar, a list of action items etc. defining the new menubar.
 ##' @export
-##' @rdname svalue
-"svalue<-.GMenuBar" <- function(obj, index=NULL, ..., value) NextMethod()
+##' @rdname gmenu
+##' @method svalue GMenuBar
+##' @S3method svalue GMenuBar
+"svalue.GMenuBar" <- function(obj, index=NULL, ..., value) NextMethod()
 
 ##' "svalue<-" method
 ##'
 ##' for a menubar, \code{svalue<-} replaces the menubar items with new ones specified by value.
-##' @inheritParams svalue
-##' @param value for a menubar, a list of action items etc. defining the new menubar.
 ##' @export
-##' @rdname svalue
+##' @rdname gmenu
+##' @method svalue<- GMenuBar
+##' @S3method svalue<- GMenuBar
 "svalue<-.GMenuBar" <- function(obj, index=NULL, ..., value) NextMethod()

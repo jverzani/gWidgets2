@@ -11,6 +11,10 @@ define_me <- function(...) {
                   ))
 }
 
+##' Reference class to create an observer of an observable object
+##'
+##' @rdname S4-classes
+##' @name Observer-class
 Observer <- setRefClass("Observer",
                         fields=list(
                           o = "ANY",   
@@ -28,7 +32,10 @@ Observer <- setRefClass("Observer",
                           )
                         )
 
-## Handler is a special observer with obj and actino passed as first argument
+##' Handler is a special observer with obj and actino passed as first argument
+##'
+##' @rdname S4-classes
+##' @name Handler-class
 Handler <- setRefClass("Handler",
                        contains="Observer",
                        fields=list(
@@ -48,8 +55,10 @@ Handler <- setRefClass("Handler",
 
 ##' constructor for handler object
 ##'
+##' @param receiver object receiving event
+##' @param handler function to call
+##' @param action used to parametrize handler call
 ##' not exported, call using :::
-##' 
 observer <- function(receiver, handler, action=NULL) 
   Handler$new(handler, receiver, action)
 
@@ -57,6 +66,8 @@ observer <- function(receiver, handler, action=NULL)
 ##' Observable class sets up objects that can be observed. Inherited by template
 ##'
 ##' @exportClass Observable
+##' @rdname S4-classes
+##' @name Observable-class
 Observable <- setRefClass("Observable",
                           fields=list(
                             ..observers="list",
@@ -152,6 +163,8 @@ Observable <- setRefClass("Observable",
 ##' perfect, but they do share quite a bit. Perhaps, we could make the
 ##' container class subclass the basic interface.
 ##' @exportClass BasicToolkitInterface
+##' @rdname S4-classes
+##' @name BasicToolkitInterface-class
 BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                      contains="Observable",
                                      fields=list(

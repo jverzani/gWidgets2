@@ -18,7 +18,7 @@
   \item{markup}{logical. If toolkit supports markup, this
   indicates it will be used}
 
-  \item{editable.}{If TRUE, then clicking on label will
+  \item{editable}{If TRUE, then clicking on label will
   enable editing of value}
 
   \item{handler}{optional handler. If given added through
@@ -35,8 +35,6 @@
   container}
 
   \item{toolkit}{toolkit instance}
-
-  \item{value}{integer amount of spacing}
 }
 \value{
   a \code{GLabel} instance. While this object has its own
@@ -54,7 +52,8 @@
   S3 generic whose methods are implemented in the toolkit
   packages
 
-  Set the main property of the label, its text
+  The \code{svalue} methods refer to the main property of
+  the label, its text.
 }
 \author{
   john verzani

@@ -45,14 +45,6 @@
 
   \item{toolkit}{toolkit}
 
-  \item{x}{object}
-
-  \item{i}{ignored}
-
-  \item{j}{ignored}
-
-  \item{...}{ignored}
-
   \item{value}{new items for selection}
 }
 \value{
@@ -86,6 +78,5 @@
   or a one-column data frame to inidicate the possible
   values for selection, a second column is used for an
   icons (if possible), a third for a tooltip (if possible).
-  get_from_templace for guiWidget
 }
 

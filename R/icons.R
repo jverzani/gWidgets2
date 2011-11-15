@@ -3,7 +3,7 @@ NULL
 
 ##' Method to add icon to list of stock icons
 ##'
-##' @param iconsNames names of icons 
+##' @param iconNames names of icons 
 ##' @param iconFiles path of icons
 ##' @param ... ignored
 ##' @param toolkit used to dispatch into toolkit if a separate implementation is made
@@ -21,6 +21,10 @@ addStockIcons <- function(iconNames,iconFiles, ..., toolkit = guiToolkit()) {
            UseMethod( '.addStockIcons' )
 
 
+##' toolkit implementation
+##' @rdname icons
+##' @method .addStockIcons default
+##' @S3method .addStockIcons default
 .addStockIcons.default <- function(toolkit, iconNames, iconFiles,... ) {
   ## default implementation
   cur <- .gWidgetsIcons$icons
@@ -44,6 +48,7 @@ getStockIcons = function( ..., toolkit = guiToolkit()) {
 }
 
 ##' generic for toolkit dispatch
+##' 
 ##' @rdname icons
 .getStockIcons <- function(toolkit,...)
            UseMethod( '.getStockIcons' )
@@ -52,6 +57,8 @@ getStockIcons = function( ..., toolkit = guiToolkit()) {
 ##' default
 ##'
 ##' @rdname icons
+##' @method .getStockIcons default
+##' @S3method .getStockIcons default
 .getStockIcons.default <- function(toolkit, ...) {
   .gWidgetsIcons$icons
 }
@@ -59,6 +66,7 @@ getStockIcons = function( ..., toolkit = guiToolkit()) {
 
 ##' Return stock icon name, filename, icon object from its by name
 ##'
+##' @param name of stock icon
 ##' @export
 ##' @rdname icons
 getStockIconByName <- function(name, ..., toolkit=guiToolkit())
@@ -73,6 +81,8 @@ getStockIconByName <- function(name, ..., toolkit=guiToolkit())
 ##'
 ##' @param file logical If TRUE, return filename. If FALSE, return toolkit icon object (if possible).
 ##' @rdname icons
+##' @method .getStockIconByName default
+##' @S3method .getStockIconByName default
 .getStockIconByName.default <- function(toolkit, name, file=TRUE, ...) {
   icons <- .gWidgetsIcons$icons
   i <- match(name, names(icons))
@@ -105,7 +115,9 @@ stockIconFromClass = function(theClass, ..., toolkit = guiToolkit()) {
 ##' Default stock icon for a given class name
 ##'
 ##' @rdname icons
-.stockIconsFromClass.default <- function(toolkit, theClass, ...) {
+##' @method .stockIconFromClass default
+##' @S3method .stockIconFromClass default
+.stockIconFromClass.default <- function(toolkit, theClass, ...) {
 
   switch(theClass[1], 
          numeric = "numeric.gif",
@@ -121,6 +133,7 @@ stockIconFromClass = function(theClass, ..., toolkit = guiToolkit()) {
 
 ##' Find stock icon from the given object
 ##'
+##' @param obj an R object
 ##' @return name of icon.
 ##' @export
 ##' @rdname icons
@@ -134,7 +147,11 @@ stockIconFromObject <- function(obj, ..., toolkit = guiToolkit()) {
 .stockIconFromObject <- function(toolkit, obj,... )
            UseMethod( '.stockIconFromObject' )
 
-
+##' get stock icon from object by class
+##' 
+##' @rdname icons
+##' @method .stockIconFromObject default
+##' @S3method .stockIconFromObject default
 .stockIconFromObject.default <- function(toolkit, obj, ...) {
   .icon <- function(x) UseMethod(".icon")
   .icon.default <- function(x) "symbol-dot.gif"
@@ -152,6 +169,8 @@ stockIconFromObject <- function(obj, ..., toolkit = guiToolkit()) {
 ##' Class for icons
 ##'
 ##' @exportClass GWidgets2Icons
+##' @rdname S4-classes
+##' @name GWidgets2Icons-class
 GWidgets2Icons <- setRefClass("GWidgets2Icons",
                      fields=list(
                        icons="list"

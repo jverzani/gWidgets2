@@ -2,14 +2,14 @@
 \alias{svalue}
 \alias{svalue.default}
 \alias{svalue<-}
-\alias{svalue<-.GMenuBar}
 \alias{svalue<-.GToolBar}
 \alias{svalue<-.default}
 \title{svalue}
 \usage{
   svalue(obj, index = FALSE, drop = NULL, ...)
 
-  svalue.default(obj, index = NULL, drop = NULL, ...)
+  \method{svalue}{default} (obj, index = NULL, drop = NULL,
+  ...)
 }
 \arguments{
   \item{obj}{object of method call}
@@ -23,42 +23,23 @@
   means.}
 
   \item{...}{passed on to call}
-
-  \item{value}{For a toolbar, a list defining the new
-  toolbar.}
-
-  \item{value}{for a menubar, a list of action items etc.
-  defining the new menubar.}
-
-  \item{value}{for a menubar, a list of action items etc.
-  defining the new menubar.}
 }
 \description{
   This returns the "selected" value in a widget. Selection
-  varies from widget to widget, but should generally is
+  varies from widget to widget, but should generally be
   what can be added to the widget by mouse click or typing.
-  For some widgets, the extra argument ‘index=TRUE’
+  For some widgets, the extra argument \code{index=TRUE}
   will return the index of the selected value, not the
-  value. For some widget, the argument ‘drop’ is given
+  value. For some widget, the argument \code{drop} is given
   to either prevent or encourage dropping of information.
 
-  Calls coerce_with when available
+  Calls \code{coerce_with} when available
 
   This method sets the main property of the widget.
 
   Base S3 method
 
   for a toolbar, \code{svalue<-} replaces the toolbar items
-  with new ones specified by value.
-
-  For a menubar, \code{svalue} returns the list of action
-  items etc. that defined the menubar. This can be useful
-  to access the underlying item being proxied. (For
-  \code{gaction} items the \code{enabled<-} method may be
-  used on the item, but this may not extend to
-  \code{gradio} and \code{gcheckbox} items)
-
-  for a menubar, \code{svalue<-} replaces the menubar items
   with new ones specified by value.
 }
 

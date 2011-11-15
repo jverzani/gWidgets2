@@ -10,7 +10,7 @@ NULL
 ##' not expected by the end user.
 ##' @param text character. Collapsed using a newline to a single string.
 ##' @param markup logical. If toolkit supports markup, this indicates it will be used
-##' @param editable. If TRUE, then clicking on label will enable editing of value
+##' @param editable If TRUE, then clicking on label will enable editing of value
 ##' @param handler optional handler. If given added through addHandlerChanged. Overridden if \code{editable=TRUE}.
 ##' @param action passed to handler through \code{action} component of first argument of handler. For buttons, this may also be a \code{GAction} instance.
 ##' @param container parent container (Optional for some toolkits, but not all).
@@ -45,11 +45,12 @@ glabel <- function(text="", markup=FALSE, editable=FALSE,
 
 ##' \code{svalue<-} method for a glabel
 ##'
-##' Set the main property of the label, its text
+##' The \code{svalue} methods refer to the main property of the label, its text.
 ##' @inheritParams svalue
-##' @param value integer amount of spacing
 ##' @export
 ##' @rdname glabel
+##' @method svalue<- GLabel
+##' @S3method svalue<- GLabel
 "svalue<-.GLabel" <- function(obj, index=TRUE,  ..., value) {
   value <- paste(value, collapse="\n")
   NextMethod()

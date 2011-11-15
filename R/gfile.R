@@ -20,8 +20,7 @@ NULL
 ##' \item{Qt}{}
 ##' }
 ##' @param multi Logical. Allow multiple files to be selected?
-##' @param ... ignored
-##' @param toolkit toolkit
+##' @inheritParams gwidget
 ##' @return returns filename(s) or \code{character(0)} if no selection.
 ##' @export
 gfile <- function(
@@ -63,12 +62,7 @@ gfile <- function(
 ##' constructor for file/directory selection widget
 ##'
 ##' Basically an entry box instance with a button to initiate \code{gfile}.
-##' @param text Instructional text
-##' @param type type of dialog (see \code{\link{gfile}})
-##' @param quote Do we quote value 
-##' @param container parent container
-##' @param ... passed to \code{add} method of parent
-##' @param toolkit toolkit
+##' @param quote quote output
 ##' @return Returns an object of class \code{gFilebrowse}. This should
 ##' inherit the methods  of \code{gedit} instances.
 ##' @export
@@ -95,8 +89,9 @@ gfilebrowse <- function (
 }
 
 ##' generic for toolkit dispatch
-##' 
-##' @rdname gfilebrowse
+##'
+##' @rdname gfile
+##' @export
 .gfilebrowse <- function(toolkit,
                          text = "Select a file...",
                          type = c("open", "save", "selectdir"),

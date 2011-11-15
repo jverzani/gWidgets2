@@ -5,14 +5,16 @@
 \alias{editable<-.default}
 \title{Controls whether widget is editable or not}
 \usage{
-  editable(obj, j)
+  editable(obj, i)
 
-  editable.default(obj, j)
+  \method{editable}{default} (obj, i)
 
-  editable(obj) <- value
+  editable(obj, i) <- value
 }
 \arguments{
   \item{obj}{object}
+
+  \item{i}{index to apply to, when applicable}
 
   \item{value}{logical. Set editable state.}
 }

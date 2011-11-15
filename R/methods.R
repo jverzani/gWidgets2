@@ -19,7 +19,7 @@ NULL
 ##' @param container A parent container. When a widget is created it can be
 ##' incorporated into the widget heirarchy by passing in a parent
 ##' container at construction time. (For some toolkits this is not
-##' optional, e.g. \pkg{gWidgets2tcltk} or \pkg{gWidgetsWWW2}.)
+##' optional, e.g. \pkg{gWidgets2tcltk} or \pkg{gWidgets2WWW2}.)
 ##' @param ... These values are passed to the \code{add} method of the
 ##' parent container, and occasionally have been used to sneak in
 ##' hidden arguments to toolkit implementations.
@@ -29,14 +29,28 @@ NULL
 gwidget <- function(handler=NULL, action=NULL, container=NULL, ...,toolkit=guiToolkit()) {}
 
 
+##' Common parts of a container widget
+##'
+##' Used as template for documentation
+##' @param container A parent container. When a widget is created it can be
+##' incorporated into the widget heirarchy by passing in a parent
+##' container at construction time. (For some toolkits this is not
+##' optional, e.g. \pkg{gWidgets2tcltk} or \pkg{gWidgets2WWW2}.)
+##' @param ... These values are passed to the \code{add} method of the
+##' parent container, and occasionally have been used to sneak in
+##' hidden arguments to toolkit implementations.
+##' @param toolkit Each widget constructor is passed in the toolkit it
+##' will use. This is typically done using the default, which will
+##' lookup the toolkit through \code{\link{guiToolkit}}.
+gcontainer <- function(container=NULL, ...,toolkit=guiToolkit()) {}
+
 ##' svalue
 ##'
-##' This returns the
-##' "selected" value in a widget. Selection varies from widget to
-##' widget, but should generally is what can be added to the
-##' widget by mouse click or typing. For some widgets, the extra
-##' argument ‘index=TRUE’ will return the index of the selected
-##' value, not the value. For some widget, the argument ‘drop’ is
+##' This returns the "selected" value in a widget. Selection varies
+##' from widget to widget, but should generally be what can be added
+##' to the widget by mouse click or typing. For some widgets, the
+##' extra argument \code{index=TRUE} will return the index of the selected
+##' value, not the value. For some widget, the argument \code{drop} is
 ##' given to either prevent or encourage dropping of information.
 ##' @param obj object of method call
 ##' @param index NULL or logical. If \code{TRUE} and widget supports it an index, instead of a value will be returned.
@@ -48,9 +62,11 @@ svalue <- function(obj, index=FALSE, drop=NULL, ...) UseMethod("svalue")
 
 ##' default svalue instance
 ##'
-##' Calls coerce_with when available
+##' Calls \code{coerce_with} when available
 ##' @export
 ##' @rdname svalue
+##' @S3method svalue default
+##' @method svalue default
 svalue.default <- function(obj, index=NULL, drop=NULL, ...) {
   if(!isExtant(obj)) {
     return()
@@ -81,6 +97,8 @@ svalue.default <- function(obj, index=NULL, drop=NULL, ...) {
 ##'
 ##' @rdname svalue
 ##' @export
+##' @S3method svalue<- default
+##' @method svalue<- default
 "svalue<-.default" <- function(obj, index=NULL, ..., value) {
   if(!isExtant(obj)) {
     return(obj)
@@ -106,6 +124,8 @@ enabled <- function(obj) UseMethod("enabled")
 ##'
 ##' @export
 ##' @rdname enabled
+##' @S3method enabled default
+##' @method enabled default
 enabled.default <- function(obj) {
   if(isExtant(obj))
     obj$get_enabled()
@@ -123,6 +143,8 @@ enabled.default <- function(obj) {
 ##'
 ##' @export
 ##' @rdname enabled
+##' @S3method enabled<- default
+##' @method enabled<- default
 "enabled<-.default" <- function(obj, value) {
   if(isExtant(obj))
     obj$set_enabled(as.logical(value))
@@ -136,6 +158,7 @@ enabled.default <- function(obj) {
 ##' visible. If the former state is desired, simply place widget into
 ##' a box container.
 ##' @param obj object
+##' @param ... ignored
 ##' @export
 ##' @rdname visible
 visible <- function(obj, ...) UseMethod("visible")
@@ -144,6 +167,8 @@ visible <- function(obj, ...) UseMethod("visible")
 ##'
 ##' @export
 ##' @rdname visible
+##' @S3method visible default
+##' @method visible default
 visible.default <- function(obj, ...) {
   if(isExtant(obj))
     obj$get_visible()
@@ -161,6 +186,8 @@ visible.default <- function(obj, ...) {
 ##'
 ##' @export
 ##' @rdname visible
+##' @method visible<- default
+##' @S3method visible<- default
 "visible<-.default" <- function(obj, value) {
   if(isExtant(obj))
     obj$set_visible(as.logical(value))
@@ -179,6 +206,8 @@ focus <- function(obj) UseMethod("focus")
 ##'
 ##' @export
 ##' @rdname focus
+##' @method focus default
+##' @S3method focus default
 focus.default <- function(obj) {
   if(isExtant(obj))
     obj$get_focus()
@@ -199,6 +228,8 @@ focus.default <- function(obj) {
 ##'
 ##' @export
 ##' @rdname focus
+##' @method focus<- default
+##' @S3method focus<- default
 "focus<-.default" <- function(obj, value) {
   if(isExtant(obj))
     obj$set_focus(as.logical(value))
@@ -211,31 +242,36 @@ focus.default <- function(obj) {
 ##' Some widgets may be editable. If possible, the setter method can
 ##' be used to toggle the state. This method indicates the state.
 ##' @param obj object
+##' @param i index to apply to, when applicable
 ##' @export
 ##' @rdname editable
-editable <- function(obj, j) UseMethod("editable")
+editable <- function(obj, i) UseMethod("editable")
 
 ##' Basic S3 method
 ##'
 ##' @export
 ##' @rdname editable
-editable.default <- function(obj, j) {
+##' @method editable default
+##' @S3method editable default
+editable.default <- function(obj, i) {
   if(isExtant(obj))
-    obj$get_editable(j)
+    obj$get_editable(i)
 }
 ##' Set whether an object can be edited
 ##'
 ##' @param value logical. Set editable state.
 ##' @export
-##' @usage editable(obj) <- value
+##' @usage editable(obj, i) <- value
 ##' @rdname editable
-"editable<-" <- function(obj, i, ..., value) UseMethod("editable<-")
+"editable<-" <- function(obj, i, value) UseMethod("editable<-")
 
 ##' Basic S3 method for editable
 ##'
 ##' @export
 ##' @rdname editable
-"editable<-.default" <- function(obj, i, ..., value) {
+##' @method editable<- default
+##' @S3method editable<- default
+"editable<-.default" <- function(obj, i,  value) {
   if(isExtant(obj))
     obj$set_editable(as.logical(value, i))
   obj
@@ -252,23 +288,38 @@ font <- function(obj) UseMethod("font")
 ##'
 ##' @export
 ##' @rdname font
+##' @method font default
+##' @S3method font default
 font.default <- function(obj) {
   if(isExtant(obj))
     obj$get_font()
 }
 ##' Set font for a widget
 ##'
-##' @param value The font specification is given in terms of a named vector or list where the names indicate a font attribute and the value a reasonable choice:
+##' @param value The font specification is given in terms of a named
+##' vector or list where the names indicate a font attribute and the
+##' value a reasonable choice:
+##' 
 ##' \describe{
+##' 
 ##' \item{weight}{c("light", "normal", "medium", "bold", "heavy")}
+##'
 ##' \item{style}{c("normal", "oblique", "italic")}
+##'
 ##' \item{family}{c("sans", "helvetica", "times", "monospace")}
+##'
 ##' \item{size}{an integer, say c(6,8,10,11,12,14,16,18,20, 24,36,72)}
+##'
 ##' \item{color (or foreground)}{One of colors()}
+##'
 ##' \item{background}{One of colors()}
+##'
 ##' \item{scale}{c("xx-large", "x-large",  "large" ,   "medium",   "small",    "x-small",  "xx-small")}
+##'
 ##' }
-##' These are from Gtk's font specs, which though fairly standard, may not be totally supported in the other toolkits.
+##'
+##' These are from Gtk's font specs, which though fairly standard, may
+##' not be totally supported in the other toolkits.
 ##' @export
 ##' @usage font(obj) <- value
 ##' @rdname font
@@ -278,6 +329,8 @@ font.default <- function(obj) {
 ##'
 ##' @export
 ##' @rdname font
+##' @method font<- default
+##' @S3method font<- default
 "font<-.default" <- function(obj, value) {
   if(isExtant(obj))
     obj$set_font(value)
@@ -296,6 +349,8 @@ tag <- function(obj, key) UseMethod("tag")
 ##'
 ##' @export
 ##' @rdname tag
+##' @method tag default
+##' @S3method tag default
 tag.default <- function(obj, key) {
   if(isExtant(obj))
     obj$get_attr(key)
@@ -317,6 +372,8 @@ tag.default <- function(obj, key) {
 ##'
 ##' @export
 ##' @rdname tag
+##' @method tag<- default
+##' @S3method tag<- default
 "tag<-.default" <- function(obj, key, value) {
   if(isExtant(obj))
     obj$set_attr(key, value)
@@ -336,6 +393,8 @@ size <- function(obj) UseMethod("size")
 ##'
 ##' @export
 ##' @rdname size
+##' @method size default
+##' @S3method size default
 size.default <- function(obj) {
   if(isExtant(obj))
     obj$get_size()
@@ -344,6 +403,7 @@ size.default <- function(obj) {
 ##' Set size of object (width, height)
 ##'
 ##' The size is specified in pixels (integers). Some toolkits allow -1 as a default, but not all.
+##' @param value size in pixels
 ##' @export
 ##' @usage size(obj) <- value
 ##' @rdname size
@@ -353,6 +413,8 @@ size.default <- function(obj) {
 ##'
 ##' @export
 ##' @rdname size
+##' @method size<- default
+##' @S3method size<- default
 "size<-.default" <- function(obj, value) {
   if(isExtant(obj))
     obj$set_size(value)
@@ -370,14 +432,15 @@ size.default <- function(obj) {
 ##'
 ##' @export
 ##' @rdname tooltip
-"tooltip<-.default" <- function(obj) {
+##' @method tooltip default
+##' @S3method tooltip default
+"tooltip.default" <- function(obj) {
   if(isExtant(obj))
     obj$get_tooltip()
 }
 
 ##' Set a tooltip for the widget
 ##'
-##' @param obj object
 ##' @param value character tooltip value
 ##' @export
 ##' @usage tooltip(obj) <- value
@@ -388,6 +451,8 @@ size.default <- function(obj) {
 ##'
 ##' @export
 ##' @rdname tooltip
+##' @method tooltip<- default
+##' @S3method tooltip<- default
 "tooltip<-.default" <- function(obj, value) {
   if(isExtant(obj))
     obj$set_tooltip(paste(value, collapse="\n"))
@@ -398,6 +463,8 @@ size.default <- function(obj) {
 ##' Undo past action. 
 ##'
 ##' Some widgets support undo actions
+##' @param obj object to call undo on
+##' @param ... ignored
 ##' @export
 ##' @rdname undo
 undo <- function(obj, ...) UseMethod("undo")
@@ -406,6 +473,8 @@ undo <- function(obj, ...) UseMethod("undo")
 ##'
 ##' @export
 ##' @rdname undo
+##' @S3method undo GComponent
+##' @method undo GComponent
 undo.GComponent <- function(obj, ...) {
   if(isExtant(obj))
     obj$undo(...)
@@ -416,6 +485,8 @@ undo.GComponent <- function(obj, ...) {
 ##' Redo past action. 
 ##'
 ##' Some widgets support redo actions
+##' @param obj object to redo
+##' @param ... ignored
 ##' @export
 ##' @rdname redo
 redo <- function(obj, ...) UseMethod("redo")
@@ -424,6 +495,8 @@ redo <- function(obj, ...) UseMethod("redo")
 ##'
 ##' @export
 ##' @rdname redo
+##' @method redo GComponent
+##' @S3method redo GComponent
 redo.GComponent <- function(obj, ...) {
   if(isExtant(obj))
     obj$redo(...)
@@ -440,7 +513,9 @@ redo.GComponent <- function(obj, ...) {
 ##' Basic S3 method for isExtant
 ##'
 ##' @export
-##' @rdname tooltip
+##' @rdname isExtant
+##' @method isExtant default
+##' @S3method isExtant default
 "isExtant.default" <- function(obj) {
   ret <- try(obj$is_extant(), silent=TRUE)
   if(is(ret, "try-error"))
@@ -469,6 +544,8 @@ add <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) UseMethod
 ##'
 ##' @export
 ##' @rdname add
+##' @S3method add default
+##' @method add default
 add.default <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) {
   if(!isExtant(obj))  return()
 
@@ -504,6 +581,8 @@ delete <- function(obj, child) UseMethod("delete")
 ##'
 ##' @export
 ##' @rdname add
+##' @S3method delete GContainer
+##' @method delete GContainer
 delete.GContainer <- function(obj, child) {
   if(isExtant(obj))
     obj$remove_child(child)
@@ -512,6 +591,8 @@ delete.GContainer <- function(obj, child) {
 ##' Dispose of object
 ##'
 ##' Dispose of object, primarily a window
+##' @param obj object to dispose
+##' @param ... passed along
 ##' @export
 ##' @rdname dispose
 dispose <- function(obj, ...) UseMethod("dispose")
@@ -520,6 +601,8 @@ dispose <- function(obj, ...) UseMethod("dispose")
 ##'
 ##' @export
 ##' @rdname dispose
+##' @method dispose GComponent
+##' @S3method dispose GComponent
 dispose.GComponent <- function(obj, ...) {
   if(isExtant(obj))
     dispose(getTopLevel(obj))
@@ -542,6 +625,8 @@ getToolkitWidget <- function(obj) UseMethod("getToolkitWidget")
 ##'
 ##' @export
 ##' @rdname getToolkitWidget
+##' @method getToolkitWidget default
+##' @S3method getToolkitWidget default
 getToolkitWidget.default <- function(obj) getWidget(obj)
 
 ##' Get underlying toolkit widget from widget slot. Used internally
@@ -554,7 +639,10 @@ getWidget <- function(obj) UseMethod("getWidget")
 ##'
 ##' @rdname getToolkitWidget
 ##' @export
+##' @method getWidget GComponent
+##' @S3method getWidget GComponent
 getWidget.GComponent <- function(obj) getWidget(obj$widget)
+
 ## implement getWidget.RGtkObject <- function(obj) obj say
 
 ##' Get underlying toolkit object from block slot
@@ -567,6 +655,8 @@ getBlock <- function(obj) UseMethod("getBlock")
 ##'
 ##' @rdname getToolkitWidget
 ##' @export
+##' @method getBlock GComponent
+##' @S3method getBlock GComponent
 getBlock.GComponent <- function(obj) getBlock(obj$block)
 
 
@@ -575,11 +665,12 @@ getBlock.GComponent <- function(obj) getBlock(obj$block)
 ##' For GWindow, the block is NULL
 ##' @rdname getToolkitWidget
 ##' @export
+##' @method getBlock GWindow
+##' @S3method getBlock GWindow
 getBlock.GWindow <- function(obj) obj$widget
              
 ##' Get toplevel window containing object
 ##'
-##' @param obj object
 ##' @export
 ##' @rdname getToolkitWidget
 getTopLevel <- function(obj) UseMethod("getTopLevel")
@@ -588,6 +679,8 @@ getTopLevel <- function(obj) UseMethod("getTopLevel")
 ##'
 ##' @export
 ##' @rdname getToolkitWidget
+##' @method getTopLevel GComponent
+##' @S3method getTopLevel GComponent
 getTopLevel.GComponent <- function(obj) {
   if(!is(obj, "GComponent"))
     stop("Must call getTopLevel with a GComponent object")
@@ -613,6 +706,8 @@ addSpring <- function(obj) UseMethod("addSpring")
 ##' Add spring to GContainer class
 ##' @export
 ##' @rdname methods
+##' @method addSpring GContainer
+##' @S3method addSpring GContainer
 addSpring.GContainer <- function(obj) {
   obj$add_spring()
 }

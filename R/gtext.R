@@ -26,11 +26,7 @@ NULL
 ##' \item{background}{a value in colors()}
 ##' }
 ##' @param wrap logical do lines wrap
-##' @param handler default handler 
-##' @param action passed to handler
-##' @param container parent container
-##' @param ... passed to add method of parent container
-##' @param toolkit 
+##' @inheritParams gwidget
 ##' @export
 ##' @rdname gtext
 gtext <- function(
@@ -65,12 +61,10 @@ gtext <- function(
 
 ##' insert text into a gtext buffer
 ##'
-##' @param obj gtext instance
+##' @param obj  object
 ##' @param value text to insert
 ##' @param where position of insertion
-##' @param font.attr font attributes for text
 ##' @param do.newline logical add a newline at end
-##' @param ... ignored
 ##' @return called for side effect
 ##' @export
 ##' @rdname gtext
@@ -84,6 +78,8 @@ insert <- function(obj,value,
 ##'
 ##' @export
 ##' @rdname gtext
+##' @method insert GText
+##' @S3method insert GText
 insert.GText <- function(obj, value,
                            where = c("end","beginning","at.cursor"),
                            font.attr=NULL,
@@ -100,6 +96,8 @@ insert.GText <- function(obj, value,
 ##'
 ##' @export
 ##' @rdname gtext
+##' @method dispose GText
+##' @S3method dispose GText
 dispose.GText <- function(obj, ...) {
   if(isExtant(obj))
     obj$set_value("")

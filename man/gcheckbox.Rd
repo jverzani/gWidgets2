@@ -30,9 +30,6 @@
   \item{...}{passed to \code{add} method of container}
 
   \item{toolkit}{toolkit}
-
-  \item{value}{Value coerced to character, then only first
-  element used for checkbox label}
 }
 \value{
   Returns an object of class \code{GCheckbox}.
@@ -49,5 +46,9 @@
   Ensure value is logical
 
   items assignment takes string
+}
+\note{
+  The value is coerced to character, then only first
+  element used for checkbox label
 }
 

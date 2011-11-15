@@ -5,7 +5,7 @@
 \usage{
   addSpring(obj)
 
-  addSpring.GContainer(obj)
+  \method{addSpring}{GContainer} (obj)
 }
 \arguments{
   \item{obj}{GContainer object}

@@ -3,6 +3,9 @@ NULL
 
 ##' Constructor for grid layout container
 ##'
+##' @param homogeneous are cells all the same size
+##' @param spacing between cell spacing
+##' @inheritParams gwidget
 ##' @export
 glayout <- function(
                     homogeneous = FALSE, spacing = 10, container = NULL,      ... ,
@@ -30,6 +33,8 @@ glayout <- function(
 ##'
 ##' @export
 ##' @rdname glayout
+##' @method [ GLayout
+##' @S3method [ GLayout
 "[.GLayout" <- function(x, i, j, ..., drop=TRUE) {
   getWithDefault(drop, TRUE)
 
@@ -52,14 +57,12 @@ glayout <- function(
 ##' add child components to layout using matrix notation
 ##'
 ##' The matrix notation allows for spanning of multiple rows and or columns, but no holes.
-##' @param x glayout object
-##' @param i row index for adding
-##' @param j column index for adding
-##' @param ... used to pass in values for expand, fill, anchor (see
+##' The \code{...} argument is used to pass in values for expand, fill, anchor (see
 ##' the \code{add} method of \code{ggroup}) for their meaning).
-##' @param value a component to add.
 ##' @export
 ##' @rdname glayout
+##' @method [<- GLayout
+##' @S3method [<- GLayout
 "[<-.GLayout" <- function(x, i, j, ..., value) {
 
   theArgs <- list(...)

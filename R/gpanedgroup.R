@@ -6,6 +6,7 @@ NULL
 ##'
 ##' Holds two child widgets.
 ##' @param horizontal direction of layout
+##' @inheritParams gwidget
 ##' @export
 ##' @note There were arguments to specify the children at construction, but these have been removed.
 gpanedgroup <- function(horizontal = TRUE,  container = NULL , ...,

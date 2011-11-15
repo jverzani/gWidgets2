@@ -10,7 +10,8 @@
   .gvarbrowser(toolkit, handler = NULL, action = "summary",
   container = NULL, ...)
 
-  svalue.GVarBrowser(obj, index = FALSE, drop = TRUE, ...)
+  \method{svalue}{GVarBrowser} (obj, index = FALSE, drop =
+  TRUE, ...)
 }
 \arguments{
   \item{handler}{A handler assigned to the default change
@@ -31,7 +32,7 @@
   created it can be incorporated into the widget heirarchy
   by passing in a parent container at construction time.
   (For some toolkits this is not optional, e.g.
-  \pkg{gWidgets2tcltk} or \pkg{gWidgetsWWW2}.)}
+  \pkg{gWidgets2tcltk} or \pkg{gWidgets2WWW2}.)}
 
   \item{...}{These values are passed to the \code{add}
   method of the parent container, and occasionally have

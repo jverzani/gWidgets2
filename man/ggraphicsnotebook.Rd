@@ -1,14 +1,21 @@
-\name{gstackwidget}
-\alias{.gstackwidget}
-\alias{gstackwidget}
-\title{Constructor for a stack of widgets}
+\name{ggraphicsnotebook}
+\alias{.ggraphicsnotebook}
+\alias{ggraphicsnotebook}
+\title{A notebook widget holding plot devices}
 \usage{
-  gstackwidget(container = NULL, ..., toolkit =
-  guiToolkit())
+  ggraphicsnotebook(width = dpi * 6, height = dpi * 6, dpi
+  = 75, container = NULL, ..., toolkit = guiToolkit())
 
-  .gstackwidget(toolkit, container = NULL, ...)
+  .ggraphicsnotebook(toolkit, width, height, dpi,
+  container, ...)
 }
 \arguments{
+  \item{width}{width in pixels}
+
+  \item{height}{height in pixels}
+
+  \item{dpi}{screen resolution}
+
   \item{container}{A parent container. When a widget is
   created it can be incorporated into the widget heirarchy
   by passing in a parent container at construction time.
@@ -26,10 +33,9 @@
   \code{\link{guiToolkit}}.}
 }
 \description{
-  This widget is like a notebook -- it holds a stack of
-  pages, but does not provide the tabs to work with. Most
-  methods are inherited from gnotebook's.
+  A notebook widget holding plot devices
 
-  generic for toolkit dispatch
+  S3 generic whose methods are implemented in the toolkit
+  packages
 }
 

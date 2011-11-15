@@ -5,7 +5,6 @@ NULL
 ##'
 ##' Implementation varies wildly, but should provide at minimum functionality of \code{edit.data.frame}.
 ##' @param items data frame to edit
-##' @param name name of data frame (for saving, but not really needed)
 ##' @param container parent container
 ##' @param handler called on cell change
 ##' @param action passed to handler
@@ -52,6 +51,8 @@ gdf <- function(
 ##' @inheritParams addHandler
 ##' @export
 ##' @rdname gdf
+##' @method addHandlerChanged GDf
+##' @S3method addHandlerChanged GDf
 addHandlerChanged.GDf <- function(obj, handler, action=NULL, ...) NextMethod()
   
 
@@ -61,6 +62,8 @@ addHandlerChanged.GDf <- function(obj, handler, action=NULL, ...) NextMethod()
 ##' @inheritParams svalue
 ##' @export
 ##' @rdname gdf
+##' @method svalue GDf
+##' @S3method svalue GDf
 svalue.GDf <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 
 
@@ -70,4 +73,6 @@ svalue.GDf <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 ##' @inheritParams visible
 ##' @export
 ##' @rdname gdf
+##' @method visible<- GDf
+##' @S3method visible<- GDf
 "visible<-.GDf" <- function(obj, value) NextMethod()

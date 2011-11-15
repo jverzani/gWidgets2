@@ -1,6 +1,9 @@
 \name{gmenu}
 \alias{.gmenu}
+\alias{add.GMenuBar}
 \alias{gmenu}
+\alias{svalue.GMenuBar}
+\alias{svalue<-.GMenuBar}
 \title{menu constructor, main and popup}
 \usage{
   gmenu(menu.list, popup = FALSE, container = NULL, ...,
@@ -8,6 +11,9 @@
 
   .gmenu(toolkit, menu.list = list(), popup = FALSE,
   container = NULL, ...)
+
+  \method{add}{GMenuBar} (obj, child, expand = FALSE, fill
+  = NULL, anchor = NULL, ...)
 }
 \arguments{
   \item{menu.list}{A list defining the menu structure.
@@ -21,12 +27,31 @@
   \item{popup}{logical. If true, make a popup window to be
   added through a handler call}
 
-  \item{container}{For non-popup menus, a top-level
-  \code{GWindow} instance to place the menu bar within.}
+  \item{child}{list. a menubar list or gmenu instance.}
 
-  \item{...}{}
+  \item{container}{A parent container. When a widget is
+  created it can be incorporated into the widget heirarchy
+  by passing in a parent container at construction time.
+  (For some toolkits this is not optional, e.g.
+  \pkg{gWidgets2tcltk} or \pkg{gWidgets2WWW2}.)}
 
-  \item{toolkit}{}
+  \item{...}{These values are passed to the \code{add}
+  method of the parent container, and occasionally have
+  been used to sneak in hidden arguments to toolkit
+  implementations.}
+
+  \item{toolkit}{Each widget constructor is passed in the
+  toolkit it will use. This is typically done using the
+  default, which will lookup the toolkit through
+  \code{\link{guiToolkit}}.}
+
+  \item{obj}{parent object}
+
+  \item{expand}{NULL or logical. XXX}
+
+  \item{fill}{NULL or logical. XXX}
+
+  \item{anchor}{NULL or logical. XXX}
 }
 \description{
   A menu may be viewed as a heirarchical collection of
@@ -38,5 +63,17 @@
   this may be toolkit independent.
 
   generic for toolkit dispatch
+
+  add menubar items to a menu
+
+  For a menubar, \code{svalue} returns the list of action
+  items etc. that defined the menubar. This can be useful
+  to access the underlying item being proxied. (For
+  \code{gaction} items the \code{enabled<-} method may be
+  used on the item, but this may not extend to
+  \code{gradio} and \code{gcheckbox} items)
+
+  for a menubar, \code{svalue<-} replaces the menubar items
+  with new ones specified by value.
 }
 

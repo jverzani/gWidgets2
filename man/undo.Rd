@@ -5,7 +5,12 @@
 \usage{
   undo(obj, ...)
 
-  undo.GComponent(obj, ...)
+  \method{undo}{GComponent} (obj, ...)
+}
+\arguments{
+  \item{obj}{object to call undo on}
+
+  \item{...}{ignored}
 }
 \description{
   Some widgets support undo actions

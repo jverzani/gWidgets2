@@ -28,7 +28,7 @@ NULL
 ##' value to split data into heirarchical data structure
 ##' @param INDICES Integers or column names, referring to columns of \code{x}. Used to form heirarchical structure. Order is important.
 ##' @param offspring function. A function passed values \code{path} and \code{data}, the latter from \code{offspring.data}. The path is the current position of the parent item using the named keys from the chosen column.
-##' @param offspring.data 
+##' @param offspring.data Passed to second argument of \code{offspring} function. Used to parameterize a function call.
 ##' @param chosen.col integer or one of column names of data frame
 ##' returned by \code{offspring}. The chosen column gives the key and
 ##' value of the path.
@@ -193,8 +193,13 @@ gtree <- function(x=NULL, INDICES=NULL,
 ##' of offspring positions. The \code{drop} argument is used to
 ##' indicate if the terminus of the path is returned or the entire
 ##' path, defaults=TRUE. To get the data associated with a row, use the \code{[} method.
+##' @param obj object
+##' @param index index
+##' @param drop drop
 ##' @export
 ##' @rdname gtree
+##' @method svalue GTree
+##' @S3method svalue GTree
 svalue.GTree <-  function(obj, index=FALSE, drop=TRUE, ...) NextMethod()
 
 ##' \code{svalue<-} method
@@ -205,9 +210,10 @@ svalue.GTree <-  function(obj, index=FALSE, drop=TRUE, ...) NextMethod()
 ##' index=TRUE)} should not change the state of the widget. (The
 ##' \code{index=TRUE} argument is the case for setting, but not
 ##' getting.)
-##' @inheritParams svalue
 ##' @export
 ##' @rdname gtree
+##' @method svalue<- GTree
+##' @S3method svalue<- GTree
 "svalue<-.GTree" <-  function(obj, index=TRUE,  ..., value) NextMethod()
 
 
@@ -217,14 +223,10 @@ svalue.GTree <-  function(obj, index=FALSE, drop=TRUE, ...) NextMethod()
 ##' selected row. The \code{svalue} method returns the path or its
 ##' endpoint, the \code{[} method returns the row data associated with
 ##' the path.
-##' @inheritParams base::Extract
-##' @param i ignored
-##' @param j ignored
-##' @param drop logical, if TRUE then only the key is
-##' returned. (Similar to \code{svalue}, which is recommended in this
-##' case.). Otherwise the row data is.
 ##' @export
-##' @rdname gree
+##' @rdname gtree
+##' @method [ GTree
+##' @S3method [ GTree
 "[.GTree" <- function(x, i, j, ..., drop=FALSE) {
   if(isExtant(x))
     x$get_items(i, j, ..., drop=drop)
@@ -233,7 +235,10 @@ svalue.GTree <-  function(obj, index=FALSE, drop=TRUE, ...) NextMethod()
 ##' update method
 ##'
 ##' The update method for \code{GTree} recomputes the base nodes, then reopens the given node if still available
-##' @param object \code{GTree} object to be updated
+##' @param object object to update
+##' @param ... passed to update method
 ##' @export
 ##' @rdname gtree
+##' @method update GTree
+##' @S3method update GTree
 update.GTree <- function(object, ...) NextMethod()

@@ -64,7 +64,7 @@ gcheckbox <- function(
 ##' items assignment takes string
 ##'
 ##' @inheritParams base::Extract
-##' @param value Value coerced to character, then only first element
+##' @note The value is coerced to character, then only first element
 ##' used for checkbox label
 ##' @export
 ##' @rdname gcheckbox

@@ -12,13 +12,15 @@
   .gwindow(toolkit, title, visible, name, width, height,
   parent, handler, action, ...)
 
-  add.GWindow(obj, child, expand = NULL, fill = NULL,
-  anchor = NULL, ...)
+  \method{add}{GWindow} (obj, child, expand = NULL, fill =
+  NULL, anchor = NULL, ...)
 
-  dispose.GWindow(obj, ...)
+  \method{dispose}{GWindow} (obj, ...)
 }
 \arguments{
-  \item{title}{title for window's title bar}
+  \item{title}{title for window's title bar. This is the
+  main property and is accessed via \code{svalue} or
+  \code{svalue<-}.}
 
   \item{visible}{logical. If code{TRUE} window is drawn
   when constructed. Otherwise, window can be drawn later
@@ -26,8 +28,9 @@
   \code{FALSE} by setting the option:
   \code{options("gWidgets:gwindow-default-visible-is-false"=TRUE)}.
   There are advantages: windows can draw slowly when adding
-  item by ‘ggraphics’ like to be added to an undrawn
-  widget as this avoids sizing issue.}
+  many items. With \pkg{gWidgets2RGtk2}, the
+  \code{ggraphics} widget can like to be added to an
+  undrawn widget as this avoids sizing issue.}
 
   \item{name}{Name for registry of windows}
 
@@ -52,21 +55,15 @@
 
   \item{toolkit}{toolkit}
 
-  \item{obj}{\code{gwindow} object}
+  \item{obj}{parent object}
 
-  \item{child}{child object to add}
+  \item{child}{child widget}
 
-  \item{expand}{ignored}
+  \item{expand}{NULL or logical. XXX}
 
-  \item{fill}{ingnored}
+  \item{fill}{NULL or logical. XXX}
 
-  \item{anchor}{ignored}
-
-  \item{...}{ignored}
-
-  \item{obj}{toplevel window object}
-
-  \item{...}{ignored}
+  \item{anchor}{NULL or logical. XXX}
 }
 \value{
   a \code{GWindow} instance
@@ -80,7 +77,8 @@
   Dispatches on type of child (menubar, toolbar, statusbar,
   widget)
 
-  dispose method for gwindow
+  The \code{dispose} method destroys the top-level window
+  and its children.
 }
 \author{
   john verzani

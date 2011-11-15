@@ -121,6 +121,7 @@
 ##' \item{\code{\link{galert}}}{Provides a short transient message dialog}
 ##'
 ##' \item{\code{\link{gfile}}}{Provides a dialog to select a filename or directory name}
+##' 
 ##' }
 ##' }
 ##' 
@@ -162,16 +163,25 @@
 ##' 
 ##' \item{\code{\link{undo}}, \code{\link{redo}}}{Some widgets support an undo and redo stack}
 ##' 
-##' \item{\code{\link{isExtant}}}{A method to check if the GUI part of a widget still exists. (A constructor produces an R object and GUI object through the toolkit.)}
+##' \item{\code{\link{isExtant}}}{A method to check if the GUI part of
+##' a widget still exists. (A constructor produces an R object and GUI
+##' object through the toolkit.)}
 ##' 
-##' \item{\code{\link{tag}}, \code{\link{tag<-}}}{A method used to set attributes for an object that are stored in an environment so that they are passed by reference, not copy. This allows event handlers to manipulate an object's attributes outside the scope of the callback.}
+##' \item{\code{\link{tag}}, \code{\link{tag<-}}}{A method used to set
+##' attributes for an object that are stored in an environment so that
+##' they are passed by reference, not copy. This allows event handlers
+##' to manipulate an object's attributes outside the scope of the
+##' callback.}
 ##' 
-##' \item{\code{\link{getToolkitWidget}}}{Returns the underlying toolkit object that is packaged into a \pkg{gWidgets2} object}
+##' \item{\code{\link{getToolkitWidget}}}{Returns the underlying
+##' toolkit object that is packaged into a \pkg{gWidgets2} object}
 ##' 
 ##' 
-##' \item{\code{\link{add}}}{Method used to add a child component to a parent container}
+##' \item{\code{\link{add}}}{Method used to add a child component to a
+##' parent container}
 ##' 
-##' \item{\code{\link{delete}}}{Method used to delete a component from its parent}
+##' \item{\code{\link{delete}}}{Method used to delete a component from
+##' its parent}
 ##' 
 ##' \item{\code{\link{dispose}}}{Method used to delete a component}
 ##' 
@@ -181,20 +191,28 @@
 ##'
 ##' \describe{
 ##'
-##' \item{\code{length}, \code{length<-}}{Returns the length of an object, typically related to the number of children a container has, or the length of the items that a user can selection from.}
+##' \item{\code{length}, \code{length<-}}{Returns the length of an
+##' object, typically related to the number of children a container
+##' has, or the length of the items that a user can selection from.}
 ##'
-##' \item{\code{dim}}{Used to return row and column size information as applicable.}
+##' \item{\code{dim}}{Used to return row and column size information
+##' as applicable.}
 ##'
-##' \item{\code{names}, \code{names<-}}{Used to set the names associated to an object. These may be column names in the table widget, or tab names in the notebook container.}
+##' \item{\code{names}, \code{names<-}}{Used to set the names
+##' associated to an object. These may be column names in the table
+##' widget, or tab names in the notebook container.}
 ##'
-##' \item{\code{dimnames}, \code{dimnames<-}}{Used to set row and column names, as applicable.}
+##' \item{\code{dimnames}, \code{dimnames<-}}{Used to set row and
+##' column names, as applicable.}
 ##'
-##' \item{\code{[}, \code{[<-}}{Used to update the underlying items that a selection widget offers. Also used to specify layout in \code{glayout}}
+##' \item{\code{[}, \code{[<-}}{Used to update the underlying items
+##' that a selection widget offers. Also used to specify layout in
+##' \code{glayout}}
 ##'
-##' \item{\code{update}}{Call to update the state of a widget, when applicable.}
+##' \item{\code{update}}{Call to update the state of a widget, when
+##' applicable.}
 ##'
-##' }
-##' }
+##' } }
 ##' 
 ##'
 ##' \subsection{Event handlers}{
@@ -215,59 +233,82 @@
 ##' components \code{obj}, containing a reference to the widget
 ##' emitting the event and \code{action} passing in any information
 ##' specified to the \code{action} argument. Some events also pass
-##' back extra information, such as \code{x} and \code{y$ for
+##' back extra information, such as \code{x} and \code{y} for
 ##' position, or \code{key} for key events, as appropriate.
 ##' 
 ##' \describe{
-##' \item{\code{\link{addHandlerChanged}}}{Assigns callback for the most generic event}
+##'
+##' \item{\code{\link{addHandlerChanged}}}{Assigns callback for the
+##' most generic event}
 ##' 
-##' \item{\code{\link{addHandlerClicked}}}{Assigns callback for a mouse click event}
+##' \item{\code{\link{addHandlerClicked}}}{Assigns callback for a
+##' mouse click event}
 ##' 
-##' \item{\code{\link{addHandlerDoubleclick}}}{Assigns callback for a mouse double-click event}
+##' \item{\code{\link{addHandlerDoubleclick}}}{Assigns callback for a
+##' mouse double-click event}
 ##' 
-##' \item{\code{\link{addHandlerRightclick}}}{Assigns callback for a mouse right-click event}
+##' \item{\code{\link{addHandlerRightclick}}}{Assigns callback for a
+##' mouse right-click event}
 ##' 
-##' \item{\code{\link{addHandlerColumnclicked}}}{Assigns callback for a column-click event}
+##' \item{\code{\link{addHandlerColumnclicked}}}{Assigns callback for
+##' a column-click event}
 ##' 
-##' \item{\code{\link{addHandlerColumnDoubleclicked}}}{Assigns callback for a column-double-click event}
+##' \item{\code{\link{addHandlerColumnDoubleclicked}}}{Assigns
+##' callback for a column-double-click event}
 ##' 
-##' \item{\code{\link{addHandlerColumnRightclicked}}}{Assigns callback for a column-right-click event}
+##' \item{\code{\link{addHandlerColumnRightclicked}}}{Assigns callback
+##' for a column-right-click event}
 ##' 
-##' \item{\code{\link{addHandlerSelect}}}{Assigns callback when the underlying selection is changed}
+##' \item{\code{\link{addHandlerSelect}}}{Assigns callback when the
+##' underlying selection is changed}
 ##' 
-##' \item{\code{\link{addHandlerFocus}}}{Assigns a callback for when a widget receives focus}
+##' \item{\code{\link{addHandlerFocus}}}{Assigns a callback for when a
+##' widget receives focus}
 ##' 
-##' \item{\code{\link{addHandlerBlur}}}{Assigns a callback for when a widget loses focus}
+##' \item{\code{\link{addHandlerBlur}}}{Assigns a callback for when a
+##' widget loses focus}
 ##' 
-##' \item{\code{\link{addHandlerDestroy}}}{Assigns a callback for when a widget is destroyed}
+##' \item{\code{\link{addHandlerDestroy}}}{Assigns a callback for when
+##' a widget is destroyed}
 ##' 
 ##' \item{\code{\link{addHandlerUnrealize}}}{For \code{gwindow} this
 ##' is called before the destroy event and may stop that from
 ##' happening. }
 ##' 
-##' \item{\code{\link{addHandlerExpose}}}{Assigns callback to be called when a widget is exposed}
+##' \item{\code{\link{addHandlerExpose}}}{Assigns callback to be
+##' called when a widget is exposed}
 ##' 
-##' \item{\code{\link{addHandlerKeystroke}}}{Assigns callback to be called when a key event occurs}
+##' \item{\code{\link{addHandlerKeystroke}}}{Assigns callback to be
+##' called when a key event occurs}
 ##' 
-##' \item{\code{\link{addHandlerMouseMotion}}}{Assigns callback to be called when a mouse moves over a widget}
+##' \item{\code{\link{addHandlerMouseMotion}}}{Assigns callback to be
+##' called when a mouse moves over a widget}
 ##'
-##' \item{\code{\link{addHandler}}}{Base method to add a callback though rarely called, as it is toolkit specific}
+##' \item{\code{\link{addHandler}}}{Base method to add a callback
+##' though rarely called, as it is toolkit specific}
 ##' 
-##' \item{\code{\link{addHandlerIdle}}}{Assign a callback to be called at periodic intervals. See also \code{\link{gtimer}}}
+##' \item{\code{\link{addHandlerIdle}}}{Assign a callback to be called
+##' at periodic intervals. See also \code{\link{gtimer}}}
 ##' 
 ##' \item{\code{\link{addPopupMenu}}}{Add a popup menu}
 ##' 
-##' \item{\code{\link{add3rdmousePopupMenu}}}{Add a popup menu for the right mouse (context menu)}
+##' \item{\code{\link{add3rdmousePopupMenu}}}{Add a popup menu for the
+##' right mouse (context menu)}
 ##' 
-##' \item{\code{\link{addDropSource}}}{Specify widget as a source (drag area) for drag and drop}
+##' \item{\code{\link{addDropSource}}}{Specify widget as a source
+##' (drag area) for drag and drop}
 ##' 
-##' \item{\code{\link{addDropTarget}}}{Specify widget as a target (drop area) for drag and drop}
+##' \item{\code{\link{addDropTarget}}}{Specify widget as a target
+##' (drop area) for drag and drop}
 ##' 
-##' \item{\code{\link{addDragMotion}}}{Assign callback for event that a drag event crosses a widget}
+##' \item{\code{\link{addDragMotion}}}{Assign callback for event that
+##' a drag event crosses a widget}
 ##' 
-##' \item{\code{\link{blockHandlers, blockHandler}}}{Block all handlers for a widget (or by single ID)}
+##' \item{\code{\link{blockHandlers}}, \code{\link{blockHandler}}}{Block all
+##' handlers for a widget (or by single ID)}
 ##' 
-##' \item{\code{\link{unblockHandlers, unblockHandler}}}{Unblock any blocked handlers (or by single ID)}
+##' \item{\code{\link{unblockHandlers}}, \code{\link{unblockHandler}}}{Unblock any
+##' blocked handlers (or by single ID)}
 ##' 
 ##' \item{\code{\link{removeHandler}}}{Remove a handler by it ID}
 ##'

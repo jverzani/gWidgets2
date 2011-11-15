@@ -8,11 +8,7 @@ NULL
 ##' @param height hieght of widget (pixels)
 ##' @param dpi dots per inch
 ##' @param ps pointsize
-##' @param handler handler
-##' @param action action
-##' @param container parent container
-##' @param ... passed to add method
-##' @param toolkit 
+##' @inheritParams gwidget
 ##' @export
 ggraphics <- function(
                       width = dpi * 6, height = dpi * 6, dpi = 75, ps = 12,

@@ -5,7 +5,12 @@
 \usage{
   redo(obj, ...)
 
-  redo.GComponent(obj, ...)
+  \method{redo}{GComponent} (obj, ...)
+}
+\arguments{
+  \item{obj}{object to redo}
+
+  \item{...}{ignored}
 }
 \description{
   Some widgets support redo actions

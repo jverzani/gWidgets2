@@ -10,6 +10,9 @@ NULL
 ##' @param by step size if not specified by \code{from}
 ##' @param length.out in place of by
 ##' @param along.with in place of length.out
+##' @param value initial value
+##' @param horizontal Logical. Is separator drawn horizontally?
+##' @inheritParams gwidget
 ##' @export
 gslider <- function(
                     from = 0, to = 100, by = 1, length.out=NULL, along.with=NULL,

@@ -1,12 +1,11 @@
 ## miscellaneous functions
 
-##' merge two lists
-##' 
-##' @param x a list
-##' @param y a list
-##' @param overwrite logical should we overright values in x
-##' @export
-##' @rdname  gWidgets2-S3methods
+## merge two lists
+## 
+## @param x a list
+## @param y a list
+## @param ... passes along
+## @note not exported, appears in some other packages. Call via \code{:::}.
 merge.list <- function(x, y, ...) {
   args <- list(...)
   overwrite <- getWithDefault(args$overwrite, TRUE)
@@ -65,6 +64,8 @@ XXX <- function(msg) {
 ##' Method to send message if any depreacted arguments are being used
 ##'
 ##' Many arguments were deprecated due to various reasons. This is meant to ease porting of code.
+##' @param deprecated_args named list of deprecated args
+##' @param ... named avlues
 check_deprecated <- function(deprecated_args=list(), ...) {
   if(!length(deprecated_args))
     return()
@@ -78,8 +79,11 @@ check_deprecated <- function(deprecated_args=list(), ...) {
 }
 
 ##' check that toolkit object return the right class
-##'
+##' 
 ##' The S3 dispatch assumes naming conventions in the class names. This offers some check.
+##' @param obj object with expected return class
+##' @param ret_class character string of class expected
+##' @return throws error if a mismatch
 check_return_class <- function(obj, ret_class) {
   if(!any(sapply(ret_class, is, object=obj)))
     stop(sprintf("Expecting toolkit object of class (or subclass) %s. Got one of class %s",

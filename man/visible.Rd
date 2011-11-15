@@ -7,12 +7,14 @@
 \usage{
   visible(obj, ...)
 
-  visible.default(obj, ...)
+  \method{visible}{default} (obj, ...)
 
   visible(obj) <- value
 }
 \arguments{
   \item{obj}{object}
+
+  \item{...}{ignored}
 
   \item{value}{logical. Set visible state.}
 }

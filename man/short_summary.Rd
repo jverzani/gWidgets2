@@ -13,23 +13,23 @@
 \usage{
   short_summary(x)
 
-  short_summary.default(x)
+  \method{short_summary}{default} (x)
 
-  short_summary.numeric(x)
+  \method{short_summary}{numeric} (x)
 
-  short_summary.character(x)
+  \method{short_summary}{character} (x)
 
-  short_summary.logical(x)
+  \method{short_summary}{logical} (x)
 
-  short_summary.data.frame(x)
+  \method{short_summary}{data.frame} (x)
 
-  short_summary.matrix(x)
+  \method{short_summary}{matrix} (x)
 
-  short_summary.list(x)
+  \method{short_summary}{list} (x)
 
-  short_summary.lm(x)
+  \method{short_summary}{lm} (x)
 
-  short_summary.function(x)
+  \method{short_summary}{function} (x)
 }
 \arguments{
   \item{x}{object}

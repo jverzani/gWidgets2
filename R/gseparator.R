@@ -3,6 +3,8 @@ NULL
 
 ##' constructor providing a widget for displaying a line in a GUI
 ##'
+##' @param horizontal Logical. Is separator drawn horizontally?
+##' @inheritParams gcontainer
 ##' @export
 gseparator <- function(
                        horizontal = TRUE, container = NULL, ... ,

@@ -1,12 +1,8 @@
-\name{gstackwidget}
-\alias{.gstackwidget}
-\alias{gstackwidget}
-\title{Constructor for a stack of widgets}
+\name{gcontainer}
+\alias{gcontainer}
+\title{Common parts of a container widget}
 \usage{
-  gstackwidget(container = NULL, ..., toolkit =
-  guiToolkit())
-
-  .gstackwidget(toolkit, container = NULL, ...)
+  gcontainer(container = NULL, ..., toolkit = guiToolkit())
 }
 \arguments{
   \item{container}{A parent container. When a widget is
@@ -26,10 +22,6 @@
   \code{\link{guiToolkit}}.}
 }
 \description{
-  This widget is like a notebook -- it holds a stack of
-  pages, but does not provide the tabs to work with. Most
-  methods are inherited from gnotebook's.
-
-  generic for toolkit dispatch
+  Used as template for documentation
 }
 

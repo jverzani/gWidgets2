@@ -1,6 +1,5 @@
 \name{gdfnotebook}
 \alias{.gdfnotebook}
-\alias{.ggraphicsnotebook}
 \alias{gdfnotebook}
 \title{A notebook container for many \code{gdf} instances}
 \usage{
@@ -8,9 +7,6 @@
   = guiToolkit())
 
   .gdfnotebook(toolkit, items, container, ...)
-
-  .ggraphicsnotebook(toolkit, width, height, dpi,
-  container, ...)
 }
 \arguments{
   \item{items}{data frame for initial page, when given}
@@ -24,9 +20,6 @@
 }
 \description{
   A notebook container for many \code{gdf} instances
-
-  S3 generic whose methods are implemented in the toolkit
-  packages
 
   S3 generic whose methods are implemented in the toolkit
   packages

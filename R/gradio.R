@@ -3,18 +3,17 @@ NULL
 
 
 ##' Constructor for radio button widget
+##'
+##' The radio button widget shows 2 or more items forcing the user to select one.
 ##' @param items items to select from
 ##' @param selected index of initially selected item
 ##' @param horizontal layout direction
-##' @param handler handler for toggle event
-##' @param action action
-##' @param container parent container
-##' @param ... passed to add method of parent containers
-##' @param toolkit toolkit
+##' @inheritParams gwidget
 ##' @export
 ##' @rdname gradio
-gradio <- function(items,selected=1, horizontal=FALSE, handler=NULL,
-                   action=NULL, container=NULL, ...,
+gradio <- function(items,selected=1, horizontal=FALSE,
+                   handler=NULL, action=NULL,
+                   container=NULL, ...,
                    toolkit=guiToolkit()) {
   
   ## check input
@@ -35,16 +34,26 @@ gradio <- function(items,selected=1, horizontal=FALSE, handler=NULL,
                     container=NULL,
                     ...) UseMethod(".gradio")
 
-##' assign items for gradio
+
+
+##' svalue method
 ##'
-##' Check for repeated itesm
-##' @param x object
-##' @param i ignored
-##' @param j ignored
-##' @param ... ignored
-##' @param value vector of items to select from
+##' For a radio button group, with \code{svalue} the value can be referred to by index or
+##' label. Similarly with setting of a value
+##' @inheritParams gWidgets2::svalue
 ##' @export
 ##' @rdname gradio
+##' @S3method svalue GRadio
+##' @method svalue GRadio
+svalue.GRadio <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
+
+##' assign items for gradio
+##'
+##' Check for repeated items before passing on to \code{set_items}
+##' @export
+##' @rdname gradio
+##' @method [<- GRadio
+##' @S3method [<- GRadio
 "[<-.GRadio" <- function(x, i, j, ..., value) {
   ## check input
   if(length(value) != length(value <- unique(value)))

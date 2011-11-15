@@ -1,57 +1,3 @@
-\name{ggroup}
-\alias{.ggroup}
-\alias{ggroup}
-\alias{svalue<-.GGroup}
-\title{Basic box container}
-\usage{
-  ggroup(horizontal = TRUE, spacing = 5, use.scrollwindow =
-  FALSE, container = NULL, ..., toolkit = guiToolkit())
-
-  .ggroup(toolkit, horizontal = TRUE, spacing = 5,
-  use.scrollwindow = FALSE, container = NULL, ...)
-}
-\arguments{
-  \item{horizontal}{logical. If TRUE, left to right layout,
-  otherwise top to bottom}
-
-  \item{spacing}{spacing aroud widget}
-
-  \item{use.scrollwindow}{logical. If TRUE, places box
-  container in scrollwindow. In this case, a size should be
-  set.}
-
-  \item{container}{A parent container. When a widget is
-  created it can be incorporated into the widget heirarchy
-  by passing in a parent container at construction time.
-  (For some toolkits this is not optional, e.g.
-  \pkg{gWidgets2tcltk} or \pkg{gWidgets2WWW2}.)}
-
-  \item{...}{These values are passed to the \code{add}
-  method of the parent container, and occasionally have
-  been used to sneak in hidden arguments to toolkit
-  implementations.}
-
-  \item{toolkit}{Each widget constructor is passed in the
-  toolkit it will use. This is typically done using the
-  default, which will lookup the toolkit through
-  \code{\link{guiToolkit}}.}
-}
-\value{
-  a GGroup instance.
-}
-\description{
-  Basic box container
-
-  S3 generic whose methods are implemented in the toolkit
-  packages
-
-  The \code{svalue} method refers to the main property of
-  the box container, its spacing. There are generally two
-  types of spacing: padding around border of the box and
-  spacing between each child that is packed in. The spacing
-  here is the between-child-component spacing.
-}
-\examples{
 if(interactive()) {
 
   ## basic container:
@@ -126,8 +72,3 @@ if(interactive()) {
   visible(w) <- TRUE
   
 }
-}
-\seealso{
-  \code{\link{gframe}} and \code{\link{gexpandgroup}}
-}
-

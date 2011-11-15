@@ -90,9 +90,9 @@ ginput <- function(
 }
 
 ##' generic for toolkit dispatch
-##' 
+##'
 ##' @export
-##' @rdname gWidgets-dialog
+##' @rdname ginput
 .ginput <- function(toolkit,
                     msg, text="",
                     title = "Input",
@@ -104,6 +104,7 @@ ginput <- function(
 ################# gconfirm #################################
 ##' Constructor for modal dialog to get confirmation
 ##'
+##' @inheritParams ginput
 ##' @return logical inidicating confirmation
 ##' @export
 ##' @rdname gconfirm
@@ -153,7 +154,6 @@ gconfirm = function(
 ##' @param toolkit toolkit
 ##' @return A \code{GBasicDialog} instance with a visible method
 ##' @export
-##' 
 gbasicdialog <- function(
                          title = "Dialog", 
                          parent = NULL,
@@ -186,21 +186,24 @@ gbasicdialog <- function(
 ##' make basic dialog visible and modal
 ##'
 ##' The \code{gbasicdialog} container becomes visible and modal after this call.
-##' @return logical indicating which button was pushed (or TRUE if not buttons present)
+##' @param obj dialog object
+##' @return logical indicating which button was pushed (or TRUE if no buttons present)
 ##' @export
 ##' @rdname gbasicdialog
+##' @method visible GBasicDialog
+##' @S3method visible GBasicDialog
 visible.GBasicDialog <- function(obj, ...) {
   obj$set_visible(TRUE)
 }
 
 ##' dispose of dialog
 ##'
-##' dispose of dialog
-##' @param obj gbasicdialog
-##' @param ... 
+##' dispose method for a basic dialog
 ##' @return NULL
 ##' @export
 ##' @rdname gbasicdialog
+##' @method dispose GBasicDialog
+##' @S3method dispose GBasicDialog
 dispose.GBasicDialog <- function(obj, ...) {
   obj$dispose()
 }

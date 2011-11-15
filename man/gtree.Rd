@@ -1,5 +1,6 @@
 \name{gtree}
 \alias{.gtree}
+\alias{[.GTree}
 \alias{gtree}
 \alias{svalue.GTree}
 \alias{svalue<-.GTree}
@@ -17,9 +18,10 @@
   tooltip.col = NULL, multiple = FALSE, handler = NULL,
   action = NULL, container = NULL, ...)
 
-  svalue.GTree(obj, index = FALSE, drop = TRUE, ...)
+  \method{svalue}{GTree} (obj, index = FALSE, drop = TRUE,
+  ...)
 
-  update.GTree(object, ...)
+  \method{update}{GTree} (object, ...)
 }
 \arguments{
   \item{x}{Data frame. Optional, if given specify INDICES
@@ -35,7 +37,9 @@
   of the parent item using the named keys from the chosen
   column.}
 
-  \item{offspring.data}{}
+  \item{offspring.data}{Passed to second argument of
+  \code{offspring} function. Used to parameterize a
+  function call.}
 
   \item{chosen.col}{integer or one of column names of data
   frame returned by \code{offspring}. The chosen column
@@ -57,7 +61,15 @@
 
   \item{multiple}{logical. Is multiple selection allowed?}
 
-  \item{object}{\code{GTree} object to be updated}
+  \item{obj}{object}
+
+  \item{index}{index}
+
+  \item{drop}{drop}
+
+  \item{object}{object to update}
+
+  \item{...}{passed to update method}
 
   \item{handler}{A handler assigned to the default change
   signal. Handlers are called when some event triggers a
@@ -77,27 +89,12 @@
   created it can be incorporated into the widget heirarchy
   by passing in a parent container at construction time.
   (For some toolkits this is not optional, e.g.
-  \pkg{gWidgets2tcltk} or \pkg{gWidgetsWWW2}.)}
-
-  \item{...}{These values are passed to the \code{add}
-  method of the parent container, and occasionally have
-  been used to sneak in hidden arguments to toolkit
-  implementations.}
+  \pkg{gWidgets2tcltk} or \pkg{gWidgets2WWW2}.)}
 
   \item{toolkit}{Each widget constructor is passed in the
   toolkit it will use. This is typically done using the
   default, which will lookup the toolkit through
   \code{\link{guiToolkit}}.}
-
-  \item{obj}{object of method call}
-
-  \item{index}{NULL or logical. If \code{TRUE} and widget
-  supports it an index, instead of a value will be
-  returned.}
-
-  \item{drop}{NULL or logical. If widget supports it, drop
-  will work as it does in a data frame or perhaps someother
-  means.}
 }
 \description{
   The \code{gtree} widget is used to present structured
@@ -122,6 +119,11 @@
   index=TRUE) <- svalue(tr, index=TRUE)} should not change
   the state of the widget. (The \code{index=TRUE} argument
   is the case for setting, but not getting.)
+
+  The \code{[} method is used to return the data associated
+  with a selected row. The \code{svalue} method returns the
+  path or its endpoint, the \code{[} method returns the row
+  data associated with the path.
 
   The update method for \code{GTree} recomputes the base
   nodes, then reopens the given node if still available

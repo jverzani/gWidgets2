@@ -7,12 +7,14 @@
 \usage{
   size(obj)
 
-  size.default(obj)
+  \method{size}{default} (obj)
 
   size(obj) <- value
 }
 \arguments{
   \item{obj}{object}
+
+  \item{value}{size in pixels}
 }
 \description{
   Return size (width and height) of widget

@@ -5,15 +5,16 @@ NULL
 ##' top-level window object
 ##'
 ##' @title gwindow
-##' @param title title for window's title bar
+##' @param title title for window's title bar. This is the main
+##' property and is accessed via \code{svalue} or \code{svalue<-}.
 ##' @param visible logical. If code{TRUE} window is drawn when
 ##' constructed. Otherwise, window can be drawn later using
 ##' \code{visible<-}. This value can default to \code{FALSE} by
 ##' setting the option:
 ##' \code{options("gWidgets:gwindow-default-visible-is-false"=TRUE)}.
-##' There are advantages: windows can draw slowly when adding item by
-##' ‘ggraphics’ like to be added to an undrawn widget as this avoids
-##' sizing issue.
+##' There are advantages: windows can draw slowly when adding many
+##' items. With \pkg{gWidgets2RGtk2}, the  \code{ggraphics} widget can
+##' like to be added to an undrawn widget as this avoids sizing issue.
 ##' @param name Name for registry of windows
 ##' @param width initial width of window
 ##' @param height initial height of window. This sets height before window manager manages the window
@@ -57,7 +58,6 @@ gwindow <- function(title="Window", visible=TRUE, name=title, width=NULL, height
 
 ##' S3 generic whose methods are implemented in the toolkit packages
 ##'
-##' @inheritParams gwindow
 ##' @rdname gwindow
 ##' @export
 ##' @author john verzani
@@ -68,14 +68,11 @@ gwindow <- function(title="Window", visible=TRUE, name=title, width=NULL, height
 ##' add method for top-level windows
 ##'
 ##' Dispatches on type of child (menubar, toolbar, statusbar, widget)
-##' @param obj \code{gwindow} object
-##' @param child child object to add
-##' @param expand ignored
-##' @param fill ingnored
-##' @param anchor ignored
-##' @param ... ignored
+##' @inheritParams add
 ##' @export
 ##' @rdname gwindow
+##' @method add GWindow
+##' @S3method add GWindow
 add.GWindow <- function(obj, child, expand=NULL, fill=NULL, anchor=NULL, ...) {
   ## one way -- poor man's way -- of double dispatch on obj and class of child
   .add <- function(child, obj, ...) UseMethod(".add")
@@ -89,10 +86,12 @@ add.GWindow <- function(obj, child, expand=NULL, fill=NULL, anchor=NULL, ...) {
   
 ##' dispose method for gwindow
 ##'
-##' @param obj toplevel window object
-##' @param ... ignored
+##' The \code{dispose} method destroys the top-level window and its children.
+##' @inheritParams dispose
 ##' @export
 ##' @rdname gwindow
+##' @method dispose GWindow
+##' @S3method dispose GWindow
 dispose.GWindow <- function(obj, ...) {
   obj$dispose_window()
 }

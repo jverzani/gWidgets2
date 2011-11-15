@@ -1,6 +1,8 @@
 ##' A class to record the toolkit a gui object uses
 ##'
 ##' @exportClass guiWidgetsToolkit
+##' @rdname S4-classes
+##' @name guiWidgetsToolkit-class
 setClass("guiWidgetsToolkit",
          representation(toolkit="character"),
          prototype(toolkit="")

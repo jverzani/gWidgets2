@@ -12,9 +12,9 @@
   .gbasicdialog(toolkit, title = "Dialog", parent = NULL,
   do.buttons = TRUE, handler = NULL, action = NULL, ...)
 
-  visible.GBasicDialog(obj, ...)
+  \method{visible}{GBasicDialog} (obj, ...)
 
-  dispose.GBasicDialog(obj, ...)
+  \method{dispose}{GBasicDialog} (obj, ...)
 }
 \arguments{
   \item{title}{title for window}
@@ -33,15 +33,13 @@
 
   \item{toolkit}{toolkit}
 
-  \item{obj}{gbasicdialog}
-
-  \item{...}{}
+  \item{obj}{dialog object}
 }
 \value{
   A \code{GBasicDialog} instance with a visible method
 
-  logical indicating which button was pushed (or TRUE if
-  not buttons present)
+  logical indicating which button was pushed (or TRUE if no
+  buttons present)
 
   NULL
 }
@@ -58,6 +56,6 @@
   The \code{gbasicdialog} container becomes visible and
   modal after this call.
 
-  dispose of dialog
+  dispose method for a basic dialog
 }
 

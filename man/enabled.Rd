@@ -7,7 +7,7 @@
 \usage{
   enabled(obj)
 
-  enabled.default(obj)
+  \method{enabled}{default} (obj)
 
   enabled(obj) <- value
 }

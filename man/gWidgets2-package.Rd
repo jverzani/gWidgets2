@@ -162,7 +162,9 @@
   message dialog}
 
   \item{\code{\link{gfile}}}{Provides a dialog to select a
-  filename or directory name} } }
+  filename or directory name}
+
+  } }
 
   \subsection{Methods}{
 
@@ -288,11 +290,13 @@
   the event and \code{action} passing in any information
   specified to the \code{action} argument. Some events also
   pass back extra information, such as \code{x} and
-  \code{y$ for position, or \code{key} for key events, as
+  \code{y} for position, or \code{key} for key events, as
   appropriate.
 
-  \describe{ \item{\code{\link{addHandlerChanged}}}{Assigns
-  callback for the most generic event}
+  \describe{
+
+  \item{\code{\link{addHandlerChanged}}}{Assigns callback
+  for the most generic event}
 
   \item{\code{\link{addHandlerClicked}}}{Assigns callback
   for a mouse click event}
@@ -358,12 +362,13 @@
   \item{\code{\link{addDragMotion}}}{Assign callback for
   event that a drag event crosses a widget}
 
-  \item{\code{\link{blockHandlers, blockHandler}}}{Block
-  all handlers for a widget (or by single ID)}
+  \item{\code{\link{blockHandlers}},
+  \code{\link{blockHandler}}}{Block all handlers for a
+  widget (or by single ID)}
 
-  \item{\code{\link{unblockHandlers,
-  unblockHandler}}}{Unblock any blocked handlers (or by
-  single ID)}
+  \item{\code{\link{unblockHandlers}},
+  \code{\link{unblockHandler}}}{Unblock any blocked
+  handlers (or by single ID)}
 
   \item{\code{\link{removeHandler}}}{Remove a handler by it
   ID}

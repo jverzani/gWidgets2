@@ -56,128 +56,133 @@
 \usage{
   addHandler(obj, signal, handler, action = NULL, ...)
 
-  addHandler.default(obj, signal, handler, action = NULL,
-  ...)
+  \method{addHandler}{default} (obj, signal, handler,
+  action = NULL, ...)
 
   addHandlerChanged(obj, handler, action = NULL, ...)
 
-  addHandlerChanged.default(obj, handler, action = NULL,
-  ...)
+  \method{addHandlerChanged}{default} (obj, handler, action
+  = NULL, ...)
 
   addHandlerClicked(obj, handler, action = NULL, ...)
 
-  addHandlerClicked.default(obj, handler, action = NULL,
-  ...)
+  \method{addHandlerClicked}{default} (obj, handler, action
+  = NULL, ...)
 
   addHandlerDoubleclick(obj, handler, action = NULL, ...)
 
-  addHandlerDoubleclick.default(obj, handler, action =
-  NULL, ...)
+  \method{addHandlerDoubleclick}{default} (obj, handler,
+  action = NULL, ...)
 
   addHandlerRightclick(obj, handler, action = NULL, ...)
 
-  addHandlerRightclick.default(obj, handler, action = NULL,
-  ...)
+  \method{addHandlerRightclick}{default} (obj, handler,
+  action = NULL, ...)
 
   addHandlerColumnclicked(obj, handler, action = NULL, ...)
 
-  addHandlerColumnclicked.default(obj, handler, action =
-  NULL, ...)
+  \method{addHandlerColumnclicked}{default} (obj, handler,
+  action = NULL, ...)
 
   addHandlerColumnDoubleclicked(obj, handler, action =
   NULL, ...)
 
-  addHandlerColumnDoubleclicked.default(obj, handler,
-  action = NULL, ...)
+  \method{addHandlerColumnDoubleclicked}{default} (obj,
+  handler, action = NULL, ...)
 
   addHandlerColumnRightclicked(obj, handler, action = NULL,
   ...)
 
-  addHandlerColumnRightclicked.default(obj, handler, action
-  = NULL, ...)
+  \method{addHandlerColumnRightclicked}{default} (obj,
+  handler, action = NULL, ...)
 
   addHandlerSelect(obj, handler, action = NULL, ...)
 
-  addHandlerSelect.default(obj, handler, action = NULL,
-  ...)
+  \method{addHandlerSelect}{default} (obj, handler, action
+  = NULL, ...)
 
   addHandlerFocus(obj, handler, action = NULL, ...)
 
-  addHandlerFocus.default(obj, handler, action = NULL, ...)
+  \method{addHandlerFocus}{default} (obj, handler, action =
+  NULL, ...)
 
   addHandlerBlur(obj, handler, action = NULL, ...)
 
-  addHandlerBlur.default(obj, handler, action = NULL, ...)
+  \method{addHandlerBlur}{default} (obj, handler, action =
+  NULL, ...)
 
   addHandlerDestroy(obj, handler, action = NULL, ...)
 
-  addHandlerDestroy.default(obj, handler, action = NULL,
-  ...)
+  \method{addHandlerDestroy}{default} (obj, handler, action
+  = NULL, ...)
 
   addHandlerUnrealize(obj, handler, action = NULL, ...)
 
-  addHandlerUnrealize.default(obj, handler, action = NULL,
-  ...)
+  \method{addHandlerUnrealize}{default} (obj, handler,
+  action = NULL, ...)
 
   addHandlerExpose(obj, handler, action = NULL, ...)
 
-  addHandlerExpose.default(obj, handler, action = NULL,
-  ...)
+  \method{addHandlerExpose}{default} (obj, handler, action
+  = NULL, ...)
 
   addHandlerKeystroke(obj, handler, action = NULL, ...)
 
-  addHandlerKeystroke.default(obj, handler, action = NULL,
-  ...)
+  \method{addHandlerKeystroke}{default} (obj, handler,
+  action = NULL, ...)
 
   addHandlerMouseMotion(obj, handler, action = NULL, ...)
 
-  addHandlerMouseMotion.default(obj, handler, action =
-  NULL, ...)
+  \method{addHandlerMouseMotion}{default} (obj, handler,
+  action = NULL, ...)
 
   addHandlerIdle(...)
 
   addPopupMenu(obj, menulist, action = NULL, ...)
 
-  addPopupMenu.default(obj, menulist, action = NULL, ...)
+  \method{addPopupMenu}{default} (obj, menulist, action =
+  NULL, ...)
 
   add3rdmousePopupMenu(obj, menulist, action = NULL, ...)
 
-  add3rdmousePopupMenu.default(obj, menulist, action =
-  NULL, ...)
+  \method{add3rdmousePopupMenu}{default} (obj, menulist,
+  action = NULL, ...)
 
   addDropSource(obj, handler, action = NULL, data.type =
   c("text", "object"), ...)
 
-  addDropSource.default(obj, handler, action = NULL,
-  data.type = c("text", "object"), ...)
+  \method{addDropSource}{default} (obj, handler, action =
+  NULL, data.type = c("text", "object"), ...)
 
   addDropTarget(obj, handler, action = NULL, ...)
 
-  addDropTarget.default(obj, handler, action = NULL, ...)
+  \method{addDropTarget}{default} (obj, handler, action =
+  NULL, ...)
 
   addDragMotion(obj, handler, action = NULL, ...)
 
-  addDragMotion.default(obj, handler, action = NULL, ...)
+  \method{addDragMotion}{default} (obj, handler, action =
+  NULL, ...)
 
   blockHandlers(obj, ...)
 
-  blockHandlers.default(obj, ...)
+  \method{blockHandlers}{default} (obj, ...)
 
   blockHandler(obj, ID, ...)
 
-  blockHandler.default(obj, ID, ...)
+  \method{blockHandler}{default} (obj, ID, ...)
 
   unblockHandlers(obj, ...)
 
-  unblockHandlers.default(obj, ...)
+  \method{unblockHandlers}{default} (obj, ...)
 
   unblockHandler(obj, ID, ...)
 
-  unblockHandler.default(obj, ID, ...)
+  \method{unblockHandler}{default} (obj, ID, ...)
 
   removeHandler(obj, ID, ...)
 
-  removeHandler.default(obj, ID, ...)
+  \method{removeHandler}{default} (obj, ID, ...)
 }
 \arguments{
   \item{obj}{object receiving event and emitting a signal
@@ -194,8 +199,6 @@
   \item{action}{passed to handler to parameterize call.}
 
   \item{...}{passed along}
-
-  \item{menulist}{a list of \code{gaction} items}
 
   \item{menulist}{a list of \code{gaction} items}
 

@@ -45,10 +45,12 @@ gtoolbar <- function(
 
 ##' add toolbar items to toolbar
 ##'
+##' A toolbar item is a list of action items or a toolbar instance
 ##' @inheritParams add
-##' @param child list. a toolbar list (one-level named list of \code{gaction} or \code{gseparator} objects.)
 ##' @export
 ##' @rdname gtoolbar
+##' @method add GToolBar
+##' @S3method add GToolBar
 add.GToolBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) {
   dispatcher <- function(obj, child) UseMethod("dispatcher")
   dispatcher.GToolBar <- function(child, obj) obj$add_toolbar_items(svalue(child))
@@ -63,7 +65,8 @@ add.GToolBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) 
 ##'
 ##' for a toolbar, \code{svalue<-} replaces the toolbar items with new ones specified by value.
 ##' @inheritParams svalue
-##' @param value For a toolbar, a list defining the new toolbar.
 ##' @export
 ##' @rdname svalue
+##' @method svalue<- GToolBar
+##' @S3method svalue<- GToolBar
 "svalue<-.GToolBar" <- function(obj, index=NULL, ..., value) NextMethod()

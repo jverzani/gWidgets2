@@ -12,25 +12,23 @@
 \usage{
   getToolkitWidget(obj)
 
-  getToolkitWidget.default(obj)
+  \method{getToolkitWidget}{default} (obj)
 
   getWidget(obj)
 
-  getWidget.GComponent(obj)
+  \method{getWidget}{GComponent} (obj)
 
   getBlock(obj)
 
-  getBlock.GComponent(obj)
+  \method{getBlock}{GComponent} (obj)
 
-  getBlock.GWindow(obj)
+  \method{getBlock}{GWindow} (obj)
 
   getTopLevel(obj)
 
-  getTopLevel.GComponent(obj)
+  \method{getTopLevel}{GComponent} (obj)
 }
 \arguments{
-  \item{obj}{object}
-
   \item{obj}{object}
 }
 \description{

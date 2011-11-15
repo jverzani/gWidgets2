@@ -7,7 +7,7 @@
 \usage{
   focus(obj)
 
-  focus.default(obj)
+  \method{focus}{default} (obj)
 
   focus(obj) <- value
 }

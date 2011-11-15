@@ -12,15 +12,14 @@
   .gdf(toolkit, items = NULL, handler = NULL, action =
   NULL, container = NULL, ...)
 
-  addHandlerChanged.GDf(obj, handler, action = NULL, ...)
+  \method{addHandlerChanged}{GDf} (obj, handler, action =
+  NULL, ...)
 
-  svalue.GDf(obj, index = NULL, drop = TRUE, ...)
+  \method{svalue}{GDf} (obj, index = NULL, drop = TRUE,
+  ...)
 }
 \arguments{
   \item{items}{data frame to edit}
-
-  \item{name}{name of data frame (for saving, but not
-  really needed)}
 
   \item{container}{parent container}
 

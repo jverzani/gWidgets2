@@ -8,6 +8,8 @@ NULL
 ##' methods \code{update_state}, \code{start_timer}, \code{stop_timer} and the "getting" methods
 ##' \code{get_by_class}, \code{get_by_function} (filter), \code{get_changes}
 ##' @exportClass WSWatcherModel
+##' @rdname S4-classes
+##' @name WSWatcherModel-class
 WSWatcherModel <-  setRefClass("WSWatcherModel",
                                contains="Observable",
                                fields=list(

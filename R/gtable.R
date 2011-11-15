@@ -18,7 +18,7 @@ NULL
 ##' @param chosen.col which value from the row is returned by selection
 ##' @param icon.col NULL or integer. If latter, specifies column containing stock icon
 ##' @param tooltip.col NULL or integer. If latter, specifies column containing tooltip
-##' @param inheritParams gwidget
+##' @inheritParams gwidget
 ##' @return Returns an object of class \code{GTable}
 ##' @export
 gtable <- function(
@@ -88,6 +88,8 @@ gtable <- function(
 ##' @inheritParams svalue
 ##' @export
 ##' @rdname gtable
+##' @method svalue GTable
+##' @S3method svalue GTable
 svalue.GTable <- function(obj, index=NULL, ..., value) NextMethod()
 
 ##' "[" method
@@ -103,6 +105,8 @@ svalue.GTable <- function(obj, index=NULL, ..., value) NextMethod()
 ##' @inheritParams base::Extract
 ##' @export
 ##' @rdname gtable
+##' @method [ GTable
+##' @S3method [ GTable
 "[.GTable" <- function(x, i, j, ..., drop=TRUE) NextMethod()
 
 
@@ -115,6 +119,8 @@ svalue.GTable <- function(obj, index=NULL, ..., value) NextMethod()
 ##' @inheritParams addHandler
 ##' @export
 ##' @rdname gtable
+##' @method addHandlerChanged GTable
+##' @S3method addHandlerChanged GTable
 addHandlerChanged.GTable <- function(obj, handler, action=NULL, ...) NextMethod()
 
 
@@ -128,6 +134,8 @@ addHandlerChanged.GTable <- function(obj, handler, action=NULL, ...) NextMethod(
 ##' @inheritParams svalue
 ##' @export
 ##' @rdname gtable
+##' @method visible GTable
+##' @S3method visible GTable
 visible.GTable <- function(obj, ...) NextMethod()
 
 ##' Set size of table widget
@@ -140,4 +148,6 @@ visible.GTable <- function(obj, ...) NextMethod()
 ##' @inheritParams size
 ##' @export
 ##' @rdname gtable
+##' @method size<- GTable
+##' @S3method size<- GTable
 "size<-.GTable" <- function(obj, value) NextMethod()

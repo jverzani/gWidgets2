@@ -12,17 +12,25 @@
   container = NULL, ...)
 }
 \arguments{
-  \item{x}{glayout object}
+  \item{homogeneous}{are cells all the same size}
 
-  \item{i}{row index for adding}
+  \item{spacing}{between cell spacing}
 
-  \item{j}{column index for adding}
+  \item{container}{A parent container. When a widget is
+  created it can be incorporated into the widget heirarchy
+  by passing in a parent container at construction time.
+  (For some toolkits this is not optional, e.g.
+  \pkg{gWidgets2tcltk} or \pkg{gWidgets2WWW2}.)}
 
-  \item{...}{used to pass in values for expand, fill,
-  anchor (see the \code{add} method of \code{ggroup}) for
-  their meaning).}
+  \item{...}{These values are passed to the \code{add}
+  method of the parent container, and occasionally have
+  been used to sneak in hidden arguments to toolkit
+  implementations.}
 
-  \item{value}{a component to add.}
+  \item{toolkit}{Each widget constructor is passed in the
+  toolkit it will use. This is typically done using the
+  default, which will lookup the toolkit through
+  \code{\link{guiToolkit}}.}
 }
 \description{
   Constructor for grid layout container
@@ -33,6 +41,8 @@
   dimension
 
   The matrix notation allows for spanning of multiple rows
-  and or columns, but no holes.
+  and or columns, but no holes. The \code{...} argument is
+  used to pass in values for expand, fill, anchor (see the
+  \code{add} method of \code{ggroup}) for their meaning).
 }
 

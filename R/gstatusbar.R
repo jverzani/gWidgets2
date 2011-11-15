@@ -3,6 +3,8 @@ NULL
 
 ##' constructor to add a status bar to main window
 ##'
+##' @param text inital status text
+##' @inheritParams gcontainer
 ##' @export
 gstatusbar <- function(
                        text = "", container = NULL, ... ,

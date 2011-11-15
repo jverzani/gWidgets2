@@ -30,7 +30,7 @@
   created it can be incorporated into the widget heirarchy
   by passing in a parent container at construction time.
   (For some toolkits this is not optional, e.g.
-  \pkg{gWidgets2tcltk} or \pkg{gWidgetsWWW2}.)}
+  \pkg{gWidgets2tcltk} or \pkg{gWidgets2WWW2}.)}
 
   \item{...}{These values are passed to the \code{add}
   method of the parent container, and occasionally have
@@ -48,14 +48,43 @@
   through S3 methods defined within the package.
 }
 \description{
-  The basic button widget is a common means to allow the
-  user to invoke an action. This action may be specified by
-  a handler or by a \code{GAction} object. The main
-  property for \code{GButton} is the label text. If this
-  text matches a stock icon name and the toolkit supports
-  it, an icon will accompany the button.
+  The basic button widget is a standard means to provide
+  the user a mechanism to invoke an action. This action may
+  be specified by a handler or by a \code{gaction} object.
+  The main property for \code{GButton} is the label text.
+  If this text matches a stock icon name and the toolkit
+  supports it, an icon will accompany the button.
 
   S3 generic whose methods are implemented in the toolkit
   packages
+}
+\examples{
+if(interactive()) {
+
+  w <- gwindow("Buttons", visible=FALSE)
+  g <- ggroup(cont=w, horizontal=FALSE)
+
+  ## various buttons
+
+  ## with icons
+  b1 <- gbutton("open", cont=g)
+
+  ## without icon
+  b2 <- gbutton("ouvrir", cont=g)
+
+  ## by an action
+  act <- gaction("open", tooltip="open", icon="open", handler=function(...) {})
+  b3 <- gbutton(action=act, cont=g)
+
+  ## with a handler
+  b4 <- gbutton("click me", cont=g, handler=function(h,...) {
+    if(svalue(b2) == "open")
+      svalue(b2) <- "ouvrir"
+    else
+      svalue(b2) <- "open"
+  })
+
+  visible(w) <- TRUE
+}
 }
 

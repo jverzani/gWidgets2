@@ -16,12 +16,12 @@
   icon.col = NULL, tooltip.col = NULL, handler = NULL,
   action = NULL, container = NULL, ...)
 
-  svalue.GTable(obj, index = NULL, ..., value)
+  \method{svalue}{GTable} (obj, index = NULL, ..., value)
 
-  addHandlerChanged.GTable(obj, handler, action = NULL,
-  ...)
+  \method{addHandlerChanged}{GTable} (obj, handler, action
+  = NULL, ...)
 
-  visible.GTable(obj, ...)
+  \method{visible}{GTable} (obj, ...)
 }
 \arguments{
   \item{items}{data.frame specifies items for selection.
@@ -38,9 +38,35 @@
   \item{tooltip.col}{NULL or integer. If latter, specifies
   column containing tooltip}
 
-  \item{inheritParams}{gwidget}
+  \item{handler}{A handler assigned to the default change
+  signal. Handlers are called when some event triggers a
+  widget to emit a signal. For each widget some default
+  signal is assumed, and handlers may be assigned to that
+  through \code{addHandlerChanged} or at construction time.
+  Handlers are functions whose first argument, \code{h} in
+  the documentation, is a list with atleast two components
+  \code{obj}, referring to the object emitting the signal
+  and \code{action}, which passes in user-specified data to
+  parameterize the function call.}
 
-  \item{...}{passed on to call}
+  \item{action}{User supplied data passed to the handler
+  when it is called}
+
+  \item{container}{A parent container. When a widget is
+  created it can be incorporated into the widget heirarchy
+  by passing in a parent container at construction time.
+  (For some toolkits this is not optional, e.g.
+  \pkg{gWidgets2tcltk} or \pkg{gWidgets2WWW2}.)}
+
+  \item{...}{These values are passed to the \code{add}
+  method of the parent container, and occasionally have
+  been used to sneak in hidden arguments to toolkit
+  implementations.}
+
+  \item{toolkit}{Each widget constructor is passed in the
+  toolkit it will use. This is typically done using the
+  default, which will lookup the toolkit through
+  \code{\link{guiToolkit}}.}
 
   \item{obj}{object of method call}
 
@@ -48,16 +74,8 @@
   supports it an index, instead of a value will be
   returned.}
 
-  \item{value}{For a toolbar, a list defining the new
-  toolbar.}
-
-  \item{handler}{handler to assign when signal is emitted.
-  A handler is a function, its first argument should expect
-  a list with components \code{obj} containing a reference
-  to the object and \code{action}. Some handlers are passed
-  additional values.}
-
-  \item{action}{passed to handler to parameterize call.}
+  \item{value}{typically an array-like \R object of a
+  similar class as \code{x}.}
 }
 \value{
   Returns an object of class \code{GTable}

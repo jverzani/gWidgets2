@@ -7,7 +7,7 @@
 \usage{
   tag(obj, key)
 
-  tag.default(obj, key)
+  \method{tag}{default} (obj, key)
 
   tag(obj, key) <- value
 }

@@ -1,8 +1,11 @@
 ##' @include methods.R
 NULL
 
-##' ##' An action constructor
+##' An action constructor
 ##'
+##' A action object encapsulates an action (a callback) adding textual
+##' and graphic information. Actions may be proxied in buttons, menu
+##' bars or tool bars.
 ##' @param label label for action
 ##' @param tooltip toolktip for actin
 ##' @param icon icon (stock icon name) for icon
@@ -10,8 +13,7 @@ NULL
 ##' @param handler handler to call when action is invoked
 ##' @param action values passed to parameterize action
 ##' @param parent parent window. Needed if keyboard accelerator used.
-##' @param ... 
-##' @param toolkit 
+##' @inheritParams gcontainer
 ##' @export
 ##' @return a gaction instance
 gaction <- function(

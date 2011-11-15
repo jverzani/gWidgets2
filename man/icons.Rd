@@ -1,12 +1,14 @@
 \name{addStockIcons}
 \alias{.addStockIcons}
+\alias{.addStockIcons.default}
 \alias{.getStockIconByName}
 \alias{.getStockIconByName.default}
 \alias{.getStockIcons}
 \alias{.getStockIcons.default}
 \alias{.stockIconFromClass}
+\alias{.stockIconFromClass.default}
 \alias{.stockIconFromObject}
-\alias{.stockIconsFromClass.default}
+\alias{.stockIconFromObject.default}
 \alias{addStockIcons}
 \alias{getStockIconByName}
 \alias{getStockIcons}
@@ -19,29 +21,36 @@
 
   .addStockIcons(toolkit, iconNames, iconFiles, ...)
 
+  \method{.addStockIcons}{default} (toolkit, iconNames,
+  iconFiles, ...)
+
   getStockIcons(..., toolkit = guiToolkit())
 
   .getStockIcons(toolkit, ...)
 
-  .getStockIcons.default(toolkit, ...)
+  \method{.getStockIcons}{default} (toolkit, ...)
 
   getStockIconByName(name, ..., toolkit = guiToolkit())
 
   .getStockIconByName(toolkit, name, ...)
 
-  .getStockIconByName.default(toolkit, name, file = TRUE,
-  ...)
+  \method{.getStockIconByName}{default} (toolkit, name,
+  file = TRUE, ...)
 
   stockIconFromClass(theClass, ..., toolkit = guiToolkit())
 
-  .stockIconsFromClass.default(toolkit, theClass, ...)
+  \method{.stockIconFromClass}{default} (toolkit, theClass,
+  ...)
 
   stockIconFromObject(obj, ..., toolkit = guiToolkit())
 
   .stockIconFromObject(toolkit, obj, ...)
+
+  \method{.stockIconFromObject}{default} (toolkit, obj,
+  ...)
 }
 \arguments{
-  \item{iconsNames}{names of icons}
+  \item{iconNames}{names of icons}
 
   \item{iconFiles}{path of icons}
 
@@ -50,10 +59,14 @@
   \item{toolkit}{used to dispatch into toolkit if a
   separate implementation is made}
 
+  \item{name}{of stock icon}
+
   \item{file}{logical If TRUE, return filename. If FALSE,
   return toolkit icon object (if possible).}
 
   \item{theClass}{name of class}
+
+  \item{obj}{an R object}
 }
 \value{
   list of icons with names the icon name and values the
@@ -65,6 +78,8 @@
   Method to add icon to list of stock icons
 
   generic for dispath
+
+  toolkit implementation
 
   return list of available stock icons
 
@@ -88,5 +103,7 @@
   Find stock icon from the given object
 
   generic for dispath
+
+  get stock icon from object by class
 }
 

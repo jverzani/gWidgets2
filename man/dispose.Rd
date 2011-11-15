@@ -5,7 +5,12 @@
 \usage{
   dispose(obj, ...)
 
-  dispose.GComponent(obj, ...)
+  \method{dispose}{GComponent} (obj, ...)
+}
+\arguments{
+  \item{obj}{object to dispose}
+
+  \item{...}{passed along}
 }
 \description{
   Dispose of object, primarily a window

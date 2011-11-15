@@ -21,6 +21,8 @@ call_meth <- function(meth, obj) {
 ##'
 ##' Class for commands. Has methods do, redo, undo
 ##' @exportClass Command
+##' @rdname S4-classes
+##' @name Command-class
 Command <- setRefClass("Command",
                        fields=list(
                          receiver="ANY",
@@ -56,6 +58,8 @@ Command <- setRefClass("Command",
 ##' Class for multple commands
 ##'
 ##' @exportClass CommandList
+##' @rdname S4-classes
+##' @name CommandList-class
 CommandList <- setRefClass("CommandList",
                            fields=list(
                              l="list"
@@ -85,6 +89,8 @@ CommandList <- setRefClass("CommandList",
 ##' 
 ##' A list with ptr. delegates call of do or undo to appropriate command
 ##' @exportClass CommandStack
+##' @rdname S4-classes
+##' @name CommandStack-class
 CommandStack <- setRefClass("CommandStack",
                             fields=list(
                               l="list",

@@ -1,5 +1,6 @@
 \name{gfile}
 \alias{.gfile}
+\alias{.gfilebrowse}
 \alias{gfile}
 \alias{gfilebrowse}
 \title{dialog for file and directory selection}
@@ -16,6 +17,11 @@
   "save", "selectdir"), initial.filename = NULL, filter =
   list(), quote = TRUE, handler = NULL, action = NULL,
   container = NULL, ..., toolkit = guiToolkit())
+
+  .gfilebrowse(toolkit, text = "Select a file...", type =
+  c("open", "save", "selectdir"), initial.filename = NULL,
+  filter = list(), quote = TRUE, handler = NULL, action =
+  NULL, container = NULL, ...)
 }
 \arguments{
   \item{text}{initial text}
@@ -35,21 +41,37 @@
   \item{multi}{Logical. Allow multiple files to be
   selected?}
 
-  \item{...}{ignored}
+  \item{quote}{quote output}
 
-  \item{toolkit}{toolkit}
+  \item{...}{These values are passed to the \code{add}
+  method of the parent container, and occasionally have
+  been used to sneak in hidden arguments to toolkit
+  implementations.}
 
-  \item{text}{Instructional text}
+  \item{toolkit}{Each widget constructor is passed in the
+  toolkit it will use. This is typically done using the
+  default, which will lookup the toolkit through
+  \code{\link{guiToolkit}}.}
 
-  \item{type}{type of dialog (see \code{\link{gfile}})}
+  \item{handler}{A handler assigned to the default change
+  signal. Handlers are called when some event triggers a
+  widget to emit a signal. For each widget some default
+  signal is assumed, and handlers may be assigned to that
+  through \code{addHandlerChanged} or at construction time.
+  Handlers are functions whose first argument, \code{h} in
+  the documentation, is a list with atleast two components
+  \code{obj}, referring to the object emitting the signal
+  and \code{action}, which passes in user-specified data to
+  parameterize the function call.}
 
-  \item{quote}{Do we quote value}
+  \item{action}{User supplied data passed to the handler
+  when it is called}
 
-  \item{container}{parent container}
-
-  \item{...}{passed to \code{add} method of parent}
-
-  \item{toolkit}{toolkit}
+  \item{container}{A parent container. When a widget is
+  created it can be incorporated into the widget heirarchy
+  by passing in a parent container at construction time.
+  (For some toolkits this is not optional, e.g.
+  \pkg{gWidgets2tcltk} or \pkg{gWidgets2WWW2}.)}
 }
 \value{
   returns filename(s) or \code{character(0)} if no
@@ -65,5 +87,7 @@
 
   Basically an entry box instance with a button to initiate
   \code{gfile}.
+
+  generic for toolkit dispatch
 }
 

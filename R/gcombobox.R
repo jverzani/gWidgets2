@@ -90,11 +90,8 @@ gdroplist <- function(...) {
 ##' one-column data frame to inidicate the possible values for
 ##' selection, a second column is used for an icons (if possible), a
 ##' third for a tooltip (if possible).
-##' get_from_templace for guiWidget
-##' @param x object
-##' @param i ignored
-##' @param j ignored
-##' @param ... ignored
+##'
+##' @inheritParams  base::Extract
 ##' @param value new items for selection
 ##' @export
 ##' @rdname gcombobox

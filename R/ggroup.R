@@ -6,12 +6,12 @@ NULL
 ##' @param horizontal logical. If TRUE, left to right layout, otherwise top to bottom
 ##' @param spacing spacing aroud widget 
 ##' @param use.scrollwindow logical. If TRUE, places box container in scrollwindow. In this case, a size should be set.
-##' @param container parent container
-##' @param ... passed to \code{add} method of parent container
-##' @param toolkit toolkit for dispatch
+##' @inheritParams gwidget
 ##' @return a GGroup instance.
 ##' @export
 ##' @rdname ggroup
+##' @seealso \code{\link{gframe}} and \code{\link{gexpandgroup}}
+##' @example inst/examples/ex-boxcontainers.R
 ggroup <- function(horizontal=TRUE, spacing=5, use.scrollwindow=FALSE, container=NULL, ..., toolkit=guiToolkit()) {
 
   if(is.character(toolkit))
@@ -32,15 +32,14 @@ ggroup <- function(horizontal=TRUE, spacing=5, use.scrollwindow=FALSE, container
 
 ##' \code{svalue<-} method for a ggroup
 ##'
-##' The main property of the box container is the spacing. There are
-##' generally two types of spacing: padding around border of the box
-##' and spacing between each child that is packed in.
-##' @param obj \code{ggroup} instance
-##' @param index ignored
-##' @param ... ignored
-##' @param value integer amount of spacing
+##' The \code{svalue} method refers to the main property of the box
+##' container, its spacing. There are generally two types of spacing:
+##' padding around border of the box and spacing between each child
+##' that is packed in. The spacing here is the between-child-component spacing.
 ##' @export
 ##' @rdname ggroup
+##' @method svalue<- GGroup
+##' @S3method svalue<- GGroup
 "svalue<-.GGroup" <- function(obj, index=TRUE,  ..., value) {
   NextMethod()
 }

@@ -3,8 +3,10 @@ NULL
 
 ##' Constructor for a stack of widgets
 ##'
-##' This widget is like a notebook -- it holds a stack of pages, but does not provide the tabs to work with. Most
-##' methods are inherited from gnotebook's.
+##' This widget is like a notebook -- it holds a stack of pages, but
+##' does not provide the tabs to work with. Most methods are inherited
+##' from gnotebook's.
+##' @inheritParams gcontainer
 ##' @export
 gstackwidget <- function(container = NULL, ... ,
                       toolkit=guiToolkit()){
