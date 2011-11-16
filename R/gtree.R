@@ -172,7 +172,7 @@ gtree <- function(x=NULL, INDICES=NULL,
 
 ##' generic for toolkit dispatch
 ##'
-##' @inheritParams gtree
+##' @export
 ##' @rdname gtree
 .gtree <-  function(toolkit,
                     offspring = NULL, offspring.data = NULL,

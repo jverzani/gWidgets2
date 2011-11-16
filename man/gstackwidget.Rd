@@ -3,8 +3,8 @@
 \alias{gstackwidget}
 \title{Constructor for a stack of widgets}
 \usage{
-  gstackwidget(container = NULL, ..., toolkit =
-  guiToolkit())
+  gstackwidget(container = NULL, ...,
+    toolkit = guiToolkit())
 
   .gstackwidget(toolkit, container = NULL, ...)
 }

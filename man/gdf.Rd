@@ -7,16 +7,18 @@
 \title{Constructor for a data frame editor}
 \usage{
   gdf(items = NULL, handler = NULL, action = NULL,
-  container = NULL, ..., toolkit = guiToolkit())
+    container = NULL, ..., toolkit = guiToolkit())
 
-  .gdf(toolkit, items = NULL, handler = NULL, action =
-  NULL, container = NULL, ...)
+  .gdf(toolkit, items = NULL, handler = NULL,
+    action = NULL, container = NULL, ...)
 
-  \method{addHandlerChanged}{GDf} (obj, handler, action =
-  NULL, ...)
+  \method{addHandlerChanged}{GDf} (obj, handler,
+    action = NULL, ...)
 
   \method{svalue}{GDf} (obj, index = NULL, drop = TRUE,
-  ...)
+    ...)
+
+  \method{visible}{GDf} (obj, value) <- value
 }
 \arguments{
   \item{items}{data frame to edit}
@@ -41,6 +43,8 @@
   \item{drop}{NULL or logical. If widget supports it, drop
   will work as it does in a data frame or perhaps someother
   means.}
+
+  \item{value}{logical. Set visible state.}
 }
 \value{
   An object of class \code{gDf}.

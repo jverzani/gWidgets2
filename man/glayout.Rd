@@ -5,11 +5,15 @@
 \alias{glayout}
 \title{Constructor for grid layout container}
 \usage{
-  glayout(homogeneous = FALSE, spacing = 10, container =
-  NULL, ..., toolkit = guiToolkit())
+  glayout(homogeneous = FALSE, spacing = 10,
+    container = NULL, ..., toolkit = guiToolkit())
 
   .glayout(toolkit, homogeneous = FALSE, spacing = 10,
-  container = NULL, ...)
+    container = NULL, ...)
+
+  \method{[}{GLayout} (x, i, j, ..., drop = TRUE)
+
+  \method{[}{GLayout} (x, i, j, ..., value) <- value
 }
 \arguments{
   \item{homogeneous}{are cells all the same size}

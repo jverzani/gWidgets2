@@ -3,12 +3,14 @@
 \alias{ggraphics}
 \title{Constructor for an embeddable graphics device}
 \usage{
-  ggraphics(width = dpi * 6, height = dpi * 6, dpi = 75, ps
-  = 12, handler = NULL, action = NULL, container = NULL,
-  ..., toolkit = guiToolkit())
+  ggraphics(width = dpi<c2><a0>*<c2><a0>6,
+    height = dpi<c2><a0>*<c2><a0>6, dpi = 75, ps = 12,
+    handler = NULL, action = NULL, container = NULL, ...,
+    toolkit = guiToolkit())
 
-  .ggraphics(toolkit, width = dpi * 6, height = dpi * 6,
-  dpi = 75, ps = 12, container = NULL, ...)
+  .ggraphics(toolkit, width = dpi<c2><a0>*<c2><a0>6,
+    height = dpi<c2><a0>*<c2><a0>6, dpi = 75, ps = 12,
+    handler = NULL, action = NULL, container = NULL, ...)
 }
 \arguments{
   \item{width}{width of device (pixels)}

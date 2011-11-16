@@ -4,13 +4,13 @@
 \title{slider widget constructor}
 \usage{
   gslider(from = 0, to = 100, by = 1, length.out = NULL,
-  along.with = NULL, value = from[1], horizontal = TRUE,
-  handler = NULL, action = NULL, container = NULL, ...,
-  toolkit = guiToolkit())
+    along.with = NULL, value = from[1], horizontal = TRUE,
+    handler = NULL, action = NULL, container = NULL, ...,
+    toolkit = guiToolkit())
 
-  .gslider(toolkit, from = 0, to = 100, by = 1, value =
-  from, horizontal = TRUE, handler = NULL, action = NULL,
-  container = NULL, ...)
+  .gslider(toolkit, from = 0, to = 100, by = 1,
+    value = from, horizontal = TRUE, handler = NULL,
+    action = NULL, container = NULL, ...)
 }
 \arguments{
   \item{from}{If a number of length one then a starting
@@ -65,5 +65,27 @@
   slider widget constructor
 
   generic for toolkit dispatch
+}
+\examples{
+if(interactive()) {
+  ## a range widget uses either a slider or a linked spinbutton to select a value
+  w <- gwindow("Range widget", visible=FALSE)
+  g <- ggroup(cont=w, horizontal=TRUE)
+  sl <- gslider(from=0, to=100, by=1, value=0, cont=g, expand=TRUE)
+  sp <- gspinbutton(from=0, to=100, by=1, value=0, cont=g)
+
+  ## Two ways to do this:
+  ##  addHandlerChanged(sl, function(...) svalue(sp) <- svalue(sl))
+  ##  addHandlerChanged(sp, function(...) svalue(sl) <- svalue(sp))
+
+  f <- function(h, ...) svalue(h$action) <- svalue(h$obj)
+  addHandlerChanged(sl, f, action=sp)
+  addHandlerChanged(sp, f, action=sl)
+  
+  visible(w) <- TRUE
+}
+}
+\seealso{
+  \code{\link{gspinbutton}}
 }
 

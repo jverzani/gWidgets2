@@ -3,13 +3,13 @@
 \alias{gaction}
 \title{An action constructor}
 \usage{
-  gaction(label, tooltip = NULL, icon = NULL, key.accel =
-  NULL, handler = NULL, action = NULL, parent = NULL, ...,
-  toolkit = guiToolkit())
+  gaction(label, tooltip = NULL, icon = NULL,
+    key.accel = NULL, handler = NULL, action = NULL,
+    parent = NULL, ..., toolkit = guiToolkit())
 
   .gaction(toolkit, label, tooltip = NULL, icon = NULL,
-  key.accel = NULL, handler = NULL, action = NULL, parent =
-  NULL, ...)
+    key.accel = NULL, handler = NULL, action = NULL,
+    parent = NULL, ...)
 }
 \arguments{
   \item{label}{label for action}

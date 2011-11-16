@@ -7,25 +7,29 @@ NULL
 ##' @param items checkbox labels
 ##' @param checked logical. Are values checked
 ##' @param horizontal logical. If true displayed horizontally, else vertically
-##' @param use.table logical. If supported, and \code{TRUE} then use a table widget with scrollbars
-##' @param handler Handler called when state toggles
-##' @param action passed to handler when called
-##' @param container parent container
-##' @param ... passed to \code{add} method of parent
-##' @param toolkit toolkit
-##' @return Returns an object of class \code{GCheckboxGroup} for which the following methods are overridden:
+##' @param use.table logical. If supported, and \code{TRUE} then uses a table widget with scrollbars
+##' @inheritParams gwidget
+##' @return Returns an object of class \code{GCheckboxGroup} for which
+##' the following methods are overridden:
+##' 
 ##' \itemize{
+##' 
 ##' \item{ \code{svalue} Return the selected values or an empty
 ##' character vector. If \code{index=TRUE}, returns indices of
 ##' selected values.}
+##' 
 ##' \item{ \code{svalue<-} Set the selected values one of three ways:
 ##' by label name, by a logical variable indicating which are selected
 ##' (if ambigous, logical wins), if \code{index=TRUE} by the indices
 ##' to select.}
+##' 
 ##' \item{ \code{[} returns labels}
+##' 
 ##' \item{ \code{[<-} set the label values. Should be able to shorten
 ##' or lengthen list}
+##' 
 ##' }
+##' @example inst/examples/ex-selectionwidgets.R
 gcheckboxgroup <- function(
                            items, checked = FALSE, horizontal = FALSE,
                            use.table=FALSE, handler = NULL,
@@ -54,7 +58,7 @@ gcheckboxgroup <- function(
 ##' @rdname gcheckboxgroup
 ##' @export
 .gcheckboxgroup <- function(toolkit,
-                            items, checked = FALSE, horizontal = FALSE,
+                            items, checked = FALSE, horizontal = FALSE, use.table=FALSE,
                             handler = NULL, action = NULL,
                             container = NULL, ... ) UseMethod( '.gcheckboxgroup' )
 

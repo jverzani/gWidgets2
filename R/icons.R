@@ -48,7 +48,8 @@ getStockIcons = function( ..., toolkit = guiToolkit()) {
 }
 
 ##' generic for toolkit dispatch
-##' 
+##'
+##' @export
 ##' @rdname icons
 .getStockIcons <- function(toolkit,...)
            UseMethod( '.getStockIcons' )
@@ -74,6 +75,7 @@ getStockIconByName <- function(name, ..., toolkit=guiToolkit())
 
 ##' generic
 ##'
+##' @export
 ##' @rdname icons
 .getStockIconByName <- function(toolkit, name, ...) UseMethod(".getStockIconByName")
 
@@ -143,6 +145,7 @@ stockIconFromObject <- function(obj, ..., toolkit = guiToolkit()) {
 
 ##' generic for dispath
 ##'
+##' @export
 ##' @rdname icons
 .stockIconFromObject <- function(toolkit, obj,... )
            UseMethod( '.stockIconFromObject' )
@@ -201,5 +204,7 @@ GWidgets2Icons <- setRefClass("GWidgets2Icons",
                        },
                        set_icons = function(new_icons) icons <<- new_icons
                      ))
+
+## package global
 .gWidgetsIcons <- GWidgets2Icons$new()
 

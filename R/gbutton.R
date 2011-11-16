@@ -39,3 +39,11 @@ gbutton <- function(text="",   handler=NULL, action=NULL, container=NULL, ..., t
 ##' @export
 .gbutton <- function(toolkit, text, handler, action, container, ...) UseMethod(".gbutton")
 
+##' Change handler for a button is called when a button is activated (e.g., a mouse click)
+##'
+##' @param obj receiver object
+##' @export
+##' @rdname gbutton
+##' @method addHandlerChanged GButton
+##' @S3method addHandlerChanged GButton
+addHandlerChanged.GButton <- function(obj, handler, action=NULL, ...) NextMethod()

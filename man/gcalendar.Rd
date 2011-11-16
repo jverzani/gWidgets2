@@ -3,12 +3,12 @@
 \alias{gcalendar}
 \title{A constructor for a date selection widget}
 \usage{
-  gcalendar(text = "", format = "\%Y-\%m-\%d", handler =
-  NULL, action = NULL, container = NULL, ..., toolkit =
-  guiToolkit())
+  gcalendar(text = "", format = "\%Y-\%m-\%d",
+    handler = NULL, action = NULL, container = NULL, ...,
+    toolkit = guiToolkit())
 
   .gcalendar(toolkit, text = "", format = "\%Y-\%m-\%d",
-  handler = NULL, action = NULL, container = NULL, ...)
+    handler = NULL, action = NULL, container = NULL, ...)
 }
 \arguments{
   \item{text}{initial text}

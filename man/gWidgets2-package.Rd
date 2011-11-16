@@ -1,6 +1,5 @@
 \docType{package}
 \name{gWidgets2-package}
-\alias{"gWidgets2-package"}
 \alias{gWidgets2-package}
 \title{gWidgets2. An API for programming GUIs}
 \description{

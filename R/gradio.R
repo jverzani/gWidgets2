@@ -11,6 +11,7 @@ NULL
 ##' @inheritParams gwidget
 ##' @export
 ##' @rdname gradio
+##' @example inst/examples/ex-selectionwidgets.R
 gradio <- function(items,selected=1, horizontal=FALSE,
                    handler=NULL, action=NULL,
                    container=NULL, ...,

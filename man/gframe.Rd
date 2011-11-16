@@ -3,11 +3,12 @@
 \alias{gframe}
 \title{Constructor for framed box container with label}
 \usage{
-  gframe(text = "", markup = FALSE, pos = 0, horizontal =
-  TRUE, container = NULL, ..., toolkit = guiToolkit())
+  gframe(text = "", markup = FALSE, pos = 0,
+    horizontal = TRUE, container = NULL, ...,
+    toolkit = guiToolkit())
 
   .gframe(toolkit, text = "", markup = FALSE, pos = 0,
-  horizontal = TRUE, container = NULL, ...)
+    horizontal = TRUE, container = NULL, ...)
 }
 \arguments{
   \item{text}{frame label}
@@ -26,8 +27,13 @@
   \item{toolkit}{toolkit}
 }
 \description{
-  Constructor for framed box container with label
+  The framed box container inherits from \code{ggroup}. The
+  main addition is a label, which is accessed via the
+  \code{name} method.
 
   generic for toolkit dispatch
+}
+\seealso{
+  \code{\link{ggroup}} and \code{\link{gexpandgroup}}
 }
 

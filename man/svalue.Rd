@@ -9,7 +9,16 @@
   svalue(obj, index = FALSE, drop = NULL, ...)
 
   \method{svalue}{default} (obj, index = NULL, drop = NULL,
-  ...)
+    ...)
+
+  svalue(obj, index = TRUE, drop = TRUE, ..., value) <-
+    value
+
+  \method{svalue}{default} (obj, index = NULL, ..., value)
+    <- value
+
+  \method{svalue}{GToolBar} (obj, index = NULL, ..., value)
+    <- value
 }
 \arguments{
   \item{obj}{object of method call}

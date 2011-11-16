@@ -3,13 +3,13 @@
 \alias{ginput}
 \title{Constructor for modal dialog to collect a line of text}
 \usage{
-  ginput(msg, text = "", title = "Input", icon = c("info",
-  "warning", "error", "question"), parent = NULL, ...,
-  toolkit = guiToolkit())
+  ginput(msg, text = "", title = "Input",
+    icon = c("info",<c2><a0>"warning",<c2><a0>"error",<c2><a0>"question"),
+    parent = NULL, ..., toolkit = guiToolkit())
 
-  .ginput(toolkit, msg, text = "", title = "Input", icon =
-  c("info", "warning", "error", "question"), parent = NULL,
-  ...)
+  .ginput(toolkit, msg, text = "", title = "Input",
+    icon = c("info",<c2><a0>"warning",<c2><a0>"error",<c2><a0>"question"),
+    parent = NULL, ...)
 }
 \arguments{
   \item{msg}{Character. Message to display.}

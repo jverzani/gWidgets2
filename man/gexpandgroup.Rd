@@ -3,13 +3,13 @@
 \alias{gexpandgroup}
 \title{Constructor of box container widget with disclosure trigger and label}
 \usage{
-  gexpandgroup(text = "", markup = FALSE, horizontal =
-  TRUE, handler = NULL, action = NULL, container = NULL,
-  ..., toolkit = guiToolkit())
+  gexpandgroup(text = "", markup = FALSE,
+    horizontal = TRUE, handler = NULL, action = NULL,
+    container = NULL, ..., toolkit = guiToolkit())
 
   .gexpandgroup(toolkit, text = "", markup = FALSE,
-  horizontal = TRUE, handler = NULL, action = NULL,
-  container = NULL, ...)
+    horizontal = TRUE, handler = NULL, action = NULL,
+    container = NULL, ...)
 }
 \arguments{
   \item{text}{Label text}
@@ -31,8 +31,8 @@
   \item{toolkit}{toolkit}
 }
 \value{
-  An object of class \code{GExpandGroup}. This (basically)
-  inherits from \code{GFrame} its methods and overrides:
+  An object of class \code{GExpandGroup} inheriting from
+  \code{GFrame} its methods and overrides:
 
   \enumerate{
 
@@ -46,5 +46,8 @@
   trigger and label
 
   generic for toolkit dispatch
+}
+\seealso{
+  \code{\link{ggroup}} and \code{\link{gframe}}
 }
 

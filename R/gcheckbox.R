@@ -18,6 +18,7 @@ NULL
 ##' @param toolkit toolkit
 ##' @export
 ##' @return Returns an object of class \code{GCheckbox}.
+##' @example inst/examples/ex-selectionwidgets.R
 gcheckbox <- function(
                       text="", checked = FALSE, use.togglebutton=FALSE,
                       handler = NULL, action = NULL, container = NULL, ... ,

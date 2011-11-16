@@ -14,6 +14,8 @@ NULL
 ##' @param horizontal Logical. Is separator drawn horizontally?
 ##' @inheritParams gwidget
 ##' @export
+##' @seealso \code{\link{gspinbutton}}
+##' @example inst/examples/ex-rangewidget.R
 gslider <- function(
                     from = 0, to = 100, by = 1, length.out=NULL, along.with=NULL,
                     value = from[1], horizontal = TRUE,

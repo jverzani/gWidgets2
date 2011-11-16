@@ -10,6 +10,8 @@
   \method{editable}{default} (obj, i)
 
   editable(obj, i) <- value
+
+  \method{editable}{default} (obj, i, value) <- value
 }
 \arguments{
   \item{obj}{object}

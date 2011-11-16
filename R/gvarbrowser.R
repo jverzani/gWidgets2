@@ -37,7 +37,7 @@ gvarbrowser <- function(
 
 ##' generic for toolkit dispatch
 ##'
-##' @inheritParams gvarbrowser
+##' @export
 ##' @rdname gvarbrowser
 .gvarbrowser <-  function(toolkit,
                           handler = NULL,

@@ -10,6 +10,8 @@
   \method{focus}{default} (obj)
 
   focus(obj) <- value
+
+  \method{focus}{default} (obj, value) <- value
 }
 \arguments{
   \item{obj}{object}

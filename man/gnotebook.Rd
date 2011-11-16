@@ -7,18 +7,20 @@
 \alias{names.GNotebook}
 \title{Constructor for a tabbed notebook container}
 \usage{
-  gnotebook(tab.pos = 3, container = NULL, ..., toolkit =
-  guiToolkit())
+  gnotebook(tab.pos = 3, container = NULL, ...,
+    toolkit = guiToolkit())
 
   .gnotebook(toolkit, tab.pos = 3, container = NULL, ...)
 
   \method{add}{GNotebook} (obj, child, expand, fill,
-  anchor, ...)
+    anchor, ...)
 
   \method{dispose}{GNotebook} (obj, ...)
 
+  \method{names}{GNotebook} (x)
+
   \method{addHandlerChanged}{GNotebook} (obj, handler,
-  action = NULL, ...)
+    action = NULL, ...)
 }
 \arguments{
   \item{tab.pos}{integer. Position of tabs, 1 on bottom, 2

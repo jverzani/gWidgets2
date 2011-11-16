@@ -8,19 +8,34 @@
 \alias{length<-.GComponent}
 \alias{names.GComponent}
 \alias{names<-.GComponent}
+\alias{names<-.GFrame}
 \alias{str.GComponent}
 \alias{update.GComponent}
 \title{set length of object}
 \usage{
+  \method{length}{GComponent} (x, value) <- value
+
   \method{dim}{GComponent} (x)
 
   \method{names}{GComponent} (x)
 
+  names.GComponent(x, value) <- value
+
   \method{dimnames}{GComponent} (x)
+
+  \method{dimnames}{GComponent} (x, value) <- value
+
+  \method{[}{GComponent} (x, i, j, ..., drop = TRUE)
+
+  \method{[}{GContainer} (x, i, j, ..., drop = TRUE)
+
+  \method{[}{GComponent} (x, i, j, ..., value) <- value
 
   \method{update}{GComponent} (object, ...)
 
   \method{str}{GComponent} (object, ...)
+
+  names.GFrame(x, value) <- value
 }
 \arguments{
   \item{x}{component}
@@ -55,5 +70,7 @@
   itself, if it is necessary.
 
   str method for widgets
+
+  set names for frame
 }
 

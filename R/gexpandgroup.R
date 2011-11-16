@@ -12,8 +12,9 @@ NULL
 ##' @param container parent container
 ##' @param ... passed to parent's \code{add} method
 ##' @param toolkit toolkit
-##' @return An object of class \code{GExpandGroup}. This (basically)
-##' inherits from \code{GFrame} its methods and overrides:
+##' @seealso \code{\link{ggroup}} and \code{\link{gframe}}
+##' @return An object of class \code{GExpandGroup}
+##' inheriting from \code{GFrame} its methods and overrides:
 ##'
 ##' \enumerate{
 ##'
@@ -50,3 +51,10 @@ gexpandgroup <- function(
   UseMethod( '.gexpandgroup' )
 
 
+##' visible assignment method is used to toggle disclosure state
+##'
+##' @export
+##' @rdname visible
+##' @method visible<- GExpandGroup
+##' @S3method visible<- GExpandGroup
+"visible<-.GExpandGroup" <- function(obj, value) NextMethod()

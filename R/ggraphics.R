@@ -29,7 +29,7 @@ ggraphics <- function(
 ##' @rdname ggraphics
 .ggraphics <-  function(toolkit,
                         width = dpi * 6, height = dpi * 6, dpi = 75, ps = 12,
-                        container = NULL, ... )
+                        handler = NULL,action = NULL, container = NULL, ... )
   UseMethod( '.ggraphics' )
 
 

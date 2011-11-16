@@ -13,6 +13,8 @@ NULL
 ##' @param digits number of digits to display, should the toolkit support it
 ##' @inheritParams gwidget
 ##' @rdname gspinbutton
+##' @seealso \code{\link{gslider}}
+##' @example inst/examples/ex-rangewidget.R
 gspinbutton =function(
   from = 0, to = 10, by = 1,
   length.out = NULL, along.with=NULL,

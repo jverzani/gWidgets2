@@ -34,6 +34,8 @@ gdf <- function(
 
 
 ##' generic for toolkit dispatch
+##'
+##' @export
 ##' @rdname gdf
 .gdf <- function(toolkit,
                  items = NULL,

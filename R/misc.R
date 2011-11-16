@@ -24,7 +24,16 @@ merge.list <- function(x, y, ...) {
   x
 }
 
-
+##' Flatten a nested list
+##'
+##' @author Tommy (http://stackoverflow.com/questions/8139677/how-to-flatten-a-list-to-a-list-without-coercion)
+##' @param x a list
+flatten <- function(x) {
+  repeat {
+    if(!any(vapply(x, is.list, logical(1)))) return(x)
+    x <- Reduce(c, x)
+  }
+}
 
 
 ##' Return x unless NULL, NA, length 0, ..., in which case we give default

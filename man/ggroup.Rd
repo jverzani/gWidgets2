@@ -4,11 +4,15 @@
 \alias{svalue<-.GGroup}
 \title{Basic box container}
 \usage{
-  ggroup(horizontal = TRUE, spacing = 5, use.scrollwindow =
-  FALSE, container = NULL, ..., toolkit = guiToolkit())
+  ggroup(horizontal = TRUE, spacing = 5,
+    use.scrollwindow = FALSE, container = NULL, ...,
+    toolkit = guiToolkit())
 
   .ggroup(toolkit, horizontal = TRUE, spacing = 5,
-  use.scrollwindow = FALSE, container = NULL, ...)
+    use.scrollwindow = FALSE, container = NULL, ...)
+
+  \method{svalue}{GGroup} (obj, index = TRUE, ..., value)
+    <- value
 }
 \arguments{
   \item{horizontal}{logical. If TRUE, left to right layout,

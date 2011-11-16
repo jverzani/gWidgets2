@@ -7,16 +7,18 @@
 \title{constructor for combobox}
 \usage{
   gcombobox(items, selected = 1, editable = FALSE,
-  coerce.with = NULL, handler = NULL, action = NULL,
-  container = NULL, ..., toolkit = guiToolkit())
+    coerce.with = NULL, handler = NULL, action = NULL,
+    container = NULL, ..., toolkit = guiToolkit())
 
-  .gcombobox(toolkit, items, selected = 1, editable =
-  FALSE, coerce.with = NULL, handler = NULL, action = NULL,
-  container = NULL, ...)
+  .gcombobox(toolkit, items, selected = 1,
+    editable = FALSE, coerce.with = NULL, handler = NULL,
+    action = NULL, container = NULL, ...)
 
   gdroplist(...)
 
   .make_gcombobox_items(value)
+
+  [.GComboBox(x, i, j, ..., value) <- value
 }
 \arguments{
   \item{items}{Items to select from. A vector or a data

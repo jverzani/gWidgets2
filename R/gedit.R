@@ -7,7 +7,9 @@ NULL
 ##' @param text initial text
 ##' @param width number of characters
 ##' @param coerce.with A function or name of function to coerce value with before returning by \code{svalue}
-##' @param initial.msg If not text give, and an initial message given, then this message is displayed until the widget receives the focus
+##' @param initial.msg If no initial text is given but an initial
+##' message is, then this message is displayed until the widget
+##' receives the focus
 ##' @param handler Change handler. Called when return key is hit
 ##' @param action passed to handler
 ##' @param container parent container

@@ -3,12 +3,12 @@
 \alias{gmessage}
 \title{Constructor for modal message dialog}
 \usage{
-  gmessage(msg, title = "message", icon = c("info",
-  "warning", "error", "question"), parent = NULL, ...,
-  toolkit = guiToolkit())
+  gmessage(msg, title = "message",
+    icon = c("info",<c2><a0>"warning",<c2><a0>"error",<c2><a0>"question"),
+    parent = NULL, ..., toolkit = guiToolkit())
 
   .gmessage(toolkit, msg, title = "message", icon = "",
-  parent = NULL, ...)
+    parent = NULL, ...)
 }
 \arguments{
   \item{msg}{Character. message to display.}

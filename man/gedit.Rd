@@ -4,12 +4,12 @@
 \title{Single line text edit constructor}
 \usage{
   gedit(text = "", width = 25, coerce.with = NULL,
-  initial.msg = "", handler = NULL, action = NULL,
-  container = NULL, ..., toolkit = guiToolkit())
+    initial.msg = "", handler = NULL, action = NULL,
+    container = NULL, ..., toolkit = guiToolkit())
 
-  .gedit(toolkit, text = "", width = 25, coerce.with =
-  NULL, initial.msg = "", handler = NULL, action = NULL,
-  container = NULL, ...)
+  .gedit(toolkit, text = "", width = 25,
+    coerce.with = NULL, initial.msg = "", handler = NULL,
+    action = NULL, container = NULL, ...)
 }
 \arguments{
   \item{text}{initial text}

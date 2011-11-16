@@ -18,7 +18,9 @@ gstatusbar <- function(
 
 
 ##' generic for toolkit dispatch
+##' 
 ##' @rdname gstatusbar
+##' @export
 .gstatusbar <-  function(toolkit,
                          text = "", container = NULL, ... )
   UseMethod( '.gstatusbar' )

@@ -4,10 +4,10 @@
 \title{constructor providing a widget for displaying a line in a GUI}
 \usage{
   gseparator(horizontal = TRUE, container = NULL, ...,
-  toolkit = guiToolkit())
+    toolkit = guiToolkit())
 
   .gseparator(toolkit, horizontal = TRUE, container = NULL,
-  ...)
+    ...)
 }
 \arguments{
   \item{horizontal}{Logical. Is separator drawn
