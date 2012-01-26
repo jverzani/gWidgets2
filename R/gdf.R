@@ -74,7 +74,7 @@ svalue.GDf <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 
 ##' "visible" method
 ##'
-##' visible is used to refer to which rows are being shown
+##' \code{visible} is used to refer to which rows are being shown.
 ##' @inheritParams visible
 ##' @export
 ##' @rdname gdf
