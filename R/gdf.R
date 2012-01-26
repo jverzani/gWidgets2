@@ -3,7 +3,10 @@ NULL
 
 ##' Constructor for a data frame editor
 ##'
-##' Implementation varies wildly, but should provide at minimum functionality of \code{edit.data.frame}.
+##' Implementation varies wildly, but should provide at minimum
+##' functionality of \code{edit.data.frame}. A single mouse click on a
+##' cell should select that cell, a double click should initiate
+##' editing of that cell.
 ##' @param items data frame to edit
 ##' @param container parent container
 ##' @param handler called on cell change
@@ -78,3 +81,16 @@ svalue.GDf <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 ##' @method visible<- GDf
 ##' @S3method visible<- GDf
 "visible<-.GDf" <- function(obj, value) NextMethod()
+
+
+##' get current items
+##'
+##' The current items for a \code{gdf} object are both the visible and
+##' non-visible items. To retrieve just the currently visible items,
+##' use the idiom \code{obj[visible(obj), ]}.
+##' @inheritParams gdf
+##' @export
+##' @rdname gWidgets2-S3methods
+##' @method [ GDf
+##' @S3method [ GDf
+"[.GDf" <- function(x, i, j, ..., drop=TRUE) NextMethod()

@@ -2,7 +2,6 @@
 \alias{visible}
 \alias{visible.default}
 \alias{visible<-}
-\alias{visible<-.GExpandGroup}
 \alias{visible<-.default}
 \title{Controls whether widget is visible or not}
 \usage{
@@ -11,10 +10,6 @@
   \method{visible}{default} (obj, ...)
 
   visible(obj) <- value
-
-  \method{visible}{default} (obj, value) <- value
-
-  \method{visible}{GExpandGroup} (obj, value) <- value
 }
 \arguments{
   \item{obj}{object}
@@ -34,8 +29,5 @@
   Set visibility of an object
 
   Basic S3 method for visible
-
-  visible assignment method is used to toggle disclosure
-  state
 }
 

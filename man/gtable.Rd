@@ -8,25 +8,20 @@
 \alias{visible.GTable}
 \title{A constructor for displaying tabular data for selection}
 \usage{
-  gtable(items, multiple = FALSE, chosen.col = 1,
-    icon.col = NULL, tooltip.col = NULL, handler = NULL,
-    action = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  gtable(items, multiple = FALSE, chosen.col = 1, icon.col
+  = NULL, tooltip.col = NULL, handler = NULL, action =
+  NULL, container = NULL, ..., toolkit = guiToolkit())
 
   .gtable(toolkit, items, multiple = FALSE, chosen.col = 1,
-    icon.col = NULL, tooltip.col = NULL, handler = NULL,
-    action = NULL, container = NULL, ...)
+  icon.col = NULL, tooltip.col = NULL, handler = NULL,
+  action = NULL, container = NULL, ...)
 
   \method{svalue}{GTable} (obj, index = NULL, ..., value)
 
-  \method{[}{GTable} (x, i, j, ..., drop = TRUE)
-
-  \method{addHandlerChanged}{GTable} (obj, handler,
-    action = NULL, ...)
+  \method{addHandlerChanged}{GTable} (obj, handler, action
+  = NULL, ...)
 
   \method{visible}{GTable} (obj, ...)
-
-  \method{size}{GTable} (obj, value) <- value
 }
 \arguments{
   \item{items}{data.frame specifies items for selection.
@@ -78,10 +73,6 @@
   \item{index}{NULL or logical. If \code{TRUE} and widget
   supports it an index, instead of a value will be
   returned.}
-
-  \item{drop}{NULL or logical. If widget supports it, drop
-  will work as it does in a data frame or perhaps someother
-  means.}
 
   \item{value}{typically an array-like \R object of a
   similar class as \code{x}.}

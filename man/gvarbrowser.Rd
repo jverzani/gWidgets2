@@ -4,14 +4,14 @@
 \alias{svalue.GVarBrowser}
 \title{Constructor for workspace variable browser}
 \usage{
-  gvarbrowser(handler = NULL, action = "summary",
-    container = NULL, ..., toolkit = guiToolkit())
+  gvarbrowser(handler = NULL, action = "summary", container
+  = NULL, ..., toolkit = guiToolkit())
 
   .gvarbrowser(toolkit, handler = NULL, action = "summary",
-    container = NULL, ...)
+  container = NULL, ...)
 
-  \method{svalue}{GVarBrowser} (obj, index = FALSE,
-    drop = TRUE, ...)
+  \method{svalue}{GVarBrowser} (obj, index = FALSE, drop =
+  TRUE, ...)
 }
 \arguments{
   \item{handler}{A handler assigned to the default change

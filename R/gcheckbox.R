@@ -51,11 +51,26 @@ gcheckbox <- function(
 
 
 
-##' svalue method
+
+##' The change handler for a gcheckbox is called when the value
+##' toggles. You can inpsect the current value in the callback to have
+##' an action based on the state.
 ##'
-##' Ensure value is logical
+##' @param obj receiver object
 ##' @export
 ##' @rdname gcheckbox
+##' @method addHandlerChanged GCheckbox
+##' @S3method addHandlerChanged GCheckbox
+addHandlerChanged.GCheckbox <- function(obj, handler, action=NULL, ...) NextMethod()
+
+
+##' svalue method
+##'
+##' The \code{svalue<-} method ensures the value is a logical vector of length 1.
+##' @export
+##' @rdname gcheckbox
+##' @method svalue<- GCheckbox
+##' @S3method svalue<- GCheckbox
 "svalue<-.GCheckbox" <- function(obj, index=NULL,  ...,value) {
   value <- as.logical(value)[1]
   NextMethod()

@@ -102,3 +102,31 @@ gdroplist <- function(...) {
   NextMethod()
 }
   
+
+
+##' Change handler for a non-editabe combobox is called when a new
+##' value is selected. For editable comboboxes, the handler is also
+##' called when the text entry box is activated.
+##'
+##' @inheritParams addHandlerChanged
+##' @export
+##' @rdname gcombobox
+##' @method addHandlerChanged GComboBox
+##' @S3method addHandlerChanged GComboBox
+addHandlerChanged.GComboBox <- function(obj, handler, action=NULL, ...) NextMethod()
+
+
+
+##' svalue method
+##'
+##' The \code{svalue} method for a combobox object refers to its main
+##' property, the selected value. When \code{index=FALSE} (or
+##' \code{NULL}) the value is returned. If \code{index=TRUE} the index
+##' of the object within the set of items is used.
+##' @inheritParams svalue
+##' @export
+##' @rdname gcombobox
+##' @method svalue GComboBox
+##' @S3method svalue GComboBox
+svalue.GComboBox <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
+

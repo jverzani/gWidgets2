@@ -2,21 +2,23 @@
 \alias{.gbutton}
 \alias{addHandlerChanged.GButton}
 \alias{gbutton}
+\alias{svalue.GButton}
 \title{Basic button widget}
 \usage{
   gbutton(text = "", handler = NULL, action = NULL,
-    container = NULL, ..., toolkit = guiToolkit())
+  container = NULL, ..., toolkit = guiToolkit())
 
   .gbutton(toolkit, text, handler, action, container, ...)
 
-  \method{addHandlerChanged}{GButton} (obj, handler,
-    action = NULL, ...)
+  \method{addHandlerChanged}{GButton} (obj, handler, action
+  = NULL, ...)
+
+  \method{svalue}{GButton} (obj, index = NULL, drop = NULL,
+  ...)
 }
 \arguments{
   \item{text}{label text. If text matches a stock icon
   name, that is used as well}
-
-  \item{obj}{receiver object}
 
   \item{handler}{A handler assigned to the default change
   signal. Handlers are called when some event triggers a
@@ -47,6 +49,17 @@
   toolkit it will use. This is typically done using the
   default, which will lookup the toolkit through
   \code{\link{guiToolkit}}.}
+
+  \item{obj}{object receiving event and emitting a signal
+  to the handler}
+
+  \item{index}{NULL or logical. If \code{TRUE} and widget
+  supports it an index, instead of a value will be
+  returned.}
+
+  \item{drop}{NULL or logical. If widget supports it, drop
+  will work as it does in a data frame or perhaps someother
+  means.}
 }
 \value{
   a \code{GButton} instance. While this object has its own
@@ -66,6 +79,9 @@
 
   Change handler for a button is called when a button is
   activated (e.g., a mouse click)
+
+  The \code{svalue} method for a button object refers to
+  its main property, the button label
 }
 \examples{
 if(interactive()) {

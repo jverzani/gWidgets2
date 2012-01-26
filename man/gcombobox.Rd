@@ -2,23 +2,29 @@
 \alias{.gcombobox}
 \alias{.make_gcombobox_items}
 \alias{[<-.GComboBox}
+\alias{addHandlerChanged.GComboBox}
 \alias{gcombobox}
 \alias{gdroplist}
+\alias{svalue.GComboBox}
 \title{constructor for combobox}
 \usage{
   gcombobox(items, selected = 1, editable = FALSE,
-    coerce.with = NULL, handler = NULL, action = NULL,
-    container = NULL, ..., toolkit = guiToolkit())
+  coerce.with = NULL, handler = NULL, action = NULL,
+  container = NULL, ..., toolkit = guiToolkit())
 
-  .gcombobox(toolkit, items, selected = 1,
-    editable = FALSE, coerce.with = NULL, handler = NULL,
-    action = NULL, container = NULL, ...)
+  .gcombobox(toolkit, items, selected = 1, editable =
+  FALSE, coerce.with = NULL, handler = NULL, action = NULL,
+  container = NULL, ...)
 
   gdroplist(...)
 
   .make_gcombobox_items(value)
 
-  [.GComboBox(x, i, j, ..., value) <- value
+  \method{addHandlerChanged}{GComboBox} (obj, handler,
+  action = NULL, ...)
+
+  \method{svalue}{GComboBox} (obj, index = NULL, drop =
+  NULL, ...)
 }
 \arguments{
   \item{items}{Items to select from. A vector or a data
@@ -48,6 +54,19 @@
   \item{toolkit}{toolkit}
 
   \item{value}{new items for selection}
+
+  \item{drop}{For matrices and arrays.  If \code{TRUE} the
+  result is coerced to the lowest possible dimension (see
+  the examples).  This only works for extracting elements,
+  not for the replacement.  See \code{\link{drop}} for
+  further details.  }
+
+  \item{obj}{object receiving event and emitting a signal
+  to the handler}
+
+  \item{index}{NULL or logical. If \code{TRUE} and widget
+  supports it an index, instead of a value will be
+  returned.}
 }
 \value{
   Returns an object of class \code{GComboBox} for which the
@@ -80,5 +99,16 @@
   or a one-column data frame to inidicate the possible
   values for selection, a second column is used for an
   icons (if possible), a third for a tooltip (if possible).
+
+  Change handler for a non-editabe combobox is called when
+  a new value is selected. For editable comboboxes, the
+  handler is also called when the text entry box is
+  activated.
+
+  The \code{svalue} method for a combobox object refers to
+  its main property, the selected value. When
+  \code{index=FALSE} (or \code{NULL}) the value is
+  returned. If \code{index=TRUE} the index of the object
+  within the set of items is used.
 }
 

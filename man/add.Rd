@@ -5,11 +5,11 @@
 \alias{delete.GContainer}
 \title{Add a child object to parent container}
 \usage{
-  add(obj, child, expand = FALSE, fill = NULL,
-    anchor = NULL, ...)
+  add(obj, child, expand = FALSE, fill = NULL, anchor =
+  NULL, ...)
 
-  \method{add}{default} (obj, child, expand = FALSE,
-    fill = NULL, anchor = NULL, ...)
+  \method{add}{default} (obj, child, expand = FALSE, fill =
+  NULL, anchor = NULL, ...)
 
   delete(obj, child)
 

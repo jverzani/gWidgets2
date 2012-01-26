@@ -63,3 +63,32 @@ gcheckboxgroup <- function(
                             container = NULL, ... ) UseMethod( '.gcheckboxgroup' )
 
 
+
+
+
+##' Change handler for a checkboxgroup is called when any of the
+##' checkboxes changes state.
+##'
+##' @param obj receiver object
+##' @export
+##' @rdname gcheckboxgroup
+##' @method addHandlerChanged GCheckboxGroup
+##' @S3method addHandlerChanged GCheckboxGroup
+addHandlerChanged.GCheckboxGroup <- function(obj, handler, action=NULL, ...) NextMethod()
+
+
+
+##' svalue method
+##'
+##' The \code{svalue} methods refer to the selected values. By default
+##' these are the item values. When \code{index=TRUE} is specified,
+##' then the index is returned as an integer vector. For setting, one
+##' may also use a vector of logicals (which is recycled) for the
+##' index.
+##'
+##' @inheritParams svalue
+##' @export
+##' @rdname gcheckboxgroup
+##' @method svalue GCheckboxGroup
+##' @S3method svalue GCheckboxGroup
+"svalue.GCheckboxGroup" <- function(obj, index=NULL,  drop=NULL, ...)   NextMethod()

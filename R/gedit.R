@@ -33,15 +33,6 @@ NULL
 ##'
 ##' }
 ##'
-##' The default handler call is when the user activates the entry,
-##' typically by pressing the enter key.
-##'
-##' The \code{addhandlerBlur}
-##' method is called when the widget loses focuses.
-##'
-##' The \code{addHandlerKeystroke} method adds a handler called after
-##' each keystroke. If possible, the first argument has a component
-##' \code{key} passing back the last value.
 ##' @export
 gedit <- function(
                   text = "", width = 25, coerce.with = NULL, initial.msg="",
@@ -67,3 +58,34 @@ gedit <- function(
                     handler = NULL, action = NULL, container = NULL, ... ) {
   UseMethod( '.gedit' )
 }
+
+
+
+##' change handler
+##' 
+##' The default change handler call is when the user activates the
+##' entry, typically by pressing the enter key.  Other possible events
+##' to consider are covered by: \code{addhandlerBlur} (when the widget
+##' loses focuses) and \code{addHandlerKeystroke} (called after each
+##' keystroke). For the latter, if the toolkit supports it, the
+##' handler's first argument has a component \code{key} passing back
+##' the keystroke information.
+##' @inheritParams addHandlerChanged
+##' @export
+##' @rdname gedit
+##' @method addHandlerChanged GEdit
+##' @S3method addHandlerChanged GEdit
+addHandlerChanged.GEdit <- function(obj, handler, action=NULL, ...) NextMethod()
+
+
+
+##' svalue method
+##'
+##' The \code{svalue} method for a edit object refers to its main property, the text in the box,
+##' @inheritParams svalue
+##' @export
+##' @rdname gedit
+##' @method svalue GEdit
+##' @S3method svalue GEdit
+svalue.GEdit <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
+

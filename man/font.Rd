@@ -10,8 +10,6 @@
   \method{font}{default} (obj)
 
   font(obj) <- value
-
-  \method{font}{default} (obj, value) <- value
 }
 \arguments{
   \item{obj}{object}

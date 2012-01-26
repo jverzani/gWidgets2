@@ -1,53 +1,26 @@
-\name{gexpandgroup}
-\alias{.gexpandgroup}
-\alias{gexpandgroup}
-\title{Constructor of box container widget with disclosure trigger and label}
+\name{addHandlerChanged.GExpandGroup}
+\alias{addHandlerChanged.GExpandGroup}
+\title{The change handler for a expandGroup is called when the group changes visibility}
 \usage{
-  gexpandgroup(text = "", markup = FALSE,
-    horizontal = TRUE, handler = NULL, action = NULL,
-    container = NULL, ..., toolkit = guiToolkit())
-
-  .gexpandgroup(toolkit, text = "", markup = FALSE,
-    horizontal = TRUE, handler = NULL, action = NULL,
-    container = NULL, ...)
+  \method{addHandlerChanged}{GExpandGroup} (obj, handler,
+  action = NULL, ...)
 }
 \arguments{
-  \item{text}{Label text}
+  \item{obj}{object receiving event and emitting a signal
+  to the handler}
 
-  \item{markup}{logical. Does text have markup. (Toolkit
-  dependent)}
+  \item{handler}{handler to assign when signal is emitted.
+  A handler is a function, its first argument should expect
+  a list with components \code{obj} containing a reference
+  to the object and \code{action}. Some handlers are passed
+  additional values.}
 
-  \item{horizontal}{horizontal (\code{TRUE}) or vertical
-  packing.}
+  \item{action}{passed to handler to parameterize call.}
 
-  \item{handler}{handler called when toggled}
-
-  \item{action}{passed to handler}
-
-  \item{container}{parent container}
-
-  \item{...}{passed to parent's \code{add} method}
-
-  \item{toolkit}{toolkit}
-}
-\value{
-  An object of class \code{GExpandGroup} inheriting from
-  \code{GFrame} its methods and overrides:
-
-  \enumerate{
-
-  \item \code{visible<-} Logical. To specify if widget is
-  open (\code{TRUE}) or closed.
-
-  }
+  \item{...}{passed along}
 }
 \description{
-  Constructor of box container widget with disclosure
-  trigger and label
-
-  generic for toolkit dispatch
-}
-\seealso{
-  \code{\link{ggroup}} and \code{\link{gframe}}
+  The change handler for a expandGroup is called when the
+  group changes visibility
 }
 

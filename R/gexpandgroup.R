@@ -7,22 +7,14 @@ NULL
 ##' @param text Label text
 ##' @param markup logical. Does text have markup. (Toolkit dependent)
 ##' @param horizontal horizontal (\code{TRUE}) or vertical packing.
-##' @param handler handler called when toggled
+##' @param handler handler called when state is toggled
 ##' @param action passed to handler
 ##' @param container parent container
 ##' @param ... passed to parent's \code{add} method
 ##' @param toolkit toolkit
 ##' @seealso \code{\link{ggroup}} and \code{\link{gframe}}
 ##' @return An object of class \code{GExpandGroup}
-##' inheriting from \code{GFrame} its methods and overrides:
-##'
-##' \enumerate{
-##'
-##' \item \code{visible<-} Logical. To specify if widget is open (\code{TRUE}) or closed.
-##'
-##' }
-##'
-##' 
+##' inheriting from \code{GFrame} 
 gexpandgroup <- function(
                          text = "", markup = FALSE, horizontal=TRUE,
                          handler = NULL, action = NULL,
@@ -51,10 +43,25 @@ gexpandgroup <- function(
   UseMethod( '.gexpandgroup' )
 
 
-##' visible assignment method is used to toggle disclosure state
+##' visible
 ##'
+##'
+##' For gexapndgroup, the visible assignment method is used to change the disclosure state
 ##' @export
-##' @rdname visible
+##' @rdname gexpandgroup
 ##' @method visible<- GExpandGroup
 ##' @S3method visible<- GExpandGroup
 "visible<-.GExpandGroup" <- function(obj, value) NextMethod()
+
+
+##' change handler
+##'
+##' The change handler for a expandGroup is called when the group changes visibility
+##' @inheritParams addHandlerChanged
+##' @export
+##' @rdname gexpandGroup
+##' @method addHandlerChanged GExpandGroup
+##' @S3method addHandlerChanged GExpandGroup
+addHandlerChanged.GExpandGroup <- function(obj, handler, action=NULL, ...) NextMethod()
+
+

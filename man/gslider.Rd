@@ -4,13 +4,13 @@
 \title{slider widget constructor}
 \usage{
   gslider(from = 0, to = 100, by = 1, length.out = NULL,
-    along.with = NULL, value = from[1], horizontal = TRUE,
-    handler = NULL, action = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  along.with = NULL, value = from[1], horizontal = TRUE,
+  handler = NULL, action = NULL, container = NULL, ...,
+  toolkit = guiToolkit())
 
-  .gslider(toolkit, from = 0, to = 100, by = 1,
-    value = from, horizontal = TRUE, handler = NULL,
-    action = NULL, container = NULL, ...)
+  .gslider(toolkit, from = 0, to = 100, by = 1, value =
+  from, horizontal = TRUE, handler = NULL, action = NULL,
+  container = NULL, ...)
 }
 \arguments{
   \item{from}{If a number of length one then a starting

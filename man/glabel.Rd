@@ -5,14 +5,11 @@
 \title{Basic label widget}
 \usage{
   glabel(text = "", markup = FALSE, editable = FALSE,
-    handler = NULL, action = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  handler = NULL, action = NULL, container = NULL, ...,
+  toolkit = guiToolkit())
 
   .glabel(toolkit, text, markup = FALSE, editable = FALSE,
-    handler = NULL, action = NULL, container = NULL, ...)
-
-  \method{svalue}{GLabel} (obj, index = TRUE, ..., value)
-    <- value
+  handler = NULL, action = NULL, container = NULL, ...)
 }
 \arguments{
   \item{text}{character. Collapsed using a newline to a
@@ -38,12 +35,6 @@
   container}
 
   \item{toolkit}{toolkit instance}
-
-  \item{obj}{object of method call}
-
-  \item{index}{NULL or logical. If \code{TRUE} and widget
-  supports it an index, instead of a value will be
-  returned.}
 }
 \value{
   a \code{GLabel} instance. While this object has its own

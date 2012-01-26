@@ -5,17 +5,15 @@
 \alias{svalue.GRadio}
 \title{Constructor for radio button widget}
 \usage{
-  gradio(items, selected = 1, horizontal = FALSE,
-    handler = NULL, action = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  gradio(items, selected = 1, horizontal = FALSE, handler =
+  NULL, action = NULL, container = NULL, ..., toolkit =
+  guiToolkit())
 
   .gradio(toolkit, items, selected = 1, horizontal = FALSE,
-    handler = NULL, action = NULL, container = NULL, ...)
+  handler = NULL, action = NULL, container = NULL, ...)
 
   \method{svalue}{GRadio} (obj, index = NULL, drop = TRUE,
-    ...)
-
-  \method{[}{GRadio} (x, i, j, ..., value) <- value
+  ...)
 }
 \arguments{
   \item{items}{items to select from}

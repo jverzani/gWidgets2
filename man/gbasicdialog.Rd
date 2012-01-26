@@ -5,12 +5,12 @@
 \alias{visible.GBasicDialog}
 \title{Constructor for modal dialog that can contain an arbitrary widget}
 \usage{
-  gbasicdialog(title = "Dialog", parent = NULL,
-    do.buttons = TRUE, handler = NULL, action = NULL, ...,
-    toolkit = guiToolkit())
+  gbasicdialog(title = "Dialog", parent = NULL, do.buttons
+  = TRUE, handler = NULL, action = NULL, ..., toolkit =
+  guiToolkit())
 
   .gbasicdialog(toolkit, title = "Dialog", parent = NULL,
-    do.buttons = TRUE, handler = NULL, action = NULL, ...)
+  do.buttons = TRUE, handler = NULL, action = NULL, ...)
 
   \method{visible}{GBasicDialog} (obj, ...)
 

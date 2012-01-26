@@ -157,8 +157,7 @@ gtree <- function(x=NULL, INDICES=NULL,
       }
       return(items)
     }
-  }  
-
+  }
   obj <- .gtree (toolkit,
                  offspring=offspring, offspring.data=offspring.data,
                  chosen.col=chosen.col, offspring.col=offspring.col, icon.col=icon.col, tooltip.col=tooltip.col,
@@ -177,7 +176,7 @@ gtree <- function(x=NULL, INDICES=NULL,
 .gtree <-  function(toolkit,
                     offspring = NULL, offspring.data = NULL,
                     chosen.col = 1, offspring.col=2,
-                    icon.col=NULL, tooltip.col=NULL,
+                    icon.col=NULL, tooltip.col=NULL, 
                     multiple = FALSE,
                     handler = NULL, action = NULL, container = NULL, ... )
   UseMethod( '.gtree' )

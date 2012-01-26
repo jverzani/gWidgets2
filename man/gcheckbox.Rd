@@ -1,22 +1,21 @@
 \name{gcheckbox}
 \alias{.gcheckbox}
 \alias{[<-.GCheckbox}
+\alias{addHandlerChanged.GCheckbox}
 \alias{gcheckbox}
 \alias{svalue<-.GCheckbox}
 \title{constructor for checkbox widget}
 \usage{
-  gcheckbox(text = "", checked = FALSE,
-    use.togglebutton = FALSE, handler = NULL,
-    action = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  gcheckbox(text = "", checked = FALSE, use.togglebutton =
+  FALSE, handler = NULL, action = NULL, container = NULL,
+  ..., toolkit = guiToolkit())
 
   .gcheckbox(toolkit, text, checked = FALSE,
-    use.togglebutton = FALSE, handler = NULL,
-    action = NULL, container = NULL, ...)
+  use.togglebutton = FALSE, handler = NULL, action = NULL,
+  container = NULL, ...)
 
-  svalue.GCheckbox(obj, index = NULL, ..., value) <- value
-
-  [.GCheckbox(x, i, j, ..., value) <- value
+  \method{addHandlerChanged}{GCheckbox} (obj, handler,
+  action = NULL, ...)
 }
 \arguments{
   \item{text}{label text}
@@ -36,8 +35,7 @@
 
   \item{toolkit}{toolkit}
 
-  \item{value}{typically an array-like \R object of a
-  similar class as \code{x}.}
+  \item{obj}{receiver object}
 }
 \value{
   Returns an object of class \code{GCheckbox}.
@@ -51,7 +49,12 @@
 
   Generic for toolkit dispatch
 
-  Ensure value is logical
+  The change handler for a gcheckbox is called when the
+  value toggles. You can inpsect the current value in the
+  callback to have an action based on the state.
+
+  The \code{svalue<-} method ensures the value is a logical
+  vector of length 1.
 
   items assignment takes string
 }

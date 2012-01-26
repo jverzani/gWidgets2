@@ -12,6 +12,7 @@ NULL
 ##' @param value initial value
 ##' @param digits number of digits to display, should the toolkit support it
 ##' @inheritParams gwidget
+##' @export
 ##' @rdname gspinbutton
 ##' @seealso \code{\link{gslider}}
 ##' @example inst/examples/ex-rangewidget.R

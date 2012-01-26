@@ -4,10 +4,10 @@
 \title{constructor for a two-paned container}
 \usage{
   gpanedgroup(horizontal = TRUE, container = NULL, ...,
-    toolkit = guiToolkit())
+  toolkit = guiToolkit())
 
-  .gpanedgroup(toolkit, horizontal = TRUE,
-    container = NULL, ...)
+  .gpanedgroup(toolkit, horizontal = TRUE, container =
+  NULL, ...)
 }
 \arguments{
   \item{horizontal}{direction of layout}

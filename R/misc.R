@@ -36,6 +36,17 @@ flatten <- function(x) {
 }
 
 
+##' get index of element of list
+##'
+##' Like match, but works with a list
+##' @param lst a list to search through
+##' @param ele element of list
+##' @return returns index of element or integer(0)
+get_index_in_list <- function(lst, ele) {
+  n <- seq_along(lst)
+  n[sapply(lst, function(i) identical(i, ele))]
+}
+
 ##' Return x unless NULL, NA, length 0, ..., in which case we give default
 ##'
 ##' @param x value to return or its default

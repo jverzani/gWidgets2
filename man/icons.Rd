@@ -16,13 +16,13 @@
 \alias{stockIconFromObject}
 \title{Method to add icon to list of stock icons}
 \usage{
-  addStockIcons(iconNames, iconFiles, ...,
-    toolkit = guiToolkit())
+  addStockIcons(iconNames, iconFiles, ..., toolkit =
+  guiToolkit())
 
   .addStockIcons(toolkit, iconNames, iconFiles, ...)
 
   \method{.addStockIcons}{default} (toolkit, iconNames,
-    iconFiles, ...)
+  iconFiles, ...)
 
   getStockIcons(..., toolkit = guiToolkit())
 
@@ -35,21 +35,19 @@
   .getStockIconByName(toolkit, name, ...)
 
   \method{.getStockIconByName}{default} (toolkit, name,
-    file = TRUE, ...)
+  file = TRUE, ...)
 
   stockIconFromClass(theClass, ..., toolkit = guiToolkit())
 
-  .stockIconFromClass(toolkit, theClass, ...)
-
   \method{.stockIconFromClass}{default} (toolkit, theClass,
-    ...)
+  ...)
 
   stockIconFromObject(obj, ..., toolkit = guiToolkit())
 
   .stockIconFromObject(toolkit, obj, ...)
 
   \method{.stockIconFromObject}{default} (toolkit, obj,
-    ...)
+  ...)
 }
 \arguments{
   \item{iconNames}{names of icons}

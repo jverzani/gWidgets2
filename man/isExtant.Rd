@@ -2,11 +2,6 @@
 \alias{isExtant}
 \alias{isExtant.default}
 \title{Check if widget is extant.}
-\usage{
-  isExtant(obj)
-
-  \method{isExtant}{default} (obj)
-}
 \arguments{
   \item{obj}{object}
 }

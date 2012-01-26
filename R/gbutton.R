@@ -41,9 +41,22 @@ gbutton <- function(text="",   handler=NULL, action=NULL, container=NULL, ..., t
 
 ##' Change handler for a button is called when a button is activated (e.g., a mouse click)
 ##'
-##' @param obj receiver object
+##' @inheritParams addHandlerChanged
 ##' @export
 ##' @rdname gbutton
 ##' @method addHandlerChanged GButton
 ##' @S3method addHandlerChanged GButton
 addHandlerChanged.GButton <- function(obj, handler, action=NULL, ...) NextMethod()
+
+
+
+##' svalue method
+##'
+##' The \code{svalue} method for a button object refers to its main property, the button label
+##' @inheritParams svalue
+##' @export
+##' @rdname gbutton
+##' @method svalue GButton
+##' @S3method svalue GButton
+svalue.GButton <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
+

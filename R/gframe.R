@@ -8,19 +8,18 @@ NULL
 ##' @param text frame label
 ##' @param markup does label use markup (toolkit specific)
 ##' @param pos position of label: 0=left, 1=right, some toolkit allow values in between
-##' @param horizontal logical. Direction of layout
-##' @param container parent container
-##' @param ... passed to add method of parent container
+##' @inheritParams ggroup
 ##' @param toolkit toolkit
 ##' @seealso \code{\link{ggroup}} and \code{\link{gexpandgroup}}
+##' @note to include a scrollwindow, place a \code{ggroup} within this window.
 ##' @export
 ##' @rdname gframe
 gframe <- function(
-                   text = "", markup=FALSE, pos = 0, horizontal=TRUE, container = NULL,
+                   text = "", markup=FALSE, pos = 0, horizontal=TRUE, spacing=5, container = NULL,
                    ... ,
                    toolkit=guiToolkit()){
   obj <- .gframe (toolkit,
-           text,  markup, pos, horizontal, container,
+           text,  markup, pos, horizontal, spacing, container,
            ...
            )
 
@@ -35,7 +34,7 @@ gframe <- function(
 ##' @export
 ##' @rdname gframe
 .gframe <- function(toolkit,
-                    text = "", markup = FALSE, pos = 0, horizontal=TRUE,
+                    text = "", markup = FALSE, pos = 0, horizontal=TRUE, spacing=5,
                     container = NULL,      ... )
            UseMethod( '.gframe' )
 

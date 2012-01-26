@@ -1,16 +1,20 @@
 \name{gcheckboxgroup}
 \alias{.gcheckboxgroup}
+\alias{addHandlerChanged.GCheckboxGroup}
 \alias{gcheckboxgroup}
+\alias{svalue.GCheckboxGroup}
 \title{Constructor for checkbox group. A linked group of checkboxes, but not exclusive.}
 \usage{
-  gcheckboxgroup(items, checked = FALSE,
-    horizontal = FALSE, use.table = FALSE, handler = NULL,
-    action = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  gcheckboxgroup(items, checked = FALSE, horizontal =
+  FALSE, use.table = FALSE, handler = NULL, action = NULL,
+  container = NULL, ..., toolkit = guiToolkit())
 
   .gcheckboxgroup(toolkit, items, checked = FALSE,
-    horizontal = FALSE, use.table = FALSE, handler = NULL,
-    action = NULL, container = NULL, ...)
+  horizontal = FALSE, use.table = FALSE, handler = NULL,
+  action = NULL, container = NULL, ...)
+
+  \method{addHandlerChanged}{GCheckboxGroup} (obj, handler,
+  action = NULL, ...)
 }
 \arguments{
   \item{items}{checkbox labels}
@@ -22,6 +26,8 @@
 
   \item{use.table}{logical. If supported, and \code{TRUE}
   then uses a table widget with scrollbars}
+
+  \item{obj}{receiver object}
 
   \item{handler}{A handler assigned to the default change
   signal. Handlers are called when some event triggers a
@@ -80,6 +86,16 @@
   checkboxes, but not exclusive.
 
   generic for toolkit dispatch
+
+  Change handler for a checkboxgroup is called when any of
+  the checkboxes changes state.
+
+  The \code{svalue} methods refer to the selected values.
+  By default these are the item values. When
+  \code{index=TRUE} is specified, then the index is
+  returned as an integer vector. For setting, one may also
+  use a vector of logicals (which is recycled) for the
+  index.
 }
 \examples{
 if(interactive()) {

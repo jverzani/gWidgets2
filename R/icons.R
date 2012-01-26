@@ -140,7 +140,7 @@ stockIconFromClass = function(theClass, ..., toolkit = guiToolkit()) {
 ##' @export
 ##' @rdname icons
 stockIconFromObject <- function(obj, ..., toolkit = guiToolkit()) {
-  .stockIconFromClass (toolkit, obj, ...)
+  .stockIconFromObject (toolkit, obj, ...)
 }
 
 ##' generic for dispath

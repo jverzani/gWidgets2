@@ -46,10 +46,18 @@ Handler <- setRefClass("Handler",
                             initFields(action=action)
                             callSuper(o=o, obj=obj)
                           },
-                          update=function(...) {
+                          update=function(..., extra_args) {
                             "Call self."
-                            o(list(obj=obj, action=action), ...)
+                            h <- list(obj=obj, action=action)
+                            if(!missing(extra_args)) {
+                              h <- merge.list(h, extra_args, overwrite=FALSE)
+                            }
+                            o(h, ...)
                           }
+                          ## update=function(...) {
+                          ##   "Call self."
+                          ##   o(list(obj=obj, action=action), ...)
+                          ## }
                           )
                         )
 
@@ -87,16 +95,9 @@ Observable <- setRefClass("Observable",
                               ..observers <<- l
                               list(signal=signal, o=o)
                             },
-                            remove_observer=function(id) {
-                              "Remove observer"
-                              if(!is(id$o, "Observer"))
-                                stop("Call with an observer id")
-                              
-                              signal <- id$signal
-                              ind <- lapply(..observers[[signal]], function(i) identical(i, id$o))
-                              if(any(unlist(ind)) )
-                                ..observers[[signal]][[which(ind)]] <<- NULL
-                              
+                            ## these rmove/block/unblock all observers
+                            remove_observers=function() {
+                              ..observers <<- list()
                             },
                             block_observers=function() {
                               "Block all observers"
@@ -115,7 +116,18 @@ Observable <- setRefClass("Observable",
                               }
                               invisible(..blocked)
                             },
-                            
+                            ## These block/unblock one at a time
+                            remove_observer=function(id) {
+                              "Remove observer"
+                              if(!is(id$o, "Observer"))
+                                stop("Call with an observer id")
+                              
+                              signal <- id$signal
+                              ind <- lapply(..observers[[signal]], function(i) identical(i, id$o))
+                              if(any(unlist(ind)) )
+                                ..observers[[signal]][[which(ind)]] <<- NULL
+                              
+                            },
                             block_observer=function(id) {
                               "Block observers. If o missing, block all"
                               if(missing(id) || is.null(id)) {
@@ -176,10 +188,17 @@ BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                        default_fill="LogicalCharacterOrNULL"
                                        ),
                                      methods=list(
+                                       ## (drop=NULL, ...), (value, drop=TRUE, ...)
                                        get_value=define_me, # svalue
                                        set_value=define_me, # svalue<-
+                                       ## (...), (value, ...)
                                        get_index=define_me, # svalue; index=TRUE
                                        set_index=define_me,   # svalue <-; index=TRUE
+                                       ## (i, j, ..., drop=NULL)
+                                       get_items=define_me,   # [
+                                       ## (value, i, j, ...)
+                                       set_items=define_me,   # [<-
+                                       ## () and (value)
                                        get_enabled=define_me, # enabled
                                        set_enabled=define_me, # enabled<-
                                        get_visible=define_me, # visible
@@ -192,21 +211,24 @@ BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                        set_font=define_me,    # font<-
                                        get_length=define_me,  # length
                                        set_length=define_me,  # length<-
+                                       ##
                                        get_dim=define_me,     # dim
                                        get_names=define_me,   # names
                                        set_names=define_me,   # names<-
                                        get_dimnames=define_me, # dimnames
                                        set_dimnames=define_me, # dimnames <-
-                                       get_items=define_me,   # [
-                                       set_items=define_me,   # [<-
                                        get_attr=define_me,    # tag
                                        set_attr=define_me,    # tag<-
                                        update_widget=define_me, # update
-                                       is_extant=define_me,     # isExtant
+                                       is_extant=function() TRUE,   # isExtant
                                        undo=define_me,          # undo
                                        redo=define_me,          # redo
                                        add_child=define_me,     # add child to container (if present)
+                                       set_parent=function(parent) parent <<- parent,
+
+                                       ## (signal, handler, action=NULL, decorator, emitter)
                                        add_handler=define_me,
+                                       ## (handler, action, ...)
                                        add_handler_changed=define_me,
                                        add_handler_clicked=define_me,
                                        add_handler_double_clicked=define_me,
@@ -234,3 +256,6 @@ BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                        }
                                        ))
 
+## needed for internal guys
+GComponent <- setRefClass("GComponent",
+                          contains="BasicToolkitInterface")

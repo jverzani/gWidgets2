@@ -1,8 +1,9 @@
-* gwsmodel (use object signals)
+* gfilter tied with gdf to replace subset.by
+* gedit width
+* ghtml
+* svalue, addHandlerChanged -- document in each widget
+
 * ghelp
-* gdfnotebook
-* ggraphicsnotebook
-* 
 * comment on deriving subclasses
 * Work on documentation
 * write examples into subdirectory (how to include then through dontrun?)

@@ -5,27 +5,23 @@
 \alias{gfilebrowse}
 \title{dialog for file and directory selection}
 \usage{
-  gfile(text = "",
-    type = c("open",<c2><a0>"save",<c2><a0>"selectdir"),
-    initial.filename = NULL, filter = list(),
-    multi = FALSE, ..., toolkit = guiToolkit())
+  gfile(text = "", type = c("open", "save", "selectdir"),
+  initial.filename = NULL, filter = list(), multi = FALSE,
+  ..., toolkit = guiToolkit())
 
-  .gfile(toolkit, text = "",
-    type = c("open",<c2><a0>"save",<c2><a0>"selectdir"),
-    initial.filename = NULL, filter = list(),
-    multi = FALSE, ...)
+  .gfile(toolkit, text = "", type = c("open", "save",
+  "selectdir"), initial.filename = NULL, filter = list(),
+  multi = FALSE, ...)
 
-  gfilebrowse(text = "Select<c2><a0>a<c2><a0>file...",
-    type = c("open",<c2><a0>"save",<c2><a0>"selectdir"),
-    initial.filename = NULL, filter = list(), quote = TRUE,
-    handler = NULL, action = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  gfilebrowse(text = "Select a file...", type = c("open",
+  "save", "selectdir"), initial.filename = NULL, filter =
+  list(), quote = TRUE, handler = NULL, action = NULL,
+  container = NULL, ..., toolkit = guiToolkit())
 
-  .gfilebrowse(toolkit,
-    text = "Select<c2><a0>a<c2><a0>file...",
-    type = c("open",<c2><a0>"save",<c2><a0>"selectdir"),
-    initial.filename = NULL, filter = list(), quote = TRUE,
-    handler = NULL, action = NULL, container = NULL, ...)
+  .gfilebrowse(toolkit, text = "Select a file...", type =
+  c("open", "save", "selectdir"), initial.filename = NULL,
+  filter = list(), quote = TRUE, handler = NULL, action =
+  NULL, container = NULL, ...)
 }
 \arguments{
   \item{text}{initial text}

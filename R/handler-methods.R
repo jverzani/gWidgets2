@@ -58,6 +58,7 @@ addHandler.default <- function(obj, signal, handler, action=NULL, ...)
 ##' constructor is called on. This is a real generic function, in that
 ##' each widget has one, but it is interpreted quite differently for
 ##' each.
+##' @export
 ##' @rdname gWidgets-handlers
 addHandlerChanged <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerChanged")
 

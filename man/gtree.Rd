@@ -8,23 +8,18 @@
 \title{constructor for widget to display heirarchical data}
 \usage{
   gtree(x = NULL, INDICES = NULL, offspring = NULL,
-    offspring.data = NULL, chosen.col = 1,
-    offspring.col = 2, icon.col = NULL, tooltip.col = NULL,
-    multiple = FALSE, handler = NULL, action = NULL,
-    container = NULL, ..., toolkit = guiToolkit())
+  offspring.data = NULL, chosen.col = 1, offspring.col = 2,
+  icon.col = NULL, tooltip.col = NULL, multiple = FALSE,
+  handler = NULL, action = NULL, container = NULL, ...,
+  toolkit = guiToolkit())
 
   .gtree(toolkit, offspring = NULL, offspring.data = NULL,
-    chosen.col = 1, offspring.col = 2, icon.col = NULL,
-    tooltip.col = NULL, multiple = FALSE, handler = NULL,
-    action = NULL, container = NULL, ...)
+  chosen.col = 1, offspring.col = 2, icon.col = NULL,
+  tooltip.col = NULL, multiple = FALSE, handler = NULL,
+  action = NULL, container = NULL, ...)
 
   \method{svalue}{GTree} (obj, index = FALSE, drop = TRUE,
-    ...)
-
-  \method{svalue}{GTree} (obj, index = TRUE, ..., value) <-
-    value
-
-  \method{[}{GTree} (x, i, j, ..., drop = FALSE)
+  ...)
 
   \method{update}{GTree} (object, ...)
 }

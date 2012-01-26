@@ -10,8 +10,6 @@
   \method{size}{default} (obj)
 
   size(obj) <- value
-
-  \method{size}{default} (obj, value) <- value
 }
 \arguments{
   \item{obj}{object}

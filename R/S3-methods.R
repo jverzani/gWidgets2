@@ -9,7 +9,7 @@ NULL
 ##' @inheritParams base::length
 ##' @return length of object
 ##' @export
-##' @rdname gWidgets3-S3methods
+##' @rdname gWidgets2-S3methods
 ##' @method length GComponent
 ##' @S3method length GComponent
 length.GComponent <- function(x) {
@@ -37,7 +37,8 @@ length.GComponent <- function(x) {
 ##' @method dim GComponent
 ##' @S3method dim GComponent
 dim.GComponent <- function(x) {
-  x$get_dim()
+  if(isExtant(x))
+    x$get_dim()
 }
 
 

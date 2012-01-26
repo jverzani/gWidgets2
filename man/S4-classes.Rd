@@ -1,4 +1,3 @@
-\docType{data}
 \name{guiWidgetsToolkit-class}
 \alias{BasicToolkitInterface-class}
 \alias{Command-class}
@@ -11,28 +10,6 @@
 \alias{WSWatcherModel-class}
 \alias{guiWidgetsToolkit-class}
 \title{A class to record the toolkit a gui object uses}
-\format{Reference class 'refObjectGenerator' [package "methods"] with 2 fields
- and 17 methods, of which 6 are possibly relevant:
-   accessors, fields, help, lock, methods, new}
-\usage{
-  Observer
-
-  Handler
-
-  Observable
-
-  BasicToolkitInterface
-
-  GWidgets2Icons
-
-  WSWatcherModel
-
-  Command
-
-  CommandList
-
-  CommandStack
-}
 \description{
   A class to record the toolkit a gui object uses
 
@@ -72,5 +49,4 @@
   could make the container class subclass the basic
   interface.
 }
-\keyword{dataset}
 

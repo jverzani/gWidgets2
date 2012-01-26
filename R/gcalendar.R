@@ -47,3 +47,25 @@ gcalendar <- function(
                        ... )
   UseMethod( '.gcalendar' )
 
+
+
+##' Change handler for a calendar is called when the text value is updated
+##'
+##' @param obj receiver object
+##' @export
+##' @rdname gcalendar
+##' @method addHandlerChanged GCalendar
+##' @S3method addHandlerChanged GCalendar
+addHandlerChanged.GCalendar <- function(obj, handler, action=NULL, ...) NextMethod()
+
+
+
+##' svalue method
+##'
+##' The \code{svalue} method for a calendar object refers to its main property, the date string
+##' @export
+##' @rdname gcalendar
+##' @method svalue GCalendar
+##' @S3method svalue GCalendar
+"svalue.GCalendar" <- function(obj, index=NULL, drop=NULL,  ...)   NextMethod()
+

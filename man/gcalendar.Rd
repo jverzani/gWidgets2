@@ -1,14 +1,19 @@
 \name{gcalendar}
 \alias{.gcalendar}
+\alias{addHandlerChanged.GCalendar}
 \alias{gcalendar}
+\alias{svalue.GCalendar}
 \title{A constructor for a date selection widget}
 \usage{
-  gcalendar(text = "", format = "\%Y-\%m-\%d",
-    handler = NULL, action = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  gcalendar(text = "", format = "\%Y-\%m-\%d", handler =
+  NULL, action = NULL, container = NULL, ..., toolkit =
+  guiToolkit())
 
   .gcalendar(toolkit, text = "", format = "\%Y-\%m-\%d",
-    handler = NULL, action = NULL, container = NULL, ...)
+  handler = NULL, action = NULL, container = NULL, ...)
+
+  \method{addHandlerChanged}{GCalendar} (obj, handler,
+  action = NULL, ...)
 }
 \arguments{
   \item{text}{initial text}
@@ -24,6 +29,8 @@
   \item{...}{passed to \code{add} method of parent}
 
   \item{toolkit}{toolkit}
+
+  \item{obj}{receiver object}
 }
 \value{
   Returns an object of class \code{GCalendar} for which the
@@ -37,5 +44,11 @@
   The date is the main property of this widget
 
   generic for toolkit dispatch
+
+  Change handler for a calendar is called when the text
+  value is updated
+
+  The \code{svalue} method for a calendar object refers to
+  its main property, the date string
 }
 

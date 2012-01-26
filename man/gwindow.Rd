@@ -6,15 +6,14 @@
 \title{gwindow}
 \usage{
   gwindow(title = "Window", visible = TRUE, name = title,
-    width = NULL, height = NULL, parent = NULL,
-    handler = NULL, action = NULL, ...,
-    toolkit = guiToolkit())
+  width = NULL, height = NULL, parent = NULL, handler =
+  NULL, action = NULL, ..., toolkit = guiToolkit())
 
   .gwindow(toolkit, title, visible, name, width, height,
-    parent, handler, action, ...)
+  parent, handler, action, ...)
 
-  \method{add}{GWindow} (obj, child, expand = NULL,
-    fill = NULL, anchor = NULL, ...)
+  \method{add}{GWindow} (obj, child, expand = NULL, fill =
+  NULL, anchor = NULL, ...)
 
   \method{dispose}{GWindow} (obj, ...)
 }

@@ -1,0 +1,17 @@
+\name{flatten}
+\alias{flatten}
+\title{Flatten a nested list}
+\usage{
+  flatten(x)
+}
+\arguments{
+  \item{x}{a list}
+}
+\description{
+  Flatten a nested list
+}
+\author{
+  Tommy
+  (http://stackoverflow.com/questions/8139677/how-to-flatten-a-list-to-a-list-without-coercion)
+}
+

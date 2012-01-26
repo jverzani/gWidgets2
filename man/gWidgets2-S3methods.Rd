@@ -1,41 +1,31 @@
-\name{length<-.GComponent}
+\name{length.GComponent}
 \alias{[.GComponent}
 \alias{[.GContainer}
+\alias{[.GDf}
 \alias{[<-.GComponent}
 \alias{dim.GComponent}
 \alias{dimnames.GComponent}
 \alias{dimnames<-.GComponent}
+\alias{length.GComponent}
 \alias{length<-.GComponent}
 \alias{names.GComponent}
 \alias{names<-.GComponent}
 \alias{names<-.GFrame}
 \alias{str.GComponent}
 \alias{update.GComponent}
-\title{set length of object}
+\title{Length of object}
 \usage{
-  \method{length}{GComponent} (x, value) <- value
+  \method{length}{GComponent} (x)
 
   \method{dim}{GComponent} (x)
 
   \method{names}{GComponent} (x)
 
-  names.GComponent(x, value) <- value
-
   \method{dimnames}{GComponent} (x)
-
-  \method{dimnames}{GComponent} (x, value) <- value
-
-  \method{[}{GComponent} (x, i, j, ..., drop = TRUE)
-
-  \method{[}{GContainer} (x, i, j, ..., drop = TRUE)
-
-  \method{[}{GComponent} (x, i, j, ..., value) <- value
 
   \method{update}{GComponent} (object, ...)
 
   \method{str}{GComponent} (object, ...)
-
-  names.GFrame(x, value) <- value
 }
 \arguments{
   \item{x}{component}
@@ -44,7 +34,12 @@
 
   \item{object}{object to update}
 }
+\value{
+  length of object
+}
 \description{
+  Length of object
+
   set length of object
 
   dimension of object
@@ -70,6 +65,11 @@
   itself, if it is necessary.
 
   str method for widgets
+
+  The current items for a \code{gdf} object are both the
+  visible and non-visible items. To retrieve just the
+  currently visible items, use the idiom
+  \code{obj[visible(obj), ]}.
 
   set names for frame
 }
