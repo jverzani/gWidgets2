@@ -2,8 +2,8 @@
 \alias{svalue}
 \alias{svalue.default}
 \alias{svalue<-}
-\alias{svalue<-.GToolBar}
 \alias{svalue<-.default}
+\alias{svalue<-.GToolBar}
 \title{svalue}
 \usage{
   svalue(obj, index = FALSE, drop = NULL, ...)

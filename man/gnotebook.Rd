@@ -37,7 +37,10 @@
   \item{...}{These values are passed to the \code{add}
   method of the parent container, and occasionally have
   been used to sneak in hidden arguments to toolkit
-  implementations.}
+  implementations. For example, when using a widget as a
+  menubar object one can specify a parent argument to pass
+  in parent information, similar to how the argument is
+  used with gaction and the dialogs.}
 
   \item{toolkit}{Each widget constructor is passed in the
   toolkit it will use. This is typically done using the

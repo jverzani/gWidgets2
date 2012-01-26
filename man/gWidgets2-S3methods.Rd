@@ -2,6 +2,7 @@
 \alias{[.GComponent}
 \alias{[.GContainer}
 \alias{[.GDf}
+\alias{[.GEdit}
 \alias{[<-.GComponent}
 \alias{dim.GComponent}
 \alias{dimnames.GComponent}
@@ -70,6 +71,10 @@
   visible and non-visible items. To retrieve just the
   currently visible items, use the idiom
   \code{obj[visible(obj), ]}.
+
+  The underlying widget may allow autocompletion, if this
+  is the case then this method is used to set the list of
+  candidates.
 
   set names for frame
 }

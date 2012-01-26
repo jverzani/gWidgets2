@@ -47,7 +47,9 @@
 }
 \description{
   Implementation varies wildly, but should provide at
-  minimum functionality of \code{edit.data.frame}.
+  minimum functionality of \code{edit.data.frame}. A single
+  mouse click on a cell should select that cell, a double
+  click should initiate editing of that cell.
 
   generic for toolkit dispatch
 

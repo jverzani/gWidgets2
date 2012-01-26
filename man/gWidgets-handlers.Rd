@@ -15,12 +15,12 @@
 \alias{addHandlerChanged.default}
 \alias{addHandlerClicked}
 \alias{addHandlerClicked.default}
+\alias{addHandlerColumnclicked}
+\alias{addHandlerColumnclicked.default}
 \alias{addHandlerColumnDoubleclicked}
 \alias{addHandlerColumnDoubleclicked.default}
 \alias{addHandlerColumnRightclicked}
 \alias{addHandlerColumnRightclicked.default}
-\alias{addHandlerColumnclicked}
-\alias{addHandlerColumnclicked.default}
 \alias{addHandlerDestroy}
 \alias{addHandlerDestroy.default}
 \alias{addHandlerDoubleclick}

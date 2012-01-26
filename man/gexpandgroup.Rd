@@ -1,6 +1,6 @@
 \name{addHandlerChanged.GExpandGroup}
 \alias{addHandlerChanged.GExpandGroup}
-\title{The change handler for a expandGroup is called when the group changes visibility}
+\title{change handler}
 \usage{
   \method{addHandlerChanged}{GExpandGroup} (obj, handler,
   action = NULL, ...)
