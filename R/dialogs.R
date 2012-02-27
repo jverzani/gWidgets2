@@ -154,6 +154,24 @@ gconfirm = function(
 ##' @param toolkit toolkit
 ##' @return A \code{GBasicDialog} instance with a visible method
 ##' @export
+##' @examples
+##' \dontrun{
+##' ## a modal dialog for editing a data frme 
+##' fix_df <- function(DF, ...) {
+##'   dfname <- deparse(substitute(DF))
+##'   w <- gbasicdialog(..., handler=function(h,...) {
+##'     assign(dfname, df[,], .GlobalEnv)
+##'   })
+##'   g <- ggroup(cont=w, horizontal=FALSE)
+##'   glabel("Edit a data frame", cont=g)
+##'   df <- gdf(DF, cont=g, expand=TRUE)
+##'   size(w) <- c(400, 400)
+##'   visible(w) <- TRUE
+##' }
+##' 
+##' m <- mtcars[1:3, 1:4]
+##' fix_df(m)
+##' }
 gbasicdialog <- function(
                          title = "Dialog", 
                          parent = NULL,

@@ -58,7 +58,8 @@
 
   For gdf svalue refers to the selected values.
 
-  visible is used to refer to which rows are being shown
+  \code{visible} is used to refer to which rows are being
+  shown.
 }
 \note{
   need example of do.subset feature using \code{visible<-}

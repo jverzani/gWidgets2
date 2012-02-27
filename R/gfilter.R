@@ -25,12 +25,12 @@ NULL
 ##' pg <- ggroup(cont=w)
 ##' df <- gdf(DF, cont=pg)
 ##' a <- gfilter(df, initial.vars=data.frame(names(DF),
-##'                    c("range", "choice", "range", "radio", "range"),
-##'                    stringsAsFactors=FALSE),
-##'              allow.edit=TRUE,
-##'              container=pg,
-##'              handler=function(h,...) visible(df) <- h$obj$get_value()
-##'              )
+##' c("range", "choice", "range", "radio", "range"),
+##' stringsAsFactors=FALSE),
+##' allow.edit=TRUE,
+##' container=pg,
+##' handler=function(h,...) visible(df) <- h$obj$get_value()
+##' )
 ##' visible(w) <- TRUE
 ##' size(w) <- c(600, 400)
 ##' }
@@ -117,7 +117,7 @@ svalue.GFilter <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
                               ... ) {
 
   obj <- GFilter$new(toolkit,  DF=DF,
-                     allow.edit=allow.edit, initial.vars=initial.vars,
+                     allow_edit=allow.edit, initial_vars=initial.vars,
                      handler=handler, action=action,
                      container=container,...)
 
@@ -187,7 +187,7 @@ GFilter <- setRefClass("GFilter",
                                                  handler=function(h,...) {
                                                    var <- svalue(lyt[1,2])
                                                    type <- svalue(lyt[2,2])
-                                                   add_item(var, var, type)
+                                                   add_item(var, type)
                                                  }, parent=h$obj)
                                lyt <- glayout(cont=w)
                                lyt[1,1] <- gettext("Variable:")
@@ -203,7 +203,7 @@ GFilter <- setRefClass("GFilter",
                              sapply(seq_len(nrow(initial_vars)), function(i) {
                                add_item(initial_vars[i,1], name=initial_vars[i,1], type=initial_vars[i,2])
                              })
-                           
+                           invoke_change_handler()
                          },
                          connect_df=function() {
                            "connect DF to filter"
@@ -215,17 +215,24 @@ GFilter <- setRefClass("GFilter",
                              x <- DF[,x]
                            x
                          },
-                         add_item=function(x, name, type=c("radio", "choice", "range")) {
+                         add_item=function(x, name=deparse(substitute(x)), type=c("radio", "choice", "range")) {
                            if(missing(type)) 
                              if(is.numeric(get_x(x)))
                                type <- "range"
                              else
                                type <- "choice"
-                           item <- switch(type,
-                                          "radio"=RadioItem$new(x, name=name, parent=.self),
-                                          "choice"=ChoiceItem$new(x, name=name, parent=.self),
-                                          "range"=RangeItem$new(x, name=name, parent=.self),
-                                          )
+                           tmp <- type
+                           
+                           type <- match.arg(type)
+
+                           ## dispatch on type
+                           if(type == "radio")
+                             item <- RadioItem$new(x, name=name, parent=.self)
+                           else if(type == "choice")
+                             item <- ChoiceItem$new(x, name=name, parent=.self)
+                           else
+                             item <- RangeItem$new(x, name=name, parent=.self)
+
                            l <<- c(l, item)
                            item$make_ui(visible=TRUE)
                          },
@@ -299,14 +306,15 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                      .self$invoke_change_handler()
                                    })
                                    if(is.list(widget))
-                                     sapply(widget, f)
+                                     sapply(as.list(widget), f)
                                    else
                                      f(widget)
-                                   
+
                                    g <- ggroup(cont=frame, horizontal=TRUE)
                                    addSpring(g)
                                    gbutton("clear", cont=g, handler=function(h,...) {
                                      initialize_item()
+                                     .self$invoke_change_handler()
                                    })
                                    if(parent$allow_edit) {
                                      gbutton("remove", cont=g, handler=function(h,...) {
@@ -326,7 +334,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                    parent$invoke_change_handler()
                                  },
                                  ## gWidgets methods for later use.
-                                 get_value=function() {
+                                 get_value=function(...) {
                                    "Return logical of length x"
                                  },
                                  ## pass off to frame
@@ -351,7 +359,7 @@ RadioItem <- setRefClass("RadioItem",
                            initialize_item = function() {
                              svalue(widget, index=TRUE) <<- 1L
                            },
-                           get_value=function() {
+                           get_value=function(...) {
                              get_x() == svalue(widget)
                            }
                            ))
@@ -369,7 +377,7 @@ ChoiceItem <- setRefClass("ChoiceItem",
                            initialize_item = function() {
                              svalue(widget, index=TRUE) <<- TRUE # all selected
                            },
-                           get_value=function() {
+                           get_value=function(...) {
                              get_x() %in% svalue(widget)
                            }
                            ))
@@ -385,7 +393,7 @@ RangeItem <- setRefClass("RangeItem",
                              g1 <- ggroup(cont=g, horizontal=FALSE, expand=TRUE)
                              widget[[1]] <<- gedit("", cont=g1, width=10, coerce.with=as.numeric)
 
-                             glabel(sprintf(" %s ", gettext("to")), cont=g)
+                             glabel(gettext("to"), cont=g)
                              
                              g2 <- ggroup(cont=g, horizontal=FALSE, expand=TRUE)
                              widget[[2]] <<- gedit("", cont=g2, width=10, coerce.with=as.numeric)
@@ -397,9 +405,11 @@ RangeItem <- setRefClass("RangeItem",
                                svalue(i) <- ""
                                i[] <- sort(unique(get_x()))
                              })
+                             widget[[1]]$set_value(min(get_x()))
+                             widget[[2]]$set_value(max(get_x()))
 
                            },
-                           get_value=function() {
+                           get_value=function(...) {
                              a <- svalue(widget[[1]])
                              if(is.null(a) || is.na(a))
                                a <- -Inf

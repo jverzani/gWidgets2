@@ -10,6 +10,23 @@ NULL
 ##' @param ps pointsize
 ##' @inheritParams gwidget
 ##' @export
+##' @examples
+##' \dontrun{
+##' ## This shows how to use the device within a notebook
+##' 
+##' w <- gwindow("notebook example")
+##' nb <- gnotebook(cont=w)
+##' 
+##' devs <- lapply(1:5, function(i) ggraphics(cont=nb, label=as.character(i)))
+##' 
+##' addHandlerChanged(nb, handler=function(h,...) {
+##'   ## Tricky part is svalue(h$obj) is not the new page number -- but old
+##'   ## so we use the pageno component here
+##'   visible(devs[[h$pageno]]) <- TRUE
+##' })
+##' 
+##'
+##' }
 ggraphics <- function(
                       width = dpi * 6, height = dpi * 6, dpi = 75, ps = 12,
                       handler = NULL,action = NULL, container = NULL, ... ,
