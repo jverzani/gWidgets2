@@ -59,3 +59,4 @@ Collate:
     'gradio.R'
     'gpanedgroup.R'
     'gfilter.R'
+    'gformlayout.R'
