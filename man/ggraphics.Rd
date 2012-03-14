@@ -59,4 +59,23 @@
 
   generic for toolkit dispatch
 }
+\examples{
+\dontrun{
+## This shows how to use the device within a notebook
+
+w <- gwindow("notebook example")
+nb <- gnotebook(cont=w)
+
+devs <- lapply(1:5, function(i) ggraphics(cont=nb, label=as.character(i)))
+
+addHandlerChanged(nb, handler=function(h,...) {
+## Tricky part is svalue(h$obj) is not the new page number -- but old
+## so we use the pageno component here
+gg <- h$obj[h$pageno]
+visible(gg) <- TRUE
+})
+
+
+}
+}
 

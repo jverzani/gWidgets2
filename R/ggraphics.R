@@ -22,7 +22,8 @@ NULL
 ##' addHandlerChanged(nb, handler=function(h,...) {
 ##'   ## Tricky part is svalue(h$obj) is not the new page number -- but old
 ##'   ## so we use the pageno component here
-##'   visible(devs[[h$pageno]]) <- TRUE
+##'     gg <- h$obj[h$pageno]
+##'     visible(gg) <- TRUE
 ##' })
 ##' 
 ##'
