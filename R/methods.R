@@ -638,6 +638,8 @@ getToolkitWidget.default <- function(obj) getWidget(obj)
 ##' @rdname getToolkitWidget
 getWidget <- function(obj) UseMethod("getWidget")
 
+
+
 ##' method for getWidget
 ##'
 ##' @rdname getToolkitWidget

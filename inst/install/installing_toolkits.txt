@@ -1,7 +1,11 @@
 == Installing gWidgets toolkits
 
 
-The gWidgets package provides a programming interface in R for creating Graphical User Interfaces (GUIs) within R. The gWidgets package interacts with an underlying toolkit package. Currently, _RGtk2_, _tcltk_, _Qt_, and _ExtJS_ have some support. In order to use a GUI toolkit:
+The gWidgets package provides a programming interface in R for
+creating Graphical User Interfaces (GUIs) within R. The gWidgets
+package interacts with an underlying toolkit package. Currently,
+_RGtk2_, _tcltk_, _Qt_, and _ExtJS_ have some support. In order to use
+a GUI toolkit:
 
 * the appropriate libraries must be installed
 
@@ -9,13 +13,17 @@ The gWidgets package provides a programming interface in R for creating Graphica
 
 * the appropriate gWidgets2XXX package must be installed.
 
-The latter two steps are easy, as the packages all reside on CRAN (RGtk2, gWidgetsXXX), bioconductor (qtbase), github (gWidgets2XXX). r-forge (gWidgetsXXX in development), and can be installed through the *install.packages* command or *devtools* package, but successful installation requires prior installation of the proper libraries.
+The latter two steps are easy, as the packages all reside on CRAN
+(RGtk2, gWidgetsXXX, qtbase), github (gWidgets2XXX, gWidgetsWWW2), or r-forge
+(gWidgetsXXX in development), and can be installed through the
+*install.packages* command or *devtools* package, but successful
+installation requires prior installation of the proper libraries.
 
 The installation of libraries is OS and toolkit specific:
 
 === RGtk2
 
- RGtk2 requires a version of the GTK+ libraries 2.8.0 or newer.
+ RGtk2 requires a version of the GTK+ libraries 2.20.0 or higher is suggested)
 
 * Linux: Most modern versions of linux ship with a the necessary GTK
   libraries.
@@ -43,12 +51,16 @@ The installation of libraries is OS and toolkit specific:
 
 === Qt
 
-The qtbase package provides an interface with the Qt libraries. These are available from _http://qt.nokia.com_. The qtbase package is on bioconductor:
+The qtbase package provides an interface with the Qt libraries. These
+are available from _http://qt.nokia.com_. The `qtbase` package is on CRAN.
 
------
-source("http://www.bioconductor.org/biocLite.R")
-biocLite("qtbase")
------
+=== Ext JS
+
+The `gWidgetsWWW2` package provides a means to use the gWidgets API
+for web programming. The required JavaScript libraries (extjs) are
+provided in the package, though one needs to install and configure the
+`RServe` and `FastRWeb` packages to have these web apps served to the
+wider internet. (The help page server is used locally.)
 
 [NOTE]
 ======

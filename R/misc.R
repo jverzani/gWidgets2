@@ -114,10 +114,9 @@ check_return_class <- function(obj, ret_class) {
 ##'
 ##' put in so can be updated easily
 installing_gWidgets_toolkits <- function() {
-  file <- system.file("install/Installing_gWidgets_Toolkits.txt", package="gWidgets2")
+  file <- system.file("install/installing_toolkits.txt", package="gWidgets2")
   tmp <- readLines(file)
-  for(i in tmp) cat(i,"\n")
-
+  cat(paste(tmp, "\n"))
 }
 
 
