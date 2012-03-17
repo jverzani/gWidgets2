@@ -48,7 +48,7 @@ glayout <- function(
   out <- sapply(j, function(col) lapply(i, function(row) x[row, col]))
   if(is.matrix(out))
     return(out[,,drop=drop])
-  else if(is.list(out) && lenth(out) == 1 && drop)
+  else if(is.list(out) && length(out) == 1 && drop)
     return(out[[1]])
   else
     return(out)

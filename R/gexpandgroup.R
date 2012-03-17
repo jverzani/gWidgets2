@@ -3,7 +3,6 @@ NULL
 
 ##' Constructor of box container widget with disclosure trigger and label
 ##'
-##' @export
 ##' @param text Label text
 ##' @param markup logical. Does text have markup. (Toolkit dependent)
 ##' @param horizontal horizontal (\code{TRUE}) or vertical packing.
@@ -12,6 +11,7 @@ NULL
 ##' @param container parent container
 ##' @param ... passed to parent's \code{add} method
 ##' @param toolkit toolkit
+##' @export
 ##' @seealso \code{\link{ggroup}} and \code{\link{gframe}}
 ##' @return An object of class \code{GExpandGroup}
 ##' inheriting from \code{GFrame} 
@@ -59,7 +59,7 @@ gexpandgroup <- function(
 ##' The change handler for a expandGroup is called when the group changes visibility
 ##' @inheritParams addHandlerChanged
 ##' @export
-##' @rdname gexpandGroup
+##' @rdname gexpandgroup
 ##' @method addHandlerChanged GExpandGroup
 ##' @S3method addHandlerChanged GExpandGroup
 addHandlerChanged.GExpandGroup <- function(obj, handler, action=NULL, ...) NextMethod()

@@ -136,6 +136,7 @@ stockIconFromClass = function(theClass, ..., toolkit = guiToolkit()) {
 ##' Find stock icon from the given object
 ##'
 ##' @param obj an R object
+##' @inheritParams gwidget
 ##' @return name of icon.
 ##' @export
 ##' @rdname icons
@@ -145,6 +146,7 @@ stockIconFromObject <- function(obj, ..., toolkit = guiToolkit()) {
 
 ##' generic for dispath
 ##'
+##' @inheritParams stockIconFromObject
 ##' @export
 ##' @rdname icons
 .stockIconFromObject <- function(toolkit, obj,... )

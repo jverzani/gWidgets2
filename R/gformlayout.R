@@ -13,6 +13,7 @@ NULL
 ##' of the container as is done with notebook labels
 ##' @param align alignment of label. Left justify or center balance.
 ##' @param spacing spacing between columns
+##' @inheritParams gwidget
 ##' @export
 gformlayout <- function(
                         align=c("left", "center"),
