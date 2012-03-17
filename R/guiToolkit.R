@@ -55,18 +55,24 @@ guiToolkit <- function(name=NULL) {
   ## no if it is null, we have to find the possible choices
   if(is.null(name)) {
 
-    out <- system.time(poss_packages <- rownames(installed.packages()))
-    if(out[3] > 1)
-      message("You can speed this up by setting a toolkit. Searching with installed.packages() can be time consuming.")
+    ## A list of possible packages
+    poss_packages <- c("gWidgets2RGtk2",
+                       "gWidgets2tcltk",
+                       "gWidgets2Qt",
+                       "gWidgets2rJava",
+                       "gWidgets2wxWidgets",
+                       "gWidgets2WWW")
 
-    choices <- poss_packages[grepl("gWidgets2.", poss_packages)]
-
+    
+    f <- function(x) !inherits(try(find.package(x), silent=TRUE), "try-error")
+    choices <- Filter(f, poss_packages)
 
     
     if(interactive()) {
       if(length(choices) == 0) {
-        message("No toolkit packages are installed. Opening browser to some details for that.")
-        browseURL(sprintf("file://%s", system.file("install/installing_toolkits.html", package="gWidgets2")))
+        message("No toolkit packages are installed.")
+        f <- system.file("install/installing_toolkits.txt", package="gWidgets2")
+        cat(paste(f, "\n"))
         return(NULL)
       } else if(length(choices) == 1) {
         theChoice <- choices
