@@ -1,3 +1,4 @@
+* connect to toolkit
 * gfilter tied with gdf to replace subset.by
 * gedit width
 * ghtml
@@ -10,6 +11,7 @@
 * work on tests
 * replace icons
 
+DONE * install.packages check is slow
 DONE * gstackwidget (notebook without tabs)
 DONE * check class of widget on return (is(obj, "GButton"))
 DONE * check_deprecated() deprecated_args=list("border"="This was removed,see $set_border")
