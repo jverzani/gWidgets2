@@ -28,4 +28,24 @@ gstackwidget <- function(container = NULL, ... ,
                         container = NULL, ... )
            UseMethod( '.gstackwidget' )
 
+
+
+
 ## toolkit class should inherit from GNotebook
+## but just in case
+
+
+##' Remove current page from notebook
+##'
+##' Dispose deletes the current page, not the entire notebook
+##' object. To delete a specific page, a combination of
+##' \code{svalue<-} and \code{dispose} may be used.
+##' @export
+##' @rdname gnotebook
+##' @method dispose GStackWidget
+##' @S3method dispose GStackWidget
+dispose.GStackWidget <- function(obj, ...) {
+  obj$remove_current_page()
+}
+
+
