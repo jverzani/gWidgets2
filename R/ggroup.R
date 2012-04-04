@@ -44,4 +44,12 @@ ggroup <- function(horizontal=TRUE, spacing=5, use.scrollwindow=FALSE, container
   NextMethod()
 }
 
-
+##' Convenience constructor for vertical ggroup
+##'
+##' Avoids need to type \code{horizontal=FALSE}
+##' @inheritParams ggroup
+##' @return a GGroup instance with vertical packing.
+##' @export
+##' @rdname ggroup
+gvbox <- function(spacing=5, use.scrollwindow=FALSE, container=NULL, ..., toolkit=guiToolkit())
+  ggroup(horizontal=FALSE, spacingspacing, use.scrollwindow=use.scrollwindow, container=container, ..., toolkit=toolkit)
