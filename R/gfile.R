@@ -37,7 +37,8 @@ gfile <- function(
                           )
   check_deprecated(deprecated_args, ...)
 
-
+  type <- match.arg(type)
+  
   val <- .gfile (toolkit,
                  text=text, type=type, initial.filename=initial.filename,
                  filter=filter, multi=multi, ...
