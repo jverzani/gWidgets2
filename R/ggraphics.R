@@ -51,6 +51,30 @@ ggraphics <- function(
   UseMethod( '.ggraphics' )
 
 
+##' change handler for ggraphics
+##'
+##' The change handler for ggraphics is called when a rubber-band selection is completed
+##' @inheritParams addHandler
+##' @export
+##' @rdname gWidgets-handlers
+##' @method addHandlerChanged default
+##' @S3method addHandlerChanged default
+addHandlerChanged.GGraphics <- function(obj, handler, action=NULL, ...)
+  obj$add_handler_changed(handler, action=action, ...)
+
+##' click handler for ggraphics
+##'
+##' The click handler is called on a mouse click. The handler object should pass in value for \code{x}, \code{y}
+##' @inheritParams addHandler
+##' @export
+##' @rdname gWidgets-handlers
+##' @method addHandlerClicked default
+##' @S3method addHandlerClicked default
+addHandlerClicked.default <-  function(obj, handler, action=NULL, ...)
+    obj$add_handler_clicked(handler, action=action, ...)
+
+
+
 
 ## ##' constructor for notebook to hold multiple graphics devices
 ## ##'
