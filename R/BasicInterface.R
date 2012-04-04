@@ -46,12 +46,17 @@ Handler <- setRefClass("Handler",
                             initFields(action=action)
                             callSuper(o=o, obj=obj)
                           },
-                          update=function(..., extra_args) {
+##                          update=function(..., extra_args) {
+                          update=function( ..., extra_args) {
                             "Call self."
                             h <- list(obj=obj, action=action)
-                            if(!missing(extra_args)) {
+                            if(!missing(extra_args))
                               h <- merge.list(h, extra_args, overwrite=FALSE)
-                            }
+                            else
+                              h <- merge.list(h, list(...), overwrite=FALSE)
+#                            if(!missing(extra_args)) {
+#                              h <- merge.list(h, extra_args, overwrite=FALSE)
+#                            }
                             o(h, ...)
                           }
                           ## update=function(...) {
