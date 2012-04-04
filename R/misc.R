@@ -68,7 +68,7 @@ getWithDefault <- function(x, default) {
 is_empty <- function(x) {
   missing(x) ||
   is.null(x) ||
-  (length(x) == 0) ||
+  length(x) == 0 ||
   (is.atomic(x) && length(x) == 1 && is.na(x))
 }
 
