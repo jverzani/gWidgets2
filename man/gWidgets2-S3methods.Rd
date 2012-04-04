@@ -18,15 +18,33 @@
 \usage{
   \method{length}{GComponent} (x)
 
+  \method{length}{GComponent} (x, value) <- value
+
   \method{dim}{GComponent} (x)
 
   \method{names}{GComponent} (x)
 
+  names.GComponent(x, value) <- value
+
   \method{dimnames}{GComponent} (x)
+
+  \method{dimnames}{GComponent} (x, value) <- value
+
+  \method{[}{GComponent} (x, i, j, ..., drop = TRUE)
+
+  \method{[}{GContainer} (x, i, j, ..., drop = TRUE)
+
+  \method{[}{GComponent} (x, i, j, ..., value) <- value
 
   \method{update}{GComponent} (object, ...)
 
   \method{str}{GComponent} (object, ...)
+
+  \method{[}{GDf} (x, i, j, ..., drop = TRUE)
+
+  \method{[}{GEdit} (x, i, j, ..., drop = TRUE)
+
+  names.GFrame(x, value) <- value
 }
 \arguments{
   \item{x}{component}
@@ -34,6 +52,9 @@
   \item{...}{dots argument}
 
   \item{object}{object to update}
+
+  \item{value}{an integer: double values will be coerced to
+  integer.}
 }
 \value{
   length of object

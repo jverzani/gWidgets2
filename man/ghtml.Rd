@@ -1,17 +1,15 @@
-\name{gseparator}
-\alias{.gseparator}
-\alias{gseparator}
-\title{constructor providing a widget for displaying a line in a GUI}
+\name{ghtml}
+\alias{.ghtml}
+\alias{ghtml}
+\title{Widget for HTML display}
 \usage{
-  gseparator(horizontal = TRUE, container = NULL, ...,
-    toolkit = guiToolkit())
+  ghtml(x, container = NULL, ..., toolkit = guiToolkit())
 
-  .gseparator(toolkit, horizontal = TRUE, container = NULL,
-    ...)
+  .ghtml(toolkit, x, container = NULL, ...)
 }
 \arguments{
-  \item{horizontal}{Logical. Is separator drawn
-  horizontally?}
+  \item{x}{url or character vector of HTML formatted text.
+  URLs marked by "http://" prefix}
 
   \item{container}{A parent container. When a widget is
   created it can be incorporated into the widget heirarchy
@@ -22,17 +20,26 @@
   \item{...}{These values are passed to the \code{add}
   method of the parent container, and occasionally have
   been used to sneak in hidden arguments to toolkit
-  implementations.}
+  implementations. For example, when using a widget as a
+  menubar object one can specify a parent argument to pass
+  in parent information, similar to how the argument is
+  used with gaction and the dialogs.}
 
   \item{toolkit}{Each widget constructor is passed in the
   toolkit it will use. This is typically done using the
   default, which will lookup the toolkit through
   \code{\link{guiToolkit}}.}
 }
+\value{
+  a \code{GHtml} instance.
+}
 \description{
-  constructor providing a widget for displaying a line in a
-  GUI
+  Widget for HTML display
 
-  generic for toolkit dispatch
+  S3 generic whose methods are implemented in the toolkit
+  packages
+}
+\author{
+  john verzani
 }
 

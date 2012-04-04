@@ -10,6 +10,8 @@
   \method{visible}{default} (obj, ...)
 
   visible(obj) <- value
+
+  \method{visible}{default} (obj, value) <- value
 }
 \arguments{
   \item{obj}{object}

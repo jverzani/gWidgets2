@@ -5,12 +5,12 @@
 \alias{visible.GBasicDialog}
 \title{Constructor for modal dialog that can contain an arbitrary widget}
 \usage{
-  gbasicdialog(title = "Dialog", parent = NULL, do.buttons
-  = TRUE, handler = NULL, action = NULL, ..., toolkit =
-  guiToolkit())
+  gbasicdialog(title = "Dialog", parent = NULL,
+    do.buttons = TRUE, handler = NULL, action = NULL, ...,
+    toolkit = guiToolkit())
 
   .gbasicdialog(toolkit, title = "Dialog", parent = NULL,
-  do.buttons = TRUE, handler = NULL, action = NULL, ...)
+    do.buttons = TRUE, handler = NULL, action = NULL, ...)
 
   \method{visible}{GBasicDialog} (obj, ...)
 
@@ -62,15 +62,15 @@
 \dontrun{
 ## a modal dialog for editing a data frme
 fix_df <- function(DF, ...) {
-dfname <- deparse(substitute(DF))
-w <- gbasicdialog(..., handler=function(h,...) {
-assign(dfname, df[,], .GlobalEnv)
-})
-g <- ggroup(cont=w, horizontal=FALSE)
-glabel("Edit a data frame", cont=g)
-df <- gdf(DF, cont=g, expand=TRUE)
-size(w) <- c(400, 400)
-visible(w) <- TRUE
+  dfname <- deparse(substitute(DF))
+  w <- gbasicdialog(..., handler=function(h,...) {
+    assign(dfname, df[,], .GlobalEnv)
+  })
+  g <- ggroup(cont=w, horizontal=FALSE)
+  glabel("Edit a data frame", cont=g)
+  df <- gdf(DF, cont=g, expand=TRUE)
+  size(w) <- c(400, 400)
+  visible(w) <- TRUE
 }
 
 m <- mtcars[1:3, 1:4]

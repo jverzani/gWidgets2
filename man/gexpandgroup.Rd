@@ -5,16 +5,18 @@
 \alias{visible<-.GExpandGroup}
 \title{Constructor of box container widget with disclosure trigger and label}
 \usage{
-  gexpandgroup(text = "", markup = FALSE, horizontal =
-  TRUE, handler = NULL, action = NULL, container = NULL,
-  ..., toolkit = guiToolkit())
+  gexpandgroup(text = "", markup = FALSE,
+    horizontal = TRUE, handler = NULL, action = NULL,
+    container = NULL, ..., toolkit = guiToolkit())
 
   .gexpandgroup(toolkit, text = "", markup = FALSE,
-  horizontal = TRUE, handler = NULL, action = NULL,
-  container = NULL, ...)
+    horizontal = TRUE, handler = NULL, action = NULL,
+    container = NULL, ...)
+
+  \method{visible}{GExpandGroup} (obj, value) <- value
 
   \method{addHandlerChanged}{GExpandGroup} (obj, handler,
-  action = NULL, ...)
+    action = NULL, ...)
 }
 \arguments{
   \item{text}{Label text}

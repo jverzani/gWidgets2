@@ -6,22 +6,24 @@
 \title{dialog for file and directory selection}
 \usage{
   gfile(text = "", type = c("open", "save", "selectdir"),
-  initial.filename = NULL, filter = list(), multi = FALSE,
-  ..., toolkit = guiToolkit())
+    initial.filename = NULL, filter = list(),
+    multi = FALSE, ..., toolkit = guiToolkit())
 
-  .gfile(toolkit, text = "", type = c("open", "save",
-  "selectdir"), initial.filename = NULL, filter = list(),
-  multi = FALSE, ...)
+  .gfile(toolkit, text = "",
+    type = c("open", "save", "selectdir"),
+    initial.filename = NULL, filter = list(),
+    multi = FALSE, ...)
 
-  gfilebrowse(text = "Select a file...", type = c("open",
-  "save", "selectdir"), initial.filename = NULL, filter =
-  list(), quote = TRUE, handler = NULL, action = NULL,
-  container = NULL, ..., toolkit = guiToolkit())
+  gfilebrowse(text = "Select a file...",
+    type = c("open", "save", "selectdir"),
+    initial.filename = NULL, filter = list(), quote = TRUE,
+    handler = NULL, action = NULL, container = NULL, ...,
+    toolkit = guiToolkit())
 
-  .gfilebrowse(toolkit, text = "Select a file...", type =
-  c("open", "save", "selectdir"), initial.filename = NULL,
-  filter = list(), quote = TRUE, handler = NULL, action =
-  NULL, container = NULL, ...)
+  .gfilebrowse(toolkit, text = "Select a file...",
+    type = c("open", "save", "selectdir"),
+    initial.filename = NULL, filter = list(), quote = TRUE,
+    handler = NULL, action = NULL, container = NULL, ...)
 }
 \arguments{
   \item{text}{initial text}

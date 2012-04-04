@@ -4,16 +4,16 @@
 \alias{gtoolbar}
 \title{A toolbar constructor}
 \usage{
-  gtoolbar(toolbar.list = list(), style = c("both",
-  "icons", "text", "both-horiz"), container = NULL, ...,
-  toolkit = guiToolkit())
+  gtoolbar(toolbar.list = list(),
+    style = c("both", "icons", "text", "both-horiz"),
+    container = NULL, ..., toolkit = guiToolkit())
 
-  .gtoolbar(toolkit, toolbar.list = list(), style =
-  c("both", "icons", "text", "both-horiz"), container =
-  NULL, ...)
+  .gtoolbar(toolkit, toolbar.list = list(),
+    style = c("both", "icons", "text", "both-horiz"),
+    container = NULL, ...)
 
-  \method{add}{GToolBar} (obj, child, expand = FALSE, fill
-  = NULL, anchor = NULL, ...)
+  \method{add}{GToolBar} (obj, child, expand = FALSE,
+    fill = NULL, anchor = NULL, ...)
 }
 \arguments{
   \item{toolbar.list}{list. A one-level list of

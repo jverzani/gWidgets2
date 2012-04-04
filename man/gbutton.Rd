@@ -6,15 +6,15 @@
 \title{Basic button widget}
 \usage{
   gbutton(text = "", handler = NULL, action = NULL,
-  container = NULL, ..., toolkit = guiToolkit())
+    container = NULL, ..., toolkit = guiToolkit())
 
   .gbutton(toolkit, text, handler, action, container, ...)
 
-  \method{addHandlerChanged}{GButton} (obj, handler, action
-  = NULL, ...)
+  \method{addHandlerChanged}{GButton} (obj, handler,
+    action = NULL, ...)
 
   \method{svalue}{GButton} (obj, index = NULL, drop = NULL,
-  ...)
+    ...)
 }
 \arguments{
   \item{text}{label text. If text matches a stock icon

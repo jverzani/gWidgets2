@@ -3,22 +3,27 @@
 \alias{add.GNotebook}
 \alias{addHandlerChanged.GNotebook}
 \alias{dispose.GNotebook}
+\alias{dispose.GStackWidget}
 \alias{gnotebook}
 \alias{names.GNotebook}
 \title{Constructor for a tabbed notebook container}
 \usage{
-  gnotebook(tab.pos = 3, container = NULL, ..., toolkit =
-  guiToolkit())
+  gnotebook(tab.pos = 3, container = NULL, ...,
+    toolkit = guiToolkit())
 
   .gnotebook(toolkit, tab.pos = 3, container = NULL, ...)
 
   \method{add}{GNotebook} (obj, child, expand, fill,
-  anchor, ...)
+    anchor, ...)
 
   \method{dispose}{GNotebook} (obj, ...)
 
+  \method{names}{GNotebook} (x)
+
   \method{addHandlerChanged}{GNotebook} (obj, handler,
-  action = NULL, ...)
+    action = NULL, ...)
+
+  \method{dispose}{GStackWidget} (obj, ...)
 }
 \arguments{
   \item{tab.pos}{integer. Position of tabs, 1 on bottom, 2
@@ -96,6 +101,10 @@
   the change handler for the notebook is called when the
   page changes. If possible, the new page number is passed
   back in the \code{page.no} component of 'h'
+
+  Dispose deletes the current page, not the entire notebook
+  object. To delete a specific page, a combination of
+  \code{svalue<-} and \code{dispose} may be used.
 }
 \note{
   In \pkg{gWidgets2} the button arguments of the

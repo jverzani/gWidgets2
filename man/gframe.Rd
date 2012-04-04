@@ -3,12 +3,12 @@
 \alias{gframe}
 \title{Constructor for framed box container with label}
 \usage{
-  gframe(text = "", markup = FALSE, pos = 0, horizontal =
-  TRUE, spacing = 5, container = NULL, ..., toolkit =
-  guiToolkit())
+  gframe(text = "", markup = FALSE, pos = 0,
+    horizontal = TRUE, spacing = 5, container = NULL, ...,
+    toolkit = guiToolkit())
 
   .gframe(toolkit, text = "", markup = FALSE, pos = 0,
-  horizontal = TRUE, spacing = 5, container = NULL, ...)
+    horizontal = TRUE, spacing = 5, container = NULL, ...)
 }
 \arguments{
   \item{text}{frame label}

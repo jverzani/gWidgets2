@@ -3,13 +3,13 @@
 \alias{ggraphics}
 \title{Constructor for an embeddable graphics device}
 \usage{
-  ggraphics(width = dpi * 6, height = dpi * 6, dpi = 75, ps
-  = 12, handler = NULL, action = NULL, container = NULL,
-  ..., toolkit = guiToolkit())
+  ggraphics(width = dpi * 6, height = dpi * 6, dpi = 75,
+    ps = 12, handler = NULL, action = NULL,
+    container = NULL, ..., toolkit = guiToolkit())
 
   .ggraphics(toolkit, width = dpi * 6, height = dpi * 6,
-  dpi = 75, ps = 12, handler = NULL, action = NULL,
-  container = NULL, ...)
+    dpi = 75, ps = 12, handler = NULL, action = NULL,
+    container = NULL, ...)
 }
 \arguments{
   \item{width}{width of device (pixels)}
@@ -69,10 +69,10 @@ nb <- gnotebook(cont=w)
 devs <- lapply(1:5, function(i) ggraphics(cont=nb, label=as.character(i)))
 
 addHandlerChanged(nb, handler=function(h,...) {
-## Tricky part is svalue(h$obj) is not the new page number -- but old
-## so we use the pageno component here
-gg <- h$obj[h$pageno]
-visible(gg) <- TRUE
+  ## Tricky part is svalue(h$obj) is not the new page number -- but old
+  ## so we use the pageno component here
+    gg <- h$obj[h$pageno]
+    visible(gg) <- TRUE
 })
 
 

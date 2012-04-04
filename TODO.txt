@@ -11,6 +11,18 @@
 * work on tests
 * replace icons
 
+Handlers
+========
+
+- glabel
+  * is changed called for change (svalue) and clicked called for click
+  event? (Right now the same)
+
+
+
+
+
+
 DONE * install.packages check is slow
 DONE * gstackwidget (notebook without tabs)
 DONE * check class of widget on return (is(obj, "GButton"))

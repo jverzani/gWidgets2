@@ -3,15 +3,17 @@
 \alias{gformlayout}
 \title{A form layout container}
 \usage{
-  gformlayout(align = c("left", "center"), spacing = 5,
-  container = NULL, ..., toolkit = guiToolkit())
+  gformlayout(align = c("default", "left", "center"),
+    spacing = 5, container = NULL, ...,
+    toolkit = guiToolkit())
 
   .gformlayout(toolkit, align = "left", spacing = 5,
-  container = NULL, ...)
+    container = NULL, ...)
 }
 \arguments{
   \item{align}{alignment of label. Left justify or center
-  balance.}
+  balance. Leave as "default" for underlying toolkit
+  default.}
 
   \item{spacing}{spacing between columns}
 

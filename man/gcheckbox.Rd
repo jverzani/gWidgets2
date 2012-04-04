@@ -6,16 +6,22 @@
 \alias{svalue<-.GCheckbox}
 \title{constructor for checkbox widget}
 \usage{
-  gcheckbox(text = "", checked = FALSE, use.togglebutton =
-  FALSE, handler = NULL, action = NULL, container = NULL,
-  ..., toolkit = guiToolkit())
+  gcheckbox(text = "", checked = FALSE,
+    use.togglebutton = FALSE, handler = NULL,
+    action = NULL, container = NULL, ...,
+    toolkit = guiToolkit())
 
   .gcheckbox(toolkit, text, checked = FALSE,
-  use.togglebutton = FALSE, handler = NULL, action = NULL,
-  container = NULL, ...)
+    use.togglebutton = FALSE, handler = NULL,
+    action = NULL, container = NULL, ...)
 
   \method{addHandlerChanged}{GCheckbox} (obj, handler,
-  action = NULL, ...)
+    action = NULL, ...)
+
+  \method{svalue}{GCheckbox} (obj, index = NULL, ...,
+    value) <- value
+
+  [.GCheckbox(x, i, j, ..., value) <- value
 }
 \arguments{
   \item{text}{label text}
@@ -36,6 +42,9 @@
   \item{toolkit}{toolkit}
 
   \item{obj}{receiver object}
+
+  \item{value}{typically an array-like \R object of a
+  similar class as \code{x}.}
 }
 \value{
   Returns an object of class \code{GCheckbox}.

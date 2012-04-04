@@ -5,16 +5,20 @@
 \alias{svalue.GCheckboxGroup}
 \title{Constructor for checkbox group. A linked group of checkboxes, but not exclusive.}
 \usage{
-  gcheckboxgroup(items, checked = FALSE, horizontal =
-  FALSE, use.table = FALSE, handler = NULL, action = NULL,
-  container = NULL, ..., toolkit = guiToolkit())
+  gcheckboxgroup(items, checked = FALSE,
+    horizontal = FALSE, use.table = FALSE, handler = NULL,
+    action = NULL, container = NULL, ...,
+    toolkit = guiToolkit())
 
   .gcheckboxgroup(toolkit, items, checked = FALSE,
-  horizontal = FALSE, use.table = FALSE, handler = NULL,
-  action = NULL, container = NULL, ...)
+    horizontal = FALSE, use.table = FALSE, handler = NULL,
+    action = NULL, container = NULL, ...)
 
   \method{addHandlerChanged}{GCheckboxGroup} (obj, handler,
-  action = NULL, ...)
+    action = NULL, ...)
+
+  \method{svalue}{GCheckboxGroup} (obj, index = NULL,
+    drop = NULL, ...)
 }
 \arguments{
   \item{items}{checkbox labels}
@@ -61,6 +65,14 @@
   toolkit it will use. This is typically done using the
   default, which will lookup the toolkit through
   \code{\link{guiToolkit}}.}
+
+  \item{index}{NULL or logical. If \code{TRUE} and widget
+  supports it an index, instead of a value will be
+  returned.}
+
+  \item{drop}{NULL or logical. If widget supports it, drop
+  will work as it does in a data frame or perhaps someother
+  means.}
 }
 \value{
   Returns an object of class \code{GCheckboxGroup} for

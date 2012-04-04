@@ -3,8 +3,8 @@
 \alias{gdfnotebook}
 \title{A notebook container for many \code{gdf} instances}
 \usage{
-  gdfnotebook(items = NULL, container = NULL, ..., toolkit
-  = guiToolkit())
+  gdfnotebook(items = NULL, container = NULL, ...,
+    toolkit = guiToolkit())
 
   .gdfnotebook(toolkit, items, container, ...)
 }

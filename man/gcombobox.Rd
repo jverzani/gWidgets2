@@ -9,22 +9,24 @@
 \title{constructor for combobox}
 \usage{
   gcombobox(items, selected = 1, editable = FALSE,
-  coerce.with = NULL, handler = NULL, action = NULL,
-  container = NULL, ..., toolkit = guiToolkit())
+    coerce.with = NULL, handler = NULL, action = NULL,
+    container = NULL, ..., toolkit = guiToolkit())
 
-  .gcombobox(toolkit, items, selected = 1, editable =
-  FALSE, coerce.with = NULL, handler = NULL, action = NULL,
-  container = NULL, ...)
+  .gcombobox(toolkit, items, selected = 1,
+    editable = FALSE, coerce.with = NULL, handler = NULL,
+    action = NULL, container = NULL, ...)
 
   gdroplist(...)
 
   .make_gcombobox_items(value)
 
-  \method{addHandlerChanged}{GComboBox} (obj, handler,
-  action = NULL, ...)
+  [.GComboBox(x, i, j, ..., value) <- value
 
-  \method{svalue}{GComboBox} (obj, index = NULL, drop =
-  NULL, ...)
+  \method{addHandlerChanged}{GComboBox} (obj, handler,
+    action = NULL, ...)
+
+  \method{svalue}{GComboBox} (obj, index = NULL,
+    drop = NULL, ...)
 }
 \arguments{
   \item{items}{Items to select from. A vector or a data

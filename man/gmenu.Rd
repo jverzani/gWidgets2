@@ -7,13 +7,18 @@
 \title{menu constructor, main and popup}
 \usage{
   gmenu(menu.list, popup = FALSE, container = NULL, ...,
-  toolkit = guiToolkit())
+    toolkit = guiToolkit())
 
   .gmenu(toolkit, menu.list = list(), popup = FALSE,
-  container = NULL, ...)
+    container = NULL, ...)
 
-  \method{add}{GMenuBar} (obj, child, expand = FALSE, fill
-  = NULL, anchor = NULL, ...)
+  \method{add}{GMenuBar} (obj, child, expand = FALSE,
+    fill = NULL, anchor = NULL, ...)
+
+  \method{svalue}{GMenuBar} (obj, index = NULL, ..., value)
+
+  \method{svalue}{GMenuBar} (obj, index = NULL, ..., value)
+    <- value
 }
 \arguments{
   \item{menu.list}{A list defining the menu structure.

@@ -13,6 +13,7 @@
 \alias{addHandlerBlur.default}
 \alias{addHandlerChanged}
 \alias{addHandlerChanged.default}
+\alias{addHandlerChanged.GGraphics}
 \alias{addHandlerClicked}
 \alias{addHandlerClicked.default}
 \alias{addHandlerColumnclicked}
@@ -57,112 +58,112 @@
   addHandler(obj, signal, handler, action = NULL, ...)
 
   \method{addHandler}{default} (obj, signal, handler,
-  action = NULL, ...)
+    action = NULL, ...)
 
   addHandlerChanged(obj, handler, action = NULL, ...)
 
-  \method{addHandlerChanged}{default} (obj, handler, action
-  = NULL, ...)
+  \method{addHandlerChanged}{default} (obj, handler,
+    action = NULL, ...)
 
   addHandlerClicked(obj, handler, action = NULL, ...)
 
-  \method{addHandlerClicked}{default} (obj, handler, action
-  = NULL, ...)
+  \method{addHandlerClicked}{default} (obj, handler,
+    action = NULL, ...)
 
   addHandlerDoubleclick(obj, handler, action = NULL, ...)
 
   \method{addHandlerDoubleclick}{default} (obj, handler,
-  action = NULL, ...)
+    action = NULL, ...)
 
   addHandlerRightclick(obj, handler, action = NULL, ...)
 
   \method{addHandlerRightclick}{default} (obj, handler,
-  action = NULL, ...)
+    action = NULL, ...)
 
   addHandlerColumnclicked(obj, handler, action = NULL, ...)
 
   \method{addHandlerColumnclicked}{default} (obj, handler,
-  action = NULL, ...)
+    action = NULL, ...)
 
-  addHandlerColumnDoubleclicked(obj, handler, action =
-  NULL, ...)
+  addHandlerColumnDoubleclicked(obj, handler,
+    action = NULL, ...)
 
   \method{addHandlerColumnDoubleclicked}{default} (obj,
-  handler, action = NULL, ...)
+    handler, action = NULL, ...)
 
   addHandlerColumnRightclicked(obj, handler, action = NULL,
-  ...)
+    ...)
 
   \method{addHandlerColumnRightclicked}{default} (obj,
-  handler, action = NULL, ...)
+    handler, action = NULL, ...)
 
   addHandlerSelect(obj, handler, action = NULL, ...)
 
-  \method{addHandlerSelect}{default} (obj, handler, action
-  = NULL, ...)
+  \method{addHandlerSelect}{default} (obj, handler,
+    action = NULL, ...)
 
   addHandlerFocus(obj, handler, action = NULL, ...)
 
-  \method{addHandlerFocus}{default} (obj, handler, action =
-  NULL, ...)
+  \method{addHandlerFocus}{default} (obj, handler,
+    action = NULL, ...)
 
   addHandlerBlur(obj, handler, action = NULL, ...)
 
-  \method{addHandlerBlur}{default} (obj, handler, action =
-  NULL, ...)
+  \method{addHandlerBlur}{default} (obj, handler,
+    action = NULL, ...)
 
   addHandlerDestroy(obj, handler, action = NULL, ...)
 
-  \method{addHandlerDestroy}{default} (obj, handler, action
-  = NULL, ...)
+  \method{addHandlerDestroy}{default} (obj, handler,
+    action = NULL, ...)
 
   addHandlerUnrealize(obj, handler, action = NULL, ...)
 
   \method{addHandlerUnrealize}{default} (obj, handler,
-  action = NULL, ...)
+    action = NULL, ...)
 
   addHandlerExpose(obj, handler, action = NULL, ...)
 
-  \method{addHandlerExpose}{default} (obj, handler, action
-  = NULL, ...)
+  \method{addHandlerExpose}{default} (obj, handler,
+    action = NULL, ...)
 
   addHandlerKeystroke(obj, handler, action = NULL, ...)
 
   \method{addHandlerKeystroke}{default} (obj, handler,
-  action = NULL, ...)
+    action = NULL, ...)
 
   addHandlerMouseMotion(obj, handler, action = NULL, ...)
 
   \method{addHandlerMouseMotion}{default} (obj, handler,
-  action = NULL, ...)
+    action = NULL, ...)
 
   addHandlerIdle(...)
 
   addPopupMenu(obj, menulist, action = NULL, ...)
 
-  \method{addPopupMenu}{default} (obj, menulist, action =
-  NULL, ...)
+  \method{addPopupMenu}{default} (obj, menulist,
+    action = NULL, ...)
 
   add3rdmousePopupMenu(obj, menulist, action = NULL, ...)
 
   \method{add3rdmousePopupMenu}{default} (obj, menulist,
-  action = NULL, ...)
+    action = NULL, ...)
 
-  addDropSource(obj, handler, action = NULL, data.type =
-  c("text", "object"), ...)
+  addDropSource(obj, handler, action = NULL,
+    data.type = c("text", "object"), ...)
 
-  \method{addDropSource}{default} (obj, handler, action =
-  NULL, data.type = c("text", "object"), ...)
+  \method{addDropSource}{default} (obj, handler,
+    action = NULL, data.type = c("text", "object"), ...)
 
   addDropTarget(obj, handler, action = NULL, ...)
 
-  \method{addDropTarget}{default} (obj, handler, action =
-  NULL, ...)
+  \method{addDropTarget}{default} (obj, handler,
+    action = NULL, ...)
 
   addDragMotion(obj, handler, action = NULL, ...)
 
-  \method{addDragMotion}{default} (obj, handler, action =
-  NULL, ...)
+  \method{addDragMotion}{default} (obj, handler,
+    action = NULL, ...)
 
   blockHandlers(obj, ...)
 
@@ -183,6 +184,12 @@
   removeHandler(obj, ID, ...)
 
   \method{removeHandler}{default} (obj, ID, ...)
+
+  \method{addHandlerChanged}{default} (obj, handler,
+    action = NULL, ...)
+
+  \method{addHandlerClicked}{default} (obj, handler,
+    action = NULL, ...)
 }
 \arguments{
   \item{obj}{object receiving event and emitting a signal
@@ -356,6 +363,12 @@
   method call to unblock a remove permanently handler
 
   S3 method to remove handler
+
+  The change handler for ggraphics is called when a
+  rubber-band selection is completed
+
+  The click handler is called on a mouse click. The handler
+  object should pass in value for \code{x}, \code{y}
 }
 \note{
   This method is not toolkit independent, as the signal

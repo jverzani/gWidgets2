@@ -60,3 +60,4 @@ Collate:
     'gpanedgroup.R'
     'gfilter.R'
     'gformlayout.R'
+    'ghtml.R'

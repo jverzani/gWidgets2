@@ -7,19 +7,21 @@
 \title{A widget for filtering a data frame}
 \usage{
   gfilter(DF, allow.edit = TRUE, initial.vars = NULL,
-  handler = NULL, action = NULL, container = NULL, ...,
-  toolkit = guiToolkit())
+    handler = NULL, action = NULL, container = NULL, ...,
+    toolkit = guiToolkit())
 
-  .gfilter(toolkit, DF, allow.edit = TRUE, initial.vars =
-  NULL, handler = NULL, action = NULL, container = NULL,
-  ...)
+  .gfilter(toolkit, DF, allow.edit = TRUE,
+    initial.vars = NULL, handler = NULL, action = NULL,
+    container = NULL, ...)
 
   \method{svalue}{GFilter} (obj, index = NULL, drop = NULL,
-  ...)
+    ...)
+
+  \method{[}{GFilter} (x, i, j, ..., drop = TRUE)
 
   \method{.gfilter}{default} (toolkit = guiToolkit(), DF,
-  allow.edit = TRUE, initial.vars = NULL, handler = NULL,
-  action = NULL, container = NULL, ...)
+    allow.edit = TRUE, initial.vars = NULL, handler = NULL,
+    action = NULL, container = NULL, ...)
 }
 \arguments{
   \item{DF}{a data frame or \code{GDf} instance to look
