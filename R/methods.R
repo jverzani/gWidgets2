@@ -717,3 +717,24 @@ addSpring.GContainer <- function(obj) {
   obj$add_spring()
 }
 
+
+##' Add a spring to a container objects
+##'
+##' @param obj GContainer object
+##' @param value space in pixels to add
+##' @return NULL
+##' @export
+##' @rdname methods
+addSpace <- function(obj, value) UseMethod("addSpace")
+
+##' basic S3 generic to dispatch on
+##'
+##' Add space to GContainer class
+##' @export
+##' @rdname methods
+##' @method addSpace GContainer
+##' @S3method addSpace GContainer
+addSpace.GContainer <- function(obj, value) {
+  obj$add_space(value)
+}
+
