@@ -8,7 +8,9 @@ NULL
 ##' through submenus. More generally, a widget may replace the
 ##' button. This widget intends to support buttons (gactions),
 ##' separators (gseparator), radio button (gradio) and checkbutton
-##' (gcheckbox), but this may be toolkit independent.
+##' (gcheckbox), but this may be toolkit independent. When using a
+##' radio button or checkbox, one should pass in a \code{parent}
+##' argument to the constructor -- not a \code{container}.
 ##' @param menu.list A list defining the menu structure. Named sub
 ##' lists determine the submenu titles and structure. The list may
 ##' have components of class: \code{GAction}, mapped to a button;
@@ -16,7 +18,7 @@ NULL
 ##' \code{GRadio}, mapped to linked buttons; or \code{GCheckbox},
 ##' mapped to a checkbox button.
 ##' @param popup logical. If true, make a popup window to be added through a handler call
-##' @inheritParams gcontainer
+##' @inheritParams gwidget
 ##' @export
 gmenu <- function(
                   menu.list,
