@@ -698,8 +698,11 @@ getTopLevel.GComponent <- function(obj) {
 
 ## Container methods
 
-##' Add a spring to a container objects
+##' Add a spring to box containers
 ##'
+##' A spring will separate the children packed in the box container
+##' prior to the spring be added and those being added, pushing the
+##' two are far apart as the allocated space will allow.
 ##' @param obj GContainer object
 ##' @return NULL
 ##' @export
@@ -718,8 +721,9 @@ addSpring.GContainer <- function(obj) {
 }
 
 
-##' Add a spring to a container objects
+##' Add a space to a box container objects
 ##'
+##' Inserts a proscribed amount of space between the previously packed child and next one.
 ##' @param obj GContainer object
 ##' @param value space in pixels to add
 ##' @return NULL
