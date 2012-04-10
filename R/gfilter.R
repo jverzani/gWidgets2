@@ -3,7 +3,7 @@ NULL
 
 ##' A widget for filtering a data frame
 ##'
-##' This widget provides a means for the subset, or filter, a data
+##' This widget provides a means to subset, or filter, a data
 ##' frame. 
 ##' @param DF a data frame or \code{GDf} instance to look variables up within.
 ##' @param allow.edit logical. If \code{TRUE} a user may add new
