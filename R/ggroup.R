@@ -52,4 +52,4 @@ ggroup <- function(horizontal=TRUE, spacing=5, use.scrollwindow=FALSE, container
 ##' @export
 ##' @rdname ggroup
 gvbox <- function(spacing=5, use.scrollwindow=FALSE, container=NULL, ..., toolkit=guiToolkit())
-  ggroup(horizontal=FALSE, spacingspacing, use.scrollwindow=use.scrollwindow, container=container, ..., toolkit=toolkit)
+  ggroup(horizontal=FALSE, spacing=spacing, use.scrollwindow=use.scrollwindow, container=container, ..., toolkit=toolkit)
