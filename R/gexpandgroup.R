@@ -4,7 +4,7 @@ NULL
 ##' Constructor of box container widget with disclosure trigger and label
 ##'
 ##' @param text Label text
-##' @param markup logical. Does text have markup. (Toolkit dependent)
+##' @param markup logical. Does text have markup? (Toolkit dependent: only implemented for \code{RGtk2}, in \code{qtbase} one can pass HTML formatted text)
 ##' @param horizontal horizontal (\code{TRUE}) or vertical packing.
 ##' @param handler handler called when state is toggled
 ##' @param action passed to handler
@@ -46,7 +46,7 @@ gexpandgroup <- function(
 ##' visible
 ##'
 ##'
-##' For gexapndgroup, the visible assignment method is used to change the disclosure state
+##' For gexpandgroup, the visible assignment method is overridden to change the disclosure state
 ##' @export
 ##' @rdname gexpandgroup
 ##' @method visible<- GExpandGroup

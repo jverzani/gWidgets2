@@ -66,7 +66,9 @@ gcheckboxgroup <- function(
 
 
 
-##' Change handler for a checkboxgroup is called when any of the
+##' Change handler for \code{GCheckboxGroup}
+##'
+##' Change handler for a \code{GCheckboxGroup}p is called when any of the
 ##' checkboxes changes state.
 ##'
 ##' @param obj receiver object

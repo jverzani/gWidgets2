@@ -327,7 +327,10 @@ addHandlerIdle <- function( ...) {
 
 ##' Add a "popup" menu to the widget
 ##'
-##' @param menulist a list of \code{gaction} items
+##' Defaults to adding a 3rd mouse popup menu, better known as a
+##' context menu, though some toolkits have both this and the latter
+##' provided. 
+##' @param menulist a list of \code{gaction} items or a \code{gmenu} instance
 ##' @export
 ##' @rdname gWidgets-handlers
 addPopupMenu <- function(obj, menulist, action=NULL, ...) UseMethod("addPopupMenu")
@@ -344,6 +347,7 @@ addPopupMenu.default <-  function(obj, menulist, action=NULL, ...)
 
 ##' Add a 3rd-mouse "popup" menu to the widget
 ##'
+##' @inheritParams addPopupMenu
 ##' @export
 ##' @rdname gWidgets-handlers
 add3rdmousePopupMenu <- function(obj, menulist, action=NULL, ...) UseMethod("add3rdmousePopupMenu")

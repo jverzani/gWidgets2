@@ -1,7 +1,7 @@
 ##' @include methods.R
 NULL
 
-##' constructor for combobox
+##' constructor for a combobox
 ##'
 ##' A combobox can be either a drop down list (editable=FALSE), or a drop-down list and edit area (a combobox).
 ##' @param items Items to select from. A vector or a data frame. If a
@@ -104,6 +104,8 @@ gdroplist <- function(...) {
   
 
 
+##' Change handler for \code{GcomboBox}
+##'
 ##' Change handler for a non-editabe combobox is called when a new
 ##' value is selected. For editable comboboxes, the handler is also
 ##' called when the text entry box is activated.
