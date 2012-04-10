@@ -43,3 +43,12 @@ gformlayout <- function(
                          ... )
   UseMethod( '.gformlayout' )
 
+##' svalue method
+##'
+##' The \code{svalue} method for \code{GFormLayout} returns a list of values created by calling \code{svalue} on each child
+##' @inheritParams svalue
+##' @export
+##' @rdname gformlayout
+##' @method svalue GFormLayout
+##' @S3method svalue GFormLayout
+svalue.GButton <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
