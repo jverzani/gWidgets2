@@ -36,6 +36,7 @@ ggroup <- function(horizontal=TRUE, spacing=5, use.scrollwindow=FALSE, container
 ##' container, its spacing. There are generally two types of spacing:
 ##' padding around border of the box and spacing between each child
 ##' that is packed in. The spacing here is the between-child-component spacing.
+##' The reference class method \code{set_borderwidth} can be used for the other.
 ##' @export
 ##' @rdname ggroup
 ##' @method svalue<- GGroup
