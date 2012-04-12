@@ -48,10 +48,20 @@ setSingleEnum("Alternative",
 
 setNumericWithRange("Numeric", min=0, max=1)
 
+## A new class
+setClass("DataFrameName", contains = c("character"),
+         validity = function(object) {
+           if(object != "" &&
+              (!exists(object, .GlobalEnv) ||
+               !is(get(object, .GlobalEnv), "data.frame"))
+              )
+             gettext("Value is not a data frame object in the global workspace")
+         })
+
 TTestModel <- setRefClass("TTestModel",
                           fields=properties(
                             fields=list(
-                              dataframe="character",
+                              dataframe="DataFrameName",
                               x="character",
                               y="character",
                               alternative="AlternativeSingleEnum",
@@ -113,6 +123,7 @@ library(gWidgets2)
 w <- gwindow("t-test example", visible=FALSE)
 sb <- gstatusbar(cont=w)
 g <- gvbox(cont=w)
+g$set_borderwidth(10)
 fl <- gformlayout(cont=g)
 
 l <- list()
@@ -122,7 +133,7 @@ l$y <- gedit("", initial="y variable", cont=fl, label="y")
 sapply(l[c('x','y')], function(i) enabled(i) <- FALSE)
 
 l$alternative <- gcombobox(model$alternative@levels, cont=fl, label="alternative")
-l$mu <- gedit("", initial="mean", cont=fl, label="mu", coerce.with=as.numeric)
+l$mu <- gedit("", initial="mean in H_0", cont=fl, label="mu", coerce.with=as.numeric)
 ## tcltk only works on integers! Here we multiply and divide
 l$conf.level <- gslider(from=100*model$conf.level@min, to=100*model$conf.level@max,
                         by=100*0.01, value=100*model$conf.level,
