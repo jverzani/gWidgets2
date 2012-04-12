@@ -5,10 +5,11 @@ NULL
 ## simple message function
 define_me <- function(...) {
   curcall <- as.character(sys.call()[[1]])[3]
-  message(sprintf("Method %s not defined for class %s\n",
-                  curcall,
-                  class(get(".self"))          # issue with warning
-                  ))
+  if(!is.null(getOption("gWidgets2:debug")))
+    message(sprintf("Method %s not defined for class %s\n",
+                    curcall,
+                    class(get(".self"))          # issue with warning
+                    ))
 }
 
 ##' Reference class to create an observer of an observable object
@@ -224,6 +225,7 @@ BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                        set_dimnames=define_me, # dimnames <-
                                        get_attr=define_me,    # tag
                                        set_attr=define_me,    # tag<-
+                                       set_invalid=define_me, # for validation
                                        update_widget=define_me, # update
                                        is_extant=function() TRUE,   # isExtant
                                        undo=define_me,          # undo
