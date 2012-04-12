@@ -1,13 +1,18 @@
 ## example to select CRAN mirror
 m <- getCRANmirrors()[,c(1,4)]
+
 setCRAN <- function(URL) { ## see chooseCRANmirror
   repos = getOption("repos")
-  repos["CRAN"] <- gsub("/$", "", URL)
-  options(repos=repos)
+  print(list("setCRAN", URL=URL))
+  if(length(URL)) {
+    repos["CRAN"] <- gsub("/$", "", URL)
+    options(repos=repos)
+  }
 }
 
 
 w <- gwindow("gtable example",width=400, visible=FALSE)
+size(w) <- c(600, 600)
 gp <- ggroup(horizontal=FALSE, cont=w)
 
 tab <- gtable(m, chosencol = 2, cont=gp, expand=TRUE,

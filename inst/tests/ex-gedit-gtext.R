@@ -25,9 +25,9 @@ print(svalue(t))
 # svalue<-
 svalue(t) <- "new text"
 
-# add
-add(t, "more new text") # ?\n?
-add(t, "even more with font.attr", font.attr = c("color"="red"))
+# insert
+insert(t, "more new text") # ?\n?
+insert(t, "even more with font.attr", font.attr = c("color"="red"))
 
 # handler
 addHandlerKeystroke(t, handler=function(h,...) print(h$key))
