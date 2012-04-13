@@ -48,6 +48,30 @@ gradio <- function(items,selected=1, horizontal=FALSE,
 ##' @method svalue GRadio
 svalue.GRadio <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 
+
+##' svalue<- method
+##'
+##' For a radio button group, with \code{svalue} the value can be referred to by index or
+##' label. Similarly with setting of a value
+##' @inheritParams gWidgets2::svalue
+##' @export
+##' @rdname gradio
+##' @S3method svalue<- GRadio
+##' @method svalue<- GRadio
+"svalue<-.GRadio" <- function(obj, index=NULL, drop=TRUE, ..., value) {
+  if(!is.null(index) && index) {
+    value <- as.integer(value)[1]
+    if(value < 1 || value > length(obj)) warning(gettext("Index is out of range"))
+  }
+  if(is.null(index) || !index) {
+    if(! value %in% obj[])
+      warning(gettext("Value specified is not one of the items"))
+  }
+
+  NextMethod()
+}
+
+
 ##' assign items for gradio
 ##'
 ##' Check for repeated items before passing on to \code{set_items}
