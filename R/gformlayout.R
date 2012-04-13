@@ -51,4 +51,4 @@ gformlayout <- function(
 ##' @rdname gformlayout
 ##' @method svalue GFormLayout
 ##' @S3method svalue GFormLayout
-svalue.GButton <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
+svalue.GFormLayout <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
