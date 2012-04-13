@@ -62,7 +62,8 @@ addHandlerChanged.GCalendar <- function(obj, handler, action=NULL, ...) NextMeth
 
 ##' svalue method
 ##'
-##' The \code{svalue} method for a calendar object refers to its main property, the date string
+##' The \code{svalue} method for a calendar object returns the selected date
+##' @return If \code{drop=TRUE} a character string, else a \class{Date} class object.
 ##' @export
 ##' @rdname gcalendar
 ##' @method svalue GCalendar
