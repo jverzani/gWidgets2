@@ -5,18 +5,13 @@
 \alias{svalue<-.GGroup}
 \title{Basic box container}
 \usage{
-  ggroup(horizontal = TRUE, spacing = 5,
-    use.scrollwindow = FALSE, container = NULL, ...,
-    toolkit = guiToolkit())
+  ggroup(horizontal = TRUE, spacing = 5, use.scrollwindow = FALSE, container = NULL, ..., toolkit = guiToolkit())
 
-  .ggroup(toolkit, horizontal = TRUE, spacing = 5,
-    use.scrollwindow = FALSE, container = NULL, ...)
+  .ggroup(toolkit, horizontal = TRUE, spacing = 5, use.scrollwindow = FALSE, container = NULL, ...)
 
-  \method{svalue}{GGroup} (obj, index = TRUE, ..., value)
-    <- value
+  \method{svalue}{GGroup} (obj, index = TRUE, ..., value) <- value
 
-  gvbox(spacing = 5, use.scrollwindow = FALSE,
-    container = NULL, ..., toolkit = guiToolkit())
+  gvbox(spacing = 5, use.scrollwindow = FALSE, container = NULL, ..., toolkit = guiToolkit())
 }
 \arguments{
   \item{horizontal}{logical. If TRUE, left to right layout,
@@ -27,6 +22,12 @@
   \item{use.scrollwindow}{logical. If TRUE, places box
   container in scrollwindow. In this case, a size should be
   set.}
+
+  \item{obj}{\code{GGroup} object}
+
+  \item{index}{ignored}
+
+  \item{value}{value (in pixels) for between child spacing}
 
   \item{container}{A parent container. When a widget is
   created it can be incorporated into the widget heirarchy
@@ -55,16 +56,9 @@
 \description{
   Basic box container
 
-  S3 generic whose methods are implemented in the toolkit
-  packages
+  S3 generic whose methods are implemented in the toolkit packages
 
-  The \code{svalue} method refers to the main property of
-  the box container, its spacing. There are generally two
-  types of spacing: padding around border of the box and
-  spacing between each child that is packed in. The spacing
-  here is the between-child-component spacing. The
-  reference class method \code{set_borderwidth} can be used
-  for the other.
+  The \code{svalue} method refers to the main property of the box container, its spacing. There are generally two types of spacing: padding around border of the box and spacing between each child that is packed in. The spacing here is the between-child-component spacing. The reference class method \code{set_borderwidth} can be used for the other.
 
   Avoids need to type \code{horizontal=FALSE}
 }

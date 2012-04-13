@@ -5,16 +5,13 @@
 \alias{svalue.GButton}
 \title{Basic button widget}
 \usage{
-  gbutton(text = "", handler = NULL, action = NULL,
-    container = NULL, ..., toolkit = guiToolkit())
+  gbutton(text = "", handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
 
   .gbutton(toolkit, text, handler, action, container, ...)
 
-  \method{addHandlerChanged}{GButton} (obj, handler,
-    action = NULL, ...)
+  \method{addHandlerChanged}{GButton} (obj, handler, action = NULL, ...)
 
-  \method{svalue}{GButton} (obj, index = NULL, drop = NULL,
-    ...)
+  \method{svalue}{GButton} (obj, index = NULL, drop = NULL, ...)
 }
 \arguments{
   \item{text}{label text. If text matches a stock icon
@@ -65,26 +62,16 @@
   means.}
 }
 \value{
-  a \code{GButton} instance. While this object has its own
-  (reference) methods, one primarily interacts with it
-  through S3 methods defined within the package.
+  a \code{GButton} instance. While this object has its own (reference) methods, one primarily interacts with it through S3 methods defined within the package.
 }
 \description{
-  The basic button widget is a standard means to provide
-  the user a mechanism to invoke an action. This action may
-  be specified by a handler or by a \code{gaction} object.
-  The main property for \code{GButton} is the label text.
-  If this text matches a stock icon name and the toolkit
-  supports it, an icon will accompany the button.
+  The basic button widget is a standard means to provide the user a mechanism to invoke an action. This action may be specified by a handler or by a \code{gaction} object. The main property for \code{GButton} is the label text. If this text matches a stock icon name and the toolkit supports it, an icon will accompany the button.
 
-  S3 generic whose methods are implemented in the toolkit
-  packages
+  S3 generic whose methods are implemented in the toolkit packages
 
-  Change handler for a button is called when a button is
-  activated (e.g., a mouse click)
+  Change handler for a button is called when a button is activated (e.g., a mouse click)
 
-  The \code{svalue} method for a button object refers to
-  its main property, the button label
+  The \code{svalue} method for a button object refers to its main property, the button label
 }
 \examples{
 if(interactive()) {

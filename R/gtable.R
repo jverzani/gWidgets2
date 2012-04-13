@@ -102,7 +102,10 @@ svalue.GTable <- function(obj, index=NULL, ..., value) NextMethod()
 ##' columns, add rows, remove columns, remove rows, or change the type of the column. For all
 ##' of these actions, one can reassign the items being displayed through the
 ##' idiom \code{obj[] <- new_items}. This allows the widget to redo the column renderers.
-##' @inheritParams base::Extract
+##' @param x \code{GTable} object
+##' @param i row index
+##' @param j column index
+##' @param drop do we drop when subsetting
 ##' @export
 ##' @rdname gtable
 ##' @method [ GTable

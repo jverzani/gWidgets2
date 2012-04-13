@@ -5,11 +5,9 @@
 \alias{delete.GContainer}
 \title{Add a child object to parent container}
 \usage{
-  add(obj, child, expand = FALSE, fill = NULL,
-    anchor = NULL, ...)
+  add(obj, child, expand = FALSE, fill = NULL, anchor = NULL, ...)
 
-  \method{add}{default} (obj, child, expand = FALSE,
-    fill = NULL, anchor = NULL, ...)
+  \method{add}{default} (obj, child, expand = FALSE, fill = NULL, anchor = NULL, ...)
 
   delete(obj, child)
 
@@ -33,10 +31,7 @@
 
   Basic S3 method for add
 
-  Delete may or may note remove a child. This is toolkit
-  specific. It may also be tied up with garbage collection.
-  To avoid that, keep a reference to the child object
-  before deleting.
+  Delete may or may note remove a child. This is toolkit specific. It may also be tied up with garbage collection. To avoid that, keep a reference to the child object before deleting.
 
   Basic S3 method for add
 }

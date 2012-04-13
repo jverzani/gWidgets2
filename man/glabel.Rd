@@ -5,18 +5,13 @@
 \alias{svalue<-.GLabel}
 \title{Basic label widget}
 \usage{
-  glabel(text = "", markup = FALSE, editable = FALSE,
-    handler = NULL, action = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  glabel(text = "", markup = FALSE, editable = FALSE, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
 
-  .glabel(toolkit, text, markup = FALSE, editable = FALSE,
-    handler = NULL, action = NULL, container = NULL, ...)
+  .glabel(toolkit, text, markup = FALSE, editable = FALSE, handler = NULL, action = NULL, container = NULL, ...)
 
-  \method{svalue}{GLabel} (obj, index = TRUE, ..., value)
-    <- value
+  \method{svalue}{GLabel} (obj, index = TRUE, ..., value) <- value
 
-  \method{svalue}{GLabel} (obj, index = TRUE, ..., value)
-    <- value
+  \method{svalue}{GLabel} (obj, index = TRUE, ..., value) <- value
 }
 \arguments{
   \item{text}{character. Collapsed using a newline to a
@@ -48,28 +43,20 @@
   \item{index}{NULL or logical. If \code{TRUE} and widget
   supports it an index, instead of a value will be
   returned.}
+
+  \item{value}{value to assign for selection or property}
 }
 \value{
-  a \code{GLabel} instance. While this object has its own
-  (reference) methods, one primarily interacts with it
-  through S3 methods defined within the package.
+  a \code{GLabel} instance. While this object has its own (reference) methods, one primarily interacts with it through S3 methods defined within the package.
 }
 \description{
-  The basic label widget allows one to label areas of a GUI
-  using text. The most common use would be to label fields
-  in a form. For \pkg{gWidgets2} labels may be editable or
-  responsive to mouse clicks, although it is the author's
-  experience that such uses are not expected by the end
-  user.
+  The basic label widget allows one to label areas of a GUI using text. The most common use would be to label fields in a form. For \pkg{gWidgets2} labels may be editable or responsive to mouse clicks, although it is the author's experience that such uses are not expected by the end user.
 
-  S3 generic whose methods are implemented in the toolkit
-  packages
+  S3 generic whose methods are implemented in the toolkit packages
 
-  The \code{svalue} methods refer to the main property of
-  the label, its text.
+  The \code{svalue} methods refer to the main property of the label, its text.
 
-  Use to update displayed content. Value is HTML fragment
-  or url
+  Use to update displayed content. Value is HTML fragment or url
 }
 \author{
   john verzani

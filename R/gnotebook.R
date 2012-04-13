@@ -100,6 +100,7 @@ dispose.GNotebook <- function(obj, ...) {
 ##'
 ##' The \code{names} of a notebook are the page tab labels. These may
 ##' be retrieved and set through the \code{names} method.
+##' @param x notebook object
 ##' @export
 ##' @rdname gnotebook
 ##' @method names GNotebook

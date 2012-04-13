@@ -82,7 +82,9 @@ svalue.GFilter <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
 
 ##' The extraction method returns the child items of the filter, like a container object.
 ##'
-##' 
+##' @param x the \code{GFilter} object
+##' @param i passed to \code{get_items}
+##' @param j passed to \code{get_items}
 ##' @param ... dots argument
 ##' @export
 ##' @rdname gfilter

@@ -21,9 +21,7 @@
 \value{
   logical indicating if widget is enabled
 
-  if \code{value} is logical and \code{FALSE} widget will
-  be insensitive to user input and rendered in a muted
-  state.
+  if \code{value} is logical and \code{FALSE} widget will be insensitive to user input and rendered in a muted state.
 }
 \description{
   A widget is enabled if it is sensitive to user input

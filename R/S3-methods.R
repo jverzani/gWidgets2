@@ -20,6 +20,7 @@ length.GComponent <- function(x) {
 ##' set length of object
 ##'
 ##' @param x component
+##' @param value value to assign
 ##' @export
 ##' @rdname gWidgets2-S3methods
 ##' @method length<- GComponent
@@ -58,7 +59,7 @@ names.GComponent <- function(x) {
 ##'
 ##' @export
 ##' @rdname gWidgets2-S3methods
-##' @S3method names<- GComponent
+##' @method names<- GComponent
 ##' @S3method names<- GComponent
 "names<-.GComponent" <- function(x, value) {
   if(isExtant(x))
@@ -94,6 +95,9 @@ dimnames.GComponent <- function(x) {
 ##' We use the extraction operator, \code{[}, typically to refer to
 ##' the underlying items from which a selection can be made. As well,
 ##' we overload this to containers to refer to the child components.
+##' @param i index or row index if applicable
+##' @param j column index if applicable
+##' @param drop logical. Does return value get "dropped" down to something easier?
 ##' @param ... dots argument
 ##' @export
 ##' @rdname gWidgets2-S3methods

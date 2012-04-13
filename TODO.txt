@@ -1,3 +1,8 @@
+* Work on documentation
+* vignette
+* write examples into subdirectory (how to include then through dontrun?)
+* work on tests
+
 * connect to toolkit
 * gfilter tied with gdf to replace subset.by
 * gedit width
@@ -6,9 +11,6 @@
 
 * ghelp
 * comment on deriving subclasses
-* Work on documentation
-* write examples into subdirectory (how to include then through dontrun?)
-* work on tests
 * replace icons
 
 Handlers

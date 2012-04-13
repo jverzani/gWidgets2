@@ -46,7 +46,7 @@ glabel <- function(text="", markup=FALSE, editable=FALSE,
 ##' \code{svalue<-} method for a glabel
 ##'
 ##' The \code{svalue} methods refer to the main property of the label, its text.
-##' @inheritParams svalue
+##' @inheritParams svalue<-
 ##' @export
 ##' @rdname glabel
 ##' @method svalue<- GLabel

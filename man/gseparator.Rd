@@ -3,11 +3,9 @@
 \alias{gseparator}
 \title{constructor providing a widget for displaying a line in a GUI}
 \usage{
-  gseparator(horizontal = TRUE, container = NULL, ...,
-    toolkit = guiToolkit())
+  gseparator(horizontal = TRUE, container = NULL, ..., toolkit = guiToolkit())
 
-  .gseparator(toolkit, horizontal = TRUE, container = NULL,
-    ...)
+  .gseparator(toolkit, horizontal = TRUE, container = NULL, ...)
 }
 \arguments{
   \item{horizontal}{Logical. Is separator drawn
@@ -30,8 +28,7 @@
   \code{\link{guiToolkit}}.}
 }
 \description{
-  constructor providing a widget for displaying a line in a
-  GUI
+  constructor providing a widget for displaying a line in a GUI
 
   generic for toolkit dispatch
 }

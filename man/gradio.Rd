@@ -6,18 +6,13 @@
 \alias{svalue<-.GRadio}
 \title{Constructor for radio button widget}
 \usage{
-  gradio(items, selected = 1, horizontal = FALSE,
-    handler = NULL, action = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  gradio(items, selected = 1, horizontal = FALSE, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
 
-  .gradio(toolkit, items, selected = 1, horizontal = FALSE,
-    handler = NULL, action = NULL, container = NULL, ...)
+  .gradio(toolkit, items, selected = 1, horizontal = FALSE, handler = NULL, action = NULL, container = NULL, ...)
 
-  \method{svalue}{GRadio} (obj, index = NULL, drop = TRUE,
-    ...)
+  \method{svalue}{GRadio} (obj, index = NULL, drop = TRUE, ...)
 
-  \method{svalue}{GRadio} (obj, index = NULL, drop = TRUE,
-    ..., value) <- value
+  \method{svalue}{GRadio} (obj, index = NULL, drop = TRUE, ..., value) <- value
 
   \method{[}{GRadio} (x, i, j, ..., value) <- value
 }
@@ -27,6 +22,14 @@
   \item{selected}{index of initially selected item}
 
   \item{horizontal}{layout direction}
+
+  \item{x}{\code{GRadio} object}
+
+  \item{i}{button index}
+
+  \item{j}{ignored}
+
+  \item{value}{items to assigns a choices for the buttons}
 
   \item{handler}{A handler assigned to the default change
   signal. Handlers are called when some event triggers a
@@ -72,21 +75,15 @@
   means.}
 }
 \description{
-  The radio button widget shows 2 or more items forcing the
-  user to select one.
+  The radio button widget shows 2 or more items forcing the user to select one.
 
   Generic for method dispatch
 
-  For a radio button group, with \code{svalue} the value
-  can be referred to by index or label. Similarly with
-  setting of a value
+  For a radio button group, with \code{svalue} the value can be referred to by index or label. Similarly with setting of a value
 
-  For a radio button group, with \code{svalue} the value
-  can be referred to by index or label. Similarly with
-  setting of a value
+  For a radio button group, with \code{svalue} the value can be referred to by index or label. Similarly with setting of a value
 
-  Check for repeated items before passing on to
-  \code{set_items}
+  Check for repeated items before passing on to \code{set_items}
 }
 \examples{
 if(interactive()) {

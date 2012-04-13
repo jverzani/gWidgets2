@@ -63,7 +63,9 @@ addHandlerChanged.GCalendar <- function(obj, handler, action=NULL, ...) NextMeth
 ##' svalue method
 ##'
 ##' The \code{svalue} method for a calendar object returns the selected date
-##' @return If \code{drop=TRUE} a character string, else a \class{Date} class object.
+##' @param index ignored
+##' @param drop if \code{TRUE} return a character, else a \code{Date} class object.
+##' @return If \code{drop=TRUE} a character string, else a \code{Date} class object.
 ##' @export
 ##' @rdname gcalendar
 ##' @method svalue GCalendar

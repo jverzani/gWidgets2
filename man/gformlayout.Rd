@@ -4,15 +4,11 @@
 \alias{svalue.GFormLayout}
 \title{A form layout container}
 \usage{
-  gformlayout(align = c("default", "left", "center"),
-    spacing = 5, container = NULL, ...,
-    toolkit = guiToolkit())
+  gformlayout(align = c("default", "left", "center"), spacing = 5, container = NULL, ..., toolkit = guiToolkit())
 
-  .gformlayout(toolkit, align = "left", spacing = 5,
-    container = NULL, ...)
+  .gformlayout(toolkit, align = "left", spacing = 5, container = NULL, ...)
 
-  \method{svalue}{GFormLayout} (obj, index = NULL,
-    drop = NULL, ...)
+  \method{svalue}{GFormLayout} (obj, index = NULL, drop = NULL, ...)
 }
 \arguments{
   \item{align}{alignment of label. Left justify or center
@@ -51,16 +47,10 @@
   means.}
 }
 \description{
-  This convenience container is basically a simpler form of
-  \code{glayout} to be used to layout two columns forms
-  with a label on the left.  The label can be passed in to
-  the \code{add} method of the container as is done with
-  notebook labels
+  This convenience container is basically a simpler form of \code{glayout} to be used to layout two columns forms with a label on the left.  The label can be passed in to the \code{add} method of the container as is done with notebook labels
 
   .gformlayout generic for toolkit dispatch
 
-  The \code{svalue} method for \code{GFormLayout} returns a
-  list of values created by calling \code{svalue} on each
-  child
+  The \code{svalue} method for \code{GFormLayout} returns a list of values created by calling \code{svalue} on each child
 }
 

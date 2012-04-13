@@ -8,21 +8,15 @@
 \alias{visible.GTable}
 \title{A constructor for displaying tabular data for selection}
 \usage{
-  gtable(items, multiple = FALSE, chosen.col = 1,
-    icon.col = NULL, tooltip.col = NULL, handler = NULL,
-    action = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  gtable(items, multiple = FALSE, chosen.col = 1, icon.col = NULL, tooltip.col = NULL, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
 
-  .gtable(toolkit, items, multiple = FALSE, chosen.col = 1,
-    icon.col = NULL, tooltip.col = NULL, handler = NULL,
-    action = NULL, container = NULL, ...)
+  .gtable(toolkit, items, multiple = FALSE, chosen.col = 1, icon.col = NULL, tooltip.col = NULL, handler = NULL, action = NULL, container = NULL, ...)
 
   \method{svalue}{GTable} (obj, index = NULL, ..., value)
 
   \method{[}{GTable} (x, i, j, ..., drop = TRUE)
 
-  \method{addHandlerChanged}{GTable} (obj, handler,
-    action = NULL, ...)
+  \method{addHandlerChanged}{GTable} (obj, handler, action = NULL, ...)
 
   \method{visible}{GTable} (obj, ...)
 
@@ -42,6 +36,14 @@
 
   \item{tooltip.col}{NULL or integer. If latter, specifies
   column containing tooltip}
+
+  \item{x}{\code{GTable} object}
+
+  \item{i}{row index}
+
+  \item{j}{column index}
+
+  \item{drop}{do we drop when subsetting}
 
   \item{handler}{A handler assigned to the default change
   signal. Handlers are called when some event triggers a
@@ -82,62 +84,24 @@
   supports it an index, instead of a value will be
   returned.}
 
-  \item{drop}{NULL or logical. If widget supports it, drop
-  will work as it does in a data frame or perhaps someother
-  means.}
-
-  \item{value}{typically an array-like \R object of a
-  similar class as \code{x}.}
+  \item{value}{value to assign for selection or property}
 }
 \value{
   Returns an object of class \code{GTable}
 }
 \description{
-  The tabular widget allows a user to select one (or more)
-  row(s) using the mouse or keyboard selection. The
-  selected rows are the main property and are returned by
-  svalue through their key (from the column specified by
-  \code{chosen.col}), or by index. The change handler
-  changes on double clicke event. Use add handler click to
-  respond to a change in selection.
+  The tabular widget allows a user to select one (or more) row(s) using the mouse or keyboard selection. The selected rows are the main property and are returned by svalue through their key (from the column specified by \code{chosen.col}), or by index. The change handler changes on double clicke event. Use add handler click to respond to a change in selection.
 
   .gtable generic for toolkit dispatch
 
-  For gtable one can pass in row(s) to select by index
-  (when index=TRUE) or by match among the values in the
-  chosen column. For setting by index, a value of 0L or
-  integer(0) will clear the current selection
+  For gtable one can pass in row(s) to select by index (when index=TRUE) or by match among the values in the chosen column. For setting by index, a value of 0L or integer(0) will clear the current selection
 
-  For \code{GTable} objects the \code{[} and \code{[<-}
-  methods are (mostly) implemented. The \code{[} method
-  allows one to access the object using the regular matrix
-  notation (but there is no list notation, e.g. \code{$} or
-  \code{[[}, defined). The \code{[<-} method is available,
-  but for most toolkits is restricted: one can not add
-  columns, add rows, remove columns, remove rows, or change
-  the type of the column. For all of these actions, one can
-  reassign the items being displayed through the idiom
-  \code{obj[] <- new_items}. This allows the widget to redo
-  the column renderers.
+  For \code{GTable} objects the \code{[} and \code{[<-} methods are (mostly) implemented. The \code{[} method allows one to access the object using the regular matrix notation (but there is no list notation, e.g. \code{$} or \code{[[}, defined). The \code{[<-} method is available, but for most toolkits is restricted: one can not add columns, add rows, remove columns, remove rows, or change the type of the column. For all of these actions, one can reassign the items being displayed through the idiom \code{obj[] <- new_items}. This allows the widget to redo the column renderers.
 
-  The change handler for \code{GTable} is called when the
-  selection changes. This is often the result of a click
-  event (but need not bo), although we alias to
-  \code{addHandlerClicked}. For double click events, see
-  \code{addHandlerDoubleclick}.
+  The change handler for \code{GTable} is called when the selection changes. This is often the result of a click event (but need not bo), although we alias to \code{addHandlerClicked}. For double click events, see \code{addHandlerDoubleclick}.
 
-  For \code{GTable}, visibility refers to which rows are
-  currently shown, not whether the widget itself is shown
-  or hidden. (For the latter, place the widget into a
-  container and adjust that). One can use this method to
-  perform filtering by adjusting which rows are displayed
-  according to some criteria that returns a logical.
+  For \code{GTable}, visibility refers to which rows are currently shown, not whether the widget itself is shown or hidden. (For the latter, place the widget into a container and adjust that). One can use this method to perform filtering by adjusting which rows are displayed according to some criteria that returns a logical.
 
-  For \code{GTable} the \code{size<-} method is overridden
-  to allow one to specify the column widths. To do so, pass
-  in the values for \code{width}, \code{height} or
-  \code{column.widths} as named components of a list. The
-  value of \code{column.widths} should be a numeric vector
-  of pixel widths of length matching the number of columns.
+  For \code{GTable} the \code{size<-} method is overridden to allow one to specify the column widths. To do so, pass in the values for \code{width}, \code{height} or \code{column.widths} as named components of a list. The value of \code{column.widths} should be a numeric vector of pixel widths of length matching the number of columns.
 }
 

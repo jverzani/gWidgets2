@@ -16,13 +16,11 @@
 \alias{stockIconFromObject}
 \title{Method to add icon to list of stock icons}
 \usage{
-  addStockIcons(iconNames, iconFiles, ...,
-    toolkit = guiToolkit())
+  addStockIcons(iconNames, iconFiles, ..., toolkit = guiToolkit())
 
   .addStockIcons(toolkit, iconNames, iconFiles, ...)
 
-  \method{.addStockIcons}{default} (toolkit, iconNames,
-    iconFiles, ...)
+  \method{.addStockIcons}{default} (toolkit, iconNames, iconFiles, ...)
 
   getStockIcons(..., toolkit = guiToolkit())
 
@@ -34,22 +32,19 @@
 
   .getStockIconByName(toolkit, name, ...)
 
-  \method{.getStockIconByName}{default} (toolkit, name,
-    file = TRUE, ...)
+  \method{.getStockIconByName}{default} (toolkit, name, file = TRUE, ...)
 
   stockIconFromClass(theClass, ..., toolkit = guiToolkit())
 
   .stockIconFromClass(toolkit, theClass, ...)
 
-  \method{.stockIconFromClass}{default} (toolkit, theClass,
-    ...)
+  \method{.stockIconFromClass}{default} (toolkit, theClass, ...)
 
   stockIconFromObject(obj, ..., toolkit = guiToolkit())
 
   .stockIconFromObject(toolkit, obj, ...)
 
-  \method{.stockIconFromObject}{default} (toolkit, obj,
-    ...)
+  \method{.stockIconFromObject}{default} (toolkit, obj, ...)
 }
 \arguments{
   \item{iconNames}{names of icons}
@@ -71,8 +66,7 @@
   \item{obj}{an R object}
 }
 \value{
-  list of icons with names the icon name and values the
-  icon file name or icon object (as needed by the toolkit)
+  list of icons with names the icon name and values the icon file name or icon object (as needed by the toolkit)
 
   name of icon.
 }
@@ -89,8 +83,7 @@
 
   default
 
-  Return stock icon name, filename, icon object from its by
-  name
+  Return stock icon name, filename, icon object from its by name
 
   generic
 

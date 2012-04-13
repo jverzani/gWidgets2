@@ -21,9 +21,7 @@
   \item{value}{logical. Set editable state.}
 }
 \description{
-  Some widgets may be editable. If possible, the setter
-  method can be used to toggle the state. This method
-  indicates the state.
+  Some widgets may be editable. If possible, the setter method can be used to toggle the state. This method indicates the state.
 
   Basic S3 method
 

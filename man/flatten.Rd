@@ -11,7 +11,6 @@
   Flatten a nested list
 }
 \author{
-  Tommy
-  (http://stackoverflow.com/questions/8139677/how-to-flatten-a-list-to-a-list-without-coercion)
+  Tommy (http://stackoverflow.com/questions/8139677/how-to-flatten-a-list-to-a-list-without-coercion)
 }
 

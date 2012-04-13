@@ -23,9 +23,7 @@
 
   Basic S3 method
 
-  For some widgets, this sets user focus (e.g. gedit gets
-  focus for typing). For others, settig the focus calls the
-  raise methods. (gor gwindow, it will raise the window)
+  For some widgets, this sets user focus (e.g. gedit gets focus for typing). For others, settig the focus calls the raise methods. (gor gwindow, it will raise the window)
 
   Basic S3 method for focus
 }

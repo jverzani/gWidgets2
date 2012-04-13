@@ -104,6 +104,7 @@ svalue.default <- function(obj, index=NULL, drop=NULL, ...) {
 ##' svalue<-
 ##'
 ##' This method sets the selected value of, or main property of the widget.
+##' @param value value to assign for selection or property
 ##' @rdname svalue
 ##' @export
 "svalue<-" <- function(obj, index=TRUE, drop=TRUE, ..., value) UseMethod("svalue<-")
@@ -724,6 +725,7 @@ addSpring <- function(obj) UseMethod("addSpring")
 ##' basic S3 generic to dispatch on
 ##'
 ##' Add spring to GContainer class
+##' @param obj a box container
 ##' @export
 ##' @rdname methods
 ##' @method addSpring GContainer

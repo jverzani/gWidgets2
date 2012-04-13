@@ -4,14 +4,11 @@
 \alias{svalue.GVarBrowser}
 \title{Constructor for workspace variable browser}
 \usage{
-  gvarbrowser(handler = NULL, action = "summary",
-    container = NULL, ..., toolkit = guiToolkit())
+  gvarbrowser(handler = NULL, action = "summary", container = NULL, ..., toolkit = guiToolkit())
 
-  .gvarbrowser(toolkit, handler = NULL, action = "summary",
-    container = NULL, ...)
+  .gvarbrowser(toolkit, handler = NULL, action = "summary", container = NULL, ...)
 
-  \method{svalue}{GVarBrowser} (obj, index = FALSE,
-    drop = TRUE, ...)
+  \method{svalue}{GVarBrowser} (obj, index = FALSE, drop = TRUE, ...)
 }
 \arguments{
   \item{handler}{A handler assigned to the default change
@@ -58,28 +55,13 @@
   means.}
 }
 \description{
-  A workspace browser widget.  The workspace browser
-  displays values in the global environment. The way these
-  values are displayed may be adjusted through the option
-  \code{gwidgets2:gvarbrowser_classes}. The default is
-  \code{gWidgets2:::gvarbrowser_default_classes}. This
-  value is a named list, where the component is a character
-  vector of classes to display for that category. Non
-  categorized values appear separately.
+  A workspace browser widget.  The workspace browser displays values in the global environment. The way these values are displayed may be adjusted through the option \code{gwidgets2:gvarbrowser_classes}. The default is \code{gWidgets2:::gvarbrowser_default_classes}. This value is a named list, where the component is a character vector of classes to display for that category. Non categorized values appear separately.
 
   generic for toolkit dispatch
 
-  Return selected objects a string (when \code{drop=TRUE})
-  with recursive values separated by \code{$}, or the
-  objects themselves (when \code{drop=FALSE}).
+  Return selected objects a string (when \code{drop=TRUE}) with recursive values separated by \code{$}, or the objects themselves (when \code{drop=FALSE}).
 }
 \details{
-  The variable browser uses an instance of
-  \code{WSWatcherModel} to monitor the global workspace.
-  This instance may be useful for other purposes. (For
-  example, one may add an observer that is called to listen
-  for changes to the set of available data frames.). The
-  instance is available through the \code{ws_model}
-  property.
+  The variable browser uses an instance of \code{WSWatcherModel} to monitor the global workspace. This instance may be useful for other purposes. (For example, one may add an observer that is called to listen for changes to the set of available data frames.). The instance is available through the \code{ws_model} property.
 }
 

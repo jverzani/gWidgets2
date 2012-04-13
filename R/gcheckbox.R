@@ -69,6 +69,7 @@ addHandlerChanged.GCheckbox <- function(obj, handler, action=NULL, ...) NextMeth
 ##' svalue method
 ##'
 ##' The \code{svalue<-} method ensures the value is a logical vector of length 1.
+##' @param index ignored. Input is coerced to logical.
 ##' @export
 ##' @rdname gcheckbox
 ##' @method svalue<- GCheckbox

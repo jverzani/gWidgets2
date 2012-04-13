@@ -3,14 +3,9 @@
 \alias{gspinbutton}
 \title{Spinbutton constructor}
 \usage{
-  gspinbutton(from = 0, to = 10, by = 1, length.out = NULL,
-    along.with = NULL, value = from, digits = 0,
-    handler = NULL, action = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  gspinbutton(from = 0, to = 10, by = 1, length.out = NULL, along.with = NULL, value = from, digits = 0, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
 
-  .gspinbutton(toolkit, from = 0, to = 10, by = 1,
-    value = from, digits = 0, handler = NULL,
-    action = NULL, container = NULL, ...)
+  .gspinbutton(toolkit, from = 0, to = 10, by = 1, value = from, digits = 0, handler = NULL, action = NULL, container = NULL, ...)
 }
 \arguments{
   \item{from}{from value}

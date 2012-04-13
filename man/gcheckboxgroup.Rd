@@ -5,20 +5,13 @@
 \alias{svalue.GCheckboxGroup}
 \title{Constructor for checkbox group. A linked group of checkboxes, but not exclusive.}
 \usage{
-  gcheckboxgroup(items, checked = FALSE,
-    horizontal = FALSE, use.table = FALSE, handler = NULL,
-    action = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  gcheckboxgroup(items, checked = FALSE, horizontal = FALSE, use.table = FALSE, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
 
-  .gcheckboxgroup(toolkit, items, checked = FALSE,
-    horizontal = FALSE, use.table = FALSE, handler = NULL,
-    action = NULL, container = NULL, ...)
+  .gcheckboxgroup(toolkit, items, checked = FALSE, horizontal = FALSE, use.table = FALSE, handler = NULL, action = NULL, container = NULL, ...)
 
-  \method{addHandlerChanged}{GCheckboxGroup} (obj, handler,
-    action = NULL, ...)
+  \method{addHandlerChanged}{GCheckboxGroup} (obj, handler, action = NULL, ...)
 
-  \method{svalue}{GCheckboxGroup} (obj, index = NULL,
-    drop = NULL, ...)
+  \method{svalue}{GCheckboxGroup} (obj, index = NULL, drop = NULL, ...)
 }
 \arguments{
   \item{items}{checkbox labels}
@@ -75,42 +68,28 @@
   means.}
 }
 \value{
-  Returns an object of class \code{GCheckboxGroup} for
-  which the following methods are overridden:
+  Returns an object of class \code{GCheckboxGroup} for which the following methods are overridden:
 
   \itemize{
 
-  \item{ \code{svalue} Return the selected values or an
-  empty character vector. If \code{index=TRUE}, returns
-  indices of selected values.}
+  \item{ \code{svalue} Return the selected values or an empty character vector. If \code{index=TRUE}, returns indices of selected values.}
 
-  \item{ \code{svalue<-} Set the selected values one of
-  three ways: by label name, by a logical variable
-  indicating which are selected (if ambigous, logical
-  wins), if \code{index=TRUE} by the indices to select.}
+  \item{ \code{svalue<-} Set the selected values one of three ways: by label name, by a logical variable indicating which are selected (if ambigous, logical wins), if \code{index=TRUE} by the indices to select.}
 
   \item{ \code{[} returns labels}
 
-  \item{ \code{[<-} set the label values. Should be able to
-  shorten or lengthen list}
+  \item{ \code{[<-} set the label values. Should be able to shorten or lengthen list}
 
   }
 }
 \description{
-  Constructor for checkbox group. A linked group of
-  checkboxes, but not exclusive.
+  Constructor for checkbox group. A linked group of checkboxes, but not exclusive.
 
   generic for toolkit dispatch
 
-  Change handler for a \code{GCheckboxGroup}p is called
-  when any of the checkboxes changes state.
+  Change handler for a \code{GCheckboxGroup}p is called when any of the checkboxes changes state.
 
-  The \code{svalue} methods refer to the selected values.
-  By default these are the item values. When
-  \code{index=TRUE} is specified, then the index is
-  returned as an integer vector. For setting, one may also
-  use a vector of logicals (which is recycled) for the
-  index.
+  The \code{svalue} methods refer to the selected values. By default these are the item values. When \code{index=TRUE} is specified, then the index is returned as an integer vector. For setting, one may also use a vector of logicals (which is recycled) for the index.
 }
 \examples{
 if(interactive()) {

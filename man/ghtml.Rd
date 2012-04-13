@@ -36,8 +36,7 @@
 \description{
   Widget for HTML display
 
-  S3 generic whose methods are implemented in the toolkit
-  packages
+  S3 generic whose methods are implemented in the toolkit packages
 }
 \author{
   john verzani

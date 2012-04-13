@@ -10,7 +10,6 @@
   \item{...}{named avlues}
 }
 \description{
-  Many arguments were deprecated due to various reasons.
-  This is meant to ease porting of code.
+  Many arguments were deprecated due to various reasons. This is meant to ease porting of code.
 }
 

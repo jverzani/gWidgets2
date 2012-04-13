@@ -222,6 +222,9 @@ svalue.GTree <-  function(obj, index=FALSE, drop=TRUE, ...) NextMethod()
 ##' selected row. The \code{svalue} method returns the path or its
 ##' endpoint, the \code{[} method returns the row data associated with
 ##' the path.
+##' @param i ignored
+##' @param j ignored
+##' @param drop do we return tip or path
 ##' @export
 ##' @rdname gtree
 ##' @method [ GTree

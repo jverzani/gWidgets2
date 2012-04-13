@@ -16,6 +16,8 @@
 \arguments{
   \item{obj}{GContainer object}
 
+  \item{obj}{a box container}
+
   \item{obj}{GContainer object}
 
   \item{value}{space in pixels to add}
@@ -26,15 +28,11 @@
   NULL
 }
 \description{
-  A spring will separate the children packed in the box
-  container prior to the spring be added and those being
-  added, pushing the two are far apart as the allocated
-  space will allow.
+  A spring will separate the children packed in the box container prior to the spring be added and those being added, pushing the two are far apart as the allocated space will allow.
 
   Add spring to GContainer class
 
-  Inserts a proscribed amount of space between the
-  previously packed child and next one.
+  Inserts a proscribed amount of space between the previously packed child and next one.
 
   Add space to GContainer class
 }

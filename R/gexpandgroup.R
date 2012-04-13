@@ -47,6 +47,7 @@ gexpandgroup <- function(
 ##'
 ##'
 ##' For gexpandgroup, the visible assignment method is overridden to change the disclosure state
+##' @param value logical. If \code{TRUE} show, \code{FALSE} hide.
 ##' @export
 ##' @rdname gexpandgroup
 ##' @method visible<- GExpandGroup

@@ -24,7 +24,7 @@
 
   \method{names}{GComponent} (x)
 
-  names.GComponent(x, value) <- value
+  \method{names}{GComponent} (x, value) <- value
 
   \method{dimnames}{GComponent} (x)
 
@@ -44,17 +44,23 @@
 
   \method{[}{GEdit} (x, i, j, ..., drop = TRUE)
 
-  names.GFrame(x, value) <- value
+  \method{names}{GFrame} (x, value) <- value
 }
 \arguments{
   \item{x}{component}
 
+  \item{value}{value to assign}
+
+  \item{i}{index or row index if applicable}
+
+  \item{j}{column index if applicable}
+
+  \item{drop}{logical. Does return value get "dropped" down
+  to something easier?}
+
   \item{...}{dots argument}
 
   \item{object}{object to update}
-
-  \item{value}{an integer: double values will be coerced to
-  integer.}
 }
 \value{
   length of object
@@ -74,28 +80,19 @@
 
   Set dimnames of object
 
-  We use the extraction operator, \code{[}, typically to
-  refer to the underlying items from which a selection can
-  be made. As well, we overload this to containers to refer
-  to the child components.
+  We use the extraction operator, \code{[}, typically to refer to the underlying items from which a selection can be made. As well, we overload this to containers to refer to the child components.
 
   Return children of a parent container
 
   Set object's items
 
-  The update method will ca use a widget to recompute
-  itself, if it is necessary.
+  The update method will ca use a widget to recompute itself, if it is necessary.
 
   str method for widgets
 
-  The current items for a \code{gdf} object are both the
-  visible and non-visible items. To retrieve just the
-  currently visible items, use the idiom
-  \code{obj[visible(obj), ]}.
+  The current items for a \code{gdf} object are both the visible and non-visible items. To retrieve just the currently visible items, use the idiom \code{obj[visible(obj), ]}.
 
-  The underlying widget may allow autocompletion, if this
-  is the case then this method is used to set the list of
-  candidates.
+  The underlying widget may allow autocompletion, if this is the case then this method is used to set the list of candidates.
 
   set names for frame
 }

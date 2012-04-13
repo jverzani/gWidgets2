@@ -75,6 +75,10 @@ svalue.GRadio <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 ##' assign items for gradio
 ##'
 ##' Check for repeated items before passing on to \code{set_items}
+##' @param x \code{GRadio} object
+##' @param i button index
+##' @param j ignored
+##' @param value items to assigns a choices for the buttons
 ##' @export
 ##' @rdname gradio
 ##' @method [<- GRadio

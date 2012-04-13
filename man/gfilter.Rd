@@ -6,22 +6,15 @@
 \alias{svalue.GFilter}
 \title{A widget for filtering a data frame}
 \usage{
-  gfilter(DF, allow.edit = TRUE, initial.vars = NULL,
-    handler = NULL, action = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  gfilter(DF, allow.edit = TRUE, initial.vars = NULL, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
 
-  .gfilter(toolkit, DF, allow.edit = TRUE,
-    initial.vars = NULL, handler = NULL, action = NULL,
-    container = NULL, ...)
+  .gfilter(toolkit, DF, allow.edit = TRUE, initial.vars = NULL, handler = NULL, action = NULL, container = NULL, ...)
 
-  \method{svalue}{GFilter} (obj, index = NULL, drop = NULL,
-    ...)
+  \method{svalue}{GFilter} (obj, index = NULL, drop = NULL, ...)
 
   \method{[}{GFilter} (x, i, j, ..., drop = TRUE)
 
-  \method{.gfilter}{default} (toolkit = guiToolkit(), DF,
-    allow.edit = TRUE, initial.vars = NULL, handler = NULL,
-    action = NULL, container = NULL, ...)
+  \method{.gfilter}{default} (toolkit = guiToolkit(), DF, allow.edit = TRUE, initial.vars = NULL, handler = NULL, action = NULL, container = NULL, ...)
 }
 \arguments{
   \item{DF}{a data frame or \code{GDf} instance to look
@@ -39,6 +32,12 @@
   \code{radio}, for single selection; \code{multiple}, for
   multiple selection; and \code{range}, to specify a from
   and to value.}
+
+  \item{x}{the \code{GFilter} object}
+
+  \item{i}{passed to \code{get_items}}
+
+  \item{j}{passed to \code{get_items}}
 
   \item{...}{dots argument}
 
@@ -78,21 +77,16 @@
   means.}
 }
 \value{
-  returns filename(s) or \code{character(0)} if no
-  selection.
+  returns filename(s) or \code{character(0)} if no selection.
 }
 \description{
-  This widget provides a means to subset, or filter, a data
-  frame.
+  This widget provides a means to subset, or filter, a data frame.
 
   generic for toolkit dispatch
 
-  The \code{svalue} method for a filter object returns a
-  logical containing which rows are selected. There is no
-  assignment method.
+  The \code{svalue} method for a filter object returns a logical containing which rows are selected. There is no assignment method.
 
-  The extraction method returns the child items of the
-  filter, like a container object.
+  The extraction method returns the child items of the filter, like a container object.
 
   Default
 }

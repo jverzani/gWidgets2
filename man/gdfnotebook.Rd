@@ -3,8 +3,7 @@
 \alias{gdfnotebook}
 \title{A notebook container for many \code{gdf} instances}
 \usage{
-  gdfnotebook(items = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  gdfnotebook(items = NULL, container = NULL, ..., toolkit = guiToolkit())
 
   .gdfnotebook(toolkit, items, container, ...)
 }
@@ -21,7 +20,6 @@
 \description{
   A notebook container for many \code{gdf} instances
 
-  S3 generic whose methods are implemented in the toolkit
-  packages
+  S3 generic whose methods are implemented in the toolkit packages
 }
 

@@ -3,12 +3,9 @@
 \alias{gframe}
 \title{Constructor for framed box container with label}
 \usage{
-  gframe(text = "", markup = FALSE, pos = 0,
-    horizontal = TRUE, spacing = 5, container = NULL, ...,
-    toolkit = guiToolkit())
+  gframe(text = "", markup = FALSE, pos = 0, horizontal = TRUE, spacing = 5, container = NULL, ..., toolkit = guiToolkit())
 
-  .gframe(toolkit, text = "", markup = FALSE, pos = 0,
-    horizontal = TRUE, spacing = 5, container = NULL, ...)
+  .gframe(toolkit, text = "", markup = FALSE, pos = 0, horizontal = TRUE, spacing = 5, container = NULL, ...)
 }
 \arguments{
   \item{text}{frame label}
@@ -40,15 +37,12 @@
   used with gaction and the dialogs.}
 }
 \description{
-  The framed box container inherits from \code{ggroup}. The
-  main addition is a label, which is accessed via the
-  \code{name} method.
+  The framed box container inherits from \code{ggroup}. The main addition is a label, which is accessed via the \code{name} method.
 
   generic for toolkit dispatch
 }
 \note{
-  to include a scrollwindow, place a \code{ggroup} within
-  this window.
+  to include a scrollwindow, place a \code{ggroup} within this window.
 }
 \seealso{
   \code{\link{ggroup}} and \code{\link{gexpandgroup}}

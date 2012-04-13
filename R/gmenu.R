@@ -73,15 +73,18 @@ add.GMenuBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) 
 ##' underlying item being proxied. (For \code{gaction} items the
 ##' \code{enabled<-} method may be used on the item, but this may not
 ##' extend to \code{gradio} and \code{gcheckbox} items)
+##' @param index ignored
+##' @param drop ignored
 ##' @export
 ##' @rdname gmenu
 ##' @method svalue GMenuBar
 ##' @S3method svalue GMenuBar
-"svalue.GMenuBar" <- function(obj, index=NULL, ..., value) NextMethod()
+"svalue.GMenuBar" <- function(obj, index=NULL, drop=NULL,...) NextMethod()
 
 ##' "svalue<-" method
 ##'
 ##' for a menubar, \code{svalue<-} replaces the menubar items with new ones specified by value.
+##' @param value a list or menu bar specifying the new men ubar
 ##' @export
 ##' @rdname gmenu
 ##' @method svalue<- GMenuBar

@@ -42,6 +42,6 @@ gframe <- function(
 ##'
 ##' @export
 ##' @rdname gWidgets2-S3methods
-##' @S3method names<- GFrame
+##' @method names<- GFrame
 ##' @S3method names<- GFrame
 "names<-.GFrame" <- function(x, value) NextMethod()

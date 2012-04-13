@@ -31,6 +31,10 @@ glayout <- function(
 
 ##' pass back item, list or matrix of items depending on dimension
 ##'
+##' @param x object
+##' @param i row index
+##' @param j column index
+##' @param drop drop return type?
 ##' @export
 ##' @rdname glayout
 ##' @method [ GLayout

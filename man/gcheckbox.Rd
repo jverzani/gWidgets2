@@ -6,20 +6,13 @@
 \alias{svalue<-.GCheckbox}
 \title{constructor for checkbox widget}
 \usage{
-  gcheckbox(text = "", checked = FALSE,
-    use.togglebutton = FALSE, handler = NULL,
-    action = NULL, container = NULL, ...,
-    toolkit = guiToolkit())
+  gcheckbox(text = "", checked = FALSE, use.togglebutton = FALSE, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
 
-  .gcheckbox(toolkit, text, checked = FALSE,
-    use.togglebutton = FALSE, handler = NULL,
-    action = NULL, container = NULL, ...)
+  .gcheckbox(toolkit, text, checked = FALSE, use.togglebutton = FALSE, handler = NULL, action = NULL, container = NULL, ...)
 
-  \method{addHandlerChanged}{GCheckbox} (obj, handler,
-    action = NULL, ...)
+  \method{addHandlerChanged}{GCheckbox} (obj, handler, action = NULL, ...)
 
-  \method{svalue}{GCheckbox} (obj, index = NULL, ...,
-    value) <- value
+  \method{svalue}{GCheckbox} (obj, index = NULL, ..., value) <- value
 
   [.GCheckbox(x, i, j, ..., value) <- value
 }
@@ -43,6 +36,8 @@
 
   \item{obj}{receiver object}
 
+  \item{index}{ignored. Input is coerced to logical.}
+
   \item{value}{typically an array-like \R object of a
   similar class as \code{x}.}
 }
@@ -50,26 +45,18 @@
   Returns an object of class \code{GCheckbox}.
 }
 \description{
-  A checkbox widget is used to toggle the state of a
-  labeled boolean variable. The main property of this
-  widget is that state, not the label. This variable may be
-  proxied in the usual way -- with a box that indicates or
-  check if \code{TRUE} -- or through a toggle button.
+  A checkbox widget is used to toggle the state of a labeled boolean variable. The main property of this widget is that state, not the label. This variable may be proxied in the usual way -- with a box that indicates or check if \code{TRUE} -- or through a toggle button.
 
   Generic for toolkit dispatch
 
-  The change handler for \code{GCheckbox} is called when
-  the value toggles. You can inpsect the current value in
-  the callback to have an action based on the state.
+  The change handler for \code{GCheckbox} is called when the value toggles. You can inpsect the current value in the callback to have an action based on the state.
 
-  The \code{svalue<-} method ensures the value is a logical
-  vector of length 1.
+  The \code{svalue<-} method ensures the value is a logical vector of length 1.
 
   items assignment takes string
 }
 \note{
-  The value is coerced to character, then only first
-  element used for checkbox label
+  The value is coerced to character, then only first element used for checkbox label
 }
 \examples{
 if(interactive()) {
