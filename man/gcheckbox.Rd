@@ -58,9 +58,9 @@
 
   Generic for toolkit dispatch
 
-  The change handler for a gcheckbox is called when the
-  value toggles. You can inpsect the current value in the
-  callback to have an action based on the state.
+  The change handler for \code{GCheckbox} is called when
+  the value toggles. You can inpsect the current value in
+  the callback to have an action based on the state.
 
   The \code{svalue<-} method ensures the value is a logical
   vector of length 1.

@@ -4,11 +4,13 @@ Title: rewrite of gWidgets API
 Version: 1.0
 Author: John Verzani
 Maintainer: john verzani <jverzani@gmail.com>
-Description: re-implementation of gWidgets API. The original used S4 methods. This rewrite takes advantage 
-    of R's reference classes. In addition, development is aided by the devtools package and github hosting.
-    The main API is mostly carried forward, though there are some exceptions. The API is defined in this package.
-    A secondary, toolkit, package is required to use it. There are three in development: gWidgets2RGtk2,
-    gWidgets2Qt, and gWidgets2tcltk.
+Description: re-implementation of gWidgets API. The original used S4 methods.
+    This rewrite takes advantage of R's reference classes. In addition,
+    development is aided by the devtools package and github hosting. The main
+    API is mostly carried forward, though there are some exceptions. The API is
+    defined in this package. A secondary, toolkit, package is required to use
+    it. There are three in development: gWidgets2RGtk2, gWidgets2Qt, and
+    gWidgets2tcltk.
 Depends:
     methods,
     digest

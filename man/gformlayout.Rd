@@ -1,6 +1,7 @@
 \name{gformlayout}
 \alias{.gformlayout}
 \alias{gformlayout}
+\alias{svalue.GFormLayout}
 \title{A form layout container}
 \usage{
   gformlayout(align = c("default", "left", "center"),
@@ -9,6 +10,9 @@
 
   .gformlayout(toolkit, align = "left", spacing = 5,
     container = NULL, ...)
+
+  \method{svalue}{GFormLayout} (obj, index = NULL,
+    drop = NULL, ...)
 }
 \arguments{
   \item{align}{alignment of label. Left justify or center
@@ -35,6 +39,16 @@
   toolkit it will use. This is typically done using the
   default, which will lookup the toolkit through
   \code{\link{guiToolkit}}.}
+
+  \item{obj}{object of method call}
+
+  \item{index}{NULL or logical. If \code{TRUE} and widget
+  supports it an index, instead of a value will be
+  returned.}
+
+  \item{drop}{NULL or logical. If widget supports it, drop
+  will work as it does in a data frame or perhaps someother
+  means.}
 }
 \description{
   This convenience container is basically a simpler form of
@@ -44,5 +58,9 @@
   notebook labels
 
   .gformlayout generic for toolkit dispatch
+
+  The \code{svalue} method for \code{GFormLayout} returns a
+  list of values created by calling \code{svalue} on each
+  child
 }
 

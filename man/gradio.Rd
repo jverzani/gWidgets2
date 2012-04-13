@@ -3,6 +3,7 @@
 \alias{[<-.GRadio}
 \alias{gradio}
 \alias{svalue.GRadio}
+\alias{svalue<-.GRadio}
 \title{Constructor for radio button widget}
 \usage{
   gradio(items, selected = 1, horizontal = FALSE,
@@ -14,6 +15,9 @@
 
   \method{svalue}{GRadio} (obj, index = NULL, drop = TRUE,
     ...)
+
+  \method{svalue}{GRadio} (obj, index = NULL, drop = TRUE,
+    ..., value) <- value
 
   \method{[}{GRadio} (x, i, j, ..., value) <- value
 }
@@ -72,6 +76,10 @@
   user to select one.
 
   Generic for method dispatch
+
+  For a radio button group, with \code{svalue} the value
+  can be referred to by index or label. Similarly with
+  setting of a value
 
   For a radio button group, with \code{svalue} the value
   can be referred to by index or label. Similarly with

@@ -41,7 +41,14 @@
   \item{anchor}{NULL or logical. XXX}
 }
 \description{
-  A toolbar constructor
+  A toolbar can be added to a main window to proxy various
+  actions. Toolbars can also contain various widgets, such
+  as buttons, checkboxes, radio buttons, etc. These should
+  be constructed using a \code{parent} argument -- not a
+  \code{container} argument. In \pkg{gWidgets2} a toolbar
+  is specified by a list of toolbar items. The
+  \code{svalue} and \code{svalue<-} methods may be used to
+  get or set the items.
 
   generic for toolkit dispatch
 

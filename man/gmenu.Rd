@@ -43,7 +43,10 @@
   \item{...}{These values are passed to the \code{add}
   method of the parent container, and occasionally have
   been used to sneak in hidden arguments to toolkit
-  implementations.}
+  implementations. For example, when using a widget as a
+  menubar object one can specify a parent argument to pass
+  in parent information, similar to how the argument is
+  used with gaction and the dialogs.}
 
   \item{toolkit}{Each widget constructor is passed in the
   toolkit it will use. This is typically done using the
@@ -65,7 +68,9 @@
   widget may replace the button. This widget intends to
   support buttons (gactions), separators (gseparator),
   radio button (gradio) and checkbutton (gcheckbox), but
-  this may be toolkit independent.
+  this may be toolkit independent. When using a radio
+  button or checkbox, one should pass in a \code{parent}
+  argument to the constructor -- not a \code{container}.
 
   generic for toolkit dispatch
 

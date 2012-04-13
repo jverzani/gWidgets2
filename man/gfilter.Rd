@@ -82,8 +82,8 @@
   selection.
 }
 \description{
-  This widget provides a means for the subset, or filter, a
-  data frame.
+  This widget provides a means to subset, or filter, a data
+  frame.
 
   generic for toolkit dispatch
 

@@ -6,7 +6,7 @@
 \alias{gcombobox}
 \alias{gdroplist}
 \alias{svalue.GComboBox}
-\title{constructor for combobox}
+\title{constructor for a combobox}
 \usage{
   gcombobox(items, selected = 1, editable = FALSE,
     coerce.with = NULL, handler = NULL, action = NULL,

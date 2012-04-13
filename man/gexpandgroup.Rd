@@ -21,8 +21,9 @@
 \arguments{
   \item{text}{Label text}
 
-  \item{markup}{logical. Does text have markup. (Toolkit
-  dependent)}
+  \item{markup}{logical. Does text have markup? (Toolkit
+  dependent: only implemented for \code{RGtk2}, in
+  \code{qtbase} one can pass HTML formatted text)}
 
   \item{horizontal}{horizontal (\code{TRUE}) or vertical
   packing.}
@@ -50,8 +51,8 @@
 
   generic for toolkit dispatch
 
-  For gexapndgroup, the visible assignment method is used
-  to change the disclosure state
+  For gexpandgroup, the visible assignment method is
+  overridden to change the disclosure state
 
   The change handler for a expandGroup is called when the
   group changes visibility

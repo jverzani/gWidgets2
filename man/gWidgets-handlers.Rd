@@ -207,7 +207,8 @@
 
   \item{...}{passed along}
 
-  \item{menulist}{a list of \code{gaction} items}
+  \item{menulist}{a list of \code{gaction} items or a
+  \code{gmenu} instance}
 
   \item{data.type}{Type of data returned. It is either text
   or an object}
@@ -316,7 +317,9 @@
 
   deprecated. See \code{gtimer}.
 
-  Add a "popup" menu to the widget
+  Defaults to adding a 3rd mouse popup menu, better known
+  as a context menu, though some toolkits have both this
+  and the latter provided.
 
   S3 method for popup menu
 

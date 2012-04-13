@@ -62,7 +62,9 @@
   the box container, its spacing. There are generally two
   types of spacing: padding around border of the box and
   spacing between each child that is packed in. The spacing
-  here is the between-child-component spacing.
+  here is the between-child-component spacing. The
+  reference class method \code{set_borderwidth} can be used
+  for the other.
 
   Avoids need to type \code{horizontal=FALSE}
 }

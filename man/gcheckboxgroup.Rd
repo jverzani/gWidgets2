@@ -102,8 +102,8 @@
 
   generic for toolkit dispatch
 
-  Change handler for a checkboxgroup is called when any of
-  the checkboxes changes state.
+  Change handler for a \code{GCheckboxGroup}p is called
+  when any of the checkboxes changes state.
 
   The \code{svalue} methods refer to the selected values.
   By default these are the item values. When
