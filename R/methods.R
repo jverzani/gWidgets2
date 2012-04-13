@@ -49,23 +49,35 @@ gcontainer <- function(container=NULL, ...,toolkit=guiToolkit()) {}
 
 ##' svalue
 ##'
-##' This returns the "selected" value in a widget. Selection varies
-##' from widget to widget, but should generally be what can be added
-##' to the widget by mouse click or typing. For some widgets, the
-##' extra argument \code{index=TRUE} will return the index of the selected
-##' value, not the value. For some widget, the argument \code{drop} is
-##' given to either prevent or encourage dropping of information.
+##' This returns the "selected" value in a widget (if applicable), or
+##' its main property. Selection varies from widget to widget, but
+##' should generally be what can be added to the widget by mouse click
+##' or typing. For some widgets, the extra argument \code{index=TRUE}
+##' will return the index of the selected value, not the value. For
+##' some widget, the argument \code{drop} is given to either prevent
+##' or encourage dropping of information.
 ##' @param obj object of method call
 ##' @param index NULL or logical. If \code{TRUE} and widget supports it an index, instead of a value will be returned.
 ##' @param drop NULL or logical. If widget supports it, drop will work as it does in a data frame or perhaps someother means.
 ##' @param ... passed on to call
+##' @return THe return value varies, depending if the widget is a
+##' "selection" widget or not. For non-selection widgets, the main
+##' property is loosely defined (the title of a window, text of a
+##' label or button, spacing of box containers, ...). For selection
+##' widgets the return value is the currently selected value. If no
+##' selection is made, this will be a 0-length vector with the
+##' expected class, if possible. For selection widgets, when
+##' \code{index=TRUE}, the value is an integer, possible 0-length when
+##' non selection is made.
 ##' @rdname svalue
 ##' @export
 svalue <- function(obj, index=FALSE, drop=NULL, ...) UseMethod("svalue")
 
 ##' default svalue instance
 ##'
-##' Calls \code{coerce_with} when available
+##' Calls \code{coerce_with} when available. This value is a function
+##' and may be set as any property if the constructor does not
+##' explicity provide it.
 ##' @export
 ##' @rdname svalue
 ##' @S3method svalue default
@@ -91,7 +103,7 @@ svalue.default <- function(obj, index=NULL, drop=NULL, ...) {
 
 ##' svalue<-
 ##'
-##' This method sets the main property of the widget.
+##' This method sets the selected value of, or main property of the widget.
 ##' @rdname svalue
 ##' @export
 "svalue<-" <- function(obj, index=TRUE, drop=TRUE, ..., value) UseMethod("svalue<-")
