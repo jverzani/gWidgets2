@@ -1,7 +1,6 @@
 ## an example of a simple wizard. Here we implement classes for the wizard and a wizard page interface. 
 
 library(gWidgets2)
-options(guiToolkit="RGtk2")
 
 ##' Sample wizard page interface. See below for two subclasses used to make a given page
 WizardPage <- setRefClass("WizardPage",
@@ -93,8 +92,10 @@ Wizard <- setRefClass("Wizard",
                           }
                         },
                         call_finalizer=function() {
-                          "replace me"
+                          "replace me in subclass, or make configurable..."
                           print("Tada, all done")
+                          print(get_values())
+                          close_ui()
                         },
                         update_page=function() {
                           "Update buttons"
@@ -109,6 +110,9 @@ Wizard <- setRefClass("Wizard",
                           update_page()
                           .main_window <- main_window
                           visible(.main_window) <- TRUE
+                        },
+                        close_ui=function() {
+                          dispose(main_window)
                         },
                         get_values=function() {
                           "Return values from page"
@@ -131,12 +135,9 @@ page1 <- setRefClass("Page1",
                        },
                        can_prev=function() FALSE,
                        make_page=function(content_area) {
-                         lyt <- glayout(cont=content_area)
-                         lyt[1,1] <- "Edit area 1"
-                         lyt[1,2] <- (widgets$ed1 <<- gedit("", cont=lyt))
-                         
-                         lyt[2,1] <- "Edit area 2"
-                         lyt[2,2] <- (widgets$ed2 <<- gedit("", cont=lyt))
+                         lyt <- gformlayout(cont=content_area)
+                         widgets$ed1 <<- gedit("", initial.msg="Enter some text", cont=lyt, label="Area 1")
+                         widgets$ed2 <<- gedit("", initial.msg="and some more...", cont=lyt, label="And 2")
 
                          sapply(widgets, function(obj)
                                 addHandlerKeystroke(obj, handler=function(h,...) h$action$update_page(), action=.self))
@@ -156,12 +157,9 @@ page2 <- setRefClass("Page2",
                        },
                        can_prev=function() TRUE,
                        make_page=function(content_area) {
-                         lyt <- glayout(cont=content_area)
-                         lyt[1,1] <- "radio group"
-                         lyt[1,2] <- (widgets$rb <<- gradio(state.name[1:4], cont=lyt))
-                         
-                         lyt[2,1] <- "checkbox"
-                         lyt[2,2] <- (widgets$cb <<- gcheckbox("all ready?", checked=FALSE, cont=lyt))
+                         lyt <- gformlayout(cont=content_area)
+                         widgets$rb <<- gradio(state.name[1:4], cont=lyt, label="radio group")
+                         widgets$cb <<- gcheckbox("all ready?", checked=FALSE, cont=lyt, label="checkbox")
 
                          sapply(widgets, function(obj)
                                 addHandlerChanged(obj, handler=function(h,...) h$action$update_page(), action=.self))

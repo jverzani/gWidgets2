@@ -38,7 +38,7 @@ The installation of libraries is OS and toolkit specific:
 
 === tcltk
 
-     gWidgetstcltk uses the newer 8.5 version orhigher of tk. This
+     gWidgetstcltk uses the newer 8.5 version or higher of tk. This
      version introduced theming and many new widgets
 
 * Linux: Many versions of Linux come with the 8.4 version. For Ubuntu,
@@ -52,7 +52,10 @@ The installation of libraries is OS and toolkit specific:
 === Qt
 
 The qtbase package provides an interface with the Qt libraries. These
-are available from _http://qt.nokia.com_. The `qtbase` package is on CRAN.
+are available from _http://qt.nokia.com_. The `qtbase` package is on
+CRAN. The package makes a good effort to install the needed libraries
+when it is first loaded.
+
 
 === Ext JS
 
@@ -60,7 +63,8 @@ The `gWidgetsWWW2` package provides a means to use the gWidgets API
 for web programming. The required JavaScript libraries (extjs) are
 provided in the package, though one needs to install and configure the
 `RServe` and `FastRWeb` packages to have these web apps served to the
-wider internet. (The help page server is used locally.)
+wider internet. (The help page server is used locally, so no
+installation is required for local use.)
 
 [NOTE]
 ======
