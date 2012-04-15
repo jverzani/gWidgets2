@@ -102,8 +102,12 @@ Observable <- setRefClass("Observable",
                               list(signal=signal, o=o)
                             },
                             ## these rmove/block/unblock all observers
-                            remove_observers=function() {
-                              ..observers <<- list()
+                            remove_observers=function(signal) {
+                              if(missing(signal))
+                                ## remove all
+                                ..observers <<- list()
+                              else
+                                ..observers[[signal]] <<- NULL
                             },
                             block_observers=function() {
                               "Block all observers"
