@@ -204,7 +204,11 @@ gbasicdialog <- function(
 
 ##' make basic dialog visible and modal
 ##'
-##' The \code{gbasicdialog} container becomes visible and modal after this call.
+##' We overrided the basic use of \code{visible} for  the
+##' \code{gbasicdialog} container to have it become visible and modal
+##' after this call. The better suited call \code{visible(dlg) <-
+##' TRUE} does not work as wanted, for we want to capture the return
+##' value.
 ##' @param obj dialog object
 ##' @return logical indicating which button was pushed (or TRUE if no buttons present)
 ##' @export

@@ -229,14 +229,15 @@ BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                        set_dimnames=define_me, # dimnames <-
                                        get_attr=define_me,    # tag
                                        set_attr=define_me,    # tag<-
+                                       ##
                                        set_invalid=define_me, # for validation
+                                       is_invalid=function() {}, # for validation
                                        update_widget=define_me, # update
                                        is_extant=function() TRUE,   # isExtant
                                        undo=define_me,          # undo
                                        redo=define_me,          # redo
                                        add_child=define_me,     # add child to container (if present)
                                        set_parent=function(parent) parent <<- parent,
-
                                        ## (signal, handler, action=NULL, decorator, emitter)
                                        add_handler=define_me,
                                        ## (handler, action, ...)
