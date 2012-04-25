@@ -7,11 +7,11 @@
 \usage{
   tooltip(obj)
 
-  \method{tooltip}{default} (obj)
+  \method{tooltip}{default}(obj)
 
   tooltip(obj) <- value
 
-  \method{tooltip}{default} (obj, value) <- value
+  \method{tooltip}{default}(obj, value) <- value
 }
 \arguments{
   \item{obj}{object}

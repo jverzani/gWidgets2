@@ -6,15 +6,20 @@
 \alias{svalue<-.GMenuBar}
 \title{menu constructor, main and popup}
 \usage{
-  gmenu(menu.list, popup = FALSE, container = NULL, ..., toolkit = guiToolkit())
+  gmenu(menu.list, popup = FALSE, container = NULL, ...,
+    toolkit = guiToolkit())
 
-  .gmenu(toolkit, menu.list = list(), popup = FALSE, container = NULL, ...)
+  .gmenu(toolkit, menu.list = list(), popup = FALSE,
+    container = NULL, ...)
 
-  \method{add}{GMenuBar} (obj, child, expand = FALSE, fill = NULL, anchor = NULL, ...)
+  \method{add}{GMenuBar}(obj, child, expand = FALSE,
+    fill = NULL, anchor = NULL, ...)
 
-  \method{svalue}{GMenuBar} (obj, index = NULL, drop = NULL, ...)
+  \method{svalue}{GMenuBar}(obj, index = NULL, drop = NULL,
+    ...)
 
-  \method{svalue}{GMenuBar} (obj, index = NULL, ..., value) <- value
+  \method{svalue}{GMenuBar}(obj, index = NULL, ..., value)
+    <- value
 }
 \arguments{
   \item{menu.list}{A list defining the menu structure.
@@ -65,14 +70,28 @@
   \item{anchor}{NULL or logical. XXX}
 }
 \description{
-  A menu may be viewed as a heirarchical collection of buttons, each invoked by clicking on the button. These buttons are exposed through submenus. More generally, a widget may replace the button. This widget intends to support buttons (gactions), separators (gseparator), radio button (gradio) and checkbutton (gcheckbox), but this may be toolkit independent. When using a radio button or checkbox, one should pass in a \code{parent} argument to the constructor -- not a \code{container}.
+  A menu may be viewed as a heirarchical collection of
+  buttons, each invoked by clicking on the button. These
+  buttons are exposed through submenus. More generally, a
+  widget may replace the button. This widget intends to
+  support buttons (gactions), separators (gseparator),
+  radio button (gradio) and checkbutton (gcheckbox), but
+  this may be toolkit independent. When using a radio
+  button or checkbox, one should pass in a \code{parent}
+  argument to the constructor -- not a \code{container}.
 
   generic for toolkit dispatch
 
   add menubar items to a menu
 
-  For a menubar, \code{svalue} returns the list of action items etc. that defined the menubar. This can be useful to access the underlying item being proxied. (For \code{gaction} items the \code{enabled<-} method may be used on the item, but this may not extend to \code{gradio} and \code{gcheckbox} items)
+  For a menubar, \code{svalue} returns the list of action
+  items etc. that defined the menubar. This can be useful
+  to access the underlying item being proxied. (For
+  \code{gaction} items the \code{enabled<-} method may be
+  used on the item, but this may not extend to
+  \code{gradio} and \code{gcheckbox} items)
 
-  for a menubar, \code{svalue<-} replaces the menubar items with new ones specified by value.
+  for a menubar, \code{svalue<-} replaces the menubar items
+  with new ones specified by value.
 }
 

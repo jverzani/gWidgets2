@@ -7,11 +7,11 @@
 \usage{
   addSpring(obj)
 
-  \method{addSpring}{GContainer} (obj)
+  \method{addSpring}{GContainer}(obj)
 
   addSpace(obj, value)
 
-  \method{addSpace}{GContainer} (obj, value)
+  \method{addSpace}{GContainer}(obj, value)
 }
 \arguments{
   \item{obj}{GContainer object}
@@ -28,11 +28,15 @@
   NULL
 }
 \description{
-  A spring will separate the children packed in the box container prior to the spring be added and those being added, pushing the two are far apart as the allocated space will allow.
+  A spring will separate the children packed in the box
+  container prior to the spring be added and those being
+  added, pushing the two are far apart as the allocated
+  space will allow.
 
   Add spring to GContainer class
 
-  Inserts a proscribed amount of space between the previously packed child and next one.
+  Inserts a proscribed amount of space between the
+  previously packed child and next one.
 
   Add space to GContainer class
 }

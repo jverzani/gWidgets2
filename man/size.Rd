@@ -7,11 +7,11 @@
 \usage{
   size(obj)
 
-  \method{size}{default} (obj)
+  \method{size}{default}(obj)
 
   size(obj) <- value
 
-  \method{size}{default} (obj, value) <- value
+  \method{size}{default}(obj, value) <- value
 }
 \arguments{
   \item{obj}{object}
@@ -23,7 +23,8 @@
 
   S3 method for size
 
-  The size is specified in pixels (integers). Some toolkits allow -1 as a default, but not all.
+  The size is specified in pixels (integers). Some toolkits
+  allow -1 as a default, but not all.
 
   S3 method for size
 }

@@ -2,7 +2,8 @@
 \alias{gwidget}
 \title{Common parts of a widget}
 \usage{
-  gwidget(handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+  gwidget(handler = NULL, action = NULL, container = NULL,
+    ..., toolkit = guiToolkit())
 }
 \arguments{
   \item{handler}{A handler assigned to the default change

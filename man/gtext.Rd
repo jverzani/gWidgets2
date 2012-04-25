@@ -6,15 +6,24 @@
 \alias{insert.GText}
 \title{Multiline text edit constructor}
 \usage{
-  gtext(text = NULL, width = NULL, height = 300, font.attr = NULL, wrap = TRUE, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+  gtext(text = NULL, width = NULL, height = 300,
+    font.attr = NULL, wrap = TRUE, handler = NULL,
+    action = NULL, container = NULL, ...,
+    toolkit = guiToolkit())
 
-  .gtext(toolkit, text = NULL, width = NULL, height = 300, font.attr = NULL, wrap = TRUE, handler = NULL, action = NULL, container = NULL, ...)
+  .gtext(toolkit, text = NULL, width = NULL, height = 300,
+    font.attr = NULL, wrap = TRUE, handler = NULL,
+    action = NULL, container = NULL, ...)
 
-  insert(obj, value, where = c("end", "beginning", "at.cursor"), font.attr = NULL, do.newline = TRUE, ...)
+  insert(obj, value,
+    where = c("end", "beginning", "at.cursor"),
+    font.attr = NULL, do.newline = TRUE, ...)
 
-  \method{insert}{GText} (obj, value, where = c("end", "beginning", "at.cursor"), font.attr = NULL, do.newline = TRUE, ...)
+  \method{insert}{GText}(obj, value,
+    where = c("end", "beginning", "at.cursor"),
+    font.attr = NULL, do.newline = TRUE, ...)
 
-  \method{dispose}{GText} (obj, ...)
+  \method{dispose}{GText}(obj, ...)
 }
 \arguments{
   \item{text}{initial text}
@@ -82,7 +91,11 @@
   called for side effect
 }
 \description{
-  The multiline text widget has its main property the text contained within. \itemize{ \item{The \code{svalue} will return a string (length-1 character vector) with embedded newlines} \item{The "change" handler is \code{addHandlerKeystroke}} }
+  The multiline text widget has its main property the text
+  contained within. \itemize{ \item{The \code{svalue} will
+  return a string (length-1 character vector) with embedded
+  newlines} \item{The "change" handler is
+  \code{addHandlerKeystroke}} }
 
   generic for toolkit dispatch
 

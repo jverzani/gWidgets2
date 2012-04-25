@@ -12,31 +12,35 @@
 \usage{
   getToolkitWidget(obj)
 
-  \method{getToolkitWidget}{default} (obj)
+  \method{getToolkitWidget}{default}(obj)
 
   getWidget(obj)
 
-  \method{getWidget}{GComponent} (obj)
+  \method{getWidget}{GComponent}(obj)
 
   getBlock(obj)
 
-  \method{getBlock}{GComponent} (obj)
+  \method{getBlock}{GComponent}(obj)
 
-  \method{getBlock}{GWindow} (obj)
+  \method{getBlock}{GWindow}(obj)
 
   getTopLevel(obj)
 
-  \method{getTopLevel}{GComponent} (obj)
+  \method{getTopLevel}{GComponent}(obj)
 }
 \arguments{
   \item{obj}{object}
 }
 \description{
-  At times a user may wish to access the underlying toolkit widget. Although this is not cross-platform, one often has access to many more methods of the object, than through those provided by gWidgets.
+  At times a user may wish to access the underlying toolkit
+  widget. Although this is not cross-platform, one often
+  has access to many more methods of the object, than
+  through those provided by gWidgets.
 
   Basic S3 method
 
-  Get underlying toolkit widget from widget slot. Used internally
+  Get underlying toolkit widget from widget slot. Used
+  internally
 
   method for getWidget
 

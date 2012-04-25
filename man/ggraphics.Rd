@@ -3,9 +3,13 @@
 \alias{ggraphics}
 \title{Constructor for an embeddable graphics device}
 \usage{
-  ggraphics(width = dpi * 6, height = dpi * 6, dpi = 75, ps = 12, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+  ggraphics(width = dpi * 6, height = dpi * 6, dpi = 75,
+    ps = 12, handler = NULL, action = NULL,
+    container = NULL, ..., toolkit = guiToolkit())
 
-  .ggraphics(toolkit, width = dpi * 6, height = dpi * 6, dpi = 75, ps = 12, handler = NULL, action = NULL, container = NULL, ...)
+  .ggraphics(toolkit, width = dpi * 6, height = dpi * 6,
+    dpi = 75, ps = 12, handler = NULL, action = NULL,
+    container = NULL, ...)
 }
 \arguments{
   \item{width}{width of device (pixels)}
@@ -50,7 +54,8 @@
   \code{\link{guiToolkit}}.}
 }
 \description{
-  Some toolkits provide an embeddable graphics device. When this is the case, this widget provides same.
+  Some toolkits provide an embeddable graphics device. When
+  this is the case, this widget provides same.
 
   generic for toolkit dispatch
 }

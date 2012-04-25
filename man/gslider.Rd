@@ -3,9 +3,14 @@
 \alias{gslider}
 \title{slider widget constructor}
 \usage{
-  gslider(from = 0, to = 100, by = 1, length.out = NULL, along.with = NULL, value = from[1], horizontal = TRUE, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+  gslider(from = 0, to = 100, by = 1, length.out = NULL,
+    along.with = NULL, value = from[1], horizontal = TRUE,
+    handler = NULL, action = NULL, container = NULL, ...,
+    toolkit = guiToolkit())
 
-  .gslider(toolkit, from = 0, to = 100, by = 1, value = from, horizontal = TRUE, handler = NULL, action = NULL, container = NULL, ...)
+  .gslider(toolkit, from = 0, to = 100, by = 1,
+    value = from, horizontal = TRUE, handler = NULL,
+    action = NULL, container = NULL, ...)
 }
 \arguments{
   \item{from}{If a number of length one then a starting
@@ -69,7 +74,7 @@ if(interactive()) {
   ## a range widget uses either a slider or a linked spinbutton to select a value
   w <- gwindow("Range widget", visible=FALSE)
   g <- ggroup(cont=w, horizontal=TRUE)
-  sl <- gslider(from=0, to=100, by=1, value=0, cont=g, expand=TRUE)
+  sl <- gslider(from=0, to=100, by=1, value=0, cont=g, expand=TRUE, fill="both")
   sp <- gspinbutton(from=0, to=100, by=1, value=0, cont=g)
 
   ## Two ways to do this:

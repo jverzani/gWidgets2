@@ -4,11 +4,15 @@
 \alias{ggraphicsnotebook}
 \title{A notebook widget holding plot devices}
 \usage{
-  ggraphicsnotebook(width = dpi * 6, height = dpi * 6, dpi = 75, container = NULL, ..., toolkit = guiToolkit())
+  ggraphicsnotebook(width = dpi * 6, height = dpi * 6,
+    dpi = 75, container = NULL, ...,
+    toolkit = guiToolkit())
 
-  .ggraphicsnotebook(toolkit, width, height, dpi, container, ...)
+  .ggraphicsnotebook(toolkit, width, height, dpi,
+    container, ...)
 
-  \method{.ggraphicsnotebook}{default} (toolkit, width, height, dpi, container, ...)
+  \method{.ggraphicsnotebook}{default}(toolkit, width,
+    height, dpi, container, ...)
 }
 \arguments{
   \item{width}{width in pixels}
@@ -39,7 +43,8 @@
 \description{
   A notebook widget holding plot devices
 
-  S3 generic whose methods are implemented in the toolkit packages
+  S3 generic whose methods are implemented in the toolkit
+  packages
 
   toolkit implementation
 }

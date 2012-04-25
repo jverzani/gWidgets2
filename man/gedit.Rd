@@ -5,13 +5,19 @@
 \alias{svalue.GEdit}
 \title{Single line text edit constructor}
 \usage{
-  gedit(text = "", width = 25, coerce.with = NULL, initial.msg = "", handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+  gedit(text = "", width = 25, coerce.with = NULL,
+    initial.msg = "", handler = NULL, action = NULL,
+    container = NULL, ..., toolkit = guiToolkit())
 
-  .gedit(toolkit, text = "", width = 25, coerce.with = NULL, initial.msg = "", handler = NULL, action = NULL, container = NULL, ...)
+  .gedit(toolkit, text = "", width = 25,
+    coerce.with = NULL, initial.msg = "", handler = NULL,
+    action = NULL, container = NULL, ...)
 
-  \method{addHandlerChanged}{GEdit} (obj, handler, action = NULL, ...)
+  \method{addHandlerChanged}{GEdit}(obj, handler,
+    action = NULL, ...)
 
-  \method{svalue}{GEdit} (obj, index = NULL, drop = NULL, ...)
+  \method{svalue}{GEdit}(obj, index = NULL, drop = NULL,
+    ...)
 }
 \arguments{
   \item{text}{initial text}
@@ -48,7 +54,8 @@
   means.}
 }
 \value{
-  An object of class \code{GEdit}. This has sub-classed methods:
+  An object of class \code{GEdit}. This has sub-classed
+  methods:
 
   \enumerate{
 
@@ -62,7 +69,8 @@
 
   \item \code{[<-} Character. To set autocomplete values
 
-  \item \code{visible<-} to specify a character to display instead of text (for passwords)
+  \item \code{visible<-} to specify a character to display
+  instead of text (for passwords)
 
   }
 }
@@ -71,8 +79,16 @@
 
   generic for toolkit dispatch
 
-  The default change handler call is when the user activates the entry, typically by pressing the enter key.  Other possible events to consider are covered by: \code{addhandlerBlur} (when the widget loses focuses) and \code{addHandlerKeystroke} (called after each keystroke). For the latter, if the toolkit supports it, the handler's first argument has a component \code{key} passing back the keystroke information.
+  The default change handler call is when the user
+  activates the entry, typically by pressing the enter key.
+  Other possible events to consider are covered by:
+  \code{addhandlerBlur}(when the widget loses focuses) and
+  \code{addHandlerKeystroke}(called after each keystroke).
+  For the latter, if the toolkit supports it, the handler's
+  first argument has a component \code{key} passing back
+  the keystroke information.
 
-  The \code{svalue} method for a edit object refers to its main property, the text in the box,
+  The \code{svalue} method for a edit object refers to its
+  main property, the text in the box,
 }
 

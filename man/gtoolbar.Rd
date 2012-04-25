@@ -4,11 +4,16 @@
 \alias{gtoolbar}
 \title{A toolbar constructor}
 \usage{
-  gtoolbar(toolbar.list = list(), style = c("both", "icons", "text", "both-horiz"), container = NULL, ..., toolkit = guiToolkit())
+  gtoolbar(toolbar.list = list(),
+    style = c("both", "icons", "text", "both-horiz"),
+    container = NULL, ..., toolkit = guiToolkit())
 
-  .gtoolbar(toolkit, toolbar.list = list(), style = c("both", "icons", "text", "both-horiz"), container = NULL, ...)
+  .gtoolbar(toolkit, toolbar.list = list(),
+    style = c("both", "icons", "text", "both-horiz"),
+    container = NULL, ...)
 
-  \method{add}{GToolBar} (obj, child, expand = FALSE, fill = NULL, anchor = NULL, ...)
+  \method{add}{GToolBar}(obj, child, expand = FALSE,
+    fill = NULL, anchor = NULL, ...)
 }
 \arguments{
   \item{toolbar.list}{list. A one-level list of
@@ -36,10 +41,18 @@
   \item{anchor}{NULL or logical. XXX}
 }
 \description{
-  A toolbar can be added to a main window to proxy various actions. Toolbars can also contain various widgets, such as buttons, checkboxes, radio buttons, etc. These should be constructed using a \code{parent} argument -- not a \code{container} argument. In \pkg{gWidgets2} a toolbar is specified by a list of toolbar items. The \code{svalue} and \code{svalue<-} methods may be used to get or set the items.
+  A toolbar can be added to a main window to proxy various
+  actions. Toolbars can also contain various widgets, such
+  as buttons, checkboxes, radio buttons, etc. These should
+  be constructed using a \code{parent} argument -- not a
+  \code{container} argument. In \pkg{gWidgets2} a toolbar
+  is specified by a list of toolbar items. The
+  \code{svalue} and \code{svalue<-} methods may be used to
+  get or set the items.
 
   generic for toolkit dispatch
 
-  A toolbar item is a list of action items or a toolbar instance
+  A toolbar item is a list of action items or a toolbar
+  instance
 }
 

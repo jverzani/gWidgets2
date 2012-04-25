@@ -8,6 +8,7 @@
   \item{msg}{optional message to emit}
 }
 \description{
-  Functions to message something needs doing. Easy to search for
+  Functions to message something needs doing. Easy to
+  search for
 }
 

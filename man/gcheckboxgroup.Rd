@@ -5,13 +5,20 @@
 \alias{svalue.GCheckboxGroup}
 \title{Constructor for checkbox group. A linked group of checkboxes, but not exclusive.}
 \usage{
-  gcheckboxgroup(items, checked = FALSE, horizontal = FALSE, use.table = FALSE, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+  gcheckboxgroup(items, checked = FALSE,
+    horizontal = FALSE, use.table = FALSE, handler = NULL,
+    action = NULL, container = NULL, ...,
+    toolkit = guiToolkit())
 
-  .gcheckboxgroup(toolkit, items, checked = FALSE, horizontal = FALSE, use.table = FALSE, handler = NULL, action = NULL, container = NULL, ...)
+  .gcheckboxgroup(toolkit, items, checked = FALSE,
+    horizontal = FALSE, use.table = FALSE, handler = NULL,
+    action = NULL, container = NULL, ...)
 
-  \method{addHandlerChanged}{GCheckboxGroup} (obj, handler, action = NULL, ...)
+  \method{addHandlerChanged}{GCheckboxGroup}(obj, handler,
+    action = NULL, ...)
 
-  \method{svalue}{GCheckboxGroup} (obj, index = NULL, drop = NULL, ...)
+  \method{svalue}{GCheckboxGroup}(obj, index = NULL,
+    drop = NULL, ...)
 }
 \arguments{
   \item{items}{checkbox labels}
@@ -68,68 +75,58 @@
   means.}
 }
 \value{
-  Returns an object of class \code{GCheckboxGroup} for which the following methods are overridden:
+  Returns an object of class \code{GCheckboxGroup} for
+  which the following methods are overridden:
 
   \itemize{
 
-  \item{ \code{svalue} Return the selected values or an empty character vector. If \code{index=TRUE}, returns indices of selected values.}
+  \item{ \code{svalue} Return the selected values or an
+  empty character vector. If \code{index=TRUE}, returns
+  indices of selected values.}
 
-  \item{ \code{svalue<-} Set the selected values one of three ways: by label name, by a logical variable indicating which are selected (if ambigous, logical wins), if \code{index=TRUE} by the indices to select.}
+  \item{ \code{svalue<-} Set the selected values one of
+  three ways: by label name, by a logical variable
+  indicating which are selected (if ambigous, logical
+  wins), if \code{index=TRUE} by the indices to select.}
 
   \item{ \code{[} returns labels}
 
-  \item{ \code{[<-} set the label values. Should be able to shorten or lengthen list}
+  \item{ \code{[<-} set the label values. Should be able to
+  shorten or lengthen list}
 
   }
 }
 \description{
-  Constructor for checkbox group. A linked group of checkboxes, but not exclusive.
+  Constructor for checkbox group. A linked group of
+  checkboxes, but not exclusive.
 
   generic for toolkit dispatch
 
-  Change handler for a \code{GCheckboxGroup}p is called when any of the checkboxes changes state.
+  Change handler for a \code{GCheckboxGroup}p is called
+  when any of the checkboxes changes state.
 
-  The \code{svalue} methods refer to the selected values. By default these are the item values. When \code{index=TRUE} is specified, then the index is returned as an integer vector. For setting, one may also use a vector of logicals (which is recycled) for the index.
+  The \code{svalue} methods refer to the selected values.
+  By default these are the item values. When
+  \code{index=TRUE} is specified, then the index is
+  returned as an integer vector. For setting, one may also
+  use a vector of logicals (which is recycled) for the
+  index.
 }
 \examples{
 if(interactive()) {
-  ## a tour of the selection widgets
-
   w <- gwindow("Selection widgets")
-  lyt <- glayout(cont=w)
+  g <- gvbox(cont=w)
 
-  ## checkbox
-  lyt[1,1] <- "checkbox"
-  lyt[1,2] <- gcheckbox("checkbox", checked=FALSE, cont=lyt)
+  fl <- gformlayout(cont=g)
+  gcheckbox("checkbox", checked=TRUE, cont=fl, label="checkbox")
+  gradio(state.name[1:4], selected=2, horizontal=TRUE, cont=fl, label="gradio")
+  gcheckboxgroup(state.name[1:4], horizontal=FALSE, cont=fl, label="checkbox group")
 
-  ## radio button group
-  lyt[2,1] <- "radio buttons"
-  lyt[2,2] <- gradio(state.name[1:3], selected=2, cont=lyt, horizontal=TRUE)
-  
-  ## checkbox group
-  lyt[3,1] <- "checkbox group"
-  lyt[3,2] <- gcheckboxgroup(state.name[1:3], checked=c(TRUE, FALSE, TRUE), cont=lyt, horizontal=TRUE)
-  
-  ## checkbox group, using atable
-  lyt[4,1] <- "checkbox group"
-  lyt[4,2] <- gcheckboxgroup(state.name[1:3], checked=c(TRUE, FALSE, TRUE), cont=lyt, use.table=TRUE)
-  
-  ## combobox (drop list)
-  lyt[5,1] <- "combobox"
-  lyt[5,2] <- gcombobox(state.name, selected=match("New York", state.name), cont=lyt)
-  
-  
-  ## editable combobox
-  lyt[6,1] <- "editable combobox"
-  lyt[6,2] <- gcombobox(state.name, selected=match("New York", state.name), cont=lyt, editable=TRUE)
+  bg <- ggroup(cont=g)
+  gbutton("ok", cont=bg, handler=function(h,...) print(sapply(fl$children, svalue)))
 
-  lyt[7,1:2] <- gseparator(cont=lyt)
 
-  lyt[8,2] <- gbutton("values", cont=lyt, handler=function(h,...) {
-    print(sapply(lyt[1:6, 2], svalue))
-  })
-                      
-  visible(w) <- TRUE
+
 }
 }
 

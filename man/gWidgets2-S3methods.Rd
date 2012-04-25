@@ -16,35 +16,35 @@
 \alias{update.GComponent}
 \title{Length of object}
 \usage{
-  \method{length}{GComponent} (x)
+  \method{length}{GComponent}(x)
 
-  \method{length}{GComponent} (x, value) <- value
+  \method{length}{GComponent}(x, value) <- value
 
-  \method{dim}{GComponent} (x)
+  \method{dim}{GComponent}(x)
 
-  \method{names}{GComponent} (x)
+  \method{names}{GComponent}(x)
 
-  \method{names}{GComponent} (x, value) <- value
+  \method{names}{GComponent}(x, value) <- value
 
-  \method{dimnames}{GComponent} (x)
+  \method{dimnames}{GComponent}(x)
 
-  \method{dimnames}{GComponent} (x, value) <- value
+  \method{dimnames}{GComponent}(x, value) <- value
 
-  \method{[}{GComponent} (x, i, j, ..., drop = TRUE)
+  \method{[}{GComponent}(x, i, j, ..., drop = TRUE)
 
-  \method{[}{GContainer} (x, i, j, ..., drop = TRUE)
+  \method{[}{GContainer}(x, i, j, ..., drop = TRUE)
 
-  \method{[}{GComponent} (x, i, j, ..., value) <- value
+  \method{[}{GComponent}(x, i, j, ..., value) <- value
 
-  \method{update}{GComponent} (object, ...)
+  \method{update}{GComponent}(object, ...)
 
-  \method{str}{GComponent} (object, ...)
+  \method{str}{GComponent}(object, ...)
 
-  \method{[}{GDf} (x, i, j, ..., drop = TRUE)
+  \method{[}{GDf}(x, i, j, ..., drop = TRUE)
 
-  \method{[}{GEdit} (x, i, j, ..., drop = TRUE)
+  \method{[}{GEdit}(x, i, j, ..., drop = TRUE)
 
-  \method{names}{GFrame} (x, value) <- value
+  \method{names}{GFrame}(x, value) <- value
 }
 \arguments{
   \item{x}{component}
@@ -80,19 +80,28 @@
 
   Set dimnames of object
 
-  We use the extraction operator, \code{[}, typically to refer to the underlying items from which a selection can be made. As well, we overload this to containers to refer to the child components.
+  We use the extraction operator, \code{[}, typically to
+  refer to the underlying items from which a selection can
+  be made. As well, we overload this to containers to refer
+  to the child components.
 
   Return children of a parent container
 
   Set object's items
 
-  The update method will ca use a widget to recompute itself, if it is necessary.
+  The update method will ca use a widget to recompute
+  itself, if it is necessary.
 
   str method for widgets
 
-  The current items for a \code{gdf} object are both the visible and non-visible items. To retrieve just the currently visible items, use the idiom \code{obj[visible(obj), ]}.
+  The current items for a \code{gdf} object are both the
+  visible and non-visible items. To retrieve just the
+  currently visible items, use the idiom
+  \code{obj[visible(obj), ]}.
 
-  The underlying widget may allow autocompletion, if this is the case then this method is used to set the list of candidates.
+  The underlying widget may allow autocompletion, if this
+  is the case then this method is used to set the list of
+  candidates.
 
   set names for frame
 }

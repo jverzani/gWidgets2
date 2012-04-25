@@ -6,15 +6,18 @@
 \alias{visible<-.GDf}
 \title{Constructor for a data frame editor}
 \usage{
-  gdf(items = NULL, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+  gdf(items = NULL, handler = NULL, action = NULL,
+    container = NULL, ..., toolkit = guiToolkit())
 
-  .gdf(toolkit, items = NULL, handler = NULL, action = NULL, container = NULL, ...)
+  .gdf(toolkit, items = NULL, handler = NULL,
+    action = NULL, container = NULL, ...)
 
-  \method{addHandlerChanged}{GDf} (obj, handler, action = NULL, ...)
+  \method{addHandlerChanged}{GDf}(obj, handler,
+    action = NULL, ...)
 
-  \method{svalue}{GDf} (obj, index = NULL, drop = TRUE, ...)
+  \method{svalue}{GDf}(obj, index = NULL, drop = TRUE, ...)
 
-  \method{visible}{GDf} (obj, value) <- value
+  \method{visible}{GDf}(obj, value) <- value
 }
 \arguments{
   \item{items}{data frame to edit}
@@ -46,15 +49,20 @@
   An object of class \code{gDf}.
 }
 \description{
-  Implementation varies wildly, but should provide at minimum functionality of \code{edit.data.frame}. A single mouse click on a cell should select that cell, a double click should initiate editing of that cell.
+  Implementation varies wildly, but should provide at
+  minimum functionality of \code{edit.data.frame}. A single
+  mouse click on a cell should select that cell, a double
+  click should initiate editing of that cell.
 
   generic for toolkit dispatch
 
-  Assign handler to be called when a cell, row or column changes
+  Assign handler to be called when a cell, row or column
+  changes
 
   For gdf svalue refers to the selected values.
 
-  \code{visible} is used to refer to which rows are being shown.
+  \code{visible} is used to refer to which rows are being
+  shown.
 }
 \note{
   need example of do.subset feature using \code{visible<-}

@@ -5,13 +5,15 @@
 \alias{glayout}
 \title{Constructor for grid layout container}
 \usage{
-  glayout(homogeneous = FALSE, spacing = 10, container = NULL, ..., toolkit = guiToolkit())
+  glayout(homogeneous = FALSE, spacing = 10,
+    container = NULL, ..., toolkit = guiToolkit())
 
-  .glayout(toolkit, homogeneous = FALSE, spacing = 10, container = NULL, ...)
+  .glayout(toolkit, homogeneous = FALSE, spacing = 10,
+    container = NULL, ...)
 
-  \method{[}{GLayout} (x, i, j, ..., drop = TRUE)
+  \method{[}{GLayout}(x, i, j, ..., drop = TRUE)
 
-  \method{[}{GLayout} (x, i, j, ..., value) <- value
+  \method{[}{GLayout}(x, i, j, ..., value) <- value
 }
 \arguments{
   \item{homogeneous}{are cells all the same size}
@@ -50,8 +52,12 @@
 
   generic for toolkit dispatch
 
-  pass back item, list or matrix of items depending on dimension
+  pass back item, list or matrix of items depending on
+  dimension
 
-  The matrix notation allows for spanning of multiple rows and or columns, but no holes. The \code{...} argument is used to pass in values for expand, fill, anchor (see the \code{add} method of \code{ggroup}) for their meaning).
+  The matrix notation allows for spanning of multiple rows
+  and or columns, but no holes. The \code{...} argument is
+  used to pass in values for expand, fill, anchor (see the
+  \code{add} method of \code{ggroup}) for their meaning).
 }
 

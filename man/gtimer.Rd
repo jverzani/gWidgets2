@@ -3,9 +3,11 @@
 \alias{gtimer}
 \title{Basic timer widget}
 \usage{
-  gtimer(ms, FUN, data = NULL, one.shot = FALSE, start = TRUE, toolkit = guiToolkit())
+  gtimer(ms, FUN, data = NULL, one.shot = FALSE,
+    start = TRUE, toolkit = guiToolkit())
 
-  .gtimer(toolkit, ms, FUN, data = NULL, one.shot = FALSE, start = TRUE)
+  .gtimer(toolkit, ms, FUN, data = NULL, one.shot = FALSE,
+    start = TRUE)
 }
 \arguments{
   \item{ms}{interval in milliseconds}
@@ -25,7 +27,9 @@
   \item{toolkit}{gui toolkit to dispatch into}
 }
 \description{
-  Calls FUN every ms/1000 seconds. A timer is stopped through its \code{stop_timer} method which is called using OO style: \code{obj$stop_timer()}.
+  Calls FUN every ms/1000 seconds. A timer is stopped
+  through its \code{stop_timer} method which is called
+  using OO style: \code{obj$stop_timer()}.
 
   S3 generic for dispatch
 }

@@ -7,11 +7,11 @@
 \usage{
   tag(obj, key)
 
-  \method{tag}{default} (obj, key)
+  \method{tag}{default}(obj, key)
 
   tag(obj, key) <- value
 
-  \method{tag}{default} (obj, key, value) <- value
+  \method{tag}{default}(obj, key, value) <- value
 }
 \arguments{
   \item{obj}{object}
@@ -26,7 +26,10 @@
 
   Basic S3 method
 
-  Unlike \code{attr<-}, this method (essentially) stores the attribute in a reference to the object, not a copy. As such it can be used within function call (handlers) to assign values outside the scope of the function call.
+  Unlike \code{attr<-}, this method (essentially) stores
+  the attribute in a reference to the object, not a copy.
+  As such it can be used within function call (handlers) to
+  assign values outside the scope of the function call.
 
   Basic S3 method
 }

@@ -7,17 +7,26 @@
 \alias{update.GTree}
 \title{constructor for widget to display heirarchical data}
 \usage{
-  gtree(x = NULL, INDICES = NULL, offspring = NULL, offspring.data = NULL, chosen.col = 1, offspring.col = 2, icon.col = NULL, tooltip.col = NULL, multiple = FALSE, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+  gtree(x = NULL, INDICES = NULL, offspring = NULL,
+    offspring.data = NULL, chosen.col = 1,
+    offspring.col = 2, icon.col = NULL, tooltip.col = NULL,
+    multiple = FALSE, handler = NULL, action = NULL,
+    container = NULL, ..., toolkit = guiToolkit())
 
-  .gtree(toolkit, offspring = NULL, offspring.data = NULL, chosen.col = 1, offspring.col = 2, icon.col = NULL, tooltip.col = NULL, multiple = FALSE, handler = NULL, action = NULL, container = NULL, ...)
+  .gtree(toolkit, offspring = NULL, offspring.data = NULL,
+    chosen.col = 1, offspring.col = 2, icon.col = NULL,
+    tooltip.col = NULL, multiple = FALSE, handler = NULL,
+    action = NULL, container = NULL, ...)
 
-  \method{svalue}{GTree} (obj, index = FALSE, drop = TRUE, ...)
+  \method{svalue}{GTree}(obj, index = FALSE, drop = TRUE,
+    ...)
 
-  \method{svalue}{GTree} (obj, index = TRUE, ..., value) <- value
+  \method{svalue}{GTree}(obj, index = TRUE, ..., value) <-
+    value
 
-  \method{[}{GTree} (x, i, j, ..., drop = FALSE)
+  \method{[}{GTree}(x, i, j, ..., drop = FALSE)
 
-  \method{update}{GTree} (object, ...)
+  \method{update}{GTree}(object, ...)
 }
 \arguments{
   \item{x}{Data frame. Optional, if given specify INDICES
@@ -99,22 +108,56 @@
   \code{\link{guiToolkit}}.}
 }
 \description{
-  The \code{gtree} widget is used to present structured heirarchical data. This data may be specified through a data frame with some accompanying columns by which to split the data, or dynamically through a function (\code{offspring}).
+  The \code{gtree} widget is used to present structured
+  heirarchical data. This data may be specified through a
+  data frame with some accompanying columns by which to
+  split the data, or dynamically through a function
+  (\code{offspring}).
 
   generic for toolkit dispatch
 
-  For a \code{GTree} object, svalue refers to the path specified as a vector of keys or (if \code{INDEX=TRUE}) by an integer vector of offspring positions. The \code{drop} argument is used to indicate if the terminus of the path is returned or the entire path, defaults=TRUE. To get the data associated with a row, use the \code{[} method.
+  For a \code{GTree} object, svalue refers to the path
+  specified as a vector of keys or (if \code{INDEX=TRUE})
+  by an integer vector of offspring positions. The
+  \code{drop} argument is used to indicate if the terminus
+  of the path is returned or the entire path,
+  defaults=TRUE. To get the data associated with a row, use
+  the \code{[} method.
 
-  For a \code{GTree} object, svalue refers to the path specified as a vector of keys . For the assignment method, one assigns by index. That is \code{svalue(tr, index=TRUE) <- svalue(tr, index=TRUE)} should not change the state of the widget. (The \code{index=TRUE} argument is the case for setting, but not getting.)
+  For a \code{GTree} object, svalue refers to the path
+  specified as a vector of keys . For the assignment
+  method, one assigns by index. That is \code{svalue(tr,
+  index=TRUE) <- svalue(tr, index=TRUE)} should not change
+  the state of the widget. (The \code{index=TRUE} argument
+  is the case for setting, but not getting.)
 
-  The \code{[} method is used to return the data associated with a selected row. The \code{svalue} method returns the path or its endpoint, the \code{[} method returns the row data associated with the path.
+  The \code{[} method is used to return the data associated
+  with a selected row. The \code{svalue} method returns the
+  path or its endpoint, the \code{[} method returns the row
+  data associated with the path.
 
-  The update method for \code{GTree} recomputes the base nodes, then reopens the given node if still available
+  The update method for \code{GTree} recomputes the base
+  nodes, then reopens the given node if still available
 }
 \details{
-  In the former case, the data frame is split up by the columns specified by INDICES. The first index is used to give the intial branches, the second index the second, etc. The end leaves are the data associated with a given path, with key given by that column specified by \code{chosen.col}
+  In the former case, the data frame is split up by the
+  columns specified by INDICES. The first index is used to
+  give the intial branches, the second index the second,
+  etc. The end leaves are the data associated with a given
+  path, with key given by that column specified by
+  \code{chosen.col}
 
-  For the latter case, the "path" of the current node (the node and its ancestors) is passed to the \code{offspring} function which computes the next level in the heirarchy. This level is specified through a data frame. This data frame has special columns. The \code{chosen.col} specifies which column is used as the key in the path, the \code{icon.col} (when given) points to a stock icon name to decorate the column. Similarly, the \code{tooltip.columns}. The fact that a row in the data frame has offspring is specified through the \code{offspring.col} column, again specifed by index or column
-  name.
+  For the latter case, the "path" of the current node (the
+  node and its ancestors) is passed to the \code{offspring}
+  function which computes the next level in the heirarchy.
+  This level is specified through a data frame. This data
+  frame has special columns. The \code{chosen.col}
+  specifies which column is used as the key in the path,
+  the \code{icon.col}(when given) points to a stock icon
+  name to decorate the column. Similarly, the
+  \code{tooltip.columns}. The fact that a row in the data
+  frame has offspring is specified through the
+  \code{offspring.col} column, again specifed by index or
+  column name.
 }
 

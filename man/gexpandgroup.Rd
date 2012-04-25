@@ -5,13 +5,18 @@
 \alias{visible<-.GExpandGroup}
 \title{Constructor of box container widget with disclosure trigger and label}
 \usage{
-  gexpandgroup(text = "", markup = FALSE, horizontal = TRUE, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+  gexpandgroup(text = "", markup = FALSE,
+    horizontal = TRUE, handler = NULL, action = NULL,
+    container = NULL, ..., toolkit = guiToolkit())
 
-  .gexpandgroup(toolkit, text = "", markup = FALSE, horizontal = TRUE, handler = NULL, action = NULL, container = NULL, ...)
+  .gexpandgroup(toolkit, text = "", markup = FALSE,
+    horizontal = TRUE, handler = NULL, action = NULL,
+    container = NULL, ...)
 
-  \method{visible}{GExpandGroup} (obj, value) <- value
+  \method{visible}{GExpandGroup}(obj, value) <- value
 
-  \method{addHandlerChanged}{GExpandGroup} (obj, handler, action = NULL, ...)
+  \method{addHandlerChanged}{GExpandGroup}(obj, handler,
+    action = NULL, ...)
 }
 \arguments{
   \item{text}{Label text}
@@ -40,16 +45,20 @@
   to the handler}
 }
 \value{
-  An object of class \code{GExpandGroup} inheriting from \code{GFrame}
+  An object of class \code{GExpandGroup} inheriting from
+  \code{GFrame}
 }
 \description{
-  Constructor of box container widget with disclosure trigger and label
+  Constructor of box container widget with disclosure
+  trigger and label
 
   generic for toolkit dispatch
 
-  For gexpandgroup, the visible assignment method is overridden to change the disclosure state
+  For gexpandgroup, the visible assignment method is
+  overridden to change the disclosure state
 
-  The change handler for a expandGroup is called when the group changes visibility
+  The change handler for a expandGroup is called when the
+  group changes visibility
 }
 \seealso{
   \code{\link{ggroup}} and \code{\link{gframe}}

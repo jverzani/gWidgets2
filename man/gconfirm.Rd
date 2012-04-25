@@ -3,9 +3,13 @@
 \alias{gconfirm}
 \title{Constructor for modal dialog to get confirmation}
 \usage{
-  gconfirm(msg, title = "Confirm", icon = c("info", "warning", "error", "question"), parent = NULL, ..., toolkit = guiToolkit())
+  gconfirm(msg, title = "Confirm",
+    icon = c("info", "warning", "error", "question"),
+    parent = NULL, ..., toolkit = guiToolkit())
 
-  .gconfirm(toolkit, msg, title = "Confirm", icon = c("info", "warning", "error", "question"), parent = NULL, ...)
+  .gconfirm(toolkit, msg, title = "Confirm",
+    icon = c("info", "warning", "error", "question"),
+    parent = NULL, ...)
 }
 \arguments{
   \item{msg}{Character. Message to display.}

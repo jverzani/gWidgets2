@@ -177,6 +177,7 @@ addHandlerColumnRightclicked.default <- function(obj, handler, action=NULL, ...)
 
 ##' Add a handler to the a "select" event
 ##'
+##' Mostly, the select event is the same as the "changed" event.
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerSelect <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerSelect")
@@ -190,6 +191,25 @@ addHandlerSelect <- function(obj, handler, action=NULL, ...) UseMethod("addHandl
 ##' @S3method addHandlerSelect default
 addHandlerSelect.default <- function(obj, handler, action=NULL, ...)
   obj$add_handler_select(handler, action=action, ...)
+
+
+
+##' Add a handler to the a "selection-changed" event
+##'
+##' The "select" event is when a user "selects" an object, the "selection changed" event is when the selection changes. The distinction is in table and tree widgets where a user may select values with a single click yet want to initiate an action with a double click. The latter is the "addHandlerSelect" event, the former the "addHandlerSelectionChange"
+##' @export
+##' @rdname gWidgets-handlers
+addHandlerSelectionChanged <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerSelectionChanged")
+
+##' Default S3 method
+##'
+##' @inheritParams addHandlerSelectionChanged
+##' @export
+##' @rdname gWidgets-handlers
+##' @method addHandlerSelectionChanged default
+##' @S3method addHandlerSelectionChanged default
+addHandlerSelectionChanged.default <- function(obj, handler, action=NULL, ...)
+  obj$add_handler_selection_changed(handler, action=action, ...)
 
 
 ##' Add handler for focus in event

@@ -2,7 +2,8 @@
 \alias{.gdfnotebook.default}
 \title{Toolkit constructor}
 \usage{
-  \method{.gdfnotebook}{default} (toolkit, items, container = NULL, ...)
+  \method{.gdfnotebook}{default}(toolkit, items,
+    container = NULL, ...)
 }
 \arguments{
   \item{toolkit}{toolkit}

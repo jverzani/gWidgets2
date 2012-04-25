@@ -3,9 +3,11 @@
 \alias{galert}
 \title{Alert dialog to display transient messages}
 \usage{
-  galert(msg, title = "message", delay = 3, parent = NULL, ..., toolkit = guiToolkit())
+  galert(msg, title = "message", delay = 3, parent = NULL,
+    ..., toolkit = guiToolkit())
 
-  .galert(toolkit, msg, title = "message", delay = 3, parent = NULL, ...)
+  .galert(toolkit, msg, title = "message", delay = 3,
+    parent = NULL, ...)
 }
 \arguments{
   \item{msg}{character. main message. If length is 2,

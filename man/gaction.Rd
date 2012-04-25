@@ -3,9 +3,13 @@
 \alias{gaction}
 \title{An action constructor}
 \usage{
-  gaction(label, tooltip = NULL, icon = NULL, key.accel = NULL, handler = NULL, action = NULL, parent = NULL, ..., toolkit = guiToolkit())
+  gaction(label, tooltip = NULL, icon = NULL,
+    key.accel = NULL, handler = NULL, action = NULL,
+    parent = NULL, ..., toolkit = guiToolkit())
 
-  .gaction(toolkit, label, tooltip = NULL, icon = NULL, key.accel = NULL, handler = NULL, action = NULL, parent = NULL, ...)
+  .gaction(toolkit, label, tooltip = NULL, icon = NULL,
+    key.accel = NULL, handler = NULL, action = NULL,
+    parent = NULL, ...)
 }
 \arguments{
   \item{label}{label for action}
@@ -38,7 +42,9 @@
   a gaction instance
 }
 \description{
-  A action object encapsulates an action (a callback) adding textual and graphic information. Actions may be proxied in buttons, menu bars or tool bars.
+  A action object encapsulates an action (a callback)
+  adding textual and graphic information. Actions may be
+  proxied in buttons, menu bars or tool bars.
 
   generic for toolkit dispatch
 }

@@ -5,13 +5,18 @@
 \alias{gwindow}
 \title{gwindow}
 \usage{
-  gwindow(title = "Window", visible = TRUE, name = title, width = NULL, height = NULL, parent = NULL, handler = NULL, action = NULL, ..., toolkit = guiToolkit())
+  gwindow(title = "Window", visible = TRUE, name = title,
+    width = NULL, height = NULL, parent = NULL,
+    handler = NULL, action = NULL, ...,
+    toolkit = guiToolkit())
 
-  .gwindow(toolkit, title, visible, name, width, height, parent, handler, action, ...)
+  .gwindow(toolkit, title, visible, name, width, height,
+    parent, handler, action, ...)
 
-  \method{add}{GWindow} (obj, child, expand = NULL, fill = NULL, anchor = NULL, ...)
+  \method{add}{GWindow}(obj, child, expand = NULL,
+    fill = NULL, anchor = NULL, ...)
 
-  \method{dispose}{GWindow} (obj, ...)
+  \method{dispose}{GWindow}(obj, ...)
 }
 \arguments{
   \item{title}{title for window's title bar. This is the
@@ -67,11 +72,14 @@
 \description{
   top-level window object
 
-  S3 generic whose methods are implemented in the toolkit packages
+  S3 generic whose methods are implemented in the toolkit
+  packages
 
-  Dispatches on type of child (menubar, toolbar, statusbar, widget)
+  Dispatches on type of child (menubar, toolbar, statusbar,
+  widget)
 
-  The \code{dispose} method destroys the top-level window and its children.
+  The \code{dispose} method destroys the top-level window
+  and its children.
 }
 \author{
   john verzani

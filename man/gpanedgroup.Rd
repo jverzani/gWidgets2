@@ -3,9 +3,11 @@
 \alias{gpanedgroup}
 \title{constructor for a two-paned container}
 \usage{
-  gpanedgroup(horizontal = TRUE, container = NULL, ..., toolkit = guiToolkit())
+  gpanedgroup(horizontal = TRUE, container = NULL, ...,
+    toolkit = guiToolkit())
 
-  .gpanedgroup(toolkit, horizontal = TRUE, container = NULL, ...)
+  .gpanedgroup(toolkit, horizontal = TRUE,
+    container = NULL, ...)
 }
 \arguments{
   \item{horizontal}{direction of layout}
@@ -35,6 +37,7 @@
   generic for toolkit dispatch
 }
 \note{
-  There were arguments to specify the children at construction, but these have been removed.
+  There were arguments to specify the children at
+  construction, but these have been removed.
 }
 

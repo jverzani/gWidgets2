@@ -6,15 +6,20 @@
 \alias{svalue<-.GRadio}
 \title{Constructor for radio button widget}
 \usage{
-  gradio(items, selected = 1, horizontal = FALSE, handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+  gradio(items, selected = 1, horizontal = FALSE,
+    handler = NULL, action = NULL, container = NULL, ...,
+    toolkit = guiToolkit())
 
-  .gradio(toolkit, items, selected = 1, horizontal = FALSE, handler = NULL, action = NULL, container = NULL, ...)
+  .gradio(toolkit, items, selected = 1, horizontal = FALSE,
+    handler = NULL, action = NULL, container = NULL, ...)
 
-  \method{svalue}{GRadio} (obj, index = NULL, drop = TRUE, ...)
+  \method{svalue}{GRadio}(obj, index = NULL, drop = TRUE,
+    ...)
 
-  \method{svalue}{GRadio} (obj, index = NULL, drop = TRUE, ..., value) <- value
+  \method{svalue}{GRadio}(obj, index = NULL, drop = TRUE,
+    ..., value) <- value
 
-  \method{[}{GRadio} (x, i, j, ..., value) <- value
+  \method{[}{GRadio}(x, i, j, ..., value) <- value
 }
 \arguments{
   \item{items}{items to select from}
@@ -75,55 +80,37 @@
   means.}
 }
 \description{
-  The radio button widget shows 2 or more items forcing the user to select one.
+  The radio button widget shows 2 or more items forcing the
+  user to select one.
 
   Generic for method dispatch
 
-  For a radio button group, with \code{svalue} the value can be referred to by index or label. Similarly with setting of a value
+  For a radio button group, with \code{svalue} the value
+  can be referred to by index or label. Similarly with
+  setting of a value
 
-  For a radio button group, with \code{svalue} the value can be referred to by index or label. Similarly with setting of a value
+  For a radio button group, with \code{svalue} the value
+  can be referred to by index or label. Similarly with
+  setting of a value
 
-  Check for repeated items before passing on to \code{set_items}
+  Check for repeated items before passing on to
+  \code{set_items}
 }
 \examples{
 if(interactive()) {
-  ## a tour of the selection widgets
-
   w <- gwindow("Selection widgets")
-  lyt <- glayout(cont=w)
+  g <- gvbox(cont=w)
 
-  ## checkbox
-  lyt[1,1] <- "checkbox"
-  lyt[1,2] <- gcheckbox("checkbox", checked=FALSE, cont=lyt)
+  fl <- gformlayout(cont=g)
+  gcheckbox("checkbox", checked=TRUE, cont=fl, label="checkbox")
+  gradio(state.name[1:4], selected=2, horizontal=TRUE, cont=fl, label="gradio")
+  gcheckboxgroup(state.name[1:4], horizontal=FALSE, cont=fl, label="checkbox group")
 
-  ## radio button group
-  lyt[2,1] <- "radio buttons"
-  lyt[2,2] <- gradio(state.name[1:3], selected=2, cont=lyt, horizontal=TRUE)
-  
-  ## checkbox group
-  lyt[3,1] <- "checkbox group"
-  lyt[3,2] <- gcheckboxgroup(state.name[1:3], checked=c(TRUE, FALSE, TRUE), cont=lyt, horizontal=TRUE)
-  
-  ## checkbox group, using atable
-  lyt[4,1] <- "checkbox group"
-  lyt[4,2] <- gcheckboxgroup(state.name[1:3], checked=c(TRUE, FALSE, TRUE), cont=lyt, use.table=TRUE)
-  
-  ## combobox (drop list)
-  lyt[5,1] <- "combobox"
-  lyt[5,2] <- gcombobox(state.name, selected=match("New York", state.name), cont=lyt)
-  
-  
-  ## editable combobox
-  lyt[6,1] <- "editable combobox"
-  lyt[6,2] <- gcombobox(state.name, selected=match("New York", state.name), cont=lyt, editable=TRUE)
+  bg <- ggroup(cont=g)
+  gbutton("ok", cont=bg, handler=function(h,...) print(sapply(fl$children, svalue)))
 
-  lyt[7,1:2] <- gseparator(cont=lyt)
 
-  lyt[8,2] <- gbutton("values", cont=lyt, handler=function(h,...) {
-    print(sapply(lyt[1:6, 2], svalue))
-  })
-                      
-  visible(w) <- TRUE
+
 }
 }
 

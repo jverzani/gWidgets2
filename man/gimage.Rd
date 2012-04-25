@@ -3,9 +3,13 @@
 \alias{gimage}
 \title{A widget for displaying an image}
 \usage{
-  gimage(filename = "", dirname = "", stock.id = NULL, size = "", handler = NULL, action = NULL, container = NULL, ..., toolkit = guiToolkit())
+  gimage(filename = "", dirname = "", stock.id = NULL,
+    size = "", handler = NULL, action = NULL,
+    container = NULL, ..., toolkit = guiToolkit())
 
-  .gimage(toolkit, filename = "", dirname = "", stock.id = NULL, size = "", handler = NULL, action = NULL, container = NULL, ...)
+  .gimage(toolkit, filename = "", dirname = "",
+    stock.id = NULL, size = "", handler = NULL,
+    action = NULL, container = NULL, ...)
 }
 \arguments{
   \item{filename}{basename of file}
