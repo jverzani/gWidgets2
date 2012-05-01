@@ -9,22 +9,26 @@ NULL
 ##'
 ##' A GUI is made interactive by assigning handlers to user-generated
 ##' events, such as a mouse click, change of widget state, or keyboard
-##' press. In \pkg{gWidgets2} handlers are assigned through the
+##' press. In \pkg{gWidgets2} handlers are assigned through various
 ##' \code{addHandlerXXX} methods. The handlers are functions whose
 ##' first argument should expect a list with components \code{obj} (to
 ##' pass in the receiver object) and \code{action} (to pass in any
 ##' user-supplied value to the \code{action} argument). Some handlers
 ##' add other components, such as mouse position information on a
-##' click, or key information on a keyboard event.  Although this
-##' method is basically the workhorse to add a handler to response to
-##' a signal, it generally isn't called directly, as its use is not
-##' cross toolkit. Rather, if possible, one should use the
-##' \code{addHandlerXXX} methods to add a handler. These dispatch do
-##' this (basically) but do so in a toolkit independent manner. This
-##' call (and the others) returns a handler ID which may be used for
-##' some toolkitst later on to remove, block or unblock the call. All
-##' handlers for a widget may be blocked or unblocked via
+##' click, or key information on a keyboard event.
+##'
+##' Although the \code{add_handler} method, to which \code{addHandler}
+##' dispatches, is basically the workhorse to add a handler to
+##' response to a signal, it generally isn't called directly, as its
+##' use is not cross toolkit. Rather, if possible, one should use the
+##' \code{addHandlerXXX} methods to add a handler. These dispatch to
+##' this (basically) but do so in a toolkit independent manner.
+##'
+##' This call (and the others) returns a handler ID which may be used
+##' for some toolkits later on to remove, block or unblock the
+##' call. All handlers for a widget may be blocked or unblocked via
 ##' \code{blockHandlers} and \code{unblockHandlers}.
+##' 
 ##' @param obj object receiving event and emitting a signal to the handler
 ##' @param signal toolkit signal, e.g. "clicked"
 ##' @param handler handler to assign when signal is emitted. A handler
@@ -54,10 +58,12 @@ addHandler.default <- function(obj, signal, handler, action=NULL, ...)
 
 ##' Add a handler to the generic "changed" event, which is the main event for a widget
 ##'
-##' The "changed" event is also the one that a handler passed to the
-##' constructor is called on. This is a real generic function, in that
-##' each widget has one, but it is interpreted quite differently for
-##' each.
+##' The "changed" event varies wildly amongst the widgets, but is
+##' meant to be the most "obvious" one. Typically this is also similar
+##' to "selected".
+##'
+##' The "changed" event is also the one that a handler
+##' passed to the constructor is called on. 
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerChanged <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerChanged")
@@ -107,6 +113,7 @@ addHandlerDoubleclick.default <- function(obj, handler, action=NULL, ...)
 
 ##' Add handler for right click event
 ##'
+##' This may not be supported by all toolkits.
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerRightclick <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerRightclick")
@@ -126,6 +133,9 @@ addHandlerRightclick.default <- function(obj, handler, action=NULL, ...)
 
 ##' Add handler for column click event
 ##'
+##' For table widgets (\code{gtable}, \code{gdf}) clicking the column
+##' header should trigger this event. The column that is clicked on is
+##' passed back in the component \code{column}.
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerColumnclicked <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerColumnclicked")
@@ -142,6 +152,9 @@ addHandlerColumnclicked.default <- function(obj, handler, action=NULL, ...)
 
 ##' Add handler for column double click event
 ##'
+##' If defined (\code{gtable}, \code{gdf}) calls event handler for
+##' double click enent. Passes back column information through
+##' \code{column} component.
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerColumnDoubleclicked <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerColumnDoubleclicked")
@@ -177,7 +190,7 @@ addHandlerColumnRightclicked.default <- function(obj, handler, action=NULL, ...)
 
 ##' Add a handler to the a "select" event
 ##'
-##' Mostly, the select event is the same as the "changed" event.
+##' The select event defaults to the "changed" event.
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerSelect <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerSelect")
@@ -196,7 +209,12 @@ addHandlerSelect.default <- function(obj, handler, action=NULL, ...)
 
 ##' Add a handler to the a "selection-changed" event
 ##'
-##' The "select" event is when a user "selects" an object, the "selection changed" event is when the selection changes. The distinction is in table and tree widgets where a user may select values with a single click yet want to initiate an action with a double click. The latter is the "addHandlerSelect" event, the former the "addHandlerSelectionChange"
+##' The "select" event is when a user "selects" an object, the
+##' "selection changed" event is when the selection changes. The
+##' distinction is in table and tree widgets where a user may select
+##' values with a single click yet want to initiate an action with a
+##' double click. The latter is the "addHandlerSelect" event, the
+##' former the "addHandlerSelectionChanged" event.
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerSelectionChanged <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerSelectionChanged")
@@ -214,6 +232,8 @@ addHandlerSelectionChanged.default <- function(obj, handler, action=NULL, ...)
 
 ##' Add handler for focus in event
 ##'
+##' When a widget has the focus, it will receive the keyboard
+##' input. This handler is called when a widget receives the focus.
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerFocus <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerFocus")
@@ -230,6 +250,7 @@ addHandlerFocus.default <-   function(obj, handler, action=NULL, ...)
 
 ##' Add handler for blur, or focus-out, event
 ##'
+##' A blur or focus out event for a widget triggers this event handler
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerBlur <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerBlur")
@@ -247,6 +268,8 @@ addHandlerBlur.default <-  function(obj, handler, action=NULL, ...)
 
 ##' Add handler for destroy event
 ##'
+##' When a widget is destroyed, a handler can be assigned to perform any clean up tasks that are needed.
+##' @seealso \code{\link{addHandlerUnrealize}}.
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerDestroy <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerDestroy")
@@ -263,8 +286,11 @@ addHandlerDestroy.default <-  function(obj, handler, action=NULL, ...)
 
 ##' Add handler for unrealize event for a top-level window
 ##'
-##' For gwindow objects this handler is called before the window is closed. If this handler
-##' returns \code{TRUE} the window will be closed, if \code{FALSE} the window will not be closed.
+##' For gwindow objects this handler is called before the window is
+##' closed. If this handler returns \code{TRUE} the window will be
+##' closed, if \code{FALSE} the window will not be closed. In
+##' contrast, the "destroy" handler does not allow conditional
+##' destruction.
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerUnrealize <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerUnrealize")
@@ -303,7 +329,7 @@ addHandlerExpose.default <-  function(obj, handler, action=NULL, ...)
 
 ##' Add handler for keystroke events
 ##'
-##' The "h" argument has components \code{key} for the key and possible \code{modifier} for the modifier.
+##' The "h" argument has components \code{key} for the key and possibly \code{modifier} for the modifier.
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerKeystroke <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerKeystroke")
@@ -338,11 +364,11 @@ addHandlerMouseMotion.default <-  function(obj, handler, action=NULL, ...)
 
 ##' Add an idle handler
 ##'
-##' deprecated. See \code{gtimer}.
+##' deprecated. See \code{\link{gtimer}}.
 ##' @export
 ##' @rdname gWidgets-handlers
 addHandlerIdle <- function( ...) {
-  message("No addHandleIdle method. Use gtimer for that purpose")
+  .Deprecated("No addHandleIdle method. Use gtimer for that purpose")
 }
 
 ##' Add a "popup" menu to the widget
@@ -367,6 +393,9 @@ addPopupMenu.default <-  function(obj, menulist, action=NULL, ...)
 
 ##' Add a 3rd-mouse "popup" menu to the widget
 ##'
+##' These menus are also known as context menus, though there isn't
+##' really a good mechanism within \pkg{gWidgets2} to make the menu
+##' items context sensitive.
 ##' @inheritParams addPopupMenu
 ##' @export
 ##' @rdname gWidgets-handlers
@@ -385,9 +414,13 @@ add3rdmousePopupMenu.default <-  function(obj, menulist, action=NULL, ...)
 
 ##' Specify a widget is a source for a drop action
 ##'
-##' The handler should return the value to pass via drag and drop. It
-##' will appear as the \code{dropdata} component of the list passed in
-##' as the first argument of the handler
+##' Drag and drop requires one to register widgets a sources for
+##' dragging, a widgets as a targets for dropping.
+##'
+##' To specify the values that is transferred in a drag and drop
+##' event, the handler specified here should return the value to pass
+##' via drag and drop. It will appear as the \code{dropdata} component
+##' of the list passed in as the first argument of the drop handler
 ##' @inheritParams addHandler
 ##' @param data.type Type of data returned. It is either text or an object
 ##' @export
@@ -460,10 +493,11 @@ blockHandlers.default <- function(obj, ...) obj$block_handlers(...)
 
 ##' Block a handler
 ##'
-##' @param ID returned by addHandler. If missing will try to block handler passed to constructor
+##' @param ID returned by addHandler. If missing will try to block all handler passed to constructor
 ##' @note For the gWidgets2Qt package one can not block, unblock or
 ##' remove a single handler, but rather must do all the objects
-##' handlers at once. Specify no ID in this case.
+##' handlers at once.
+##' @seealso \code{\link{blockHandlers}} to block all handlers for widget
 ##' @export
 ##' @rdname gWidgets-handlers
 blockHandler <- function(obj, ID, ...) UseMethod("blockHandler")
@@ -481,7 +515,7 @@ blockHandler.default <- function(obj, ID, ...) obj$block_handler(ID)
 ##' method call to unblock global handler block.
 ##'
 ##' The block is a counter that gets decremented. If more
-##' blockHandlers call are made than unblockHandlers, the handlers
+##' blockHandlers calls are made than unblockHandlers, the handlers
 ##' will still be blocked.
 ##' @export
 ##' @rdname gWidgets-handlers
