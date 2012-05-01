@@ -5,13 +5,14 @@ NULL
 ##' Constructor for workspace variable browser
 ##'
 ##' A workspace browser widget.  The workspace browser displays values
-##' in the global environment. The way these values are displayed may
-##' be adjusted through the option
-##' \code{gwidgets2:gvarbrowser_classes}. The default is
-##' \code{gWidgets2:::gvarbrowser_default_classes}. This value is a
-##' named list, where the component is a character vector of classes
-##' to display for that category. Non categorized values appear
-##' separately.
+##' in the global environment.  Displayed objects are shown in
+##' categories.
+##'
+##' For defining the categories, the reference method \code{set_filter_classes}
+##' takes a named list, the names defining the categories, the values
+##' being the classes belonging to that category. Non categorized
+##' values appear separately.  The default is defined in
+##' \code{gWidgets2:::gvarbrowser_default_classes}.
 ##'
 ##' The variable browser uses an instance of \code{WSWatcherModel} to
 ##' monitor the global workspace. This instance may be useful for
@@ -19,6 +20,16 @@ NULL
 ##' called to listen for changes to the set of available data
 ##' frames.). The instance is available through the \code{ws_model}
 ##' property.
+##'
+##' The \code{svalue} method returns the selected variable names. If
+##' \code{drop=FALSE} is given, the objects are returned.
+##'
+##' The widget should support dragging from without needing to specify
+##' a \code{drag_source}, though this may be overridden.
+##' 
+##' Use \code{addHandlerChanged} to listen to activation of a variable
+##' (double clicking). Use \code{addHandlerSelectionChanged} to
+##' monitor change of selection.
 ##' @inheritParams gwidget
 ##' @export
 ##' @rdname gvarbrowser
@@ -46,12 +57,13 @@ gvarbrowser <- function(
 
 
 
-## Can override via option gWidgets2:gvarbrowser_classes
-gvarbrowser_default_classes <- list("Data"=c("integer", "numeric",  "matrix", "character", "logical"),
-                                    "Data sets"=c("data.frame", "list"),
-                                    "Models"=c("lm", "rlm"),
-                                    "Functions"=c("function")
-                                    )
+## Can override via option gWidgets2:gvarbrowser_classes, or set filter_classes
+gvarbrowser_default_classes <-
+  list("Data"=c("integer", "numeric",  "matrix", "character", "factor", "logical"),
+       "Data sets"=c("data.frame", "list"),
+       "Models"=c("lm", "rlm"),
+       "Functions"=c("function")
+       )
 
 
 ##' svalue method
@@ -99,7 +111,7 @@ short_summary <- function(x) UseMethod("short_summary")
 ##' @rdname short_summary
 ##' @method short_summary default
 ##' @S3method short_summary default
-short_summary.default <- function(x) sprintf("Object of class %s", class(x)[1])
+short_summary.default <- function(x) sprintf("Object with class %s", class(x)[1])
 
 ##' method for generic
 ##'
@@ -108,7 +120,7 @@ short_summary.default <- function(x) sprintf("Object of class %s", class(x)[1])
 ##' @rdname short_summary
 ##' @method short_summary numeric
 ##' @S3method short_summary numeric
-short_summary.numeric <- function(x) sprintf("Numeric object of length %s", length(x))
+short_summary.numeric <- function(x) sprintf("Numeric object, length %s", length(x))
 
 ##' method for generic
 ##'
@@ -117,7 +129,7 @@ short_summary.numeric <- function(x) sprintf("Numeric object of length %s", leng
 ##' @rdname short_summary
 ##' @method short_summary character
 ##' @S3method short_summary character
-short_summary.character <- function(x) sprintf("Character object of length %s", length(x))
+short_summary.character <- function(x) sprintf("Character object, length %s", length(x))
 
 ##' method for generic
 ##'
@@ -126,7 +138,7 @@ short_summary.character <- function(x) sprintf("Character object of length %s", 
 ##' @rdname short_summary
 ##' @method short_summary logical
 ##' @S3method short_summary logical
-short_summary.logical <- function(x) sprintf("Logical object of length %s", length(x))
+short_summary.logical <- function(x) sprintf("Logical object, length %s", length(x))
 
 ##' method for generic
 ##'
@@ -135,7 +147,7 @@ short_summary.logical <- function(x) sprintf("Logical object of length %s", leng
 ##' @rdname short_summary
 ##' @method short_summary data.frame
 ##' @S3method short_summary data.frame
-short_summary.data.frame <- function(x) sprintf("Data frame %s variables %s cases", ncol(x), nrow(x))
+short_summary.data.frame <- function(x) sprintf("Data frame, %s variables %s cases", ncol(x), nrow(x))
 
 ##' method for generic
 ##'
@@ -144,7 +156,7 @@ short_summary.data.frame <- function(x) sprintf("Data frame %s variables %s case
 ##' @rdname short_summary
 ##' @method short_summary matrix
 ##' @S3method short_summary matrix
-short_summary.matrix <- function(x) sprintf("Matrix with dimensions %s by %s", ncol(x), nrow(x))
+short_summary.matrix <- function(x) sprintf("Matrix, %s by %s", ncol(x), nrow(x))
 
 ##' method for generic
 ##'
