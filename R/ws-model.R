@@ -73,6 +73,11 @@ WSWatcherModel <-  setRefClass("WSWatcherModel",
                                    objs <- mget(nms, .GlobalEnv, ifnotfound=list(function(x) {}))
                                    Filter(f, objs)
                                  },
+                                 filter_names=function(f) {
+                                   "Filter the names by f"
+                                   objs <- mget(nms, .GlobalEnv, ifnotfound=list(function(x) {}))
+                                   objs[Filter(f, nms)]
+                                 },
                                  get_changes=function() {
                                    "Return list of changes"
                                    changes
