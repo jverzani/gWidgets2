@@ -199,18 +199,39 @@ BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                        ),
                                      methods=list(
                                        ## (drop=NULL, ...), (value, drop=TRUE, ...)
-                                       get_value=define_me, # svalue
-                                       set_value=define_me, # svalue<-
-                                       ## (...), (value, ...)
-                                       get_index=define_me, # svalue; index=TRUE
-                                       set_index=define_me,   # svalue <-; index=TRUE
+                                       get_value=function(drop=NULL, ...) {
+                                         "Get main value of widget. From `svalue` when index = FALSE or NULL"
+                                         define_me()
+                                       }, # svalue
+                                       set_value=function(value, ..., drop=NULL) {
+                                         "for `svalue<-` when index = FALSE or NULL"
+                                         define_me()
+                                       }, 
+                                       get_index=function(drop=NULL, ...) {
+                                         "svalue; index=TRUE"
+                                         define_me()
+                                       },
+                                       set_index=function(value, ..., drop=NULL) {
+                                         define_me()   # svalue <-; index=TRUE
+                                       },
                                        ## (i, j, ..., drop=NULL)
-                                       get_items=define_me,   # [
+                                       get_items=function(i,j, .., drop=TRUE) {
+                                         define_me()   # [
+                                       },
                                        ## (value, i, j, ...)
-                                       set_items=define_me,   # [<-
+                                       set_items=function(value, i, j, ...) {
+                                         define_me()   # [<-
+                                       },
                                        ## () and (value)
-                                       get_enabled=define_me, # enabled
-                                       set_enabled=define_me, # enabled<-
+                                       get_enabled=function() {
+                                         "is widget sensistive to user input"
+                                         define_me()
+                                       },
+                                       ## enabled<-                                       
+                                       set_enabled=function(value, ...) {
+                                         "specify with logical if widget is sensistive to user input"
+                                         define_me
+                                       }, 
                                        get_visible=define_me, # visible
                                        set_visible=define_me, # visible<-
                                        get_editable=define_me, # editable
@@ -239,7 +260,10 @@ BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                        add_child=define_me,     # add child to container (if present)
                                        set_parent=function(parent) parent <<- parent,
                                        ## (signal, handler, action=NULL, decorator, emitter)
-                                       add_handler=define_me,
+                                       add_handler=function(signal, handler, action, ...) {
+                                         "Add a handler to be called for the event indicated by signal"
+                                         define_me()
+                                       },
                                        ## (handler, action, ...)
                                        add_handler_changed=define_me,
                                        add_handler_clicked=define_me,
@@ -248,7 +272,9 @@ BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                        add_handler_column_clicked=define_me,
                                        add_handler_column_double_clicked=define_me,
                                        add_handler_column_right_clicked=define_me,
-                                       add_handler_select=define_me,
+                                       add_handler_select=function(handler, action=NULL, ...) { # selection vs. selection_changed
+                                         add_handler_changed(handler, action=NULL, ...)
+                                       },
                                        add_handler_selection_changed=define_me,
                                        add_handler_focus=define_me,
                                        add_handler_blur=define_me,
