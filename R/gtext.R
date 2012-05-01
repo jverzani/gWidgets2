@@ -9,6 +9,7 @@ NULL
 ##' \item{The \code{svalue} will return a string (length-1 character
 ##' vector) with embedded newlines}
 ##' \item{The "change" handler is \code{addHandlerKeystroke}}
+##' \item{Use \code{addHandlerSelectionChanged} to monitor the selection}
 ##' }
 ##' @param text initial text
 ##' @param width width of widget
