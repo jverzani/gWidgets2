@@ -104,3 +104,16 @@ dispose.GText <- function(obj, ...) {
     obj$set_value("")
 }
 
+
+
+##' svalue method
+##'
+##' The \code{svalue} method for a gtext object returns a) the buffers
+##' content, b) the selected text (if \code{drop=TRUE}), the index of
+##' the selection if \code{index=TRUE}
+##' @inheritParams svalue
+##' @export
+##' @rdname gtext
+##' @method svalue GText
+##' @S3method svalue GText
+svalue.GText <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
