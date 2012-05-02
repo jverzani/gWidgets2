@@ -31,3 +31,6 @@ expect_equal(names(DF), names(x))
 # replace
 DF[] <- head(mtcars)
 expect_equal(as.vector(dim(DF)), dim(head(mtcars)))
+
+DF[,1] <- 2*mtcars[,1]
+expect_equal(DF[,1], 2*mtcars[,1])

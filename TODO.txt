@@ -1,3 +1,4 @@
+* selection_changed: gtext, gedit, gvarborwser, gtree, gdf, gtable
 * Work on documentation
 * vignette
 * write examples into subdirectory (how to include then through dontrun?)
