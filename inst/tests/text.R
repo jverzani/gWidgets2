@@ -29,7 +29,7 @@ dispose(txt1)
 expect_equal(svalue(txt1), "")
 
 ## fonts
-insert(txt1, "blue text", font.attr=list(weight="bold", stye="italic", color="blue"))
+insert(txt1, "blue text", font.attr=list(weight="bold",  color="blue"))
 
 ## font for a butter
 txt2 <- gtext("monospace font for entire buffer", cont=g,
