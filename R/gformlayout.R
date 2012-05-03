@@ -45,10 +45,25 @@ gformlayout <- function(
 
 ##' svalue method
 ##'
-##' The \code{svalue} method for \code{GFormLayout} returns a list of values created by calling \code{svalue} on each child
+##' The \code{svalue} method for \code{GFormLayout} returns a list of
+##' values created by calling \code{svalue} on each child. The
+##' returned list is named by the corresponding labels.
 ##' @inheritParams svalue
 ##' @export
 ##' @rdname gformlayout
 ##' @method svalue GFormLayout
 ##' @S3method svalue GFormLayout
 svalue.GFormLayout <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
+
+
+
+##' svalue assignment method for gformlayout
+##'
+##' For \code{gformlayout} the \code{svalue} assigment method takes a
+##' named list and calls \code{svalue<-} on the children with matching
+##' names.
+##' @rdname svalue
+##' @export
+##' @S3method svalue<- GFormLayout
+##' @method svalue<- GFormLayout
+"svalue<-.GFormLayout" <- function(obj, index=NULL, ..., value) NextMethod()
