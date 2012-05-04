@@ -222,7 +222,7 @@
   or an object}
 
   \item{ID}{returned by addHandler. If missing will try to
-  block handler passed to constructor}
+  block all handler passed to constructor}
 }
 \value{
   a handler ID which can be used to block/unblock or remove
@@ -234,31 +234,20 @@
   A GUI is made interactive by assigning handlers to
   user-generated events, such as a mouse click, change of
   widget state, or keyboard press. In \pkg{gWidgets2}
-  handlers are assigned through the \code{addHandlerXXX}
-  methods. The handlers are functions whose first argument
-  should expect a list with components \code{obj}(to pass
-  in the receiver object) and \code{action}(to pass in any
-  user-supplied value to the \code{action} argument). Some
-  handlers add other components, such as mouse position
-  information on a click, or key information on a keyboard
-  event.  Although this method is basically the workhorse
-  to add a handler to response to a signal, it generally
-  isn't called directly, as its use is not cross toolkit.
-  Rather, if possible, one should use the
-  \code{addHandlerXXX} methods to add a handler. These
-  dispatch do this (basically) but do so in a toolkit
-  independent manner. This call (and the others) returns a
-  handler ID which may be used for some toolkitst later on
-  to remove, block or unblock the call. All handlers for a
-  widget may be blocked or unblocked via
-  \code{blockHandlers} and \code{unblockHandlers}.
+  handlers are assigned through various
+  \code{addHandlerXXX} methods. The handlers are functions
+  whose first argument should expect a list with components
+  \code{obj}(to pass in the receiver object) and
+  \code{action}(to pass in any user-supplied value to the
+  \code{action} argument). Some handlers add other
+  components, such as mouse position information on a
+  click, or key information on a keyboard event.
 
   Default S3 method
 
-  The "changed" event is also the one that a handler passed
-  to the constructor is called on. This is a real generic
-  function, in that each widget has one, but it is
-  interpreted quite differently for each.
+  The "changed" event varies wildly amongst the widgets,
+  but is meant to be the most "obvious" one. Typically this
+  is also similar to "selected".
 
   Default S3 method
 
@@ -270,15 +259,20 @@
 
   Default S3 method
 
-  Add handler for right click event
+  This may not be supported by all toolkits.
 
   Default S3 method
 
-  Add handler for column click event
+  For table widgets (\code{gtable}, \code{gdf}) clicking
+  the column header should trigger this event. The column
+  that is clicked on is passed back in the component
+  \code{column}.
 
   Default S3 method
 
-  Add handler for column double click event
+  If defined (\code{gtable}, \code{gdf}) calls event
+  handler for double click enent. Passes back column
+  information through \code{column} component.
 
   Default S3 method
 
@@ -286,8 +280,7 @@
 
   Default S3 method
 
-  Mostly, the select event is the same as the "changed"
-  event.
+  The select event defaults to the "changed" event.
 
   Default S3 method
 
@@ -297,26 +290,31 @@
   where a user may select values with a single click yet
   want to initiate an action with a double click. The
   latter is the "addHandlerSelect" event, the former the
-  "addHandlerSelectionChange"
+  "addHandlerSelectionChanged" event.
 
   Default S3 method
 
-  Add handler for focus in event
+  When a widget has the focus, it will receive the keyboard
+  input. This handler is called when a widget receives the
+  focus.
 
   Default S3 method
 
-  Add handler for blur, or focus-out, event
+  A blur or focus out event for a widget triggers this
+  event handler
 
   Default S3 method
 
-  Add handler for destroy event
+  When a widget is destroyed, a handler can be assigned to
+  perform any clean up tasks that are needed.
 
   Default S3 method
 
   For gwindow objects this handler is called before the
   window is closed. If this handler returns \code{TRUE} the
   window will be closed, if \code{FALSE} the window will
-  not be closed.
+  not be closed. In contrast, the "destroy" handler does
+  not allow conditional destruction.
 
   Default S3 method
 
@@ -326,7 +324,7 @@
   Default S3 method
 
   The "h" argument has components \code{key} for the key
-  and possible \code{modifier} for the modifier.
+  and possibly \code{modifier} for the modifier.
 
   Default S3 method
 
@@ -334,7 +332,7 @@
 
   Default S3 method
 
-  deprecated. See \code{gtimer}.
+  deprecated. See \code{\link{gtimer}}.
 
   Defaults to adding a 3rd mouse popup menu, better known
   as a context menu, though some toolkits have both this
@@ -342,13 +340,14 @@
 
   S3 method for popup menu
 
-  Add a 3rd-mouse "popup" menu to the widget
+  These menus are also known as context menus, though there
+  isn't really a good mechanism within \pkg{gWidgets2} to
+  make the menu items context sensitive.
 
   S3 method for popup menu
 
-  The handler should return the value to pass via drag and
-  drop. It will appear as the \code{dropdata} component of
-  the list passed in as the first argument of the handler
+  Drag and drop requires one to register widgets a sources
+  for dragging, a widgets as a targets for dropping.
 
   Default S3 method
 
@@ -373,7 +372,7 @@
   S3 method to block handler
 
   The block is a counter that gets decremented. If more
-  blockHandlers call are made than unblockHandlers, the
+  blockHandlers calls are made than unblockHandlers, the
   handlers will still be blocked.
 
   S3 method to block handler
@@ -392,18 +391,48 @@
   The click handler is called on a mouse click. The handler
   object should pass in value for \code{x}, \code{y}
 }
+\details{
+  Although the \code{add_handler} method, to which
+  \code{addHandler} dispatches, is basically the workhorse
+  to add a handler to response to a signal, it generally
+  isn't called directly, as its use is not cross toolkit.
+  Rather, if possible, one should use the
+  \code{addHandlerXXX} methods to add a handler. These
+  dispatch to this (basically) but do so in a toolkit
+  independent manner.
+
+  This call (and the others) returns a handler ID which may
+  be used for some toolkits later on to remove, block or
+  unblock the call. All handlers for a widget may be
+  blocked or unblocked via \code{blockHandlers} and
+  \code{unblockHandlers}.
+
+  The "changed" event is also the one that a handler passed
+  to the constructor is called on.
+
+  To specify the values that is transferred in a drag and
+  drop event, the handler specified here should return the
+  value to pass via drag and drop. It will appear as the
+  \code{dropdata} component of the list passed in as the
+  first argument of the drop handler
+}
 \note{
   This method is not toolkit independent, as the signal
   value depends on the toolkit
 
   For the gWidgets2Qt package one can not block, unblock or
   remove a single handler, but rather must do all the
-  objects handlers at once. Specify no ID in this case.
+  objects handlers at once.
 }
 \seealso{
   \code{\link{blockHandlers}},
   \code{\link{unblockHandlers}},
   \code{\link{blockHandler}}, \code{\link{unblockHandler}},
   and \code{\link{removeHandler}}
+
+  \code{\link{addHandlerUnrealize}}.
+
+  \code{\link{blockHandlers}} to block all handlers for
+  widget
 }
 

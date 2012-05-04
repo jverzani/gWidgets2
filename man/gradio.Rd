@@ -30,7 +30,8 @@
 
   \item{x}{\code{GRadio} object}
 
-  \item{i}{button index}
+  \item{i}{button index. Leavel as missing to replace items
+  to select from.}
 
   \item{j}{ignored}
 
@@ -85,13 +86,17 @@
 
   Generic for method dispatch
 
-  For a radio button group, with \code{svalue} the value
-  can be referred to by index or label. Similarly with
-  setting of a value
+  The svalue method returns the radio button label or its
+  index if \code{index=TRUE}. Labels are coerced to
+  character by many of the toolkits. To be sure to return a
+  numeric value, one can assign to the \code{coerce_with}
+  property, e.g., \code{obj$coerce_with <- as.numeric}. For
+  all widgets, if a function is specified to
+  \code{coerce_with} it will be called on the value
+  returned by \code{svalue}.
 
   For a radio button group, with \code{svalue} the value
-  can be referred to by index or label. Similarly with
-  setting of a value
+  can be referred to by index or label.
 
   Check for repeated items before passing on to
   \code{set_items}

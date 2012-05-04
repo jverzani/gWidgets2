@@ -59,13 +59,8 @@
 }
 \description{
   A workspace browser widget.  The workspace browser
-  displays values in the global environment. The way these
-  values are displayed may be adjusted through the option
-  \code{gwidgets2:gvarbrowser_classes}. The default is
-  \code{gWidgets2:::gvarbrowser_default_classes}. This
-  value is a named list, where the component is a character
-  vector of classes to display for that category. Non
-  categorized values appear separately.
+  displays values in the global environment.  Displayed
+  objects are shown in categories.
 
   generic for toolkit dispatch
 
@@ -74,6 +69,13 @@
   objects themselves (when \code{drop=FALSE}).
 }
 \details{
+  For defining the categories, the reference method
+  \code{set_filter_classes} takes a named list, the names
+  defining the categories, the values being the classes
+  belonging to that category. Non categorized values appear
+  separately.  The default is defined in
+  \code{gWidgets2:::gvarbrowser_default_classes}.
+
   The variable browser uses an instance of
   \code{WSWatcherModel} to monitor the global workspace.
   This instance may be useful for other purposes. (For
@@ -81,5 +83,18 @@
   for changes to the set of available data frames.). The
   instance is available through the \code{ws_model}
   property.
+
+  The \code{svalue} method returns the selected variable
+  names. If \code{drop=FALSE} is given, the objects are
+  returned.
+
+  The widget should support dragging from without needing
+  to specify a \code{drag_source}, though this may be
+  overridden.
+
+  Use \code{addHandlerChanged} to listen to activation of a
+  variable (double clicking). Use
+  \code{addHandlerSelectionChanged} to monitor change of
+  selection.
 }
 

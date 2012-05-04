@@ -3,6 +3,7 @@
 \alias{svalue.default}
 \alias{svalue<-}
 \alias{svalue<-.default}
+\alias{svalue<-.GFormLayout}
 \alias{svalue<-.GToolBar}
 \title{svalue}
 \usage{
@@ -11,14 +12,16 @@
   \method{svalue}{default}(obj, index = NULL, drop = NULL,
     ...)
 
-  svalue(obj, index = TRUE, drop = TRUE, ..., value) <-
-    value
+  svalue(obj, index = TRUE, ..., value) <- value
 
   \method{svalue}{default}(obj, index = NULL, ..., value)
     <- value
 
   \method{svalue}{GToolBar}(obj, index = NULL, ..., value)
     <- value
+
+  \method{svalue}{GFormLayout}(obj, index = NULL, ...,
+    value) <- value
 }
 \arguments{
   \item{obj}{object of method call}
@@ -68,5 +71,9 @@
 
   for a toolbar, \code{svalue<-} replaces the toolbar items
   with new ones specified by value.
+
+  For \code{gformlayout} the \code{svalue} assigment method
+  takes a named list and calls \code{svalue<-} on the
+  children with matching names.
 }
 

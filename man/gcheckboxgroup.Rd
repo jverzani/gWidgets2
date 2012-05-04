@@ -106,11 +106,11 @@
   when any of the checkboxes changes state.
 
   The \code{svalue} methods refer to the selected values.
-  By default these are the item values. When
-  \code{index=TRUE} is specified, then the index is
-  returned as an integer vector. For setting, one may also
-  use a vector of logicals (which is recycled) for the
-  index.
+  By default these are the item values, coerced to
+  characterq. When \code{index=TRUE} is specified, then the
+  index is returned as an integer vector. For setting, one
+  may also use a vector of logicals (which is recycled) for
+  the index.
 }
 \examples{
 if(interactive()) {

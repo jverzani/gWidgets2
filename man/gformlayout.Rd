@@ -61,6 +61,7 @@
 
   The \code{svalue} method for \code{GFormLayout} returns a
   list of values created by calling \code{svalue} on each
-  child
+  child. The returned list is named by the corresponding
+  labels.
 }
 

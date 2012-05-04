@@ -107,7 +107,7 @@ if(interactive()) {
 DF <- mtcars[, c("mpg", "cyl", "hp", "am", "wt")]
 w <- gwindow(visible=FALSE)
 pg <- ggroup(cont=w)
-df <- gdf(DF, cont=pg)
+df <- gtable(DF, cont=pg)
 a <- gfilter(df, initial.vars=data.frame(names(DF),
 c("range", "choice", "range", "radio", "range"),
 stringsAsFactors=FALSE),

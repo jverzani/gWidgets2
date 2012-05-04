@@ -4,6 +4,7 @@
 \alias{gtext}
 \alias{insert}
 \alias{insert.GText}
+\alias{svalue.GText}
 \title{Multiline text edit constructor}
 \usage{
   gtext(text = NULL, width = NULL, height = 300,
@@ -24,6 +25,9 @@
     font.attr = NULL, do.newline = TRUE, ...)
 
   \method{dispose}{GText}(obj, ...)
+
+  \method{svalue}{GText}(obj, index = NULL, drop = NULL,
+    ...)
 }
 \arguments{
   \item{text}{initial text}
@@ -86,6 +90,14 @@
   toolkit it will use. This is typically done using the
   default, which will lookup the toolkit through
   \code{\link{guiToolkit}}.}
+
+  \item{index}{NULL or logical. If \code{TRUE} and widget
+  supports it an index, instead of a value will be
+  returned.}
+
+  \item{drop}{NULL or logical. If widget supports it, drop
+  will work as it does in a data frame or perhaps someother
+  means.}
 }
 \value{
   called for side effect
@@ -95,7 +107,9 @@
   contained within. \itemize{ \item{The \code{svalue} will
   return a string (length-1 character vector) with embedded
   newlines} \item{The "change" handler is
-  \code{addHandlerKeystroke}} }
+  \code{addHandlerKeystroke}} \item{Use
+  \code{addHandlerSelectionChanged} to monitor the
+  selection} }
 
   generic for toolkit dispatch
 
@@ -104,5 +118,10 @@
   insert method for gtext
 
   dispose method for gtext clears buffer
+
+  The \code{svalue} method for a gtext object returns a)
+  the buffers content, b) the selected text (if
+  \code{drop=TRUE}), the index of the selection if
+  \code{index=TRUE}
 }
 
