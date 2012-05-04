@@ -39,3 +39,12 @@ expect_equal(length(rb1), 3)
 
 ## invoke handler
 expect_output(rb3$invoke_change_handler(), "add handler")
+
+## numeric
+rb2 <- gradio(1:4, cont=g)
+svalue(rb2) <- 2
+expect_equal(svalue(rb2), "2")
+
+## coerce
+rb2$coerce_with <- as.numeric
+expect_equal(svalue(rb2), 2)
