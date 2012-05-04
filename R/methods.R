@@ -107,7 +107,7 @@ svalue.default <- function(obj, index=NULL, drop=NULL, ...) {
 ##' @param value value to assign for selection or property
 ##' @rdname svalue
 ##' @export
-"svalue<-" <- function(obj, index=TRUE, drop=TRUE, ..., value) UseMethod("svalue<-")
+"svalue<-" <- function(obj, index=TRUE, ..., value) UseMethod("svalue<-")
 
 ##' Base S3 method
 ##'
@@ -289,7 +289,7 @@ editable.default <- function(obj, i) {
 ##' @S3method editable<- default
 "editable<-.default" <- function(obj, i,  value) {
   if(isExtant(obj))
-    obj$set_editable(as.logical(value, i))
+    obj$set_editable(as.logical(value), i)
   obj
 }
 
@@ -478,7 +478,7 @@ size.default <- function(obj) {
 
 ##' Undo past action. 
 ##'
-##' Some widgets support undo actions
+##' Some widgets support undo actions. See reference class method \code{can_undo} as well.
 ##' @param obj object to call undo on
 ##' @param ... ignored
 ##' @export

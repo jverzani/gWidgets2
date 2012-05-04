@@ -39,8 +39,13 @@ gradio <- function(items,selected=1, horizontal=FALSE,
 
 ##' svalue method
 ##'
-##' For a radio button group, with \code{svalue} the value can be referred to by index or
-##' label. Similarly with setting of a value
+##' The svalue method returns the radio button label or its index if
+##' \code{index=TRUE}. Labels are coerced to character by many of the
+##' toolkits. To be sure to return a numeric value, one can assign to
+##' the \code{coerce_with} property, e.g., \code{obj$coerce_with <-
+##' as.numeric}. For all widgets, if a function is specified to
+##' \code{coerce_with}  it will be called on the value returned by
+##' \code{svalue}.
 ##' @inheritParams gWidgets2::svalue
 ##' @export
 ##' @rdname gradio
@@ -51,8 +56,8 @@ svalue.GRadio <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 
 ##' svalue<- method
 ##'
-##' For a radio button group, with \code{svalue} the value can be referred to by index or
-##' label. Similarly with setting of a value
+##' For a radio button group, with \code{svalue} the value can be
+##' referred to by index or label. 
 ##' @inheritParams gWidgets2::svalue
 ##' @export
 ##' @rdname gradio
@@ -76,7 +81,7 @@ svalue.GRadio <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 ##'
 ##' Check for repeated items before passing on to \code{set_items}
 ##' @param x \code{GRadio} object
-##' @param i button index
+##' @param i button index. Leavel as missing to replace items to select from.
 ##' @param j ignored
 ##' @param value items to assigns a choices for the buttons
 ##' @export

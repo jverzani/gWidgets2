@@ -83,7 +83,8 @@ add.GMenuBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) 
 
 ##' "svalue<-" method
 ##'
-##' for a menubar, \code{svalue<-} replaces the menubar items with new ones specified by value.
+##' for a menubar, \code{svalue<-} replaces the menubar items with new
+##' ones specified by value.
 ##' @param value a list or menu bar specifying the new men ubar
 ##' @export
 ##' @rdname gmenu
