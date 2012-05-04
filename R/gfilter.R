@@ -23,7 +23,7 @@ NULL
 ##' DF <- mtcars[, c("mpg", "cyl", "hp", "am", "wt")]
 ##' w <- gwindow(visible=FALSE)
 ##' pg <- ggroup(cont=w)
-##' df <- gdf(DF, cont=pg)
+##' df <- gtable(DF, cont=pg)
 ##' a <- gfilter(df, initial.vars=data.frame(names(DF),
 ##' c("range", "choice", "range", "radio", "range"),
 ##' stringsAsFactors=FALSE),
@@ -166,7 +166,7 @@ GFilter <- setRefClass("GFilter",
                            ## we use a different handler mechanism
                            ## here. Each items calls the invoke
                            ## change handler withc in turn uses the
-                           ## handler and actioni properties
+                           ## handler and action properties
                            handler <<- handler
                            action <<- action
                          },
@@ -178,27 +178,43 @@ GFilter <- setRefClass("GFilter",
                            h <- list(obj=.self, action=action)
                            handler(h)
                          },
-                         init_ui=function(container, ...) {
-                           block <<- ggroup(cont=container, horizontal=FALSE, ...)#, use.scrollwindow=TRUE)
+                         init_ui=function(container, ..., use.scrollwindow) {
+                           block <<- ggroup(cont=container, horizontal=FALSE, ..., use.scrollwindow=FALSE)
                            container <<- ggroup(cont=block, expand=FALSE, horizontal=FALSE)
+                           
                            if(allow_edit && !is.null(DF)) {
                              bg <- ggroup(cont=block)
                              addSpring(bg)                                
                              gbutton(gettext("Add item"), cont=bg, handler=function(h,...) {
                                w <- gbasicdialog(gettext("Select a variable and editor type"),
                                                  handler=function(h,...) {
-                                                   var <- svalue(lyt[1,2])
-                                                   type <- svalue(lyt[2,2])
-                                                   add_item(var, type)
+                                                   var <- svalue(varname)
+                                                   type <- svalue(type)
+                                                   add_item(var, var, type=type)
                                                  }, parent=h$obj)
                                lyt <- glayout(cont=w)
                                lyt[1,1] <- gettext("Variable:")
-                               lyt[1,2] <- gcombobox(names(DF), cont=lyt)
+                               lyt[1,2] <- (varname <- gcombobox(names(DF), selected=0,
+                                                                 cont=lyt, handler=function(h,...) {
+                                 nm <- svalue(h$obj)
+                                 var <- DF[[nm]]
+                                 if(is.numeric(var))
+                                   svalue(type) <- "range"
+                                 else if(is.factor(var) || is.character(var))
+                                   svalue(type) <- "choice"
+                                 else if(is.logical(var))
+                                   svalue(type) <- "radio"
+                                 else
+                                   svalue(type) <- "choice"
+                                 enabled(type) <- TRUE
+                               }))
                                lyt[2,1] <- gettext("Type:")
-                               lyt[2,2] <- gradio(c("radio", "choice", "range"), selected=2, cont=lyt)
+                               lyt[2,2] <- (type <- gradio(c("radio", "choice", "range"), selected=2, cont=lyt))
+                               enabled(type) <- FALSE # not until a selecctin is ade
                                visible(w) <- TRUE
                              })
                            }
+                           addSpring(block) ## push to top
                            
                            ## add initial
                            if(!is.null(initial_vars))
@@ -266,7 +282,8 @@ GFilter <- setRefClass("GFilter",
                          get_visible=function() visible(block),
                          set_visible=function(value) visible(block) <<- value,
                          get_enabled=function() enabled(block),
-                         set_enabled=function(value) enabled(block) <<- value
+                         set_enabled=function(value) enabled(block) <<- value,
+                         set_size=function(value) block$set_size(value)
                          ))
 
 
@@ -300,15 +317,20 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                  },
                                  make_ui=function(visible=TRUE) {
                                    parent_container <- parent$container # or something else here
-                                   frame <<- gexpandgroup(name, container=parent_container, horizontal=FALSE,
-                                                          expand=TRUE, anchor=c(-1,1))
-                                   set_visible(visible)                                   
+##                                   frame <<- gexpandgroup(name, container=parent_container, horizontal=FALSE,
+##                                                          expand=TRUE, anchor=c(-1,1))
+                                   ##frame$set_visible(visible)
+                                   frame <<- gframe(name,  horizontal=FALSE,
+                                                    container=parent_container,
+                                                    expand=TRUE, fill="x",
+                                                    anchor=c(-1,1))
+
                                    make_item_type(container=frame)
                                    f <- function(i) addHandlerChanged(i, handler=function(h,...) {
                                      .self$invoke_change_handler()
                                    })
                                    if(is.list(widget))
-                                     sapply(as.list(widget), f)
+                                     sapply(widget, f)
                                    else
                                      f(widget)
 
@@ -356,6 +378,10 @@ RadioItem <- setRefClass("RadioItem",
                                widget <<- gcombobox(u_x, cont=container)
                              else
                                widget <<- gradio(u_x, cont=container)
+
+                             if(is.numeric(u_x))
+                               widget$coerce_with <<- as.numeric
+                             
                              initialize_item()
                            },
                            initialize_item = function() {
@@ -374,6 +400,9 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              u_x <- sort(unique(get_x()))
                              use.table <- length(u_x) > 4
                              widget <<- gcheckboxgroup(u_x, cont=container, use.table=use.table)
+                             if(is.numeric(u_x))
+                               widget$coerce_with <<- as.numeric
+                             
                              initialize_item()
                            },
                            initialize_item = function() {
