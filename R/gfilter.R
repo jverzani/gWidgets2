@@ -3,7 +3,7 @@ NULL
 
 ##' A widget for filtering a data frame
 ##'
-##' This widget provides a means to subset, or filter, a data
+##' This widget provides a simple means to subset, or filter, a data
 ##' frame. 
 ##' @param DF a data frame or \code{GDf} instance to look variables up within.
 ##' @param allow.edit logical. If \code{TRUE} a user may add new
@@ -16,23 +16,25 @@ NULL
 ##' \code{multiple}, for multiple selection; and \code{range}, to
 ##' specify a from and to value.
 ##' @inheritParams gwidget
-##' @return returns filename(s) or \code{character(0)} if no selection.
+##' @return returns \code{GFilter} object
 ##' @export
 ##' @examples
 ##' if(interactive()) {
 ##' DF <- mtcars[, c("mpg", "cyl", "hp", "am", "wt")]
-##' w <- gwindow(visible=FALSE)
+##' w <- gwindow("Example of gfilter", visible=FALSE)
 ##' pg <- ggroup(cont=w)
 ##' df <- gtable(DF, cont=pg)
 ##' a <- gfilter(df, initial.vars=data.frame(names(DF),
-##' c("range", "choice", "range", "radio", "range"),
-##' stringsAsFactors=FALSE),
-##' allow.edit=TRUE,
-##' container=pg,
-##' handler=function(h,...) visible(df) <- h$obj$get_value()
-##' )
-##' visible(w) <- TRUE
+##'                    c("range", "choice", "range", "radio", "range").
+##'                    stringsAsFactors=FALSE),
+##'              allow.edit=TRUE,
+##'              container=pg,
+##'              handler=function(h,...) {
+##'                visible(df) <- h$obj$get_value()
+##'              }
+##'              )
 ##' size(w) <- c(600, 400)
+##' visible(w) <- TRUE
 ##' }
 gfilter <- function(DF,
                     allow.edit=TRUE, initial.vars=NULL,
@@ -148,8 +150,6 @@ GFilter <- setRefClass("GFilter",
                            handler=NULL, action=NULL,
                            container=NULL,
                            ...) {
-                              
-                           
                            initFields(DF=DF,
                                       initial_vars=initial_vars,
                                       allow_edit=allow_edit,
@@ -253,6 +253,7 @@ GFilter <- setRefClass("GFilter",
 
                            l <<- c(l, item)
                            item$make_ui(visible=TRUE)
+                           invoke_change_handler()
                          },
                          remove_item=function(child) {
                            ## remove from GUI
@@ -321,9 +322,11 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
 ##                                                          expand=TRUE, anchor=c(-1,1))
                                    ##frame$set_visible(visible)
                                    frame <<- gframe(name,  horizontal=FALSE,
-                                                    container=parent_container,
-                                                    expand=TRUE, fill="x",
-                                                    anchor=c(-1,1))
+                                                    container=parent_container
+                                                    )
+                                                    ##,
+                                                    ##expand=TRUE, fill="x",
+                                                    ##anchor=c(-1,1))
 
                                    make_item_type(container=frame)
                                    f <- function(i) addHandlerChanged(i, handler=function(h,...) {
@@ -375,9 +378,9 @@ RadioItem <- setRefClass("RadioItem",
                              "Select one from many"
                              u_x <- sort(unique(get_x()))
                              if(length(u_x) > 4) 
-                               widget <<- gcombobox(u_x, cont=container)
+                               widget <<- gcombobox(u_x, cont=container, anchor=c(-1,0))
                              else
-                               widget <<- gradio(u_x, cont=container)
+                               widget <<- gradio(u_x, cont=container, anchor=c(-1,0))
 
                              if(is.numeric(u_x))
                                widget$coerce_with <<- as.numeric
@@ -399,7 +402,10 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              "Select one from many"
                              u_x <- sort(unique(get_x()))
                              use.table <- length(u_x) > 4
-                             widget <<- gcheckboxgroup(u_x, cont=container, use.table=use.table)
+                             widget <<- gcheckboxgroup(u_x, cont=container,
+                                                       use.table=use.table,
+                                                       expand=TRUE, fill=TRUE
+                                                       )
                              if(is.numeric(u_x))
                                widget$coerce_with <<- as.numeric
                              
@@ -420,7 +426,7 @@ RangeItem <- setRefClass("RangeItem",
                              "a <= widget <= b"
                              widget <<- list()
 
-                             g <- ggroup(cont=container)
+                             g <- ggroup(cont=container, expand=TRUE, fill="y")
                              g1 <- ggroup(cont=g, horizontal=FALSE, expand=TRUE)
                              widget[[1]] <<- gedit("", cont=g1, width=10, coerce.with=as.numeric)
 
