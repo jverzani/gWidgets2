@@ -18,15 +18,15 @@
     tooltip.col = NULL, multiple = FALSE, handler = NULL,
     action = NULL, container = NULL, ...)
 
-  \method{svalue}{GTree}(obj, index = FALSE, drop = TRUE,
+  \method{svalue}{GTree} (obj, index = FALSE, drop = TRUE,
     ...)
 
-  \method{svalue}{GTree}(obj, index = TRUE, ..., value) <-
+  \method{svalue}{GTree} (obj, index = TRUE, ..., value) <-
     value
 
-  \method{[}{GTree}(x, i, j, ..., drop = FALSE)
+  \method{[}{GTree} (x, i, j, ..., drop = FALSE)
 
-  \method{update}{GTree}(object, ...)
+  \method{update}{GTree} (object, ...)
 }
 \arguments{
   \item{x}{Data frame. Optional, if given specify INDICES
@@ -153,7 +153,7 @@
   This level is specified through a data frame. This data
   frame has special columns. The \code{chosen.col}
   specifies which column is used as the key in the path,
-  the \code{icon.col}(when given) points to a stock icon
+  the \code{icon.col} (when given) points to a stock icon
   name to decorate the column. Similarly, the
   \code{tooltip.columns}. The fact that a row in the data
   frame has offspring is specified through the

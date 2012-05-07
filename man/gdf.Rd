@@ -12,12 +12,13 @@
   .gdf(toolkit, items = NULL, handler = NULL,
     action = NULL, container = NULL, ...)
 
-  \method{addHandlerChanged}{GDf}(obj, handler,
+  \method{addHandlerChanged}{GDf} (obj, handler,
     action = NULL, ...)
 
-  \method{svalue}{GDf}(obj, index = NULL, drop = TRUE, ...)
+  \method{svalue}{GDf} (obj, index = NULL, drop = TRUE,
+    ...)
 
-  \method{visible}{GDf}(obj, value) <- value
+  \method{visible}{GDf} (obj, value) <- value
 }
 \arguments{
   \item{items}{data frame to edit}

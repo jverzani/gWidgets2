@@ -13,10 +13,10 @@
   .gwindow(toolkit, title, visible, name, width, height,
     parent, handler, action, ...)
 
-  \method{add}{GWindow}(obj, child, expand = NULL,
+  \method{add}{GWindow} (obj, child, expand = NULL,
     fill = NULL, anchor = NULL, ...)
 
-  \method{dispose}{GWindow}(obj, ...)
+  \method{dispose}{GWindow} (obj, ...)
 }
 \arguments{
   \item{title}{title for window's title bar. This is the

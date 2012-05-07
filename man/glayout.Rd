@@ -11,9 +11,9 @@
   .glayout(toolkit, homogeneous = FALSE, spacing = 10,
     container = NULL, ...)
 
-  \method{[}{GLayout}(x, i, j, ..., drop = TRUE)
+  \method{[}{GLayout} (x, i, j, ..., drop = TRUE)
 
-  \method{[}{GLayout}(x, i, j, ..., value) <- value
+  \method{[}{GLayout} (x, i, j, ..., value) <- value
 }
 \arguments{
   \item{homogeneous}{are cells all the same size}

@@ -7,11 +7,11 @@
 \usage{
   tag(obj, key)
 
-  \method{tag}{default}(obj, key)
+  \method{tag}{default} (obj, key)
 
   tag(obj, key) <- value
 
-  \method{tag}{default}(obj, key, value) <- value
+  \method{tag}{default} (obj, key, value) <- value
 }
 \arguments{
   \item{obj}{object}

@@ -13,10 +13,10 @@
     coerce.with = NULL, initial.msg = "", handler = NULL,
     action = NULL, container = NULL, ...)
 
-  \method{addHandlerChanged}{GEdit}(obj, handler,
+  \method{addHandlerChanged}{GEdit} (obj, handler,
     action = NULL, ...)
 
-  \method{svalue}{GEdit}(obj, index = NULL, drop = NULL,
+  \method{svalue}{GEdit} (obj, index = NULL, drop = NULL,
     ...)
 }
 \arguments{
@@ -82,8 +82,8 @@
   The default change handler call is when the user
   activates the entry, typically by pressing the enter key.
   Other possible events to consider are covered by:
-  \code{addhandlerBlur}(when the widget loses focuses) and
-  \code{addHandlerKeystroke}(called after each keystroke).
+  \code{addhandlerBlur} (when the widget loses focuses) and
+  \code{addHandlerKeystroke} (called after each keystroke).
   For the latter, if the toolkit supports it, the handler's
   first argument has a component \code{key} passing back
   the keystroke information.

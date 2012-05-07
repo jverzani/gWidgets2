@@ -15,11 +15,11 @@
     use.togglebutton = FALSE, handler = NULL,
     action = NULL, container = NULL, ...)
 
-  \method{addHandlerChanged}{GCheckbox}(obj, handler,
+  \method{addHandlerChanged}{GCheckbox} (obj, handler,
     action = NULL, ...)
 
-  \method{svalue}{GCheckbox}(obj, index = NULL, ..., value)
-    <- value
+  \method{svalue}{GCheckbox} (obj, index = NULL, ...,
+    value) <- value
 
   [.GCheckbox(x, i, j, ..., value) <- value
 }

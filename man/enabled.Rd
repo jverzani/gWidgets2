@@ -7,11 +7,11 @@
 \usage{
   enabled(obj)
 
-  \method{enabled}{default}(obj)
+  \method{enabled}{default} (obj)
 
   enabled(obj) <- value
 
-  \method{enabled}{default}(obj, value) <- value
+  \method{enabled}{default} (obj, value) <- value
 }
 \arguments{
   \item{obj}{object}

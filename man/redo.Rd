@@ -5,7 +5,7 @@
 \usage{
   redo(obj, ...)
 
-  \method{redo}{GComponent}(obj, ...)
+  \method{redo}{GComponent} (obj, ...)
 }
 \arguments{
   \item{obj}{object to redo}

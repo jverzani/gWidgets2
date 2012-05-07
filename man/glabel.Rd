@@ -12,11 +12,11 @@
   .glabel(toolkit, text, markup = FALSE, editable = FALSE,
     handler = NULL, action = NULL, container = NULL, ...)
 
-  \method{svalue}{GLabel}(obj, index = TRUE, ..., value) <-
-    value
+  \method{svalue}{GLabel} (obj, index = TRUE, ..., value)
+    <- value
 
-  \method{svalue}{GLabel}(obj, index = TRUE, ..., value) <-
-    value
+  \method{svalue}{GLabel} (obj, index = TRUE, ..., value)
+    <- value
 }
 \arguments{
   \item{text}{character. Collapsed using a newline to a

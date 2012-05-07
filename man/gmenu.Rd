@@ -12,13 +12,13 @@
   .gmenu(toolkit, menu.list = list(), popup = FALSE,
     container = NULL, ...)
 
-  \method{add}{GMenuBar}(obj, child, expand = FALSE,
+  \method{add}{GMenuBar} (obj, child, expand = FALSE,
     fill = NULL, anchor = NULL, ...)
 
-  \method{svalue}{GMenuBar}(obj, index = NULL, drop = NULL,
-    ...)
+  \method{svalue}{GMenuBar} (obj, index = NULL,
+    drop = NULL, ...)
 
-  \method{svalue}{GMenuBar}(obj, index = NULL, ..., value)
+  \method{svalue}{GMenuBar} (obj, index = NULL, ..., value)
     <- value
 }
 \arguments{

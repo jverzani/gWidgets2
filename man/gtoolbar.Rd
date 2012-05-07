@@ -12,7 +12,7 @@
     style = c("both", "icons", "text", "both-horiz"),
     container = NULL, ...)
 
-  \method{add}{GToolBar}(obj, child, expand = FALSE,
+  \method{add}{GToolBar} (obj, child, expand = FALSE,
     fill = NULL, anchor = NULL, ...)
 }
 \arguments{

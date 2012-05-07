@@ -13,9 +13,9 @@
     horizontal = TRUE, handler = NULL, action = NULL,
     container = NULL, ...)
 
-  \method{visible}{GExpandGroup}(obj, value) <- value
+  \method{visible}{GExpandGroup} (obj, value) <- value
 
-  \method{addHandlerChanged}{GExpandGroup}(obj, handler,
+  \method{addHandlerChanged}{GExpandGroup} (obj, handler,
     action = NULL, ...)
 }
 \arguments{

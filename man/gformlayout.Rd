@@ -11,7 +11,7 @@
   .gformlayout(toolkit, align = "left", spacing = 5,
     container = NULL, ...)
 
-  \method{svalue}{GFormLayout}(obj, index = NULL,
+  \method{svalue}{GFormLayout} (obj, index = NULL,
     drop = NULL, ...)
 }
 \arguments{

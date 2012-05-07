@@ -16,35 +16,35 @@
 \alias{update.GComponent}
 \title{Length of object}
 \usage{
-  \method{length}{GComponent}(x)
+  \method{length}{GComponent} (x)
 
-  \method{length}{GComponent}(x, value) <- value
+  \method{length}{GComponent} (x, value) <- value
 
-  \method{dim}{GComponent}(x)
+  \method{dim}{GComponent} (x)
 
-  \method{names}{GComponent}(x)
+  \method{names}{GComponent} (x)
 
-  \method{names}{GComponent}(x, value) <- value
+  \method{names}{GComponent} (x, value) <- value
 
-  \method{dimnames}{GComponent}(x)
+  \method{dimnames}{GComponent} (x)
 
-  \method{dimnames}{GComponent}(x, value) <- value
+  \method{dimnames}{GComponent} (x, value) <- value
 
-  \method{[}{GComponent}(x, i, j, ..., drop = TRUE)
+  \method{[}{GComponent} (x, i, j, ..., drop = TRUE)
 
-  \method{[}{GContainer}(x, i, j, ..., drop = TRUE)
+  \method{[}{GContainer} (x, i, j, ..., drop = TRUE)
 
-  \method{[}{GComponent}(x, i, j, ..., value) <- value
+  \method{[}{GComponent} (x, i, j, ..., value) <- value
 
-  \method{update}{GComponent}(object, ...)
+  \method{update}{GComponent} (object, ...)
 
-  \method{str}{GComponent}(object, ...)
+  \method{str}{GComponent} (object, ...)
 
-  \method{[}{GDf}(x, i, j, ..., drop = TRUE)
+  \method{[}{GDf} (x, i, j, ..., drop = TRUE)
 
-  \method{[}{GEdit}(x, i, j, ..., drop = TRUE)
+  \method{[}{GEdit} (x, i, j, ..., drop = TRUE)
 
-  \method{names}{GFrame}(x, value) <- value
+  \method{names}{GFrame} (x, value) <- value
 }
 \arguments{
   \item{x}{component}

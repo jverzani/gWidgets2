@@ -12,10 +12,10 @@
   .gcalendar(toolkit, text = "", format = "\%Y-\%m-\%d",
     handler = NULL, action = NULL, container = NULL, ...)
 
-  \method{addHandlerChanged}{GCalendar}(obj, handler,
+  \method{addHandlerChanged}{GCalendar} (obj, handler,
     action = NULL, ...)
 
-  \method{svalue}{GCalendar}(obj, index = NULL,
+  \method{svalue}{GCalendar} (obj, index = NULL,
     drop = NULL, ...)
 }
 \arguments{

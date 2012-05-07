@@ -12,8 +12,8 @@
   .ggroup(toolkit, horizontal = TRUE, spacing = 5,
     use.scrollwindow = FALSE, container = NULL, ...)
 
-  \method{svalue}{GGroup}(obj, index = TRUE, ..., value) <-
-    value
+  \method{svalue}{GGroup} (obj, index = TRUE, ..., value)
+    <- value
 
   gvbox(spacing = 5, use.scrollwindow = FALSE,
     container = NULL, ..., toolkit = guiToolkit())
