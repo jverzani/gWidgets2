@@ -73,21 +73,6 @@ GNotebookOfPages <- setRefClass("GNotebookOfPages",
                                                default_fill=TRUE,
                                                toolkit=toolkit
                                                )
-
-                                    ## put into subclass, otherwise we get an error
-                                    #make_ui(container)
-                                    
-                                    ## set current page when page is changed
-                                    ## addHandlerChanged(widget, handler=function(h,...) {
-                                    ##   ##widget$add_handler_changed(handler=function(h,...) {
-                                    ##   set_cur_page(h$page.no)
-                                    ##   page_change_handler(h$page.no)
-                                    ## })
-
-                                    
-                                    ##add_to_parent(container, .self, ...)
-
-
                                     
                                     callSuper(...)
                               },
@@ -116,7 +101,8 @@ GNotebookOfPages <- setRefClass("GNotebookOfPages",
                                  i <- get_index_from_page(i)
                                widget$remove_page_by_index(i) ## remove from notebook
                                pages[[i]] <<- NULL
-                               nms <<- nms[[-i]]
+                               if(length(nms) >= i)
+                                 nms <<- nms[-i]
                              },
                              set_cur_page=function(i) {
                                "Set current page to page i, a number or a page reference"
@@ -184,7 +170,9 @@ GDfNotebook <- setRefClass("GDfNotebook",
                                gbutton("new", container=tb_container, handler=function(h, ...) {
                                  blank_df <- data.frame(lapply(1:10, function(i) rep("", 100)), stringsAsFactors=FALSE)
                                  names(blank_df) <- sprintf("X%s", 1:10)
-                                 add_page(blank_df, "new page")
+                                 nm <- ginput("Variable name:", text="x", title="Name of new page?")
+                                 if(nchar(nm))
+                                   add_page(blank_df, make.names(nm))
                                })
                                gbutton("open", container=tb_container, handler=function(h,...) {
                                  ## present data frames in a list
@@ -209,7 +197,8 @@ GDfNotebook <- setRefClass("GDfNotebook",
                                })
                                gbutton("close", container=tb_container, handler=function(h,...) {
                                  df <- get_cur_page()
-                                 if(df$can_undo()) {
+                                 ## undo only in RGtk2
+                                 if(gtoolkit() == "RGtk2" && df$can_undo()) {
                                    if(!gconfirm(gettext("Really close? There are unsaved changes"), parent=block))
                                      return()
                                  }
@@ -233,7 +222,12 @@ GDfNotebook <- setRefClass("GDfNotebook",
                              },
                              save_DF=function() {
                                df <- get_cur_page()
-                               df$save_data(nms[get_index_from_page()])
+                               nm <- nms[get_index_from_page(df)]
+                               if(exists(nm, .GlobalEnv))
+                                 if(!gconfirm(c("Variable exists", "really overwrite?")))
+                                   return()
+                               
+                               df$save_data(nm)
                              }
                              ))
 
