@@ -57,85 +57,98 @@ GNotebookOfPages <- setRefClass("GNotebookOfPages",
                                 contains="GComponent",
                                 fields=list(
                                   pages="list",
-                                  nms="character",
-                                  cur_page="numeric"
+                                  nms="character"
                                   ),
                                 methods=list(
                                   initialize=function(toolkit=NULL,
                                     container=NULL, ...) {
                                     
-                                 
+                                    
                                     
                                     initFields(pages=list(),
                                                nms=character(0),
-                                               cur_page=0,
                                                default_expand=TRUE,
                                                default_fill=TRUE,
                                                toolkit=toolkit
                                                )
-                                    
+
                                     callSuper(...)
-                              },
-                             make_ui=function(container) {
-                               g <- ggroup(expand=TRUE, horizontal=FALSE)
-                               tb_container <- ggroup(cont=g)
-                               add_toolbar(tb_container)
-                               widget <<- gnotebook(container=g, expand=TRUE, fill=TRUE)
-                               block <<- g$block
-                             },
-                             page_change_handler=function(page.no) {
-                               "Called when page is changed"
-                             },
-                             add_toolbar=function(tb_container) {
-                               ### XXX("Subclass")
-                             },
-                             get_index_from_page=function(page) {
-                               "get page index in the pages list"
-                               which(sapply(pages, function(i) identical(i, page)))
-                             },
-                             add_page=function(...) {
-                               ### XXX("sublass")
-                             },
-                             remove_page=function(i) {
-                               if(!is.numeric(i))
-                                 i <- get_index_from_page(i)
-                               widget$remove_page_by_index(i) ## remove from notebook
-                               pages[[i]] <<- NULL
-                               if(length(nms) >= i)
-                                 nms <<- nms[-i]
-                             },
-                             set_cur_page=function(i) {
-                               "Set current page to page i, a number or a page reference"
-                               if(!is.numeric(i))
-                                 i <- get_index_from_page(i)
-                               cur_page <<- i
-                             },
-                             get_cur_page=function() {
-                               get_page(cur_page)
-                             },
-                             get_page=function(i) {
-                               pages[[i]]
-                             },
-                             ## These are passthroughs
-                             get_value=function( ...) {
-                               get_cur_page()$get_value(...)
-                             },
-                             set_value=function(value, ...) {
-                               get_cur_page()$set_value(value, ...)
-                             },
-                             get_index = function(...) {
-                               get_cur_page()$get_index(...)
-                             },
-                             set_index = function(value,...) {
-                               get_cur_page()$set_index(value, ...)
-                             },
-                             get_items = function(...) {
-                               get_cur_page()$get_items(...)
-                             },
-                             set_items = function(value, ...) {
-                               get_cur_page()$set_items(value, ...)
-                             }
-                             ))
+                                  },
+                                  make_ui=function(container) {
+                                    g <- ggroup(expand=TRUE, horizontal=FALSE)
+                                    tb_container <- ggroup(cont=g)
+                                    add_toolbar(tb_container)
+                                    widget <<- gnotebook(container=g, expand=TRUE, fill=TRUE)
+                                    block <<- g$block
+                                  },
+                                  page_change_handler=function(page.no) {
+                                    "Called when page is changed"
+                                  },
+                                  add_toolbar=function(tb_container) {
+### XXX("Subclass")
+                                  },
+                                  get_index_from_page=function(page) {
+                                    "get page index in the pages list"
+                                    which(sapply(pages, function(i) identical(i, page)))
+                                  },
+                                  add_page=function(...) {
+### XXX("sublass")
+                                  },
+                                  remove_page=function(i) {
+                                    if(!is.numeric(i))
+                                      i <- get_index_from_page(i)
+
+                                    pages[[i]] <<- NULL
+                                    widget$remove_page_by_index(i) ## remove from notebook
+                                    if(length(nms) >= i)
+                                      nms <<- nms[-i]
+                                  },
+                                  set_cur_page=function(i) {
+                                    "Set current page to page i, a number or a page reference"
+                                    if(!is.numeric(i))
+                                      i <- get_index_from_page(i)
+                                    widget$set_index(i)
+                                  },
+                                  get_cur_page=function() {
+                                    cur_page <- svalue(widget)
+                                    get_page(cur_page)
+                                  },
+                                  get_page=function(i) {
+                                    pages[[i]]
+                                  },
+                                  ## These are passthroughs
+                                  get_value=function( ...) {
+                                    widget$get_value(...)
+                                  },
+                                  set_value=function(value, ...) {
+                                    widget$set_value(value, ...)
+                                  },
+                                  get_index = function(...) {
+                                    widget$get_index(...)
+                                  },
+                                  set_index = function(value,...) {
+                                    widget$set_index(value, ...)
+                                  },
+                                  get_items = function(...) {
+                                    widget$get_items(...)
+                                  },
+                                  set_items = function(value, ...) {
+                                    widget$set_items(value, ...)
+                                  },
+                                  get_length=function(...) {
+                                    widget$get_length()
+                                  },
+                                  get_names=function(...) {
+                                    widget$get_names()
+                                  },
+                                  set_names = function(value, ...) {
+                                    widget$set_names(value, ...)
+                                  },
+                                  ## delegate
+                                  add_handler_changed=function(handler, action=NULL, ...) {
+                                    widget$add_handler_changed(handler, action, ...)
+                                  }
+                                  ))
 
 
 
@@ -146,7 +159,7 @@ GDfNotebook <- setRefClass("GDfNotebook",
                                container=NULL, ...) {
                                ## put into subclass, otherwise we get an error
                                make_ui(container)
-                                    
+                               
                                ## set current page when page is changed
                                ## addHandlerChanged(widget, handler=function(h,...) {
                                ##   ##widget$add_handler_changed(handler=function(h,...) {
@@ -155,7 +168,7 @@ GDfNotebook <- setRefClass("GDfNotebook",
                                ## })
 
                                callSuper(toolkit)
-                                    
+                               
                              },
                              make_ui=function(container) {
                                g <- ggroup(expand=TRUE, horizontal=FALSE, container=container)

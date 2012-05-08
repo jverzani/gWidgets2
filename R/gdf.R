@@ -7,6 +7,9 @@ NULL
 ##' functionality of \code{edit.data.frame}. A single mouse click on a
 ##' cell should select that cell, a double click should initiate
 ##' editing of that cell.
+##'
+##' The \code{save_data} reference class method can be called to
+##' save the data into a variable with the specified name.
 ##' @param items data frame to edit
 ##' @param container parent container
 ##' @param handler called on cell change
