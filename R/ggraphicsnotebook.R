@@ -17,7 +17,7 @@ ggraphicsnotebook <- function(
   if(is.character(toolkit))
     toolkit <- guiToolkit(toolkit)
 
-  obj <- ggraphicsnotebook (toolkit,
+  obj <- .ggraphicsnotebook (toolkit,
                             width=width, height=height, dpi=dpi, container=container ,...
                             )
   check_return_class(obj, "GGraphicsNotebook")
@@ -46,9 +46,30 @@ ggraphicsnotebook <- function(
 ## basic subclass
 GGraphicsNotebook <- setRefClass("GGraphicsNotebook",
                              contains="GNotebookOfPages",
+                                 fields=list(
+                                   width="numeric",
+                                   height="numeric",
+                                   dpi="numeric",
+                                   ctr="numeric",
+                                   close_btn="ANY"
+                                   ),
                              methods=list(
-                               initialize=function(toolkit=NULL, container=NULL, ...) {
+                               initialize=function(toolkit=NULL, width, height, dpi,
+                                 container=NULL, ...) {
+
+                                 initFields(width=width,
+                                            height=height,
+                                            dpi=dpi,
+                                            ctr=0)
                                  make_ui(container)
+                                 add_handler_changed(function(h,...) {
+                                   i <- svalue(widget)
+                                   if(1 <= i && i <= length(pages)) {
+                                     page <- pages[[i]]
+                                     visible(page) <- TRUE
+                                   }
+                                   close_btn$set_enabled(get_length() > 0)
+                                 })
                                  callSuper(toolkit)
                                },
                                make_ui=function(container) {
@@ -57,21 +78,31 @@ GGraphicsNotebook <- setRefClass("GGraphicsNotebook",
                                  add_toolbar(tb_container)
                                  widget <<- gnotebook(container=g, expand=TRUE, fill=TRUE)
                                  block <<- g$block
+                                 ## close button
                                },
                                add_toolbar=function(tb_container) {
                                  gbutton("new", container=tb_container, handler=function(h, ...) {
-                                   gmessage("Add plot to graphic")
+                                   add_page()
                                  })
-                                 gbutton("close", container=tb_container, handler=function(h,...) {
+                                 close_btn <<- gbutton("close", container=tb_container, handler=function(h,...) {
                                    remove_page(get_cur_page())
                                  })
+                                 close_btn$set_enabled(FALSE)
+
+                                 
+                                 addSpring(tb_container)
                                },
                                get_index_from_page=function(page) {
                                  "get page index in the pages list"
                                  which(sapply(pages, function(i) identical(i, page)))
                                },
-                               add_page=function(new_df, name=deparse(substitute(new_df))) {
-                                 page <- ggraphics(container=widget, label=sprintf("Plot%s",""), expand=TRUE) ## XXX modify name
+                               add_page=function(name="Plot") {
+                                 ctr <<- ctr + 1
+                                 page <- ggraphics(container=widget,
+                                                   label=sprintf("Plot %s", ctr),
+                                                   expand=TRUE,
+                                                   width=width, height=height, dpi=dpi
+                                                   ) ## XXX modify name
                                  pages <<- c(pages, page)
                                  nms <<- c(nms, name)
                                  set_cur_page(length(pages))
