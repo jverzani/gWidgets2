@@ -20,3 +20,8 @@ expect_equal(svalue(tbl1), x[[1]][integer(0)])
 svalue(tbl1, index=TRUE) <- 1
 expect_equal(svalue(tbl1, index=TRUE), 1)
 expect_equal(svalue(tbl1, drop=TRUE), state.name[1])
+
+## replace
+tbl3 <- gtable(x[, 1:2], cont=g)
+tbl3[] <- x
+expect_equal(length(names(tbl3)), length(names(x)))
