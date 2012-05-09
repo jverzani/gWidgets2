@@ -19,7 +19,7 @@ NULL
 ##' @return returns \code{GFilter} object
 ##' @export
 ##' @examples
-##' if(interactive()) {
+##' \dontrun{
 ##' DF <- mtcars[, c("mpg", "cyl", "hp", "am", "wt")]
 ##' w <- gwindow("Example of gfilter", visible=FALSE)
 ##' pg <- ggroup(cont=w)

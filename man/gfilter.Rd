@@ -84,12 +84,11 @@
   means.}
 }
 \value{
-  returns filename(s) or \code{character(0)} if no
-  selection.
+  returns \code{GFilter} object
 }
 \description{
-  This widget provides a means to subset, or filter, a data
-  frame.
+  This widget provides a simple means to subset, or filter,
+  a data frame.
 
   generic for toolkit dispatch
 
@@ -103,20 +102,22 @@
   Default
 }
 \examples{
-if(interactive()) {
+\dontrun{
 DF <- mtcars[, c("mpg", "cyl", "hp", "am", "wt")]
-w <- gwindow(visible=FALSE)
+w <- gwindow("Example of gfilter", visible=FALSE)
 pg <- ggroup(cont=w)
 df <- gtable(DF, cont=pg)
 a <- gfilter(df, initial.vars=data.frame(names(DF),
-c("range", "choice", "range", "radio", "range"),
-stringsAsFactors=FALSE),
-allow.edit=TRUE,
-container=pg,
-handler=function(h,...) visible(df) <- h$obj$get_value()
-)
-visible(w) <- TRUE
+                   c("range", "choice", "range", "radio", "range").
+                   stringsAsFactors=FALSE),
+             allow.edit=TRUE,
+             container=pg,
+             handler=function(h,...) {
+               visible(df) <- h$obj$get_value()
+             }
+             )
 size(w) <- c(600, 400)
+visible(w) <- TRUE
 }
 }
 

@@ -80,8 +80,9 @@
   generic for toolkit dispatch
 
   The default change handler call is when the user
-  activates the entry, typically by pressing the enter key.
-  Other possible events to consider are covered by:
+  activates the entry, typically by pressing the enter key
+  or when the widget loses the keyboard focus.  Other
+  possible events to consider are covered by:
   \code{addhandlerBlur} (when the widget loses focuses) and
   \code{addHandlerKeystroke} (called after each keystroke).
   For the latter, if the toolkit supports it, the handler's

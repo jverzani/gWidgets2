@@ -65,6 +65,10 @@
   \code{visible} is used to refer to which rows are being
   shown.
 }
+\details{
+  The \code{save_data} reference class method can be called
+  to save the data into a variable with the specified name.
+}
 \note{
   need example of do.subset feature using \code{visible<-}
 }
