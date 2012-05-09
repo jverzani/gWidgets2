@@ -63,7 +63,8 @@ GGraphicsNotebook <- setRefClass("GGraphicsNotebook",
                                             ctr=0)
                                  make_ui(container)
                                  add_handler_changed(function(h,...) {
-                                   i <- svalue(widget)
+                                   ## need page.no here -- not svalue(h$obj) which may be behind the count
+                                   i <- h$page.no
                                    if(1 <= i && i <= length(pages)) {
                                      page <- pages[[i]]
                                      visible(page) <- TRUE
