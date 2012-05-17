@@ -3,7 +3,9 @@ NULL
 
 ##'  Spinbutton constructor
 ##'
-##' 
+##' A spinbutton allows the user to select from a pre-selected range
+##' of numbers. Similar to a slider, but with more precision, but
+##' slower to adjust. The basic arguments mirror that of \code{seq.int}.
 ##' @param from from value
 ##' @param to to value
 ##' @param by step length

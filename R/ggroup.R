@@ -37,6 +37,11 @@ ggroup <- function(horizontal=TRUE, spacing=5, use.scrollwindow=FALSE, container
 ##' padding around border of the box and spacing between each child
 ##' that is packed in. The spacing here is the between-child-component spacing.
 ##' The reference class method \code{set_borderwidth} can be used for the other.
+##'
+##' Child components are typically added to a box container through
+##' the child components constructor. The argument \code{expand},
+##' \code{fill}, and \code{anchor} determine how the child is
+##' positioned within the container.
 ##' @param obj \code{GGroup} object
 ##' @param index ignored
 ##' @param value value (in pixels) for between child spacing

@@ -30,6 +30,19 @@ NULL
 ##' @inheritParams gwidget
 ##' @export
 ##' @rdname gtext
+##' @note with \pkg{gWidgetstcltk} the allocation of size to the
+##' widget may be incorrect. It is best to wait until the widget is
+##' added before displaying its parent window. See the \code{visible}
+##' argument for \code{gwindow}.
+##' @examples
+##' \dontrun{
+##' w <- gwindow("gtext example", visible=FALSE)
+##' g <- gvbox(cont=w)
+##' t1 <- gtext("initial text", container=g)
+##' t2 <- gtext("monospace", font.attr=list(family="monospace"), container=g)
+##' insert(t2, "new text in bold", font.attr=list(weight="bold"))
+##' visible(w) <- TRUE
+##' }
 gtext <- function(
                   text = NULL, width = NULL, height = 300,
                   font.attr = NULL, wrap = TRUE,
@@ -109,11 +122,21 @@ dispose.GText <- function(obj, ...) {
 ##' svalue method
 ##'
 ##' The \code{svalue} method for a gtext object returns a) the buffers
-##' content, b) the selected text (if \code{drop=TRUE}), the index of
-##' the selection if \code{index=TRUE}
+##' content, b) the selected text (if \code{drop=TRUE}, but not
+##' \code{NULL}), the index of the selection if \code{index=TRUE}
 ##' @inheritParams svalue
 ##' @export
 ##' @rdname gtext
 ##' @method svalue GText
 ##' @S3method svalue GText
 svalue.GText <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
+
+##' Set font for gtext object
+##'
+##' The \code{font} assignment method is used to change the font of
+##' the currently selected text.
+##' @export
+##' @rdname font
+##' @method font<- GText
+##' @S3method font<- GText
+"font<-.GText" <- function(obj, value) NextMethod()

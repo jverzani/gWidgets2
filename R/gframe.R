@@ -14,6 +14,16 @@ NULL
 ##' @note to include a scrollwindow, place a \code{ggroup} within this window.
 ##' @export
 ##' @rdname gframe
+##' @examples
+##' \dontrun{
+##' w <- gwindow("gformlayout", visible=FALSE)
+##' f <- gframe("frame", horizontal=FALSE, container=w)
+##' glabel("Lorem ipsum dolor sit amet, \nconsectetur adipiscing elit.", container=f)
+##' gbutton("change name", container=f, handler=function(h,...) {
+##'   names(f) <- "new name"
+##' })
+##' visible(w) <- TRUE
+##' }
 gframe <- function(
                    text = "", markup=FALSE, pos = 0, horizontal=TRUE, spacing=5, container = NULL,
                    ... ,

@@ -32,6 +32,8 @@ gdf <- function(
   deprecated_args <- list(do.subset=c("do.subset argument has been deprecated.","See examples for how to create that functionality"),
                           name=c("name argument is deprecated, as this should be managed by programmer")
                           )
+
+
   check_deprecated(deprecated_args, ...)
 
   check_return_class(obj, "GDf")

@@ -21,6 +21,15 @@ NULL
 ##' @inheritParams gwidget
 ##' @return Returns an object of class \code{GTable}
 ##' @export
+##' @examples
+##' \dontrun{
+##' w <- gwindow("gtable example", visible=FALSE)
+##' g <- gvbox(cont=w)
+##' tbl <- gtable(mtcars, cont=g, expand=TRUE, fil=TRUE)
+##' addHandlerClicked(tbl, handler=function(h,...) sprintf("You selected %s", svalue(h$obj)))
+##' visible(w) <- TRUE
+##'
+##' }
 gtable <- function(
                    items,
                    multiple = FALSE,
@@ -46,7 +55,6 @@ gtable <- function(
       items <- data.frame(items, stringsAsFactors=FALSE)
   }
 
-  
   obj <- .gtable (toolkit,
                   items=items,
                   multiple=multiple,
@@ -94,14 +102,16 @@ svalue.GTable <- function(obj, index=NULL, ..., value) NextMethod()
 
 ##' "[" method
 ##'
-##' For \code{GTable} objects the \code{[} and \code{[<-} methods are (mostly)
-##' implemented. The \code{[} method allows one to access the object
-##' using the regular matrix notation (but there is no list notation,
-##' e.g. \code{$} or \code{[[}, defined). The \code{[<-} method is
-##' available, but for most toolkits is restricted: one can not add
-##' columns, add rows, remove columns, remove rows, or change the type of the column. For all
-##' of these actions, one can reassign the items being displayed through the
-##' idiom \code{obj[] <- new_items}. This allows the widget to redo the column renderers.
+##' For \code{GTable} objects the \code{[} and \code{[<-} methods are
+##' (mostly) implemented. The \code{[} method allows one to access the
+##' object using the regular matrix notation (but there is no list
+##' notation, e.g. \code{$} or \code{[[}, defined). The \code{[<-}
+##' method is available, but for most toolkits is restricted: one can
+##' not add columns, add rows, remove columns, remove rows, or change
+##' the type of the column. For all of these actions, one can reassign
+##' the items being displayed through the idiom \code{obj[] <-
+##' new_items}. This allows the widget to resize or redo the column
+##' renderers.
 ##' @param x \code{GTable} object
 ##' @param i row index
 ##' @param j column index
@@ -117,7 +127,7 @@ svalue.GTable <- function(obj, index=NULL, ..., value) NextMethod()
 ##'
 ##' The change handler for \code{GTable} is called when the selection
 ##' changes. This is often the result of a click event (but need not
-##' bo), although we alias to \code{addHandlerClicked}. For double
+##' be), although we alias to \code{addHandlerClicked}. For double
 ##' click events, see \code{addHandlerDoubleclick}.
 ##' @inheritParams addHandler
 ##' @export
@@ -126,6 +136,18 @@ svalue.GTable <- function(obj, index=NULL, ..., value) NextMethod()
 ##' @S3method addHandlerChanged GTable
 addHandlerChanged.GTable <- function(obj, handler, action=NULL, ...) NextMethod()
 
+
+##' addHandlerDoubleclick method
+##'
+##' Double clicking is used to activate an item (single click is
+##' selection). We also bind pressing the Return key on an item to
+##' initiate this signal
+##' @inheritParams addHandler
+##' @export
+##' @rdname gtable
+##' @method addHandlerDoubleclick GTable
+##' @S3method addHandlerDoubleclick GTable
+addHandlerDoubleclick.GTable <- function(obj, handler, action=NULL, ...) NextMethod()
 
 ##' visible
 ##'

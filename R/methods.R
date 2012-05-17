@@ -545,13 +545,23 @@ redo.GComponent <- function(obj, ...) {
 
 ##' Add a child object to parent container
 ##'
-##' Add packs in child objects into parent box containers
+##' Add packs in child objects.
 ##' @param obj parent object
 ##' @param child child widget
-##' @param expand NULL or logical. XXX
-##' @param fill NULL or logical. XXX
-##' @param anchor NULL or logical. XXX
-##' @param ... passed on
+##' @param expand NULL or logical. For box containers controls whether a child will expand to fill the allocated space. 
+##' @param fill NULL or character. For box containers. The value of \code{fill} (not
+##' always respected) is used to control if expansion happens
+##' vertically (\code{y}), horizontally (\code{x}) or both
+##' (\code{both} or \code{TRUE}). For vertically filled box
+##' containers, children always fill horizontally (atleast) and for
+##' horizontally filled box containers, children always fill
+##' vertically (atleast). This is important to realize when trying to
+##' size buttons, say.
+##' @param anchor NULL or integer. For box containers. The anchor argument is used to
+##' position the child within the parent when there is more space
+##' allocated than the child requests. This is specified with a
+##' Cartesian pair in {-1,0,1} x {-1, 0, 1}. 
+##' @param ... passed on to the 
 ##' @export
 ##' @rdname add
 add <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) UseMethod("add")
@@ -586,7 +596,7 @@ add.default <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) {
 
 ##' Delete child object from parent
 ##'
-##' Delete may or may note remove a child. This is toolkit
+##' Delete may or may not remove a child. This is toolkit
 ##' specific. It may also be tied up with garbage collection. To avoid
 ##' that, keep a reference to the child object before deleting.
 ##' @export
@@ -606,7 +616,8 @@ delete.GContainer <- function(obj, child) {
 
 ##' Dispose of object
 ##'
-##' Dispose of object, primarily a window
+##' Dispose of object, primarily a window though this is modified in
+##' \code{GNoteBook} and \code{GText}.
 ##' @param obj object to dispose
 ##' @param ... passed along
 ##' @export
@@ -715,7 +726,7 @@ getTopLevel.GComponent <- function(obj) {
 ##'
 ##' A spring will separate the children packed in the box container
 ##' prior to the spring be added and those being added, pushing the
-##' two are far apart as the allocated space will allow.
+##' two as far apart as the allocated space will allow.
 ##' @param obj GContainer object
 ##' @return NULL
 ##' @export
@@ -737,7 +748,8 @@ addSpring.GContainer <- function(obj) {
 
 ##' Add a space to a box container objects
 ##'
-##' Inserts a proscribed amount of space between the previously packed child and next one.
+##' Inserts a specific amount of space between the previously packed
+##' child and next one.
 ##' @param obj GContainer object
 ##' @param value space in pixels to add
 ##' @return NULL

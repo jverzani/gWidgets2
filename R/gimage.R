@@ -2,7 +2,7 @@
 NULL
 
 
-##' A widget for displaying an image
+##' A widget for displaying an image file
 ##'
 ##' @param filename basename of file
 ##' @param dirname dirname of file

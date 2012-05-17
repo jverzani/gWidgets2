@@ -3,6 +3,9 @@ NULL
 
 ##' slider widget constructor
 ##'
+##' A slider widgets allows a selection from a range of numeric
+##' values. The widget presents the user with a quick to adjust, but
+##' relatively difficult to adjust precisely way to to pick a number.
 ##' @param from If a number of length one then a starting point, in
 ##' which case to, by are passed to \code{seq}. Otherwise a sequence
 ##' of values for which sort(unique(from)) will order

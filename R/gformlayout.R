@@ -11,10 +11,28 @@ NULL
 ##' \code{glayout} to be used to layout two columns forms with a label
 ##' on the left.  The label can be passed in to the \code{add} method
 ##' of the container as is done with notebook labels
-##' @param align alignment of label. Left justify or center balance. Leave as "default" for underlying toolkit default.
+##' @param align alignment of label. Left justify or center
+##' balance. Leave as "default" for underlying toolkit default.
 ##' @param spacing spacing between columns
 ##' @inheritParams gwidget
 ##' @export
+##' @examples
+##' \dontrun{
+##' w <- gwindow("gformlayout", visible=FALSE)
+##' g <- gvbox(container=w)
+##' 
+##' flyt <- gformlayout(container=g)
+##' gedit("", label="Name:", container=flyt)
+##' gedit("", label="Rank:", container=flyt)
+##' gedit("", label="Serial No.:", container=flyt)
+##' 
+##' b <- gbutton("Show me", container=g, handler=function(h,...) {
+##' print(svalue(flyt))
+##' })
+##' 
+##' addSpring(g) ## better with Qt, else flyt expands to fill.
+##' visible(w) <- TRUE
+##' }
 gformlayout <- function(
                         align=c("default", "left", "center"),
                         spacing=5,

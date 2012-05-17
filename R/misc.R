@@ -141,3 +141,5 @@ setClassUnion("IntegerOrNULL", c("integer", "NULL"))
 setClassUnion("CharacterOrNULL", c("character", "NULL"))
 setClassUnion("LogicalOrNULL", c("logical", "NULL"))
 setClassUnion("LogicalCharacterOrNULL", c("logical", "character", "NULL"))
+setClassUnion("FunctionOrNULL", c("function", "NULL"))
+              

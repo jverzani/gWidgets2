@@ -8,6 +8,24 @@ NULL
 ##' from gnotebook's.
 ##' @inheritParams gcontainer
 ##' @export
+##' @examples
+##' \dontrun{
+##' w <- gwindow("stack widget", visible=FALSE)
+##' add_page <- function(cont, i) {
+##'   g <- gvbox(container=cont)
+##'   glabel(sprintf("page %s",i), container=g)
+##'   bg <- ggroup(container=g); addSpring(bg)
+##'   lb <- gbutton("Previous", container=bg, handler=function(h,...) {
+##'     svalue(cont) <- max(1, i - 1)
+##'   })
+##'   rb <- gbutton("Next", container=bg, handler=function(h,...) {
+##'     svalue(cont) <- min(i + 1, length(cont))
+##'   })
+##' }
+##' sw <- gstackwidget(cont=w)
+##' sapply(1:5, add_page, cont=sw)
+##' visible(w) <- TRUE
+##' }
 gstackwidget <- function(container = NULL, ... ,
                       toolkit=guiToolkit()){
 
@@ -35,7 +53,7 @@ gstackwidget <- function(container = NULL, ... ,
 ## but just in case
 
 
-##' Remove current page from notebook
+##' Remove current page from stackwidget
 ##'
 ##' Dispose deletes the current page, not the entire notebook
 ##' object. To delete a specific page, a combination of

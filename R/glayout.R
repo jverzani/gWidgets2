@@ -3,10 +3,33 @@ NULL
 
 ##' Constructor for grid layout container
 ##'
+##' The grid layout container uses matrix notation to position its
+##' child components. This allows one to align widgets both
+##' horizontally and vertically, as desired. There is some support for
+##' matrix methods, such as \code{dim} and \code{[} to reference the
+##' child objects.
 ##' @param homogeneous are cells all the same size
 ##' @param spacing between cell spacing
 ##' @inheritParams gwidget
+##' @seealso \code{\link{gformlayout}} for a more convenient means to layout forms.
 ##' @export
+##' @examples
+##' \dontrun{
+##' 
+##' w <- gwindow("glayout example", visible=FALSE)
+##' g <- gvbox(container=w)
+##' lyt <- glayout(container=g)
+##' lyt[1,1] <- "a label"
+##' lyt[1,2] <- gedit("A widget", container=lyt)
+##' lyt[2, 1:2] <- gcombobox(state.name, cont=lyt)
+##' g1 <- ggroup(container=g)
+##' addSpring(g1)
+##' gbutton("values", container=g1, handler=function(h, ...) {
+##'   print(sapply(lyt[,2], svalue))
+##' })
+##' visible(w) <- TRUE
+##' 
+##' }
 glayout <- function(
                     homogeneous = FALSE, spacing = 10, container = NULL,      ... ,
                     toolkit=guiToolkit()){
@@ -29,8 +52,13 @@ glayout <- function(
                      ... )
            UseMethod( '.glayout' )
 
-##' pass back item, list or matrix of items depending on dimension
+##' refer to children
 ##'
+##' The \code{[} method for the grid layout allows one to reference
+##' the child objects by index. The return value is non standard. It
+##' may be the item, a list (if one dimensonaL) or an array. The list
+##' format is convenient to refer to all the child objects in a
+##' column.
 ##' @param x object
 ##' @param i row index
 ##' @param j column index
@@ -77,8 +105,8 @@ glayout <- function(
   expand <- getWithDefault(theArgs$expand, FALSE)
   if(!is.null(theArgs$align))
     theArgs$anchor <- theArgs$align
-  anchor <- getWithDefault(theArgs$anchor, NULL)
   fill <- getWithDefault(theArgs$fill, "x") # "", x, y or both
+  anchor <- getWithDefault(theArgs$anchor, NULL)
 
   x$set_items(value, i, j, expand, fill, anchor)
   x

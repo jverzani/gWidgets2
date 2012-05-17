@@ -3,6 +3,9 @@ NULL
 
 ##' Widget for HTML display
 ##'
+##' This widget, when supported by the toolkit (not
+##' \pkg{gWidgets2RGtk2} and \pkg{gWidgets2tcltk}) provides a simple
+##' means to display HTML formatted text.
 ##' @param x url or character vector of HTML formatted text. URLs marked by "http://" prefix
 ##' @inheritParams gwidget
 ##' @return a \code{GHtml} instance.
