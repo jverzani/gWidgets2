@@ -49,7 +49,9 @@ Wizard <- setRefClass("Wizard",
                           initFields(pages=list(),
                                      main_window=gwindow(title, visible=FALSE)
                                      )
-                          nb <<- gstackwidget(cont=main_window)
+                          g <- ggroup(cont=main_window)
+                          g$set_borderwidth(10)
+                          nb <<- gstackwidget(cont=g)
                           
                           callSuper(...)
                         },

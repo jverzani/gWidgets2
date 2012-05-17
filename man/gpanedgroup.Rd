@@ -32,12 +32,29 @@
   \code{\link{guiToolkit}}.}
 }
 \description{
-  Holds two child widgets.
+  A container for holding two child widgets where the space
+  allocated to each can be manipulated by the user with a
+  pane between the widgets, or programatticaly via
+  \code{svalue<-}. Child widgets are added in the usual
+  way, typically through the \code{container} argument of a
+  constructor. Only two children may be added. Children
+  expand and fill the allocated space.
 
   generic for toolkit dispatch
 }
 \note{
   There were arguments to specify the children at
   construction, but these have been removed.
+}
+\examples{
+\dontrun{
+w <- gwindow("gpanedgroup", visible=FALSE)
+pg <- gpanedgroup(cont=w)
+gbutton("left", cont=pg)
+gbutton("right", cont=pg)
+
+visible(w) <- TRUE
+svalue(pg) <- 0.33
+}
 }
 

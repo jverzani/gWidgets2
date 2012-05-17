@@ -121,7 +121,23 @@
 
   The \code{svalue} method for a gtext object returns a)
   the buffers content, b) the selected text (if
-  \code{drop=TRUE}), the index of the selection if
-  \code{index=TRUE}
+  \code{drop=TRUE}, but not \code{NULL}), the index of the
+  selection if \code{index=TRUE}
+}
+\note{
+  with \pkg{gWidgetstcltk} the allocation of size to the
+  widget may be incorrect. It is best to wait until the
+  widget is added before displaying its parent window. See
+  the \code{visible} argument for \code{gwindow}.
+}
+\examples{
+\dontrun{
+w <- gwindow("gtext example", visible=FALSE)
+g <- gvbox(cont=w)
+t1 <- gtext("initial text", container=g)
+t2 <- gtext("monospace", font.attr=list(family="monospace"), container=g)
+insert(t2, "new text in bold", font.attr=list(weight="bold"))
+visible(w) <- TRUE
+}
 }
 

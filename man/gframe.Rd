@@ -50,6 +50,17 @@
   to include a scrollwindow, place a \code{ggroup} within
   this window.
 }
+\examples{
+\dontrun{
+w <- gwindow("gformlayout", visible=FALSE)
+f <- gframe("frame", horizontal=FALSE, container=w)
+glabel("Lorem ipsum dolor sit amet, \\nconsectetur adipiscing elit.", container=f)
+gbutton("change name", container=f, handler=function(h,...) {
+  names(f) <- "new name"
+})
+visible(w) <- TRUE
+}
+}
 \seealso{
   \code{\link{ggroup}} and \code{\link{gexpandgroup}}
 }

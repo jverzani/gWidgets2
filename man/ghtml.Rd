@@ -34,7 +34,9 @@
   a \code{GHtml} instance.
 }
 \description{
-  Widget for HTML display
+  This widget, when supported by the toolkit (not
+  \pkg{gWidgets2RGtk2} and \pkg{gWidgets2tcltk}) provides a
+  simple means to display HTML formatted text.
 
   S3 generic whose methods are implemented in the toolkit
   packages

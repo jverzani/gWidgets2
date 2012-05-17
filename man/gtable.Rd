@@ -2,6 +2,7 @@
 \alias{.gtable}
 \alias{[.GTable}
 \alias{addHandlerChanged.GTable}
+\alias{addHandlerDoubleclick.GTable}
 \alias{gtable}
 \alias{size<-.GTable}
 \alias{svalue.GTable}
@@ -22,6 +23,9 @@
   \method{[}{GTable} (x, i, j, ..., drop = TRUE)
 
   \method{addHandlerChanged}{GTable} (obj, handler,
+    action = NULL, ...)
+
+  \method{addHandlerDoubleclick}{GTable} (obj, handler,
     action = NULL, ...)
 
   \method{visible}{GTable} (obj, ...)
@@ -120,14 +124,18 @@
   columns, add rows, remove columns, remove rows, or change
   the type of the column. For all of these actions, one can
   reassign the items being displayed through the idiom
-  \code{obj[] <- new_items}. This allows the widget to redo
-  the column renderers.
+  \code{obj[] <- new_items}. This allows the widget to
+  resize or redo the column renderers.
 
   The change handler for \code{GTable} is called when the
   selection changes. This is often the result of a click
-  event (but need not bo), although we alias to
+  event (but need not be), although we alias to
   \code{addHandlerClicked}. For double click events, see
   \code{addHandlerDoubleclick}.
+
+  Double clicking is used to activate an item (single click
+  is selection). We also bind pressing the Return key on an
+  item to initiate this signal
 
   For \code{GTable}, visibility refers to which rows are
   currently shown, not whether the widget itself is shown
@@ -142,5 +150,15 @@
   \code{column.widths} as named components of a list. The
   value of \code{column.widths} should be a numeric vector
   of pixel widths of length matching the number of columns.
+}
+\examples{
+\dontrun{
+w <- gwindow("gtable example", visible=FALSE)
+g <- gvbox(cont=w)
+tbl <- gtable(mtcars, cont=g, expand=TRUE, fil=TRUE)
+addHandlerClicked(tbl, handler=function(h,...) sprintf("You selected \%s", svalue(h$obj)))
+visible(w) <- TRUE
+
+}
 }
 

@@ -74,6 +74,12 @@
 
   Avoids need to type \code{horizontal=FALSE}
 }
+\details{
+  Child components are typically added to a box container
+  through the child components constructor. The argument
+  \code{expand}, \code{fill}, and \code{anchor} determine
+  how the child is positioned within the container.
+}
 \examples{
 if(interactive()) {
   w <- gwindow("Box containers")

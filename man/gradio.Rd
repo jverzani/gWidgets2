@@ -81,8 +81,14 @@
   means.}
 }
 \description{
-  The radio button widget shows 2 or more items forcing the
-  user to select one.
+  A radio button group allows a user to select one from
+  many items. In \pkg{gWidgets2} the radio button widget
+  shows 2 or more items. The items are coerced to
+  characters, usually by the underlying toolkit. Use the
+  \code{coerce_with} property to set a function, such as
+  \code{as.numeric}, to coerce the return value during the
+  \code{svalue} code. The items are referred to with the
+  \code{[} method, the selected one with \code{svalue}.
 
   Generic for method dispatch
 

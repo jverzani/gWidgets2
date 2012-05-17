@@ -48,16 +48,45 @@
   \code{\link{guiToolkit}}.}
 }
 \description{
-  Constructor for grid layout container
+  The grid layout container uses matrix notation to
+  position its child components. This allows one to align
+  widgets both horizontally and vertically, as desired.
+  There is some support for matrix methods, such as
+  \code{dim} and \code{[} to reference the child objects.
 
   generic for toolkit dispatch
 
-  pass back item, list or matrix of items depending on
-  dimension
+  The \code{[} method for the grid layout allows one to
+  reference the child objects by index. The return value is
+  non standard. It may be the item, a list (if one
+  dimensonaL) or an array. The list format is convenient to
+  refer to all the child objects in a column.
 
   The matrix notation allows for spanning of multiple rows
   and or columns, but no holes. The \code{...} argument is
   used to pass in values for expand, fill, anchor (see the
   \code{add} method of \code{ggroup}) for their meaning).
+}
+\examples{
+\dontrun{
+
+w <- gwindow("glayout example", visible=FALSE)
+g <- gvbox(container=w)
+lyt <- glayout(container=g)
+lyt[1,1] <- "a label"
+lyt[1,2] <- gedit("A widget", container=lyt)
+lyt[2, 1:2] <- gcombobox(state.name, cont=lyt)
+g1 <- ggroup(container=g)
+addSpring(g1)
+gbutton("values", container=g1, handler=function(h, ...) {
+  print(sapply(lyt[,2], svalue))
+})
+visible(w) <- TRUE
+
+}
+}
+\seealso{
+  \code{\link{gformlayout}} for a more convenient means to
+  layout forms.
 }
 

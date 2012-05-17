@@ -146,10 +146,11 @@ l$conf.level$coerce_with <- function(x) x/100
 bg <- ggroup(cont=g)
 addSpring(bg)
 gbutton("About", cont=bg, handler=function(h,...) {
-  w1 <- gwindow("About", visible=FALSE)
-  g <- gvbox(cont=w1); g$set_borderwidth=10
+  w1 <- gwindow("About", visible=FALSE, parent=w)
+  g <- gvbox(cont=w1); g$set_borderwidth(10)
   glabel(about, cont=g, expand=TRUE)
-  gbutton("dismiss", cont=g, handler=function(...) dispose(w1))
+  bg <- ggroup(cont=g); addSpring(bg)
+  gbutton("dismiss", cont=bg, handler=function(...) dispose(w1))
   visible(w1) <- TRUE
 })
 run_button <- gbutton("Run", cont=bg, handler=model$run_t_test)

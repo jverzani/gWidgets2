@@ -33,13 +33,14 @@ make_gui <- function(FUN, parent) {
   }
   mapply(f, i=seq_along(args), nm=names(args), x=args)
 
-  bg <- ggroup(cont=g)
+  bg <- ggroup(cont=g); addSpring(bg)
   gbutton("ok", cont=bg, handler=function(h, ...) {
     values <- lapply(lyt[,2], svalue)
     nms <- sapply(lyt[,1], svalue)
     names(values) <- nms
     do.call(FUN, values)
   })
+  addSpace(12)
   gbutton("dismiss", cont=bg, handler=function(h,...) dispose(parent))
 
   visible(parent) <- TRUE

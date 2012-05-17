@@ -65,7 +65,10 @@
   \code{\link{guiToolkit}}.}
 }
 \description{
-  slider widget constructor
+  A slider widgets allows a selection from a range of
+  numeric values. The widget presents the user with a quick
+  to adjust, but relatively difficult to adjust precisely
+  way to to pick a number.
 
   generic for toolkit dispatch
 }

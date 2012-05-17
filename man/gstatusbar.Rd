@@ -32,4 +32,8 @@
 
   generic for toolkit dispatch
 }
+\examples{
+\dontrun{
+}
+}
 

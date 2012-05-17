@@ -3,6 +3,7 @@
 \alias{font.default}
 \alias{font<-}
 \alias{font<-.default}
+\alias{font<-.GText}
 \title{Returns font specification for widget, if available}
 \usage{
   font(obj)
@@ -12,6 +13,8 @@
   font(obj) <- value
 
   \method{font}{default} (obj, value) <- value
+
+  \method{font}{GText} (obj, value) <- value
 }
 \arguments{
   \item{obj}{object}
@@ -54,5 +57,8 @@
   Set font for a widget
 
   Basic S3 method for setting font
+
+  The \code{font} assignment method is used to change the
+  font of the currently selected text.
 }
 

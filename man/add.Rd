@@ -20,20 +20,34 @@
 
   \item{child}{child widget}
 
-  \item{expand}{NULL or logical. XXX}
+  \item{expand}{NULL or logical. For box containers
+  controls whether a child will expand to fill the
+  allocated space.}
 
-  \item{fill}{NULL or logical. XXX}
+  \item{fill}{NULL or character. For box containers. The
+  value of \code{fill} (not always respected) is used to
+  control if expansion happens vertically (\code{y}),
+  horizontally (\code{x}) or both (\code{both} or
+  \code{TRUE}). For vertically filled box containers,
+  children always fill horizontally (atleast) and for
+  horizontally filled box containers, children always fill
+  vertically (atleast). This is important to realize when
+  trying to size buttons, say.}
 
-  \item{anchor}{NULL or logical. XXX}
+  \item{anchor}{NULL or integer. For box containers. The
+  anchor argument is used to position the child within the
+  parent when there is more space allocated than the child
+  requests. This is specified with a Cartesian pair in
+  {-1,0,1} x {-1, 0, 1}.}
 
-  \item{...}{passed on}
+  \item{...}{passed on to the}
 }
 \description{
-  Add packs in child objects into parent box containers
+  Add packs in child objects.
 
   Basic S3 method for add
 
-  Delete may or may note remove a child. This is toolkit
+  Delete may or may not remove a child. This is toolkit
   specific. It may also be tied up with garbage collection.
   To avoid that, keep a reference to the child object
   before deleting.

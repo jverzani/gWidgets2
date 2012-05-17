@@ -68,21 +68,37 @@
   \item{action}{User supplied data passed to the handler
   when it is called}
 
-  \item{expand}{NULL or logical. XXX}
+  \item{expand}{NULL or logical. For box containers
+  controls whether a child will expand to fill the
+  allocated space.}
 
-  \item{fill}{NULL or logical. XXX}
+  \item{fill}{NULL or character. For box containers. The
+  value of \code{fill} (not always respected) is used to
+  control if expansion happens vertically (\code{y}),
+  horizontally (\code{x}) or both (\code{both} or
+  \code{TRUE}). For vertically filled box containers,
+  children always fill horizontally (atleast) and for
+  horizontally filled box containers, children always fill
+  vertically (atleast). This is important to realize when
+  trying to size buttons, say.}
 
-  \item{anchor}{NULL or logical. XXX}
+  \item{anchor}{NULL or integer. For box containers. The
+  anchor argument is used to position the child within the
+  parent when there is more space allocated than the child
+  requests. This is specified with a Cartesian pair in
+  {-1,0,1} x {-1, 0, 1}.}
 }
 \value{
   none. called for its side effect.
 }
 \description{
   The tabbed notebook container allows one to hold many
-  different pages with a mechanism to switch between them.
-  In \code{gWidgets2} new pages are added through the
-  \code{add} method. One passes in the tab label through
-  the extra \code{label} argument, or subsequently through
+  different pages with a mechanism -- tabs -- to switch
+  between them. In \code{gWidgets2} new pages are added
+  through the \code{add} method. This is usually called
+  implicitly in the child object's constructor. One passes
+  in the tab label through the extra \code{label} argument.
+  Labels may be subsequently changed through
   \code{names<-}.
 
   generic for toolkit dispatch
@@ -90,7 +106,7 @@
   Children added to notebooks need a label, a position and
   optionally a close button (if supported). The arguments
   expand, fill, anchor are not specified -- children expand
-  and fill.
+  and fill the allocated space.
 
   Dispose deletes the current page, not the entire notebook
   object. To delete a specific page, a combination of
@@ -100,9 +116,11 @@
   These may be retrieved and set through the \code{names}
   method.
 
-  the change handler for the notebook is called when the
-  page changes. If possible, the new page number is passed
-  back in the \code{page.no} component of 'h'
+  The change handler for the notebook is called when the
+  page changes. Tthe new page number is passed back in the
+  \code{page.no} component of 'h', which in some cases may
+  differ from the value given by \code{svalue} within the
+  handler call.
 
   Dispose deletes the current page, not the entire notebook
   object. To delete a specific page, a combination of
@@ -129,5 +147,26 @@
   \item{close.button}{A logical. If \code{TRUE} -- and the
   toolkit supports it -- the page tab will include a close
   button. } }
+}
+\examples{
+\dontrun{
+
+w <- gwindow("notebook example", visible=FALSE)
+nb <- gnotebook(container=w)
+gbutton("Page one", label="tab 1", container=nb) ## note label argument
+gbutton("Page two", label="tab 2", container=nb)
+svalue(nb) <- 1
+addHandlerChanged(nb, handler=function(h,...) {
+  message(sprintf("On page \%s", h$page.no)) ## svalue(h$obj) not always right
+})
+svalue(nb) <- 2
+dispose(nb)
+length(nb)
+
+}
+}
+\seealso{
+  \code{\link{gstackwidget}} for a similar widget without
+  tabs.
 }
 

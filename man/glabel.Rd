@@ -23,12 +23,14 @@
   single string.}
 
   \item{markup}{logical. If toolkit supports markup, this
-  indicates it will be used}
+  indicates it will be used. It is suggested that the
+  \code{font<-} method be used, though for
+  \pkg{gWidgets2Qt} \code{markup} is more convenient.}
 
   \item{editable}{If TRUE, then clicking on label will
-  enable editing of value}
+  enable user-editing of the text.}
 
-  \item{handler}{optional handler. If given added through
+  \item{handler}{optional handler. If given, added through
   addHandlerChanged. Overridden if \code{editable=TRUE}.}
 
   \item{action}{passed to handler through \code{action}
@@ -72,6 +74,21 @@
 
   Use to update displayed content. Value is HTML fragment
   or url
+}
+\examples{
+\dontrun{
+w <- gwindow("gformlayout", visible=FALSE)
+g <- gvbox(container=w)
+g$set_borderwidth(10)
+
+l1 <- glabel("static label", container=g)
+l2 <- glabel("bold label", container=g)
+font(l2) <- list(weight="bold")
+l3 <- glabel("editable label. Click me", editable=TRUE, container=g)
+
+visible(w) <- TRUE
+
+}
 }
 \author{
   john verzani

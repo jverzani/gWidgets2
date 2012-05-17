@@ -1,7 +1,7 @@
 \name{gimage}
 \alias{.gimage}
 \alias{gimage}
-\title{A widget for displaying an image}
+\title{A widget for displaying an image file}
 \usage{
   gimage(filename = "", dirname = "", stock.id = NULL,
     size = "", handler = NULL, action = NULL,
@@ -32,7 +32,7 @@
   \item{toolkit}{toolkit}
 }
 \description{
-  A widget for displaying an image
+  A widget for displaying an image file
 
   generic for toolkit dispatch
 }
