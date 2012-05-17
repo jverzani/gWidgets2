@@ -43,6 +43,7 @@ gfile <- function(
                  text=text, type=type, initial.filename=initial.filename,
                  filter=filter, multi=multi, ...
                  )
+  Encoding(val) <- "UTF-8"
   as.character(val)                     # coerce to character
 }
 
@@ -86,6 +87,8 @@ gfilebrowse <- function (
                        quote=quote,
                        handler=handler, action=action, container=container, ...)
   check_return_class(obj, "GFileBrowse")
+
+
   obj
 }
 
