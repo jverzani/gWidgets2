@@ -195,7 +195,8 @@ BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                        block="ANY",
                                        parent="ANY", # NULL for gwindow, else parent container
                                        default_expand="LogicalCharacterOrNULL",
-                                       default_fill="LogicalCharacterOrNULL"
+                                       default_fill="LogicalCharacterOrNULL",
+                                       coerce_with="FunctionOrNULL"
                                        ),
                                      methods=list(
                                        ## (drop=NULL, ...), (value, drop=TRUE, ...)
