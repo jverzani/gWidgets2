@@ -7,11 +7,11 @@
 \usage{
   focus(obj)
 
-  \method{focus}{default} (obj)
+  \method{focus}{default}(obj)
 
   focus(obj) <- value
 
-  \method{focus}{default} (obj, value) <- value
+  \method{focus}{default}(obj) <- value
 }
 \arguments{
   \item{obj}{object}
@@ -25,7 +25,7 @@
 
   For some widgets, this sets user focus (e.g. gedit gets
   focus for typing). For others, settig the focus calls the
-  raise methods. (gor gwindow, it will raise the window)
+  raise methods. (for gwindow, it will raise the window)
 
   Basic S3 method for focus
 }

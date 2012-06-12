@@ -10,7 +10,7 @@
   .gvarbrowser(toolkit, handler = NULL, action = "summary",
     container = NULL, ...)
 
-  \method{svalue}{GVarBrowser} (obj, index = FALSE,
+  \method{svalue}{GVarBrowser}(obj, index = FALSE,
     drop = TRUE, ...)
 }
 \arguments{

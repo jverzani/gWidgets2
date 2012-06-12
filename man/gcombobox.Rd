@@ -20,12 +20,12 @@
 
   .make_gcombobox_items(value)
 
-  [.GComboBox(x, i, j, ..., value) <- value
+  \method{[}{GComboBox}(x, i, j, ...) <- value
 
-  \method{addHandlerChanged}{GComboBox} (obj, handler,
+  \method{addHandlerChanged}{GComboBox}(obj, handler,
     action = NULL, ...)
 
-  \method{svalue}{GComboBox} (obj, index = NULL,
+  \method{svalue}{GComboBox}(obj, index = NULL,
     drop = NULL, ...)
 }
 \arguments{
@@ -55,13 +55,13 @@
 
   \item{toolkit}{toolkit}
 
-  \item{value}{new items for selection}
+  \item{x}{combobox object}
 
-  \item{drop}{For matrices and arrays.  If \code{TRUE} the
-  result is coerced to the lowest possible dimension (see
-  the examples).  This only works for extracting elements,
-  not for the replacement.  See \code{\link{drop}} for
-  further details.  }
+  \item{i}{item index}
+
+  \item{j}{ignored}
+
+  \item{value}{new items for selection}
 
   \item{obj}{object receiving event and emitting a signal
   to the handler}
@@ -69,6 +69,10 @@
   \item{index}{NULL or logical. If \code{TRUE} and widget
   supports it an index, instead of a value will be
   returned.}
+
+  \item{drop}{NULL or logical. If widget supports it, drop
+  will work as it does in a data frame or perhaps someother
+  means.}
 }
 \value{
   Returns an object of class \code{GComboBox} for which the
@@ -109,8 +113,8 @@
 
   The \code{svalue} method for a combobox object refers to
   its main property, the selected value. When
-  \code{index=FALSE} (or \code{NULL}) the value is
-  returned. If \code{index=TRUE} the index of the object
-  within the set of items is used.
+  \code{index=FALSE}(or \code{NULL}) the value is returned.
+  If \code{index=TRUE} the index of the object within the
+  set of items is used.
 }
 

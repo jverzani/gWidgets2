@@ -7,17 +7,13 @@
 \usage{
   addSpring(obj)
 
-  \method{addSpring}{GContainer} (obj)
+  \method{addSpring}{GContainer}(obj)
 
   addSpace(obj, value)
 
-  \method{addSpace}{GContainer} (obj, value)
+  \method{addSpace}{GContainer}(obj, value)
 }
 \arguments{
-  \item{obj}{GContainer object}
-
-  \item{obj}{a box container}
-
   \item{obj}{GContainer object}
 
   \item{value}{space in pixels to add}

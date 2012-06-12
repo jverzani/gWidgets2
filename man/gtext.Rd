@@ -20,13 +20,13 @@
     where = c("end", "beginning", "at.cursor"),
     font.attr = NULL, do.newline = TRUE, ...)
 
-  \method{insert}{GText} (obj, value,
+  \method{insert}{GText}(obj, value,
     where = c("end", "beginning", "at.cursor"),
     font.attr = NULL, do.newline = TRUE, ...)
 
-  \method{dispose}{GText} (obj, ...)
+  \method{dispose}{GText}(obj, ...)
 
-  \method{svalue}{GText} (obj, index = NULL, drop = NULL,
+  \method{svalue}{GText}(obj, index = NULL, drop = NULL,
     ...)
 }
 \arguments{

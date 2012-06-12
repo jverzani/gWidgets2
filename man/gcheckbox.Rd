@@ -15,13 +15,13 @@
     use.togglebutton = FALSE, handler = NULL,
     action = NULL, container = NULL, ...)
 
-  \method{addHandlerChanged}{GCheckbox} (obj, handler,
+  \method{addHandlerChanged}{GCheckbox}(obj, handler,
     action = NULL, ...)
 
-  \method{svalue}{GCheckbox} (obj, index = NULL, ...,
-    value) <- value
+  \method{svalue}{GCheckbox}(obj, index = NULL, ...) <-
+    value
 
-  [.GCheckbox(x, i, j, ..., value) <- value
+  \method{[}{GCheckbox}(x, i, j, ...) <- value
 }
 \arguments{
   \item{text}{label text}
@@ -45,8 +45,13 @@
 
   \item{index}{ignored. Input is coerced to logical.}
 
-  \item{value}{typically an array-like \R object of a
-  similar class as \code{x}.}
+  \item{value}{assignment value}
+
+  \item{x}{checkbox object}
+
+  \item{i}{item index}
+
+  \item{j}{ignored}
 }
 \value{
   Returns an object of class \code{GCheckbox}.

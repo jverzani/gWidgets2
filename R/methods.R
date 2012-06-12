@@ -233,7 +233,7 @@ focus.default <- function(obj) {
 ##'
 ##' For some widgets, this sets user focus (e.g. gedit gets focus for
 ##' typing). For others, settig the focus calls the raise
-##' methods. (gor gwindow, it will raise the window)
+##' methods. (for gwindow, it will raise the window)
 ##' @param value logical. Set focus state.
 ##' @export
 ##' @usage focus(obj) <- value
@@ -727,7 +727,6 @@ getTopLevel.GComponent <- function(obj) {
 ##' A spring will separate the children packed in the box container
 ##' prior to the spring be added and those being added, pushing the
 ##' two as far apart as the allocated space will allow.
-##' @param obj GContainer object
 ##' @return NULL
 ##' @export
 ##' @rdname methods
@@ -736,7 +735,6 @@ addSpring <- function(obj) UseMethod("addSpring")
 ##' basic S3 generic to dispatch on
 ##'
 ##' Add spring to GContainer class
-##' @param obj a box container
 ##' @export
 ##' @rdname methods
 ##' @method addSpring GContainer

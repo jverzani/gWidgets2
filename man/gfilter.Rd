@@ -14,12 +14,12 @@
     initial.vars = NULL, handler = NULL, action = NULL,
     container = NULL, ...)
 
-  \method{svalue}{GFilter} (obj, index = NULL, drop = NULL,
+  \method{svalue}{GFilter}(obj, index = NULL, drop = NULL,
     ...)
 
-  \method{[}{GFilter} (x, i, j, ..., drop = TRUE)
+  \method{[}{GFilter}(x, i, j, ..., drop = TRUE)
 
-  \method{.gfilter}{default} (toolkit = guiToolkit(), DF,
+  \method{.gfilter}{default}(toolkit = guiToolkit(), DF,
     allow.edit = TRUE, initial.vars = NULL, handler = NULL,
     action = NULL, container = NULL, ...)
 }

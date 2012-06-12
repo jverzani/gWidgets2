@@ -14,10 +14,10 @@
     horizontal = FALSE, use.table = FALSE, handler = NULL,
     action = NULL, container = NULL, ...)
 
-  \method{addHandlerChanged}{GCheckboxGroup} (obj, handler,
+  \method{addHandlerChanged}{GCheckboxGroup}(obj, handler,
     action = NULL, ...)
 
-  \method{svalue}{GCheckboxGroup} (obj, index = NULL,
+  \method{svalue}{GCheckboxGroup}(obj, index = NULL,
     drop = NULL, ...)
 }
 \arguments{

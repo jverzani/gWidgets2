@@ -194,7 +194,7 @@ gtree <- function(x=NULL, INDICES=NULL,
 ##' path, defaults=TRUE. To get the data associated with a row, use the \code{[} method.
 ##' @param obj object
 ##' @param index index
-##' @param drop drop
+##' @param drop do we return tip or path
 ##' @export
 ##' @rdname gtree
 ##' @method svalue GTree
@@ -209,6 +209,7 @@ svalue.GTree <-  function(obj, index=FALSE, drop=TRUE, ...) NextMethod()
 ##' index=TRUE)} should not change the state of the widget. (The
 ##' \code{index=TRUE} argument is the case for setting, but not
 ##' getting.)
+##' @param value vector of indices
 ##' @export
 ##' @rdname gtree
 ##' @method svalue<- GTree
@@ -224,7 +225,6 @@ svalue.GTree <-  function(obj, index=FALSE, drop=TRUE, ...) NextMethod()
 ##' the path.
 ##' @param i ignored
 ##' @param j ignored
-##' @param drop do we return tip or path
 ##' @export
 ##' @rdname gtree
 ##' @method [ GTree

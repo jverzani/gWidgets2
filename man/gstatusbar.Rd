@@ -34,6 +34,11 @@
 }
 \examples{
 \dontrun{
+w <- gwindow("Statusbar", visible=FALSE)
+sb <- gstatusbar("status text", container=w)
+g <- gvbox(container=w)
+gbutton("update", container=g, handler=function(...) svalue(sb) <- "new value")
+visible(w) <- TRUE
 }
 }
 

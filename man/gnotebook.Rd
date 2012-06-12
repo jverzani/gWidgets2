@@ -13,17 +13,17 @@
 
   .gnotebook(toolkit, tab.pos = 3, container = NULL, ...)
 
-  \method{add}{GNotebook} (obj, child, expand, fill,
-    anchor, ...)
+  \method{add}{GNotebook}(obj, child, expand, fill, anchor,
+    ...)
 
-  \method{dispose}{GNotebook} (obj, ...)
+  \method{dispose}{GNotebook}(obj, ...)
 
-  \method{names}{GNotebook} (x)
+  \method{names}{GNotebook}(x)
 
-  \method{addHandlerChanged}{GNotebook} (obj, handler,
+  \method{addHandlerChanged}{GNotebook}(obj, handler,
     action = NULL, ...)
 
-  \method{dispose}{GStackWidget} (obj, ...)
+  \method{dispose}{GStackWidget}(obj, ...)
 }
 \arguments{
   \item{tab.pos}{integer. Position of tabs, 1 on bottom, 2

@@ -93,6 +93,8 @@ glayout <- function(
 ##' The matrix notation allows for spanning of multiple rows and or columns, but no holes.
 ##' The \code{...} argument is used to pass in values for expand, fill, anchor (see
 ##' the \code{add} method of \code{ggroup}) for their meaning).
+##' @param value constructor for a widget using this object as the
+##' parent container
 ##' @export
 ##' @rdname glayout
 ##' @method [<- GLayout

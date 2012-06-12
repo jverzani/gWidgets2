@@ -21,35 +21,34 @@
 
   .addStockIcons(toolkit, iconNames, iconFiles, ...)
 
-  \method{.addStockIcons}{default} (toolkit, iconNames,
+  \method{.addStockIcons}{default}(toolkit, iconNames,
     iconFiles, ...)
 
   getStockIcons(..., toolkit = guiToolkit())
 
   .getStockIcons(toolkit, ...)
 
-  \method{.getStockIcons}{default} (toolkit, ...)
+  \method{.getStockIcons}{default}(toolkit, ...)
 
   getStockIconByName(name, ..., toolkit = guiToolkit())
 
   .getStockIconByName(toolkit, name, ...)
 
-  \method{.getStockIconByName}{default} (toolkit, name,
+  \method{.getStockIconByName}{default}(toolkit, name,
     file = TRUE, ...)
 
   stockIconFromClass(theClass, ..., toolkit = guiToolkit())
 
   .stockIconFromClass(toolkit, theClass, ...)
 
-  \method{.stockIconFromClass}{default} (toolkit, theClass,
+  \method{.stockIconFromClass}{default}(toolkit, theClass,
     ...)
 
   stockIconFromObject(obj, ..., toolkit = guiToolkit())
 
   .stockIconFromObject(toolkit, obj, ...)
 
-  \method{.stockIconFromObject}{default} (toolkit, obj,
-    ...)
+  \method{.stockIconFromObject}{default}(toolkit, obj, ...)
 }
 \arguments{
   \item{iconNames}{names of icons}

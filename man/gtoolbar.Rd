@@ -2,6 +2,7 @@
 \alias{.gtoolbar}
 \alias{add.GToolBar}
 \alias{gtoolbar}
+\alias{svalue<-.GToolBar}
 \title{A toolbar constructor}
 \usage{
   gtoolbar(toolbar.list = list(),
@@ -12,8 +13,11 @@
     style = c("both", "icons", "text", "both-horiz"),
     container = NULL, ...)
 
-  \method{add}{GToolBar} (obj, child, expand = FALSE,
+  \method{add}{GToolBar}(obj, child, expand = FALSE,
     fill = NULL, anchor = NULL, ...)
+
+  \method{svalue}{GToolBar}(obj, index = NULL, ...) <-
+    value
 }
 \arguments{
   \item{toolbar.list}{list. A one-level list of
@@ -53,6 +57,12 @@
   parent when there is more space allocated than the child
   requests. This is specified with a Cartesian pair in
   {-1,0,1} x {-1, 0, 1}.}
+
+  \item{index}{NULL or logical. If \code{TRUE} and widget
+  supports it an index, instead of a value will be
+  returned.}
+
+  \item{value}{value to assign for selection or property}
 }
 \description{
   A toolbar can be added to a main window to proxy various
@@ -68,5 +78,8 @@
 
   A toolbar item is a list of action items or a toolbar
   instance
+
+  for a toolbar, \code{svalue<-} replaces the toolbar items
+  with new ones specified by value.
 }
 

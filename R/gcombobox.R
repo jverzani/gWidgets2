@@ -91,11 +91,15 @@ gdroplist <- function(...) {
 ##' selection, a second column is used for an icons (if possible), a
 ##' third for a tooltip (if possible).
 ##'
-##' @inheritParams  base::Extract
+##' @param x combobox object
+##' @param i item index
+##' @param j ignored
 ##' @param value new items for selection
 ##' @export
 ##' @rdname gcombobox
-"[<-.GComboBox" <- function(x,i,j,...,value) {
+##' @method [<- GComboBox
+##' @S3method [<- GComboBox
+"[<-.GComboBox" <- function(x, i, j, ..., value) {
 
   value <- .make_gcombobox_items(value)
   

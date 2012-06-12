@@ -11,9 +11,9 @@
   .glayout(toolkit, homogeneous = FALSE, spacing = 10,
     container = NULL, ...)
 
-  \method{[}{GLayout} (x, i, j, ..., drop = TRUE)
+  \method{[}{GLayout}(x, i, j, ..., drop = TRUE)
 
-  \method{[}{GLayout} (x, i, j, ..., value) <- value
+  \method{[}{GLayout}(x, i, j, ...) <- value
 }
 \arguments{
   \item{homogeneous}{are cells all the same size}
@@ -27,6 +27,9 @@
   \item{j}{column index}
 
   \item{drop}{drop return type?}
+
+  \item{value}{constructor for a widget using this object
+  as the parent container}
 
   \item{container}{A parent container. When a widget is
   created it can be incorporated into the widget heirarchy
