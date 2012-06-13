@@ -1,7 +1,7 @@
 Package: gWidgets2
 Type: Package
 Title: rewrite of gWidgets API
-Version: 1.0
+Version: 1.0-1
 Author: John Verzani
 Maintainer: john verzani <jverzani@gmail.com>
 Description: re-implementation of gWidgets API. The original used S4 methods.
