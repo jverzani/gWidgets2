@@ -56,6 +56,7 @@ gcontainer <- function(container=NULL, ...,toolkit=guiToolkit()) {}
 ##' will return the index of the selected value, not the value. For
 ##' some widget, the argument \code{drop} is given to either prevent
 ##' or encourage dropping of information.
+##' 
 ##' @param obj object of method call
 ##' @param index NULL or logical. If \code{TRUE} and widget supports it an index, instead of a value will be returned.
 ##' @param drop NULL or logical. If widget supports it, drop will work as it does in a data frame or perhaps someother means.

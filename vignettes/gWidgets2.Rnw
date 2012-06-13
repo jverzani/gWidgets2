@@ -63,7 +63,7 @@ idioms, making it fairly easy for the \R\/ user to quickly begin
 building user interfaces.
 
 The \pkg{gWidgets2} package is a rewrite of the \pkg{gWidgets}
-package.~\footnote{The \pkg{gWidgets} package is document in an 2007
+package.~\footnote{The \pkg{gWidgets} package is documented in a 2007
   \textit{R News} article ``An Introduction to {gWidgets}'' and the
   book \textit{Programming Graphical User Interfaces in R}, by
   Lawrence and Verzani, CRC Press.} Most changes are not visible to
@@ -72,7 +72,7 @@ name was changed. The goals of the rewrite included:
 \begin{itemize}
 \item simplifying of the code base using the powerful combination of
   \pkg{devtools} and GitHub (\url{github.com/jverzani}) making it much
-  easier to document, test, and deploy changes of the underlying
+  easier to document, test, and deploy changes in the underlying
   packages;
 \item replacing S4 methods with reference class methods resulting in a
   cleaner code base;
@@ -96,8 +96,8 @@ underlying toolkits, which often require separate
 downloads.~\footnote{Well, not always. The \pkg{tcltk} is a base
   package and the underlying libraries are usually available, the
   \pkg{RGtk2} and \pkg{Qt} packages make an effort to install the
-  underlying libraries.}
-The \pkg{devtools} package can be used to install the development
+  underlying libraries.}  The \pkg{devtools} package's
+\code{install\_github} function can be used to install the development
 versions from GitHub.
 
 
@@ -119,15 +119,16 @@ We begin with a simple example to illustrate what a script looks like:
 <<hello_world, results=hide>>=
 library(gWidgets2)
 options(guiToolkit="RGtk2")
-##
+## containers
 win <- gwindow("Basic example", visible=FALSE)
 gp <- gvbox(container=win)
+## control
 btn <- gbutton("click me for a message", container=gp)
-##
+## interactivity
 addHandlerClicked(btn, handler=function(h,...) {
-  galert("Hello world!", parent = win)
+  galert("Hello world!", parent = win)  # a dialog call
 })
-##
+## a method call
 visible(win) <- TRUE
 @ 
 %%
@@ -193,7 +194,7 @@ packages, e.g., \code{demo("gWidgets2RGtk2")}.
     Method & Description\\
     \midrule
     \code{svalue\ASSIGN} & set main property\\
-    \code{enabled\ASSIGN} & set if widget is sensitive to user input\\
+    \code{enabled\ASSIGN} & adjust if widget is sensitive to user input\\
     \code{visible\ASSIGN} & adjust ``visibility'' of widget\\
     \code{focus\ASSIGN} & give widget keyboard focus\\
     \code{editable\ASSIGN} & adjust if widget can be edited\\
@@ -231,8 +232,8 @@ in turn may be nested within other containers. All the children sit
 within some top-level window. In \pkg{gWidgets2}, top-level windows are
 constructed with \code{gwindow}.
 
-The most basic containers are the ``box containers'', \code{ggroup}
-(and its shortcut \code{gvbox}), \code{gframe},
+The most basic containers are the ``box containers,'' \code{ggroup}
+(and its shortcut \code{gvbox}), \code{gframe}, and
 \code{gexpandgroup}). Box containers pack in their child components
 from left to right or top to bottom. The packing of each child can be
 adjusted through specifications of \code{expand} (to have the
@@ -268,7 +269,9 @@ lorem <- "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 win <- gwindow("Nested groups")
 g <- gvbox(container=win)
 g$set_borderwidth(10L)
+##
 txt <- gtext(lorem, container=g, expand=TRUE, fill=TRUE) ## text widget
+##
 bg <- ggroup(cont=g)
 addSpring(bg)
 gbutton("dismiss", container=bg, handler=function(h,...) dispose(win))
@@ -287,13 +290,13 @@ call sets the border within the box. The spring is added to \code{bg}
 container to right justify the buttons. When buttons are packed into
 box containers, they expand to fill the direction orthogonal to the
 direction of packing. As such, it is best to put buttons in a
-horizontal box container, as done above.
+horizontal box container, as done above. 
 
 
 \subsection{Widgets}
 \label{sec:widgets}
 
-Containers are needed for organizing the GUI, but more importantly are
+Containers are needed for organizing the GUI, but more important are
 the controls that allow the user to enter information into a GUI or
 get information out of a GUI.
 
@@ -342,13 +345,14 @@ specify the parent container (\code{container}) and a handler for the
 most common event (\code{handler}, which just maps to \code{addHandlerChanged}).
 
 The following example shows a GUI that could be used to collect
-arguments for a $t$-test (Figure~\ref{fig:screenshots-t-test}).  We use the convenient \code{gformlayout},
-new to \pkg{gWidgets2}.
+arguments for a $t$-test (Figure~\ref{fig:screenshots-t-test}).  We
+use the convenient \code{gformlayout} container, new to \pkg{gWidgets2}.
 
 <<gformlayout_example, results=hide>>=
 win <- gwindow("t-test", visible=FALSE)
 g <- gvbox(container=win)
 g$set_borderwidth(10L)
+##
 flyt <- gformlayout(container=g, expand=TRUE)
 ## 
 gedit("", initial.msg="variable", 
@@ -376,13 +380,13 @@ visible(win) <- TRUE
 We see that some arguments are specific to the widget. For example,
 \code{initial.msg} to use an initial message for \code{gedit};
 \code{coerce.with} to specify a function to coerce a character string
-for \code{gedit}, and others, or \code{checked} to set the initial
+for \code{gedit} (and others) or \code{checked} to set the initial
 state for \code{gcheckbox}.
 
 The \code{expand} argument and \code{label} argument do not belong to
 the widget constructor, but are passed through \code{...} to the
 \code{add} method for \code{ggroup} and \code{gformlayout}. These
-control how the child is laid out within the parent. For
+control how the child is laid out within the parent container. For
 \code{gformlayout}, the \code{label} argument also names the value
 returned by its \code{svalue} method.
 
@@ -407,8 +411,8 @@ signal. The most basic event is bound to through
 \code{addHandlerChanged}, which for many widgets is an alias for a
 more aptly named event. (For example, \code{addHandlerClicked} for the
 button widget.) Most others are listed in
-Table~\ref{tab:event-methods}, though some are not, such as the
-different ones for column clicks in the table widgets.
+Table~\ref{tab:event-methods} (though some are not, such as the
+different ones for column clicks in the table widgets).
 
 The callbacks all have the same signature, \code{(h, ...)}.  The main
 argument is \code{h}, a list with components \code{obj} to refer to
@@ -479,7 +483,7 @@ visible(win) <- TRUE
 \subsection{Dialogs}
 \label{sec:dialogs}
 
-The package provides a few modal dialogs, useful and familiar means to
+The package provides a few modal dialogs: useful and familiar means to
 display or collect information. These include:
 \begin{description}
 \item[gmessage] present a modal message
@@ -493,7 +497,7 @@ display or collect information. These include:
 Modal dialogs disrupt the flow of a user's interaction through a GUI,
 so are used sparingly. This also prevents them from returning a
 meaningful object to manipulate, as this can only happen after the
-dialog is closed. As such, they return values such as a Boolean for
+dialog is closed. As such, they return values, such as a Boolean for
 \code{gconfirm} and the text value for \code{ginput}.
 
 
@@ -515,9 +519,10 @@ if(gconfirm(c("Remove x", "this can't be undone")))
 
 
 This example creates a GUI to load or unload a package. The main
-interface uses \code{gcheckboxgroup} for the selection of one or more
+interface uses \code{gcheckboxgroup} for the selection of none, one or more
 from many. The argument \code{use.table=TRUE} is specified to use a
-layout with checkboxes, as otherwise scrollbars will not be provided.
+layout with checkboxes, as otherwise scrollbars will not be provided
+and long lists need a lot of vertical or horizontal screen space.
 
 We begin with some text to explain the GUI.
 <<about>>=
@@ -564,10 +569,10 @@ g$set_borderwidth(10L)
 @ 
 %
 
-Here we use the checkbox group to show the data. The items to select
+We use the checkbox group to show the data. The items to select
 from are specified first, then the \code{checked} argument is fed a
 logical variable to indicate what should be initially checked. We use
-the \code{expand=TRUE} argument here to that the widget gets the
+the \code{expand=TRUE} argument here tso that the widget gets the
 maximum space possible, should the window be resized.
 <<>>=
 a <- package_status()
@@ -578,7 +583,7 @@ tbl <- gcheckboxgroup(installed_packages, checked=package_status(),
 %%
 
 The following is a standard idiom to create a button group. This
-button simply shows the information defined about in \code{about}. The
+button simply shows the information defined above in \code{about}. The
 specification of \code{parent=w} below makes the window \code{w1}
 transient for the toplevel window \code{w}. That means, should
 \code{w} be closed first, \code{w1} will also close and further, the
@@ -589,7 +594,7 @@ addSpring(bg)
 gbutton("About", container=bg, handler=function(...) {
   w1 <- gwindow("About", parent=w, visible=FALSE)
   g <- gvbox(container=w1); g$set_borderwidth(10)
-  glabel(about, container=g)
+  glabel(about, container=g, expand=TRUE)
   gseparator(container=g)
   bg <- ggroup(cont=g)
   addSpring(bg)
