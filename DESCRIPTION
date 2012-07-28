@@ -68,3 +68,4 @@ Collate:
     'gfilter.R'
     'gformlayout.R'
     'ghtml.R'
+    'gprogressbar.R'

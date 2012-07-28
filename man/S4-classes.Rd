@@ -3,12 +3,12 @@
 \alias{Command-class}
 \alias{CommandList-class}
 \alias{CommandStack-class}
-\alias{guiWidgetsToolkit-class}
 \alias{GWidgets2Icons-class}
 \alias{Handler-class}
 \alias{Observable-class}
 \alias{Observer-class}
 \alias{WSWatcherModel-class}
+\alias{guiWidgetsToolkit-class}
 \title{A class to record the toolkit a gui object uses}
 \description{
   A class to record the toolkit a gui object uses

@@ -2,8 +2,8 @@
 \alias{font}
 \alias{font.default}
 \alias{font<-}
-\alias{font<-.default}
 \alias{font<-.GText}
+\alias{font<-.default}
 \title{Returns font specification for widget, if available}
 \usage{
   font(obj)

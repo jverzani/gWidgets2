@@ -2,8 +2,8 @@
 \alias{svalue}
 \alias{svalue.default}
 \alias{svalue<-}
-\alias{svalue<-.default}
 \alias{svalue<-.GFormLayout}
+\alias{svalue<-.default}
 \title{svalue}
 \usage{
   svalue(obj, index = FALSE, drop = NULL, ...)
