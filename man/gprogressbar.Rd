@@ -1,19 +1,18 @@
 \name{gprogressbar}
 \alias{.gprogressbar}
 \alias{gprogressbar}
-\alias{svalue.GProgressBar}
 \title{Basic progress bar widget}
 \usage{
   gprogressbar(value = 10, container = NULL, ...,
     toolkit = guiToolkit())
 
   .gprogressbar(toolkit, value, container, ...)
-
-  \method{svalue}{GProgressBar}(obj, index = NULL,
-    drop = NULL, ...)
 }
 \arguments{
-  \item{value}{Initial value, between 0 and 100}
+  \item{value}{Initial value, between 0 and 100. A value of
+  \code{NULL} will make pulsing bar with indeterminate
+  state. For some toolkits, this must be called
+  periodically to pulse the bar.}
 
   \item{container}{A parent container. When a widget is
   created it can be incorporated into the widget heirarchy
@@ -33,16 +32,6 @@
   toolkit it will use. This is typically done using the
   default, which will lookup the toolkit through
   \code{\link{guiToolkit}}.}
-
-  \item{obj}{object of method call}
-
-  \item{index}{NULL or logical. If \code{TRUE} and widget
-  supports it an index, instead of a value will be
-  returned.}
-
-  \item{drop}{NULL or logical. If widget supports it, drop
-  will work as it does in a data frame or perhaps someother
-  means.}
 }
 \value{
   a \code{GButton} instance. While this object has its own
@@ -54,8 +43,5 @@
 
   S3 generic whose methods are implemented in the toolkit
   packages
-
-  The \code{svalue} method for a button object refers to
-  its value between 0 and 100
 }
 
