@@ -7,7 +7,7 @@ NULL
 ##' @return a \code{GButton} instance. While this object has its own
 ##' (reference) methods, one primarily interacts with it through S3
 ##' methods defined within the package.
-##' @param value Initial value, between 0 and 100. IF toolkit supports it, a value of \code{NULL} will make pulsing bar with indeterminate state. For some toolkits, this must be called periodically to pulse the bar.
+##' @param value Initial value, between 0 and 100. A value of \code{NULL} will make pulsing bar with indeterminate state. For some toolkits, this must be called periodically to pulse the bar.
 ##' @export
 gprogressbar <- function(value=10, container=NULL, ..., toolkit=guiToolkit()) {
 
