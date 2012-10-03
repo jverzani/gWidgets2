@@ -102,7 +102,7 @@ insert.GText <- function(obj, value,
   obj$insert_text(value,
                   where=match.arg(where),
                   font.attr=sapply(font.attr, identity, simplify=FALSE), # a named list now
-                  do.newline, ...)
+                  do.newline=do.newline, ...)
                            
 }
 

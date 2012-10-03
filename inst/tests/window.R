@@ -27,6 +27,7 @@ gwindow("100, 200 down", parent=c(100, 200))
 w2 <- gwindow("parent")
 w3 <- gwindow("child", parent=w2)
 dispose(w2)
+Sys.sleep(1)
 expect_equal(isExtant(w3), FALSE)
 
 

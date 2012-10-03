@@ -9,7 +9,9 @@ library(gWidgets2)
 arg_editor <- function(x, cont, ...) UseMethod("arg_editor")
 arg_editor.default <- function(x, cont, ...) gedit(x, cont=cont, ...)
 arg_editor.call <- function(x, cont, ...) arg_editor(eval(x), cont, ...)
-arg_editor.name <- function(x, cont, ...) arg_editor(eval(x), cont, ...)
+arg_editor.name <- function(x, cont, ...) {
+  gedit("", cont=cont, ...)
+}
 arg_editor.numeric <- function(x, cont, ...) gcombobox(sort(unique(x)), editable=TRUE, coerce.with=as.numeric, cont=cont)
 arg_editor.character <- function(x, cont, ...) gcombobox(sort(unique(x)), editable=TRUE, coerce.with=as.character, cont=cont)
 arg_editor.factor <-  function(x, cont, ...) gcombobox(sort(unique(x)), cont=cont)
@@ -40,7 +42,7 @@ make_gui <- function(FUN, parent) {
     names(values) <- nms
     do.call(FUN, values)
   })
-  addSpace(12)
+  addSpace(bg, 12)
   gbutton("dismiss", cont=bg, handler=function(h,...) dispose(parent))
 
   visible(parent) <- TRUE
