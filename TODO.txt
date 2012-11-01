@@ -1,5 +1,6 @@
+* Avoid gWidgets2RGtk2 in Suggests (Pre-compile vignette?)
 * Examples: ...
-* add in fixed arguments to filter argument of gfile.
+DONE * add in fixed arguments to filter argument of gfile.
 * http://glyphicons.com/glyphicons-licenses/ add these
 * selection_changed: gtext, gedit, gvarborwser, gtree, gdf, gtable
 * Work on documentation

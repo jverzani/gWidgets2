@@ -6,8 +6,10 @@ NULL
 ##' @param text initial text
 ##' @param type type of browser: to open a file, to save a file or to select a directory
 ##' @param initial.filename Suggested file name
-##' @param filter A filter specifiation. This is toolkit specific. Here are some examples:
+##' @param filter A filter specifiation. This can be a named character vector of file extensions or something toolkit specific.
+##' Here are some examples:
 ##' \itemize{
+##' \items{character}{c("csv"="csv","txt"="txt")}
 ##' \item{RGtk2}{ Something like
 ##'   \preformatted{
 ##' list("All files" = list(patterns = c("*")),

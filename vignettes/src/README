@@ -1,0 +1,11 @@
+Run here then copy .R and .pdf down a directory.
+
+This way we don't need to suggest gWidgets2RGtk2
+
+
+library(knitr)
+purl("gWidgets2.Rnw")
+knit2pdf("gWidgets2.Rnw")
+system("cp gWidgets2.R gWidgets2.pdf ../")
+unlink(paste("gWidgets2", c("log", "out", "tex", "aux"), sep="."))
+
