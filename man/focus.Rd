@@ -7,11 +7,11 @@
 \usage{
   focus(obj)
 
-  \method{focus}{default}(obj)
+  \method{focus}{default} (obj)
 
   focus(obj) <- value
 
-  \method{focus}{default}(obj) <- value
+  focus(obj) <- value
 }
 \arguments{
   \item{obj}{object}

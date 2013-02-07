@@ -11,7 +11,7 @@
   .ggraphicsnotebook(toolkit, width, height, dpi,
     container, ...)
 
-  \method{.ggraphicsnotebook}{default}(toolkit, width,
+  \method{.ggraphicsnotebook}{default} (toolkit, width,
     height, dpi, container, ...)
 }
 \arguments{

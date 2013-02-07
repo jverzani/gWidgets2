@@ -1,7 +1,6 @@
 \name{glabel}
 \alias{.glabel}
 \alias{glabel}
-\alias{svalue<-.GHtml}
 \alias{svalue<-.GLabel}
 \title{Basic label widget}
 \usage{
@@ -12,9 +11,7 @@
   .glabel(toolkit, text, markup = FALSE, editable = FALSE,
     handler = NULL, action = NULL, container = NULL, ...)
 
-  \method{svalue}{GLabel}(obj, index = TRUE, ...) <- value
-
-  \method{svalue}{GLabel}(obj, index = TRUE, ...) <- value
+  \method{svalue}{GLabel} (obj, index=TRUE, ...) <- value
 }
 \arguments{
   \item{text}{character. Collapsed using a newline to a
@@ -69,9 +66,6 @@
 
   The \code{svalue} methods refer to the main property of
   the label, its text.
-
-  Use to update displayed content. Value is HTML fragment
-  or url
 }
 \examples{
 \dontrun{

@@ -65,6 +65,7 @@ glabel <- function(text="", markup=FALSE, editable=FALSE,
 ##' The \code{svalue} methods refer to the main property of the label, its text.
 ##' @inheritParams svalue<-
 ##' @export
+##' @usage \method{svalue}{GLabel} (obj, index=TRUE, ...) <- value
 ##' @rdname glabel
 ##' @method svalue<- GLabel
 ##' @S3method svalue<- GLabel

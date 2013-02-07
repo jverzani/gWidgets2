@@ -16,35 +16,35 @@
 \alias{update.GComponent}
 \title{Length of object}
 \usage{
-  \method{length}{GComponent}(x)
+  \method{length}{GComponent} (x)
 
-  \method{length}{GComponent}(x) <- value
+  \method{length}{GComponent} (x) <- value
 
-  \method{dim}{GComponent}(x)
+  \method{dim}{GComponent} (x)
 
-  \method{names}{GComponent}(x)
+  \method{names}{GComponent} (x)
 
-  \method{names}{GComponent}(x) <- value
+  \method{names}{GComponent} (x) <- value
 
-  \method{dimnames}{GComponent}(x)
+  \method{dimnames}{GComponent} (x)
 
-  \method{dimnames}{GComponent}(x) <- value
+  \method{dimnames}{GComponent} (x) <- value
 
-  \method{[}{GComponent}(x, i, j, ..., drop = TRUE)
+  \method{[}{GComponent} (x, i, j, ..., drop = TRUE)
 
-  \method{[}{GContainer}(x, i, j, ..., drop = TRUE)
+  \method{[}{GContainer} (x, i, j, ..., drop = TRUE)
 
-  \method{[}{GComponent}(x, i, j, ...) <- value
+  \method{[}{GComponent} (x, i, j, ...) <- value
 
-  \method{update}{GComponent}(object, ...)
+  \method{update}{GComponent} (object, ...)
 
-  \method{str}{GComponent}(object, ...)
+  \method{str}{GComponent} (object, ...)
 
-  \method{[}{GDf}(x, i, j, ..., drop = TRUE)
+  \method{[}{GDf} (x, i, j, ..., drop = TRUE)
 
-  \method{[}{GEdit}(x, i, j, ..., drop = TRUE)
+  \method{names}{GFrame} (x) <- value
 
-  \method{names}{GFrame}(x) <- value
+  \method{[}{GEdit} (x, i, j, ..., drop = TRUE)
 }
 \arguments{
   \item{x}{component}
@@ -99,10 +99,10 @@
   currently visible items, use the idiom
   \code{obj[visible(obj), ]}.
 
+  set names for frame
+
   The underlying widget may allow autocompletion, if this
   is the case then this method is used to set the list of
   candidates.
-
-  set names for frame
 }
 

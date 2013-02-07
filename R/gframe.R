@@ -51,6 +51,7 @@ gframe <- function(
 ##' set names for frame
 ##'
 ##' @export
+##' @usage \method{names}{GFrame} (x) <- value
 ##' @rdname gWidgets2-S3methods
 ##' @method names<- GFrame
 ##' @S3method names<- GFrame

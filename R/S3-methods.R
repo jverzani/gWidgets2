@@ -22,6 +22,7 @@ length.GComponent <- function(x) {
 ##' @param x component
 ##' @param value value to assign
 ##' @export
+##' @usage \method{length}{GComponent} (x) <- value
 ##' @rdname gWidgets2-S3methods
 ##' @method length<- GComponent
 ##' @S3method length<- GComponent
@@ -58,6 +59,7 @@ names.GComponent <- function(x) {
 ##' set names of object
 ##'
 ##' @export
+##' @usage \method{names}{GComponent} (x) <- value
 ##' @rdname gWidgets2-S3methods
 ##' @method names<- GComponent
 ##' @S3method names<- GComponent
@@ -81,6 +83,7 @@ dimnames.GComponent <- function(x) {
 ##' Set dimnames of object
 ##'
 ##' @export
+##' @usage \method{dimnames}{GComponent} (x) <- value
 ##' @rdname gWidgets2-S3methods
 ##' @method dimnames<- GComponent
 ##' @S3method dimnames<- GComponent
@@ -122,6 +125,7 @@ dimnames.GComponent <- function(x) {
 ##' Set object's items
 ##'
 ##' @export
+##' @usage \method{[}{GComponent} (x, i, j, ...) <- value
 ##' @rdname gWidgets2-S3methods
 ##' @method [<- GComponent
 ##' @S3method [<- GComponent

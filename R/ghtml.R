@@ -40,9 +40,10 @@ ghtml <- function(x,
 ##' Use to update displayed content. Value is HTML fragment or url
 ##' @inheritParams svalue
 ##' @export
-##' @rdname glabel
-##' @method svalue<- GLabel
-##' @S3method svalue<- GLabel
+##' @usage \method{svalue}{GHtml} (obj, index=TRUE, ...) <- value
+##' @rdname ghtml
+##' @method svalue<- GHtml
+##' @S3method svalue<- GHtml
 "svalue<-.GHtml" <- function(obj, index=TRUE,  ..., value) {
   value <- paste(value, collapse="\n")
   NextMethod()

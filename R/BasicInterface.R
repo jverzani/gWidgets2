@@ -47,7 +47,6 @@ Handler <- setRefClass("Handler",
                             initFields(action=action)
                             callSuper(o=o, obj=obj)
                           },
-##                          update=function(..., extra_args) {
                           update=function( ..., extra_args) {
                             "Call self."
                             h <- list(obj=obj, action=action)
@@ -60,10 +59,6 @@ Handler <- setRefClass("Handler",
 #                            }
                             o(h, ...)
                           }
-                          ## update=function(...) {
-                          ##   "Call self."
-                          ##   o(list(obj=obj, action=action), ...)
-                          ## }
                           )
                         )
 
@@ -179,7 +174,7 @@ Observable <- setRefClass("Observable",
 ##' This interface is inherited by the base GComponent classes in the
 ##' toolkit implementations. The methods defined here are referenced
 ##' by the S3 methods. For exampe, \code{svalue} dispatches to
-##' \code{get_value}.
+##' \code{get_value} or \code{get_index}.
 ##'
 ##' We combine both widget and container methods here. It isn't
 ##' perfect, but they do share quite a bit. Perhaps, we could make the
@@ -296,6 +291,14 @@ BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                        }
                                        ))
 
-## needed for internal guys
-GComponent <- setRefClass("GComponent",
+##' needed for internal guys
+##' 
+##' @exportClass GComponent
+##' @rdname S4-classes
+##' @name GComponent-class
+GComponenta <- setRefClass("GComponenta",
                           contains="BasicToolkitInterface")
+
+
+GComponent <- setRefClass("GComponent",
+                          contains="GComponenta")

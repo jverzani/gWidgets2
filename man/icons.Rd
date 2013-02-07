@@ -21,34 +21,35 @@
 
   .addStockIcons(toolkit, iconNames, iconFiles, ...)
 
-  \method{.addStockIcons}{default}(toolkit, iconNames,
+  \method{.addStockIcons}{default} (toolkit, iconNames,
     iconFiles, ...)
 
   getStockIcons(..., toolkit = guiToolkit())
 
   .getStockIcons(toolkit, ...)
 
-  \method{.getStockIcons}{default}(toolkit, ...)
+  \method{.getStockIcons}{default} (toolkit, ...)
 
   getStockIconByName(name, ..., toolkit = guiToolkit())
 
   .getStockIconByName(toolkit, name, ...)
 
-  \method{.getStockIconByName}{default}(toolkit, name,
+  \method{.getStockIconByName}{default} (toolkit, name,
     file = TRUE, ...)
 
   stockIconFromClass(theClass, ..., toolkit = guiToolkit())
 
   .stockIconFromClass(toolkit, theClass, ...)
 
-  \method{.stockIconFromClass}{default}(toolkit, theClass,
+  \method{.stockIconFromClass}{default} (toolkit, theClass,
     ...)
 
   stockIconFromObject(obj, ..., toolkit = guiToolkit())
 
   .stockIconFromObject(toolkit, obj, ...)
 
-  \method{.stockIconFromObject}{default}(toolkit, obj, ...)
+  \method{.stockIconFromObject}{default} (toolkit, obj,
+    ...)
 }
 \arguments{
   \item{iconNames}{names of icons}
@@ -106,5 +107,18 @@
   generic for dispath
 
   get stock icon from object by class
+}
+\examples{
+\dontrun{
+## we can add icon sets, say those of glyphicons.com. Steps are download files, unzip
+## then point x to path, y to name. Imagine we download and current directory is
+## png directory. (Won't work with tcltk by default as these are png files)
+x <- Sys.glob("*.png")
+path <- paste(getwd(), x, sep=.Platform$file.sep)
+nm <- gsub("\\\\.png", "", x)
+nm <- gsub("-", "_", nm)
+nm <- gsub("\\\\+", "_plus", nm)
+addStockIcons(nm, path)
+}
 }
 

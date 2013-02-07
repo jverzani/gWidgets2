@@ -1,7 +1,18 @@
-* Avoid gWidgets2RGtk2 in Suggests (Pre-compile vignette?)
+* Gabor's example of dispatch by overriding .Class in constructor
+
+gbutton <- function(..., toolkit) {
+  .Class <- class(toolkit)
+  b <- nextMethod("gbutton")
+  ...
+}
+
+and 
+
+gbutton.guiWidgetsToolkitRGtk2 <- function(...) GButton$new(toolkit, text, handler, action, container, ...)
+}
 * Examples: ...
-DONE * add in fixed arguments to filter argument of gfile.
-* http://glyphicons.com/glyphicons-licenses/ add these
+
+
 * selection_changed: gtext, gedit, gvarborwser, gtree, gdf, gtable
 * Work on documentation
 * vignette
@@ -27,9 +38,10 @@ Handlers
 
 
 
-
-
-
+DONE * http://glyphicons.com/glyphicons-licenses/ add these. (put
+       directions in docs)
+DONE * add in fixed arguments to filter argument of gfile.
+DONE * Avoid gWidgets2RGtk2 in Suggests (Pre-compile vignette?)
 DONE * install.packages check is slow
 DONE * gstackwidget (notebook without tabs)
 DONE * check class of widget on return (is(obj, "GButton"))

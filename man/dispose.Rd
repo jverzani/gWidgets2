@@ -5,7 +5,7 @@
 \usage{
   dispose(obj, ...)
 
-  \method{dispose}{GComponent}(obj, ...)
+  \method{dispose}{GComponent} (obj, ...)
 }
 \arguments{
   \item{obj}{object to dispose}

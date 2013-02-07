@@ -1,11 +1,14 @@
 \name{ghtml}
 \alias{.ghtml}
 \alias{ghtml}
+\alias{svalue<-.GHtml}
 \title{Widget for HTML display}
 \usage{
   ghtml(x, container = NULL, ..., toolkit = guiToolkit())
 
   .ghtml(toolkit, x, container = NULL, ...)
+
+  \method{svalue}{GHtml} (obj, index=TRUE, ...) <- value
 }
 \arguments{
   \item{x}{url or character vector of HTML formatted text.
@@ -29,6 +32,14 @@
   toolkit it will use. This is typically done using the
   default, which will lookup the toolkit through
   \code{\link{guiToolkit}}.}
+
+  \item{obj}{object of method call}
+
+  \item{index}{NULL or logical. If \code{TRUE} and widget
+  supports it an index, instead of a value will be
+  returned.}
+
+  \item{value}{value to assign for selection or property}
 }
 \value{
   a \code{GHtml} instance.
@@ -40,6 +51,9 @@
 
   S3 generic whose methods are implemented in the toolkit
   packages
+
+  Use to update displayed content. Value is HTML fragment
+  or url
 }
 \author{
   john verzani

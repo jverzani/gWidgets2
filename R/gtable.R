@@ -172,6 +172,7 @@ visible.GTable <- function(obj, ...) NextMethod()
 ##' vector of pixel widths of length matching the number of columns.
 ##' @inheritParams size
 ##' @export
+##' @usage \method{size}{GTable} (obj) <- value
 ##' @rdname gtable
 ##' @method size<- GTable
 ##' @S3method size<- GTable

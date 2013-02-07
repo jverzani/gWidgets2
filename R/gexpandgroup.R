@@ -50,6 +50,7 @@ gexpandgroup <- function(
 ##' @param value logical. If \code{TRUE} show, \code{FALSE} hide.
 ##' @export
 ##' @rdname gexpandgroup
+##' @usage \method{visible}{GExpandGroup} (obj) <- value
 ##' @method visible<- GExpandGroup
 ##' @S3method visible<- GExpandGroup
 "visible<-.GExpandGroup" <- function(obj, value) NextMethod()

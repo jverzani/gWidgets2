@@ -12,21 +12,21 @@
 \usage{
   getToolkitWidget(obj)
 
-  \method{getToolkitWidget}{default}(obj)
+  \method{getToolkitWidget}{default} (obj)
 
   getWidget(obj)
 
-  \method{getWidget}{GComponent}(obj)
+  \method{getWidget}{GComponent} (obj)
 
   getBlock(obj)
 
-  \method{getBlock}{GComponent}(obj)
+  \method{getBlock}{GComponent} (obj)
 
-  \method{getBlock}{GWindow}(obj)
+  \method{getBlock}{GWindow} (obj)
 
   getTopLevel(obj)
 
-  \method{getTopLevel}{GComponent}(obj)
+  \method{getTopLevel}{GComponent} (obj)
 }
 \arguments{
   \item{obj}{object}

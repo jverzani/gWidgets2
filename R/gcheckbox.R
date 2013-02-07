@@ -68,11 +68,13 @@ addHandlerChanged.GCheckbox <- function(obj, handler, action=NULL, ...) NextMeth
 
 ##' svalue method
 ##'
+##' The object state is referred to by svalue as a logical (TRUE for checked).
 ##' The \code{svalue<-} method ensures the value is a logical vector
 ##' of length 1.
 ##' @param index ignored. Input is coerced to logical.
 ##' @param value assignment value
 ##' @export
+##' @usage \method{svalue}{GCheckbox} (obj, index=NULL, ...) <- value
 ##' @rdname gcheckbox
 ##' @method svalue<- GCheckbox
 ##' @S3method svalue<- GCheckbox
@@ -84,12 +86,14 @@ addHandlerChanged.GCheckbox <- function(obj, handler, action=NULL, ...) NextMeth
 
 ##' items assignment takes string
 ##'
+##' The item to select is referred to by the \code{[} method, with only the first element being used.
 ##' @param x checkbox object
 ##' @param i item index
 ##' @param j ignored
 ##' @note The value is coerced to character, then only first element
 ##' used for checkbox label
 ##' @export
+##' @usage \method{[}{GCheckbox} (x, i, j, ...) <- value
 ##' @rdname gcheckbox
 ##' @method [<- GCheckbox
 ##' @S3method [<- GCheckbox

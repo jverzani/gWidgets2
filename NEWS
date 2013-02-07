@@ -1,0 +1,6 @@
+Version 1.0-1
+--------------
+
+* 11/1/2012: make vignette changes to avoid having to load gWidgets2RGtk2. This means vignette must be manually updated. Use /tests for tests, not vignette
+
+* ... start NEWS file ... Too many changes to document in this new version of gWidgets

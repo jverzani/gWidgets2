@@ -82,6 +82,7 @@ svalue.GFormLayout <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
 ##' names.
 ##' @rdname svalue
 ##' @export
+##' @usage \method{svalue}{GFormLayout} (obj, index=NULL, ...) <- value
 ##' @S3method svalue<- GFormLayout
 ##' @method svalue<- GFormLayout
 "svalue<-.GFormLayout" <- function(obj, index=NULL, ..., value) NextMethod()

@@ -87,6 +87,7 @@ add.GMenuBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) 
 ##' ones specified by value.
 ##' @param value a list or menu bar specifying the new men ubar
 ##' @export
+##' @usage \method{svalue}{GMenuBar} (obj, index=NULL, ...) <- value
 ##' @rdname gmenu
 ##' @method svalue<- GMenuBar
 ##' @S3method svalue<- GMenuBar

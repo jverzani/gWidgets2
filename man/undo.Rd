@@ -5,7 +5,7 @@
 \usage{
   undo(obj, ...)
 
-  \method{undo}{GComponent}(obj, ...)
+  \method{undo}{GComponent} (obj, ...)
 }
 \arguments{
   \item{obj}{object to call undo on}

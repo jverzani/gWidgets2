@@ -265,6 +265,7 @@ svalue.GTree <-  function(obj, index=FALSE, drop=TRUE, ...) NextMethod()
 ##' getting.)
 ##' @param value vector of indices
 ##' @export
+##' @usage \method{svalue}{GTree} (obj, index=TRUE, ...) <- value
 ##' @rdname gtree
 ##' @method svalue<- GTree
 ##' @S3method svalue<- GTree

@@ -8,13 +8,13 @@
 \usage{
   font(obj)
 
-  \method{font}{default}(obj)
+  \method{font}{default} (obj)
 
   font(obj) <- value
 
-  \method{font}{default}(obj) <- value
+  font(obj) <- value
 
-  \method{font}{GText}(obj) <- value
+  \method{font}{GText} (obj) <- value
 }
 \arguments{
   \item{obj}{object}

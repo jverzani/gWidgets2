@@ -33,12 +33,15 @@
 
   \item{initial.filename}{Suggested file name}
 
-  \item{filter}{A filter specifiation. This is toolkit
-  specific. Here are some examples: \itemize{ \item{RGtk2}{
-  Something like \preformatted{ list("All files" =
-  list(patterns = c("*")), "R files" = list(patterns =
-  c("*.R", "*.Rdata")), "text files" = list(mime.types =
-  c("text/plain")) ) } } \item{tcltk}{} \item{Qt}{} }}
+  \item{filter}{A filter specifiation. This can be a named
+  character vector of file extensions or something toolkit
+  specific. Here are some examples: \itemize{
+  \item{character}{c("csv"="csv","txt"="txt")}
+  \item{RGtk2}{ Something like \preformatted{ list("All
+  files" = list(patterns = c("*")), "R files" =
+  list(patterns = c("*.R", "*.Rdata")), "text files" =
+  list(mime.types = c("text/plain")) ) } } \item{tcltk}{}
+  \item{Qt}{} }}
 
   \item{multi}{Logical. Allow multiple files to be
   selected?}

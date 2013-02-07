@@ -7,11 +7,11 @@
 \usage{
   size(obj)
 
-  \method{size}{default}(obj)
+  \method{size}{default} (obj)
 
   size(obj) <- value
 
-  \method{size}{default}(obj) <- value
+  size(obj) <- value
 }
 \arguments{
   \item{obj}{object}

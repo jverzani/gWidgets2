@@ -18,19 +18,19 @@
     icon.col = NULL, tooltip.col = NULL, handler = NULL,
     action = NULL, container = NULL, ...)
 
-  \method{svalue}{GTable}(obj, index = NULL, ..., value)
+  \method{svalue}{GTable} (obj, index = NULL, ..., value)
 
-  \method{[}{GTable}(x, i, j, ..., drop = TRUE)
+  \method{[}{GTable} (x, i, j, ..., drop = TRUE)
 
-  \method{addHandlerChanged}{GTable}(obj, handler,
+  \method{addHandlerChanged}{GTable} (obj, handler,
     action = NULL, ...)
 
-  \method{addHandlerDoubleclick}{GTable}(obj, handler,
+  \method{addHandlerDoubleclick}{GTable} (obj, handler,
     action = NULL, ...)
 
-  \method{visible}{GTable}(obj, ...)
+  \method{visible}{GTable} (obj, ...)
 
-  \method{size}{GTable}(obj) <- value
+  \method{size}{GTable} (obj) <- value
 }
 \arguments{
   \item{items}{data.frame specifies items for selection.

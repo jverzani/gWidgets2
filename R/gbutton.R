@@ -25,8 +25,9 @@ gbutton <- function(text="",   handler=NULL, action=NULL, container=NULL, ..., t
   deprecated_args <- list(border=c("Border argument has been deprecated.","See reference class method remove_border for availability"))
   check_deprecated(deprecated_args, ...)
 
-  
-  obj <- .gbutton(toolkit, text, handler, action, container, ...)
+  .Class <- toolkit
+  obj <- NextMethod("gbutton")
+  #obj <- .gbutton(toolkit, text, handler, action, container, ...)
 
   check_return_class(obj, "GButton")
   obj

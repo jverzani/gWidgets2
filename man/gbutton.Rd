@@ -10,10 +10,10 @@
 
   .gbutton(toolkit, text, handler, action, container, ...)
 
-  \method{addHandlerChanged}{GButton}(obj, handler,
+  \method{addHandlerChanged}{GButton} (obj, handler,
     action = NULL, ...)
 
-  \method{svalue}{GButton}(obj, index = NULL, drop = NULL,
+  \method{svalue}{GButton} (obj, index = NULL, drop = NULL,
     ...)
 }
 \arguments{

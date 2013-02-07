@@ -136,6 +136,7 @@ svalue.GText <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
 ##' The \code{font} assignment method is used to change the font of
 ##' the currently selected text.
 ##' @export
+##' @usage \method{font}{GText} (obj) <- value
 ##' @rdname font
 ##' @method font<- GText
 ##' @S3method font<- GText

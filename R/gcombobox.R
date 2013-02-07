@@ -96,6 +96,7 @@ gdroplist <- function(...) {
 ##' @param j ignored
 ##' @param value new items for selection
 ##' @export
+##' @usage \method{[}{GComboBox} (x, i , j, ...) <- value
 ##' @rdname gcombobox
 ##' @method [<- GComboBox
 ##' @S3method [<- GComboBox

@@ -3,6 +3,7 @@
 \alias{Command-class}
 \alias{CommandList-class}
 \alias{CommandStack-class}
+\alias{GComponent-class}
 \alias{GWidgets2Icons-class}
 \alias{Handler-class}
 \alias{Observable-class}
@@ -25,14 +26,15 @@
   This interface is inherited by the base GComponent
   classes in the toolkit implementations. The methods
   defined here are referenced by the S3 methods. For
-  exampe, \code{svalue} dispatches to \code{get_value}.
+  exampe, \code{svalue} dispatches to \code{get_value} or
+  \code{get_index}.
 
-  Class for icons
+  needed for internal guys
 
   A reference class to create a model that monitors the
   global workspace. The class has method
   \code{update_state} and the "getting" methods
-  \code{get_by_class}, \code{get_by_function}(filter),
+  \code{get_by_class}, \code{get_by_function} (filter),
   \code{get_changes}. Use with a \code{gtimer} instance to
   keep up to date with changes to the workspace.
 
@@ -42,6 +44,8 @@
 
   A list with ptr. delegates call of do or undo to
   appropriate command
+
+  Class for icons
 }
 \details{
   We combine both widget and container methods here. It

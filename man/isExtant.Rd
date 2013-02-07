@@ -5,7 +5,7 @@
 \usage{
   isExtant(obj)
 
-  \method{isExtant}{default}(obj)
+  \method{isExtant}{default} (obj)
 }
 \arguments{
   \item{obj}{object}

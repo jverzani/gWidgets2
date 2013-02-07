@@ -12,9 +12,9 @@
   .gbasicdialog(toolkit, title = "Dialog", parent = NULL,
     do.buttons = TRUE, handler = NULL, action = NULL, ...)
 
-  \method{visible}{GBasicDialog}(obj, ...)
+  \method{visible}{GBasicDialog} (obj, ...)
 
-  \method{dispose}{GBasicDialog}(obj, ...)
+  \method{dispose}{GBasicDialog} (obj, ...)
 }
 \arguments{
   \item{title}{title for window}

@@ -108,12 +108,14 @@ svalue.default <- function(obj, index=NULL, drop=NULL, ...) {
 ##' @param value value to assign for selection or property
 ##' @rdname svalue
 ##' @export
-"svalue<-" <- function(obj, index=TRUE, ..., value) UseMethod("svalue<-")
+##' @usage svalue(obj, index=NULL, ...) <- value
+"svalue<-" <- function(obj, index=NULL, ..., value) UseMethod("svalue<-")
 
 ##' Base S3 method
 ##'
 ##' @rdname svalue
 ##' @export
+##' @usage svalue(obj, index=NULL, ...) <- value
 ##' @S3method svalue<- default
 ##' @method svalue<- default
 "svalue<-.default" <- function(obj, index=NULL, ..., value) {
@@ -159,6 +161,7 @@ enabled.default <- function(obj) {
 ##' S3 method for setting enabled property
 ##'
 ##' @export
+##' @usage enabled(obj) <- value
 ##' @rdname enabled
 ##' @S3method enabled<- default
 ##' @method enabled<- default
@@ -202,6 +205,7 @@ visible.default <- function(obj, ...) {
 ##' Basic S3 method for visible
 ##'
 ##' @export
+##' @usage visible(obj) <- value
 ##' @rdname visible
 ##' @method visible<- default
 ##' @S3method visible<- default
@@ -244,6 +248,7 @@ focus.default <- function(obj) {
 ##' Basic S3 method for focus
 ##'
 ##' @export
+##' @usage focus(obj) <- value
 ##' @rdname focus
 ##' @method focus<- default
 ##' @S3method focus<- default
@@ -285,6 +290,7 @@ editable.default <- function(obj, i) {
 ##' Basic S3 method for editable
 ##'
 ##' @export
+##' @usage editable(obj, i) <- value
 ##' @rdname editable
 ##' @method editable<- default
 ##' @S3method editable<- default
@@ -345,6 +351,7 @@ font.default <- function(obj) {
 ##' Basic S3 method for setting font
 ##'
 ##' @export
+##' @usage font(obj) <- value
 ##' @rdname font
 ##' @method font<- default
 ##' @S3method font<- default
@@ -388,6 +395,7 @@ tag.default <- function(obj, key) {
 ##' Basic S3 method
 ##'
 ##' @export
+##' @usage tag(obj, key) <- value
 ##' @rdname tag
 ##' @method tag<- default
 ##' @S3method tag<- default
@@ -429,6 +437,7 @@ size.default <- function(obj) {
 ##' S3 method for size
 ##'
 ##' @export
+##' @usage size(obj) <- value
 ##' @rdname size
 ##' @method size<- default
 ##' @S3method size<- default
@@ -467,6 +476,7 @@ size.default <- function(obj) {
 ##' Basic S3 method for tooltip<-
 ##'
 ##' @export
+##' @usage tooltip(obj) <- value
 ##' @rdname tooltip
 ##' @method tooltip<- default
 ##' @S3method tooltip<- default

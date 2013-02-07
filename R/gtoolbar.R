@@ -75,6 +75,7 @@ add.GToolBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) 
 ##'
 ##' for a toolbar, \code{svalue<-} replaces the toolbar items with new ones specified by value.
 ##' @inheritParams svalue
+##' @usage \method{svalue}{GToolBar} (obj, index=NULL, ...) <- value
 ##' @export
 ##' @rdname gtoolbar
 ##' @method svalue<- GToolBar

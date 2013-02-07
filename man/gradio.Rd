@@ -13,13 +13,13 @@
   .gradio(toolkit, items, selected = 1, horizontal = FALSE,
     handler = NULL, action = NULL, container = NULL, ...)
 
-  \method{svalue}{GRadio}(obj, index = NULL, drop = TRUE,
+  \method{svalue}{GRadio} (obj, index = NULL, drop = TRUE,
     ...)
 
-  \method{svalue}{GRadio}(obj, index = NULL, drop = TRUE,
-    ...) <- value
+  \method{svalue}{GRadio} (obj,index=NULL,drop=TRUE,...) <-
+    value
 
-  \method{[}{GRadio}(x, i, j, ...) <- value
+  \method{[}{GRadio} (x, i, j, ...) <- value
 }
 \arguments{
   \item{items}{items to select from}
@@ -101,8 +101,8 @@
   \code{coerce_with} it will be called on the value
   returned by \code{svalue}.
 
-  For a radio button group, with \code{svalue} the value
-  can be referred to by index or label.
+  For a radio button group, for \code{svalue} the value can
+  be referred to by index or label.
 
   Check for repeated items before passing on to
   \code{set_items}

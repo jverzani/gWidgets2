@@ -15,13 +15,13 @@
     use.togglebutton = FALSE, handler = NULL,
     action = NULL, container = NULL, ...)
 
-  \method{addHandlerChanged}{GCheckbox}(obj, handler,
+  \method{addHandlerChanged}{GCheckbox} (obj, handler,
     action = NULL, ...)
 
-  \method{svalue}{GCheckbox}(obj, index = NULL, ...) <-
+  \method{svalue}{GCheckbox} (obj, index=NULL, ...) <-
     value
 
-  \method{[}{GCheckbox}(x, i, j, ...) <- value
+  \method{[}{GCheckbox} (x, i, j, ...) <- value
 }
 \arguments{
   \item{text}{label text}
@@ -69,10 +69,12 @@
   the value toggles. You can inpsect the current value in
   the callback to have an action based on the state.
 
-  The \code{svalue<-} method ensures the value is a logical
-  vector of length 1.
+  The object state is referred to by svalue as a logical
+  (TRUE for checked). The \code{svalue<-} method ensures
+  the value is a logical vector of length 1.
 
-  items assignment takes string
+  The item to select is referred to by the \code{[} method,
+  with only the first element being used.
 }
 \note{
   The value is coerced to character, then only first

@@ -40,9 +40,9 @@ gdfnotebook <- function(
 
 ##' Toolkit constructor
 ##'
-##' @inheritParams gWidgets2::gdfnotebook
+##' @inheritParams gdfnotebook
 ##' @export
-##' @rdname gWidgets2RGtk2-undocumented
+##' @rdname gWidgets2-undocumented
 ##' @method .gdfnotebook default
 ##' @S3method .gdfnotebook default
 .gdfnotebook.default <-  function(toolkit,

@@ -52,7 +52,7 @@ gradio <- function(items,selected=1, horizontal=FALSE,
 ##' as.numeric}. For all widgets, if a function is specified to
 ##' \code{coerce_with}  it will be called on the value returned by
 ##' \code{svalue}.
-##' @inheritParams gWidgets2::svalue
+##' @inheritParams svalue
 ##' @export
 ##' @rdname gradio
 ##' @S3method svalue GRadio
@@ -62,10 +62,11 @@ svalue.GRadio <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 
 ##' svalue<- method
 ##'
-##' For a radio button group, with \code{svalue} the value can be
+##' For a radio button group, for \code{svalue} the value can be
 ##' referred to by index or label. 
-##' @inheritParams gWidgets2::svalue
+##' @inheritParams svalue
 ##' @export
+##' @usage \method{svalue}{GRadio} (obj,index=NULL,drop=TRUE,...) <- value
 ##' @rdname gradio
 ##' @S3method svalue<- GRadio
 ##' @method svalue<- GRadio
@@ -91,6 +92,7 @@ svalue.GRadio <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 ##' @param j ignored
 ##' @param value items to assigns a choices for the buttons
 ##' @export
+##' @usage \method{[}{GRadio} (x, i, j, ...) <- value
 ##' @rdname gradio
 ##' @method [<- GRadio
 ##' @S3method [<- GRadio

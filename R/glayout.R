@@ -96,6 +96,7 @@ glayout <- function(
 ##' @param value constructor for a widget using this object as the
 ##' parent container
 ##' @export
+##' @usage \method{[}{GLayout} (x, i ,j, ...) <- value
 ##' @rdname glayout
 ##' @method [<- GLayout
 ##' @S3method [<- GLayout

@@ -1,3 +1,6 @@
 .git
 ^\.Rproj\.user$
 ^.*\.Rproj$
+README.asciidoc
+Style.txt
+TODO.txt

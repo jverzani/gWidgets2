@@ -9,6 +9,18 @@ NULL
 ##' @param toolkit used to dispatch into toolkit if a separate implementation is made
 ##' @export
 ##' @rdname icons
+##' @examples
+##' \dontrun{
+##' ## we can add icon sets, say those of glyphicons.com. Steps are download files, unzip
+##' ## then point x to path, y to name. Imagine we download and current directory is
+##' ## png directory. (Won't work with tcltk by default as these are png files)
+##' x <- Sys.glob("*.png")
+##' path <- paste(getwd(), x, sep=.Platform$file.sep)
+##' nm <- gsub("\\.png", "", x)
+##' nm <- gsub("-", "_", nm)
+##' nm <- gsub("\\+", "_plus", nm)
+##' addStockIcons(nm, path)
+##' }
 addStockIcons <- function(iconNames,iconFiles, ..., toolkit = guiToolkit()) {
   .addStockIcons (toolkit, iconNames, iconFiles, ...)
 }

@@ -9,7 +9,7 @@ NULL
 ##' @param filter A filter specifiation. This can be a named character vector of file extensions or something toolkit specific.
 ##' Here are some examples:
 ##' \itemize{
-##' \items{character}{c("csv"="csv","txt"="txt")}
+##' \item{character}{c("csv"="csv","txt"="txt")}
 ##' \item{RGtk2}{ Something like
 ##'   \preformatted{
 ##' list("All files" = list(patterns = c("*")),
