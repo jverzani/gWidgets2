@@ -56,6 +56,8 @@ gfilter <- function(DF,
 }
 
 
+
+
 ##' generic for toolkit dispatch
 ##'
 ##' @export
@@ -67,7 +69,6 @@ gfilter <- function(DF,
                       container=NULL,
                     ... )
            UseMethod( '.gfilter' )
-
 
 
 ##' svalue method

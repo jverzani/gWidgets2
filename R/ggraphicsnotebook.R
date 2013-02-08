@@ -17,9 +17,14 @@ ggraphicsnotebook <- function(
   if(is.character(toolkit))
     toolkit <- guiToolkit(toolkit)
 
-  obj <- .ggraphicsnotebook (toolkit,
-                            width=width, height=height, dpi=dpi, container=container ,...
-                            )
+  
+  .Class <- toolkit
+  obj <- NextMethod("ggraphicsnotebook")
+  
+
+  ## obj <- .ggraphicsnotebook (toolkit,
+  ##                           width=width, height=height, dpi=dpi, container=container ,...
+  ##                           )
   check_return_class(obj, "GGraphicsNotebook")
   return(obj)
 }
@@ -30,6 +35,7 @@ ggraphicsnotebook <- function(
 ##' @rdname ggraphicsnotebook
 ##' @export
 .ggraphicsnotebook <- function(toolkit, width, height, dpi, container, ...) UseMethod(".ggraphicsnotebook")
+
 
 
 

@@ -291,14 +291,10 @@ BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                        }
                                        ))
 
-##' needed for internal guys
-##' 
-##' @exportClass GComponent
-##' @rdname S4-classes
-##' @name GComponent-class
-GComponenta <- setRefClass("GComponenta",
-                          contains="BasicToolkitInterface")
-
-
+## needed for internal guys
+## 
+## @exportClass GComponentXXX
+## @rdname S4-classes
+## @name GComponentXXX-class
 GComponent <- setRefClass("GComponent",
-                          contains="GComponenta")
+                          contains="BasicToolkitInterface")

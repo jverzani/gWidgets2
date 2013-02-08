@@ -19,12 +19,17 @@ gdfnotebook <- function(
   if(is.character(toolkit))
     toolkit <- guiToolkit(toolkit)
 
+
+  
+
   obj <- .gdfnotebook (toolkit,
                        items=items, container=container ,...
                        )
+  
   check_return_class(obj, "GDfNotebook")
   return(obj)
 }
+
 
 
 ##' S3 generic whose methods are implemented in the toolkit packages
@@ -32,8 +37,6 @@ gdfnotebook <- function(
 ##' @rdname gdfnotebook
 ##' @export
 .gdfnotebook <- function(toolkit, items,  container, ...) UseMethod(".gdfnotebook")
-
-
 
 ## Default
 

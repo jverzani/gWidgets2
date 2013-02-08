@@ -3,7 +3,6 @@
 \alias{Command-class}
 \alias{CommandList-class}
 \alias{CommandStack-class}
-\alias{GComponent-class}
 \alias{GWidgets2Icons-class}
 \alias{Handler-class}
 \alias{Observable-class}
@@ -28,8 +27,6 @@
   defined here are referenced by the S3 methods. For
   exampe, \code{svalue} dispatches to \code{get_value} or
   \code{get_index}.
-
-  needed for internal guys
 
   A reference class to create a model that monitors the
   global workspace. The class has method
