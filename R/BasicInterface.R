@@ -291,10 +291,12 @@ BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
                                        }
                                        ))
 
-## needed for internal guys
-## 
-## @exportClass GComponentXXX
-## @rdname S4-classes
-## @name GComponentXXX-class
+
+##` needed for internal guys: gfilter, gdfnotebook, ggraphicsnotebook
+##` Causes warnings when installin gWidgets2XXX packages about conflicting classes
+##` 
+##` @exportClass GComponent
+##` @rdname S4-classes
+##` @name GComponent-class
 GComponent <- setRefClass("GComponent",
                           contains="BasicToolkitInterface")

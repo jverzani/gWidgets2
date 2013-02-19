@@ -6,6 +6,7 @@ NULL
 ##' @param text initial text
 ##' @param type type of browser: to open a file, to save a file or to select a directory
 ##' @param initial.filename Suggested file name
+##' @param initial.dir initial directory. If a filename is given, and is not an absolute name, this will be prepended. If filename given initial directory will be taken from that.
 ##' @param filter A filter specifiation. This can be a named character vector of file extensions or something toolkit specific.
 ##' Here are some examples:
 ##' \itemize{
@@ -29,6 +30,7 @@ gfile <- function(
                   text = "",
                   type = c("open", "save", "selectdir"),
                   initial.filename = NULL,
+                  initial.dir=getwd(),  # initial directory 
                   filter = list(),
                   multi=FALSE, ...,
                   toolkit=guiToolkit()){
@@ -41,8 +43,16 @@ gfile <- function(
 
   type <- match.arg(type)
   
+  if(!is.null(initial.filename)) {
+    if(!file.exists(initial.filename))
+      initial.filename <- paste(initial.dir, initial.filename, sep=.Platform$file.sep)
+    else
+      intial.dir <- dirname(initial.filename)
+  }
+  
   val <- .gfile (toolkit,
                  text=text, type=type, initial.filename=initial.filename,
+                 initial.dir = initial.dir,
                  filter=filter, multi=multi, ...
                  )
   Encoding(val) <- "UTF-8"
@@ -57,6 +67,7 @@ gfile <- function(
 .gfile <-  function(toolkit,
                     text = "", type = c("open", "save", "selectdir"),
                     initial.filename = NULL,
+                    initial.dir = getwd(),
                     filter = list(), multi=FALSE,
                     ... )
            UseMethod( '.gfile' )
@@ -75,6 +86,7 @@ gfilebrowse <- function (
                          text = "Select a file...",
                          type = c("open", "save", "selectdir"),
                          initial.filename = NULL,
+                         initial.dir = getwd(),
                          filter = list(),
                          quote = TRUE,
                          handler=NULL, action=NULL,
@@ -85,6 +97,7 @@ gfilebrowse <- function (
   obj <- .gfilebrowse (toolkit,
                        text=text, type=type,
                        initial.filename=initial.filename,
+                       initial.dir=initial.dir,
                        filter=filter,
                        quote=quote,
                        handler=handler, action=action, container=container, ...)
@@ -102,6 +115,7 @@ gfilebrowse <- function (
                          text = "Select a file...",
                          type = c("open", "save", "selectdir"),
                          initial.filename = NULL,
+                         initial.dir = getwd(),
                          filter = list(),
                          quote=TRUE,
                          handler=NULL, action=NULL,

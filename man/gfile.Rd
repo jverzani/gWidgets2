@@ -6,24 +6,27 @@
 \title{dialog for file and directory selection}
 \usage{
   gfile(text = "", type = c("open", "save", "selectdir"),
-    initial.filename = NULL, filter = list(),
-    multi = FALSE, ..., toolkit = guiToolkit())
+    initial.filename = NULL, initial.dir = getwd(),
+    filter = list(), multi = FALSE, ...,
+    toolkit = guiToolkit())
 
   .gfile(toolkit, text = "",
     type = c("open", "save", "selectdir"),
-    initial.filename = NULL, filter = list(),
-    multi = FALSE, ...)
+    initial.filename = NULL, initial.dir = getwd(),
+    filter = list(), multi = FALSE, ...)
 
   gfilebrowse(text = "Select a file...",
     type = c("open", "save", "selectdir"),
-    initial.filename = NULL, filter = list(), quote = TRUE,
-    handler = NULL, action = NULL, container = NULL, ...,
+    initial.filename = NULL, initial.dir = getwd(),
+    filter = list(), quote = TRUE, handler = NULL,
+    action = NULL, container = NULL, ...,
     toolkit = guiToolkit())
 
   .gfilebrowse(toolkit, text = "Select a file...",
     type = c("open", "save", "selectdir"),
-    initial.filename = NULL, filter = list(), quote = TRUE,
-    handler = NULL, action = NULL, container = NULL, ...)
+    initial.filename = NULL, initial.dir = getwd(),
+    filter = list(), quote = TRUE, handler = NULL,
+    action = NULL, container = NULL, ...)
 }
 \arguments{
   \item{text}{initial text}
@@ -32,6 +35,11 @@
   file or to select a directory}
 
   \item{initial.filename}{Suggested file name}
+
+  \item{initial.dir}{initial directory. If a filename is
+  given, and is not an absolute name, this will be
+  prepended. If filename given initial directory will be
+  taken from that.}
 
   \item{filter}{A filter specifiation. This can be a named
   character vector of file extensions or something toolkit

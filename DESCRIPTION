@@ -4,6 +4,7 @@ Title: rewrite of gWidgets API
 Version: 1.0-1
 Author: John Verzani
 Maintainer: john verzani <jverzani@gmail.com>
+URL: https://github.com/jverzani/gWidgets2
 Description: re-implementation of gWidgets API. The original used S4 methods.
     This rewrite takes advantage of R's reference classes. In addition,
     development is aided by the devtools package and github hosting. The main
@@ -38,13 +39,10 @@ Collate:
     'gdf.R'
     'ggroup.R'
     'gnotebook.R'
-    'gdfnotebook.R'
     'gfile.R'
-    'gfilter.R'
     'gformlayout.R'
     'gframe.R'
     'ggraphics.R'
-    'ggraphicsnotebook.R'
     'ghtml.R'
     'gimage.R'
     'glabel.R'
@@ -67,3 +65,6 @@ Collate:
     'gexpandgroup.R'
     'gvarbrowser.R'
     'icons.R'
+    'gdfnotebook.R'
+    'gfilter.R'
+    'ggraphicsnotebook.R'

@@ -1,15 +1,4 @@
-* Gabor's example of dispatch by overriding .Class in constructor
-
-gbutton <- function(..., toolkit) {
-  .Class <- class(toolkit)
-  b <- nextMethod("gbutton")
-  ...
-}
-
-and 
-
-gbutton.guiWidgetsToolkitRGtk2 <- function(...) GButton$new(toolkit, text, handler, action, container, ...)
-}
+* gfile -- how to set initial directory?
 * Examples: ...
 
 
@@ -48,4 +37,13 @@ DONE * check class of widget on return (is(obj, "GButton"))
 DONE * check_deprecated() deprecated_args=list("border"="This was removed,see $set_border")
 DONE * guiToolkit rewrite
 DONE * write asciidoc and html page for installing toolkit, check interactive and shos
+DIDN'T WORK (CHARXE?) * Gabor's example of dispatch by overriding .Class in constructor
+gbutton <- function(..., toolkit) {
+  .Class <- class(toolkit)
+  b <- nextMethod("gbutton")
+  ...
+}
+and 
+gbutton.guiWidgetsToolkitRGtk2 <- function(...) GButton$new(toolkit, text, handler, action, container, ...)
+}
 

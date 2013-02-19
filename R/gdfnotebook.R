@@ -221,7 +221,7 @@ GDfNotebook <- setRefClass("GDfNotebook",
                                  remove_page(df)
                                })
                                gbutton("save", container=tb_container, handler=function(h,...) {
-                                 save_DF()
+                                 save_DF(.GlobalEnv)
                                })
                              },
                              add_page=function(new_df, name=deparse(substitute(new_df))) {
@@ -236,14 +236,14 @@ GDfNotebook <- setRefClass("GDfNotebook",
                              redo = function(...) {
                                get_cur_page()$undo(...)
                              },
-                             save_DF=function() {
+                             save_DF=function(where) {
                                df <- get_cur_page()
                                nm <- nms[get_index_from_page(df)]
                                if(exists(nm, .GlobalEnv))
                                  if(!gconfirm(c("Variable exists", "really overwrite?")))
                                    return()
                                
-                               df$save_data(nm)
+                               df$save_data(nm, where)
                              }
                              ))
 
