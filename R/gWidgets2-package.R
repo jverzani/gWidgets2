@@ -40,13 +40,10 @@
 ##' 
 ##' \item{\code{\link{gdf}}}{Provides a data frame editing widget}
 ##' 
-##' \item{\code{\link{gdfnotebook}}}{Provides a notebook widget to hold instances of \code{gdf}}
 ##' 
 ##' \item{\code{\link{gedit}}}{Provides a single line text entry widget}
 ##' 
 ##' \item{\code{\link{ggraphics}}}{Provides an embeddable graphic device}
-##' 
-##' \item{\code{\link{ggraphicsnotebook}}}{Provides a notebook for holding several \code{ggraphic} instances}
 ##' 
 ##' \item{\code{\link{gimage}}}{Provides a widget to hold images}
 ##' 

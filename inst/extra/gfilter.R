@@ -1,6 +1,8 @@
 ##' @include methods.R
 NULL
 
+## Put here until we can figure out how to get past R CMD check
+
 ##' A widget for filtering a data frame
 ##'
 ##' This widget provides a simple means to subset, or filter, a data
@@ -103,6 +105,7 @@ svalue.GFilter <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
     return(NULL)
   }
 }
+
 
 
 ## Default implementation
