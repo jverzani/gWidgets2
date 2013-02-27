@@ -11,10 +11,10 @@ NULL
 ##' using the mouse or keyboard selection. The selected rows are the
 ##' main property and are returned by svalue through their key (from
 ##' the column specified by \code{chosen.col}), or by index. The
-##' change handler changes on double clicke event. Use add handler
+##' change handler changes on double-click event. Use add handler
 ##' click to respond to a change in selection.
 ##' @param items data.frame specifies items for selection. May be a vector, matrix or data frame
-##' @param multiple logical allow  multiple selectino
+##' @param multiple logical allow  multiple selection
 ##' @param chosen.col which value from the row is returned by selection
 ##' @param icon.col NULL or integer. If latter, specifies column containing stock icon
 ##' @param tooltip.col NULL or integer. If latter, specifies column containing tooltip
@@ -25,7 +25,7 @@ NULL
 ##' \dontrun{
 ##' w <- gwindow("gtable example", visible=FALSE)
 ##' g <- gvbox(cont=w)
-##' tbl <- gtable(mtcars, cont=g, expand=TRUE, fil=TRUE)
+##' tbl <- gtable(mtcars, cont=g, expand=TRUE, fill=TRUE)
 ##' addHandlerClicked(tbl, handler=function(h,...) sprintf("You selected %s", svalue(h$obj)))
 ##' visible(w) <- TRUE
 ##'

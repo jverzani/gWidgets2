@@ -108,7 +108,7 @@ glayout <- function(
   expand <- getWithDefault(theArgs$expand, FALSE)
   if(!is.null(theArgs$align))
     theArgs$anchor <- theArgs$align
-  fill <- getWithDefault(theArgs$fill, "x") # "", x, y or both
+  fill <- getWithDefault(theArgs$fil, "x") # "", x, y or both
   anchor <- getWithDefault(theArgs$anchor, NULL)
 
   x$set_items(value, i, j, expand, fill, anchor)

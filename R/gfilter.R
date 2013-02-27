@@ -1,4 +1,5 @@
 ##' @include methods.R
+##' @include BasicInterface.R
 NULL
 
 ## Put here until we can figure out how to get past R CMD check
@@ -24,8 +25,8 @@ NULL
 ##' \dontrun{
 ##' DF <- mtcars[, c("mpg", "cyl", "hp", "am", "wt")]
 ##' w <- gwindow("Example of gfilter", visible=FALSE)
-##' pg <- ggroup(cont=w)
-##' df <- gtable(DF, cont=pg)
+##' pg <- ggroup(container=w)
+##' df <- gtable(DF, container=pg)
 ##' a <- gfilter(df, initial.vars=data.frame(names(DF),
 ##'                    c("range", "choice", "range", "radio", "range").
 ##'                    stringsAsFactors=FALSE),
@@ -135,7 +136,7 @@ svalue.GFilter <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
 
 
 GFilter <- setRefClass("GFilter",
-                       contains="GComponent",
+                       contains="GDefaultWidget",
                        fields=list(
                          DF="ANY", 
                          initial_vars="ANY",
@@ -183,23 +184,23 @@ GFilter <- setRefClass("GFilter",
                            handler(h)
                          },
                          init_ui=function(container, ..., use.scrollwindow) {
-                           block <<- ggroup(cont=container, horizontal=FALSE, ..., use.scrollwindow=FALSE)
-                           container <<- ggroup(cont=block, expand=FALSE, horizontal=FALSE)
+                           block <<- ggroup(container=container, horizontal=FALSE, ..., use.scrollwindow=FALSE)
+                           container <<- ggroup(container=block, expand=FALSE, horizontal=FALSE)
                            
                            if(allow_edit && !is.null(DF)) {
-                             bg <- ggroup(cont=block)
+                             bg <- ggroup(container=block)
                              addSpring(bg)                                
-                             gbutton(gettext("Add item"), cont=bg, handler=function(h,...) {
+                             gbutton(gettext("Add item"), container=bg, handler=function(h,...) {
                                w <- gbasicdialog(gettext("Select a variable and editor type"),
                                                  handler=function(h,...) {
                                                    var <- svalue(varname)
                                                    type <- svalue(type)
                                                    add_item(var, var, type=type)
                                                  }, parent=h$obj)
-                               lyt <- glayout(cont=w)
+                               lyt <- glayout(container=w)
                                lyt[1,1] <- gettext("Variable:")
                                lyt[1,2] <- (varname <- gcombobox(names(DF), selected=0,
-                                                                 cont=lyt, handler=function(h,...) {
+                                                                 container=lyt, handler=function(h,...) {
                                  nm <- svalue(h$obj)
                                  var <- DF[[nm]]
                                  if(is.numeric(var))
@@ -213,7 +214,7 @@ GFilter <- setRefClass("GFilter",
                                  enabled(type) <- TRUE
                                }))
                                lyt[2,1] <- gettext("Type:")
-                               lyt[2,2] <- (type <- gradio(c("radio", "choice", "range"), selected=2, cont=lyt))
+                               lyt[2,2] <- (type <- gradio(c("radio", "choice", "range"), selected=2, container=lyt))
                                enabled(type) <- FALSE # not until a selecctin is ade
                                visible(w) <- TRUE
                              })
@@ -295,7 +296,7 @@ GFilter <- setRefClass("GFilter",
 
 ## Filter items
 BasicFilterItem <- setRefClass("BasicFilterItem",
-                               contains="GComponent",
+                               contains="GDefaultWidget",
                                fields=list(
                                  x="ANY",
                                  name="character",
@@ -341,14 +342,14 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                    else
                                      f(widget)
 
-                                   g <- ggroup(cont=frame, horizontal=TRUE)
+                                   g <- ggroup(container=frame, horizontal=TRUE)
                                    addSpring(g)
-                                   gbutton("clear", cont=g, handler=function(h,...) {
+                                   gbutton("clear", container=g, handler=function(h,...) {
                                      initialize_item()
                                      .self$invoke_change_handler()
                                    })
                                    if(parent$allow_edit) {
-                                     gbutton("remove", cont=g, handler=function(h,...) {
+                                     gbutton("remove", container=g, handler=function(h,...) {
                                        parent$remove_item(.self)
                                      })
                                    }
@@ -382,9 +383,9 @@ RadioItem <- setRefClass("RadioItem",
                              "Select one from many"
                              u_x <- sort(unique(get_x()))
                              if(length(u_x) > 4) 
-                               widget <<- gcombobox(u_x, cont=container, anchor=c(-1,0))
+                               widget <<- gcombobox(u_x, container=container, anchor=c(-1,0))
                              else
-                               widget <<- gradio(u_x, cont=container, anchor=c(-1,0))
+                               widget <<- gradio(u_x, container=container, horizontal=TRUE, anchor=c(-1,0))
 
                              if(is.numeric(u_x))
                                widget$coerce_with <<- as.numeric
@@ -406,7 +407,7 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              "Select one from many"
                              u_x <- sort(unique(get_x()))
                              use.table <- length(u_x) > 4
-                             widget <<- gcheckboxgroup(u_x, cont=container,
+                             widget <<- gcheckboxgroup(u_x, container=container,
                                                        use.table=use.table,
                                                        expand=TRUE, fill=TRUE
                                                        )
@@ -430,14 +431,14 @@ RangeItem <- setRefClass("RangeItem",
                              "a <= widget <= b"
                              widget <<- list()
 
-                             g <- ggroup(cont=container, expand=TRUE, fill="y")
-                             g1 <- ggroup(cont=g, horizontal=FALSE, expand=TRUE)
-                             widget[[1]] <<- gedit("", cont=g1, width=10, coerce.with=as.numeric)
+                             g <- ggroup(container=container, expand=TRUE, fill="y")
+                             g1 <- ggroup(container=g, horizontal=FALSE, expand=TRUE)
+                             widget[[1]] <<- gedit("", container=g1, width=10, coerce.with=as.numeric)
 
-                             glabel(gettext("to"), cont=g)
+                             glabel(gettext("to"), container=g)
                              
-                             g2 <- ggroup(cont=g, horizontal=FALSE, expand=TRUE)
-                             widget[[2]] <<- gedit("", cont=g2, width=10, coerce.with=as.numeric)
+                             g2 <- ggroup(container=g, horizontal=FALSE, expand=TRUE)
+                             widget[[2]] <<- gedit("", container=g2, width=10, coerce.with=as.numeric)
                              initialize_item()
                              
                            },

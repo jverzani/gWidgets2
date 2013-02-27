@@ -300,3 +300,40 @@ BasicToolkitInterface <- setRefClass("BasicToolkitInterface",
 ## @name GComponent-class
 ##GComponent <- setRefClass("GComponent",
 ##                          contains="BasicToolkitInterface")
+
+
+## Class for default widgets
+## Used by g*notebook, and gfilter
+GDefaultWidget <- setRefClass("GDefaultWidget",
+                                contains="BasicToolkitInterface")
+                          
+
+
+## For odd reasons, we don't want to use GComponent methods here.
+
+##' Return items
+##'
+##' @export
+##' @rdname gWidgets2-S3methods
+##' @method [ GDefaultWidget
+##' @S3method [ GDefaultWidget
+"[.GDefaultWidget" <- function(x, i, j, ...) x$get_items(i, j, ...)
+
+
+##' Set object's items
+##'
+##' @export
+##' @usage \method{[}{GDefaultWidget} (x, i, j, ...) <- value
+##' @rdname gWidgets2-S3methods
+##' @method [<- GDefaultWidget
+##' @S3method [<- GDefaultWidget
+"[<-.GDefaultWidget" <- function(x, i, j, ..., value) x$set_items(value, i, j, ...)
+
+##' method for getWidget
+##'
+##' @rdname getToolkitWidget
+##' @export
+##' @method getWidget GDefaultWidget
+##' @S3method getWidget GDefaultWidget
+getWidget.GDefaultWidget <- function(obj) getWidget(obj$widget)
+

@@ -1,4 +1,4 @@
-\name{getToolkitWidget}
+\name{getWidget.GDefaultWidget}
 \alias{getBlock}
 \alias{getBlock.GComponent}
 \alias{getBlock.GWindow}
@@ -8,8 +8,11 @@
 \alias{getTopLevel.GComponent}
 \alias{getWidget}
 \alias{getWidget.GComponent}
-\title{Get underlying toolkit widget}
+\alias{getWidget.GDefaultWidget}
+\title{method for getWidget}
 \usage{
+  \method{getWidget}{GDefaultWidget} (obj)
+
   getToolkitWidget(obj)
 
   \method{getToolkitWidget}{default} (obj)
@@ -32,6 +35,8 @@
   \item{obj}{object}
 }
 \description{
+  method for getWidget
+
   At times a user may wish to access the underlying toolkit
   widget. Although this is not cross-platform, one often
   has access to many more methods of the object, than

@@ -1,9 +1,11 @@
-\name{length.GComponent}
+\name{[.GDefaultWidget}
 \alias{[.GComponent}
 \alias{[.GContainer}
+\alias{[.GDefaultWidget}
 \alias{[.GDf}
 \alias{[.GEdit}
 \alias{[<-.GComponent}
+\alias{[<-.GDefaultWidget}
 \alias{dim.GComponent}
 \alias{dimnames.GComponent}
 \alias{dimnames<-.GComponent}
@@ -14,8 +16,12 @@
 \alias{names<-.GFrame}
 \alias{str.GComponent}
 \alias{update.GComponent}
-\title{Length of object}
+\title{Return items}
 \usage{
+  \method{[}{GDefaultWidget} (x, i, j, ...)
+
+  \method{[}{GDefaultWidget} (x, i, j, ...) <- value
+
   \method{length}{GComponent} (x)
 
   \method{length}{GComponent} (x) <- value
@@ -66,6 +72,10 @@
   length of object
 }
 \description{
+  Return items
+
+  Set object's items
+
   Length of object
 
   set length of object
