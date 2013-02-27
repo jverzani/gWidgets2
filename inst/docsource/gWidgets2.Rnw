@@ -31,13 +31,29 @@
 \newcommand{\ASSIGN}{$<$-}
 
 
-\SweaveOpts{keep.source=TRUE}
+%%\SweaveOpts{keep.source=TRUE}
 
 \title{The gWidgets2 package}
 \author{John Verzani}
 \date{\today}
 
+<<setup1, echo=FALSE>>=
+options(replace.assign=TRUE)
+options(width=80)
 
+opts_chunk$set(tidy=FALSE,
+               highlight=TRUE,  
+               #fig.width=5, fig.height=5,
+               fig.show='hold', cache=FALSE, par=TRUE) 
+knit_hooks$set(par=function(before, options, envir){
+if (before && options$fig.show!='none') 
+  par(mar=c(5,4,2,2) + 0.1, #c(4,4,.1,.1),
+      cex.lab=.95,cex.axis=.9
+      ,mgp=c(2,.7,0),tcl=-.3
+                )
+}, crop=hook_pdfcrop)
+
+@ 
 \begin{document}
 
 <<setup, echo=FALSE, results="hide">>=
@@ -161,7 +177,7 @@ relationship. In this case, the alert dialog will be drawn relative to
 the parent window.
 
 Except for dialogs, the constructors return objects which have S3
-methods defined for them. Table~\code{tab:methods} lists most of the
+methods defined for them. Table~\ref{tab:methods} lists most of the
 new generics defined by the package.~\footnote{Constructors return
   reference class objects, so they also have reference class methods
   defined. There are a few cases where these are standardized across
@@ -270,27 +286,29 @@ win <- gwindow("Nested groups")
 g <- gvbox(container=win)
 g$set_borderwidth(10L)
 ##
-txt <- gtext(lorem, container=g, expand=TRUE, fill=TRUE) ## text widget
+txt <- gtext(lorem, container=g,        # text widget
+             expand=TRUE, fill=TRUE) 
 ##
 bg <- ggroup(cont=g)
 addSpring(bg)
-gbutton("dismiss", container=bg, handler=function(h,...) dispose(win))
+gbutton("dismiss", container=bg, 
+        handler=function(h,...) dispose(win))
 gbutton("about", container=bg, handler=function(h,...) {
   gmessage("Shows lorem ipsum text", parent=win)
 })
 @ 
 
 In the above, we have nested box containers, \code{g} a vertical one,
-and \code{bg} a horizontal one. (The \code{gvbox} call is a simpler to
-type version of \code{ggroup} with \code{horizontal=FALSE}.) The
-\code{set\_borderwidth} reference method call is not essential, but
-does give some extra space around the edges of \code{g}. The
-\code{svalue} method is used to set padding between children, this
-call sets the border within the box. The spring is added to \code{bg}
-container to right justify the buttons. When buttons are packed into
-box containers, they expand to fill the direction orthogonal to the
-direction of packing. As such, it is best to put buttons in a
-horizontal box container, as done above. 
+and \code{bg} a horizontal one. (The \code{gvbox} call is a
+simpler-to-type version of \code{ggroup} with
+\code{horizontal=FALSE}.) The \code{set\_borderwidth} reference method
+call is not essential, but does give some extra space around the edges
+of \code{g}. The \code{svalue} method is used to set padding between
+children, this call sets the border within the box. The spring is
+added to \code{bg} container to right justify the buttons. When
+buttons are packed into box containers, they expand to fill the
+direction orthogonal to the direction of packing. As such, it is best
+to put buttons in a horizontal box container, as done above.
 
 
 \subsection{Widgets}
@@ -358,7 +376,7 @@ flyt <- gformlayout(container=g, expand=TRUE)
 gedit("", initial.msg="variable", 
       label="x", container=flyt)
 gcombobox(c("two.sided", "less", "greater"), 
-          label="alternative",container=flyt)
+          label="alternative", container=flyt)
 gedit("0", coerce.with=as.numeric,  
       label="mu", container=flyt)
 gcheckbox("", checked=FALSE, 
@@ -553,8 +571,7 @@ packages to determine what is loaded.
 <<>>=
 package_status <- function() {
   ## Return if package is loaded
-  loaded <- loadedNamespaces()
-  sapply(installed_packages, function(i) i %in% loaded)
+  installed_packages %in% loadedNamespaces()
 }
 @ 
 
@@ -705,8 +722,10 @@ filter the table by, and a \code{gtable} widget to dispaly our tabular data.
 
 fg <- ggroup(container=g)
 glabel("Filter by:", container=fg)
-fltr <- gedit("", initial.msg="Filter by regexp", container=fg)
-tbl <- gtable(pkg, chosen.col=1, multiple=TRUE, container=g, expand=TRUE)
+fltr <- gedit("", initial.msg="Filter by regexp", 
+              container=fg)
+tbl <- gtable(pkg, chosen.col=1, multiple=TRUE, 
+              container=g, expand=TRUE)
 @ 
 
 Our button group is fairly standard. 
@@ -717,7 +736,8 @@ gbutton("About", container=bg, handler=function(h,...) {
   g <- gvbox(container=w1); g$set_borderwidth(10)
   glabel(about, container=g, expand=TRUE)
   bg <- ggroup(container=g); addSpring(bg)
-  gbutton("dismiss", container=bg, handler=function(h,...) dispose(w1))
+  gbutton("dismiss", container=bg, 
+          handler=function(h,...) dispose(w1))
   visible(w1) <- TRUE
 })
 @ 
@@ -727,13 +747,16 @@ Our update button will only be enabled if the user has a selection,
 hence we set it intially to be disabled. The handler below simply
 installs the selected packages, then updates the display.
 <<>>=
-update_btn <- gbutton("Update selected", container=bg, handler=function(h,...) {
+update_btn <- gbutton("Update selected", container=bg, 
+                      handler=function(h,...) {
   pkgs <- svalue(tbl)
   if(length(pkgs) == 0) return()
   
   sapply(pkgs, install.packages)
-  ## update pkg, then update talbe
-  tbl[] <- pkg <<-  old.packages()[,c("Package", "Installed", "ReposVer")]
+  ## update pkg, update table, clear filter
+  tbl[] <- pkg <<-  
+    old.packages()[,c("Package", "Installed", "ReposVer")]
+  svalue(fltr) <- ""
 })
 enabled(update_btn) <- FALSE
 #
