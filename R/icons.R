@@ -82,8 +82,10 @@ getStockIcons = function( ..., toolkit = guiToolkit()) {
 ##' @param name of stock icon
 ##' @export
 ##' @rdname icons
-getStockIconByName <- function(name, ..., toolkit=guiToolkit())
+getStockIconByName <- function(name, ..., toolkit=guiToolkit()) {
+  name <- tolower(name)                 # regularize
   .getStockIconByName(toolkit, name, ...)
+}
 
 ##' generic
 ##'
