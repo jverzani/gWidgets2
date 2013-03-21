@@ -344,12 +344,12 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
 
                                    g <- ggroup(container=frame, horizontal=TRUE)
                                    addSpring(g)
-                                   gbutton("clear", container=g, handler=function(h,...) {
+                                   gbutton("Clear", container=g, handler=function(h,...) {
                                      initialize_item()
                                      .self$invoke_change_handler()
                                    })
                                    if(parent$allow_edit) {
-                                     gbutton("remove", container=g, handler=function(h,...) {
+                                     gbutton("Remove", container=g, handler=function(h,...) {
                                        parent$remove_item(.self)
                                      })
                                    }
