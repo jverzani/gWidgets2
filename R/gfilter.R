@@ -203,18 +203,27 @@ GFilter <- setRefClass("GFilter",
                                                                  container=lyt, handler=function(h,...) {
                                  nm <- svalue(h$obj)
                                  var <- DF[[nm]]
-                                 if(is.numeric(var))
+                                 types <- c("radio", "choice", "range")
+                                 if(is.numeric(var)) {
+
+                                   type[] <- types
                                    svalue(type) <- "range"
-                                 else if(is.factor(var) || is.character(var))
+                                 } else if(is.factor(var) || is.character(var)) {
+                                   type[] <- types[1:2]                                   
                                    svalue(type) <- "choice"
-                                 else if(is.logical(var))
+                                 } else if(is.logical(var)) {
+                                   type[] <- types[1:2]
                                    svalue(type) <- "radio"
-                                 else
+                                 } else {
                                    svalue(type) <- "choice"
+                                 }
                                  enabled(type) <- TRUE
                                }))
                                lyt[2,1] <- gettext("Type:")
-                               lyt[2,2] <- (type <- gradio(c("radio", "choice", "range"), selected=2, container=lyt))
+
+                               types <- c("radio", "choice", "range")
+                               
+                               lyt[2,2] <- (type <- gradio(types, selected=2, container=lyt))
                                enabled(type) <- FALSE # not until a selecctin is ade
                                visible(w) <- TRUE
                              })
