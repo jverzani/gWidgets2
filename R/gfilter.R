@@ -15,7 +15,7 @@ NULL
 ##' @param initial.vars When given, this is a data frame whose first
 ##' column specifies the variables within \code{DF} to filter by and
 ##' whose second column indicates the type of filter desired. The
-##' available types are \code{radio}, for single selection;
+##' available types are \code{single" to select one from many, 
 ##' \code{multiple}, for multiple selection; and \code{range}, to
 ##' specify a from and to value.
 ##' @inheritParams gwidget
@@ -28,7 +28,7 @@ NULL
 ##' pg <- ggroup(container=w)
 ##' df <- gtable(DF, container=pg)
 ##' a <- gfilter(df, initial.vars=data.frame(names(DF),
-##'                    c("range", "choice", "range", "radio", "range").
+##'                    c("single", "multiple", "range", "single", "range").
 ##'                    stringsAsFactors=FALSE),
 ##'              allow.edit=TRUE,
 ##'              container=pg,
@@ -143,6 +143,7 @@ GFilter <- setRefClass("GFilter",
                          allow_edit="logical",
                          container="ANY",
                          l="list",
+                         types="ANY",
                          handler="ANY",
                          action="ANY"
                          ),
@@ -158,6 +159,7 @@ GFilter <- setRefClass("GFilter",
                            initFields(DF=DF,
                                       initial_vars=initial_vars,
                                       allow_edit=allow_edit,
+                                      types  = c("single"="Select one of...", "multiple" = "Select one or more of...", "range"="Narrow range of..."),
                                       l=list(),
                                       handler=handler,
                                       action=action,
@@ -191,10 +193,12 @@ GFilter <- setRefClass("GFilter",
                              bg <- ggroup(container=block)
                              addSpring(bg)                                
                              gbutton(gettext("Add item"), container=bg, handler=function(h,...) {
+
                                w <- gbasicdialog(gettext("Select a variable and editor type"),
                                                  handler=function(h,...) {
                                                    var <- svalue(varname)
-                                                   type <- svalue(type)
+                                                   type <- svalue(type, index=TRUE)
+                                                   names(types)[type]
                                                    add_item(var, var, type=type)
                                                  }, parent=h$obj)
                                lyt <- glayout(container=w)
@@ -203,25 +207,23 @@ GFilter <- setRefClass("GFilter",
                                                                  container=lyt, handler=function(h,...) {
                                  nm <- svalue(h$obj)
                                  var <- DF[[nm]]
-                                 types <- c("radio", "choice", "range")
                                  if(is.numeric(var)) {
 
                                    type[] <- types
-                                   svalue(type) <- "range"
+                                   svalue(type, index=TRUE) <- 1
                                  } else if(is.factor(var) || is.character(var)) {
                                    type[] <- types[1:2]                                   
-                                   svalue(type) <- "choice"
+                                   svalue(type, index=TRUE) <- 2
                                  } else if(is.logical(var)) {
                                    type[] <- types[1:2]
-                                   svalue(type) <- "radio"
+                                   svalue(type, index=TRUE) <- 1
                                  } else {
-                                   svalue(type) <- "choice"
+                                   svalue(type, index=TRUE) <- 2
                                  }
                                  enabled(type) <- TRUE
                                }))
                                lyt[2,1] <- gettext("Type:")
 
-                               types <- c("radio", "choice", "range")
                                
                                lyt[2,2] <- (type <- gradio(types, selected=2, container=lyt))
                                enabled(type) <- FALSE # not until a selecctin is ade
@@ -247,20 +249,22 @@ GFilter <- setRefClass("GFilter",
                              x <- DF[,x]
                            x
                          },
-                         add_item=function(x, name=deparse(substitute(x)), type=c("radio", "choice", "range")) {
+                         add_item=function(x, name=deparse(substitute(x)), type=c("single", "multiple", "range")) {
                            if(missing(type)) 
                              if(is.numeric(get_x(x)))
                                type <- "range"
                              else
-                               type <- "choice"
+                               type <- "multiple"
                            tmp <- type
-                           
-                           type <- match.arg(type)
+                           if(is.numeric(type))
+                             type <- c("single", "multiple", "range")[type]
+                           else
+                             type <- match.arg(type)
 
                            ## dispatch on type
-                           if(type == "radio")
+                           if(type == "single")
                              item <- RadioItem$new(x, name=name, parent=.self)
-                           else if(type == "choice")
+                           else if(type == "multiple")
                              item <- ChoiceItem$new(x, name=name, parent=.self)
                            else
                              item <- RangeItem$new(x, name=name, parent=.self)
@@ -420,6 +424,7 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                                        use.table=use.table,
                                                        expand=TRUE, fill=TRUE
                                                        )
+                             size(widget) <<- list(height= 4 * 25)
                              if(is.numeric(u_x))
                                widget$coerce_with <<- as.numeric
                              
