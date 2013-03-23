@@ -190,7 +190,7 @@ GFilter <- setRefClass("GFilter",
                            if(allow_edit && !is.null(DF)) {
                              bg <- ggroup(container=block)
                              addSpring(bg)                                
-                             gbutton(gettext("Add item"), container=bg, handler=function(h,...) {
+                             btn_add.item <- gbutton(gettext("Add item"), container=bg, handler=function(h,...) {
                                w <- gbasicdialog(gettext("Select a variable and editor type"),
                                                  handler=function(h,...) {
                                                    var <- svalue(varname)
@@ -227,6 +227,7 @@ GFilter <- setRefClass("GFilter",
                                enabled(type) <- FALSE # not until a selecctin is ade
                                visible(w) <- TRUE
                              })
+                             btn_add.item$$set_icon("add")
                            }
                            addSpring(block) ## push to top
                            
