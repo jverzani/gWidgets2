@@ -227,7 +227,7 @@ GFilter <- setRefClass("GFilter",
                                enabled(type) <- FALSE # not until a selecctin is ade
                                visible(w) <- TRUE
                              })
-                             btn_add.item$$set_icon("add")
+                             btn_add.item$set_icon("add")
                            }
                            addSpring(block) ## push to top
                            
