@@ -202,7 +202,7 @@ GFilter <- setRefClass("GFilter",
                                                  }, parent=h$obj)
                                lyt <- glayout(container=w)
                                lyt[1,1] <- gettext("Variable:")
-                               lyt[1,2] <- (varname <- gcombobox(names(DF), selected=0,
+                               lyt[1,2] <- (varname <- gcombobox(names(DF), selected=-1,
                                                                  container=lyt, handler=function(h,...) {
                                  nm <- svalue(h$obj)
                                  var <- DF[[nm]]
