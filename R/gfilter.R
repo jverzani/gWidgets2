@@ -159,7 +159,7 @@ GFilter <- setRefClass("GFilter",
                            initFields(DF=DF,
                                       initial_vars=initial_vars,
                                       allow_edit=allow_edit,
-                                      types  = c("single"="Select one of...", "multiple" = "Select one or more of...", "range"="Narrow range of..."),
+                                      types  = c("single"="Select one level", "multiple" = "Select one or more levels", "range"="Select range"),
                                       l=list(),
                                       handler=handler,
                                       action=action,
@@ -221,7 +221,7 @@ GFilter <- setRefClass("GFilter",
                                  }
                                  enabled(type) <- TRUE
                                }))
-                               lyt[2,1] <- gettext("Type:")
+                               lyt[2,1] <- gettext("")
 
                                
                                lyt[2,2] <- (type <- gradio(types, selected=2, container=lyt))
