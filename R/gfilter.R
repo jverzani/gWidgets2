@@ -202,7 +202,7 @@ GFilter <- setRefClass("GFilter",
                                                  }, parent=h$obj)
                                lyt <- glayout(container=w)
                                lyt[1,1] <- gettext("Variable:")
-                               lyt[1,2] <- (varname <- gcombobox(names(DF), selected=1,
+                               lyt[1,2] <- (varname <- gcombobox(names(DF), selected=0,
                                                                  container=lyt, handler=function(h,...) {
                                  nm <- svalue(h$obj)
                                  var <- DF[[nm]]
@@ -225,7 +225,7 @@ GFilter <- setRefClass("GFilter",
 
                                
                                lyt[2,2] <- (type <- gradio(types, selected=2, container=lyt))
-                               #enabled(type) <- FALSE # not until a selecctin is ade
+                               enabled(type) <- FALSE # not until a selecctin is ade
                                visible(w) <- TRUE
                              })
                              btn_add.item$set_icon("add")
