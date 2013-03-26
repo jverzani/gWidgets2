@@ -225,7 +225,7 @@ GFilter <- setRefClass("GFilter",
 
                                
                                lyt[2,2] <- (type <- gradio(types, selected=2, container=lyt))
-                               enabled(type) <- FALSE # not until a selecctin is ade
+                               #enabled(type) <- FALSE # not until a selecctin is ade
                                visible(w) <- TRUE
                              })
                              btn_add.item$set_icon("add")
