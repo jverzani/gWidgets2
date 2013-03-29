@@ -193,7 +193,7 @@ GFilter <- setRefClass("GFilter",
                              bg <- ggroup(container=block)
                              addSpring(bg)                                
                              btn_add.item <- gbutton(gettext("Add item"), container=bg, handler=function(h,...) {
-                               w <- gbasicdialog(gettext("Select a variable and editor type"),
+                               w <- gbasicdialog(gettext("Select a variable and selector type"),
                                                  handler=function(h,...) {
                                                    var <- svalue(varname)
                                                    type <- svalue(type, index=TRUE)
@@ -369,7 +369,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                  },
                                  ## need to subclass these
                                  make_item_type=function(container) {
-                                   "Make editor for item"
+                                   "Make selector for item"
                                  },
                                  initialize_item=function() {
                                    "Method to initialize the item values"
