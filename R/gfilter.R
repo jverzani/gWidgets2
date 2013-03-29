@@ -357,7 +357,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
 
                                    g <- ggroup(container=frame, horizontal=TRUE)
                                    addSpring(g)
-                                   gbutton("Clear", container=g, handler=function(h,...) {
+                                   gbutton("Reset", container=g, handler=function(h,...) {
                                      initialize_item()
                                      .self$invoke_change_handler()
                                    })
