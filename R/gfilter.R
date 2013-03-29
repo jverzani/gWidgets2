@@ -193,7 +193,7 @@ GFilter <- setRefClass("GFilter",
                              bg <- ggroup(container=block)
                              addSpring(bg)                                
                              btn_add.item <- gbutton(gettext("Add item"), container=bg, handler=function(h,...) {
-                               w <- gbasicdialog(gettext("Select a variable and editor type"),
+                               w <- gbasicdialog(gettext("Select a variable and selector type"),
                                                  handler=function(h,...) {
                                                    var <- svalue(varname)
                                                    type <- svalue(type, index=TRUE)
@@ -357,7 +357,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
 
                                    g <- ggroup(container=frame, horizontal=TRUE)
                                    addSpring(g)
-                                   gbutton("Clear", container=g, handler=function(h,...) {
+                                   gbutton("Reset", container=g, handler=function(h,...) {
                                      initialize_item()
                                      .self$invoke_change_handler()
                                    })
@@ -369,7 +369,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                  },
                                  ## need to subclass these
                                  make_item_type=function(container) {
-                                   "Make editor for item"
+                                   "Make selector for item"
                                  },
                                  initialize_item=function() {
                                    "Method to initialize the item values"
@@ -395,10 +395,10 @@ RadioItem <- setRefClass("RadioItem",
                            make_item_type=function(container) {
                              "Select one from many"
                              u_x <- sort(unique(get_x()))
-                             if(length(u_x) > 4) 
+                             #if(length(u_x) > 4) 
                                widget <<- gcombobox(u_x, container=container, anchor=c(-1,0))
-                             else
-                               widget <<- gradio(u_x, container=container, horizontal=TRUE, anchor=c(-1,0))
+                             #else
+                               #widget <<- gradio(u_x, container=container, horizontal=TRUE, anchor=c(-1,0))
 
                              if(is.numeric(u_x))
                                widget$coerce_with <<- as.numeric
@@ -424,7 +424,11 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                                        use.table=use.table,
                                                        expand=TRUE, fill=TRUE
                                                        )
-                             size(widget) <<- list(height= 4 * 25)
+                             if(length(u_x) >= 4){
+                                size(widget) <<- list(height= 4 * 25)
+                             } else {
+                                size(widget) <<- list(height= length(u_x) * 25)
+                             }
                              if(is.numeric(u_x))
                                widget$coerce_with <<- as.numeric
                              
