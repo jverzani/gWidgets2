@@ -424,7 +424,11 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                                        use.table=use.table,
                                                        expand=TRUE, fill=TRUE
                                                        )
-                             size(widget) <<- list(height= 4 * 25)
+                             if(length(u_x) >= 4){
+                                size(widget) <<- list(height= 4 * 25)
+                             } else {
+                                size(widget) <<- list(height= length(u_x) * 25)
+                             }
                              if(is.numeric(u_x))
                                widget$coerce_with <<- as.numeric
                              
