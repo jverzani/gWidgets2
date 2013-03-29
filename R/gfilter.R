@@ -395,10 +395,10 @@ RadioItem <- setRefClass("RadioItem",
                            make_item_type=function(container) {
                              "Select one from many"
                              u_x <- sort(unique(get_x()))
-                             if(length(u_x) > 4) 
+                             #if(length(u_x) > 4) 
                                widget <<- gcombobox(u_x, container=container, anchor=c(-1,0))
-                             else
-                               widget <<- gradio(u_x, container=container, horizontal=TRUE, anchor=c(-1,0))
+                             #else
+                               #widget <<- gradio(u_x, container=container, horizontal=TRUE, anchor=c(-1,0))
 
                              if(is.numeric(u_x))
                                widget$coerce_with <<- as.numeric
