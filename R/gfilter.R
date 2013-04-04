@@ -444,6 +444,24 @@ ChoiceItem <- setRefClass("ChoiceItem",
                            initialize_item = function() {
                              svalue(widget, index=TRUE) <<- TRUE # all selected
                            },
+                           make_buttons=function(frame) {
+                             g <- ggroup(container=frame, horizontal=TRUE)
+                             addSpring(g) # right justify
+                             gbutton("Reset", container=g, handler=function(h,...) {
+                               initialize_item()
+                               .self$invoke_change_handler()
+                             })
+                             gbutton("Clear", container=g, handler=function(h,...) {
+                               ## LIVIU to fill in with better?
+                               svalue(widget) <<- FALSE
+                               .self$invoke_change_handler()
+                             })
+                             if(parent$allow_edit) {
+                               gbutton("Remove", container=g, handler=function(h,...) {
+                                 parent$remove_item(.self)
+                               })
+                             }
+                           },
                            get_value=function(...) {
                              out <- get_x() %in% svalue(widget)
                              na_vals <- is.na(get_x())
@@ -479,26 +497,6 @@ RangeItem <- setRefClass("RangeItem",
                              widget[[2]]$set_value(max(get_x(), na.rm=TRUE))
 
                            },
-                           make_buttons=function(frame) {
-                             g <- ggroup(container=frame, horizontal=TRUE)
-                             addSpring(g) # right justify
-                             gbutton("Reset", container=g, handler=function(h,...) {
-                               initialize_item()
-                               .self$invoke_change_handler()
-                             })
-                             gbutton("Clear", container=g, handler=function(h,...) {
-                               ## LIVIU to fill in with better?
-                               widget[[1]]$set_value("")
-                               widget[[2]]$set_value("")
-                               .self$invoke_change_handler()
-                             },
-                             if(parent$allow_edit) {
-                               gbutton("Remove", container=g, handler=function(h,...) {
-                                 parent$remove_item(.self)
-                               })
-                             }
-                           },
-                           
                            get_value=function(...) {
                              vals <- get_x()
                              a <- svalue(widget[[1]])
