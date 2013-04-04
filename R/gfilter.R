@@ -360,8 +360,15 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                    else
                                      f(widget)
 
+                                   make_buttons(frame)
+                                 },
+                                 ## need to subclass these
+                                 make_item_type=function(container) {
+                                   "Make editor for item"
+                                 },
+                                 make_buttons=function(frame) {
                                    g <- ggroup(container=frame, horizontal=TRUE)
-                                   addSpring(g)
+                                   addSpring(g) # right justify
                                    gbutton("Reset", container=g, handler=function(h,...) {
                                      initialize_item()
                                      .self$invoke_change_handler()
@@ -371,10 +378,6 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                        parent$remove_item(.self)
                                      })
                                    }
-                                 },
-                                 ## need to subclass these
-                                 make_item_type=function(container) {
-                                   "Make editor for item"
                                  },
                                  initialize_item=function() {
                                    "Method to initialize the item values"
@@ -476,6 +479,26 @@ RangeItem <- setRefClass("RangeItem",
                              widget[[2]]$set_value(max(get_x(), na.rm=TRUE))
 
                            },
+                           make_buttons=function(frame) {
+                             g <- ggroup(container=frame, horizontal=TRUE)
+                             addSpring(g) # right justify
+                             gbutton("Reset", container=g, handler=function(h,...) {
+                               initialize_item()
+                               .self$invoke_change_handler()
+                             })
+                             gbutton("Clear", container=g, handler=function(h,...) {
+                               ## LIVIU to fill in with better?
+                               widget[[1]]$set_value("")
+                               widget[[2]]$set_value("")
+                               .self$invoke_change_handler()
+                             },
+                             if(parent$allow_edit) {
+                               gbutton("Remove", container=g, handler=function(h,...) {
+                                 parent$remove_item(.self)
+                               })
+                             }
+                           },
+                           
                            get_value=function(...) {
                              vals <- get_x()
                              a <- svalue(widget[[1]])
