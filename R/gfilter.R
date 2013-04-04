@@ -141,6 +141,7 @@ GFilter <- setRefClass("GFilter",
                          DF="ANY", 
                          initial_vars="ANY",
                          allow_edit="logical",
+                         na_filter = "ANY",
                          container="ANY",
                          l="list",
                          types="ANY",
@@ -187,6 +188,10 @@ GFilter <- setRefClass("GFilter",
                          },
                          init_ui=function(container, ..., use.scrollwindow) {
                            block <<- ggroup(container=container, horizontal=FALSE, ..., use.scrollwindow=FALSE)
+                           nagp <- ggroup(container=block)
+                           na_filter <<- gcheckbox(gettext("include NA values when filtering"), cont=nagp)
+                           gseparator(cont=block)
+                           
                            container <<- ggroup(container=block, expand=FALSE, horizontal=FALSE)
                            
                            if(allow_edit && !is.null(DF)) {
@@ -357,7 +362,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
 
                                    g <- ggroup(container=frame, horizontal=TRUE)
                                    addSpring(g)
-                                   gbutton("Clear", container=g, handler=function(h,...) {
+                                   gbutton("Reset", container=g, handler=function(h,...) {
                                      initialize_item()
                                      .self$invoke_change_handler()
                                    })
@@ -382,6 +387,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                  get_value=function(...) {
                                    "Return logical of length x"
                                  },
+                                 do_na = function() svalue(parent$na_filter),
                                  ## pass off to frame
                                  get_visible=function(...) visible(frame),
                                  set_visible=function(value, ...) visible(frame) <<- value,
@@ -409,7 +415,9 @@ RadioItem <- setRefClass("RadioItem",
                              svalue(widget, index=TRUE) <<- 1L
                            },
                            get_value=function(...) {
-                             get_x() == svalue(widget)
+                             out <- get_x() == svalue(widget)
+                             out[is.na(out)] <- do_na()
+                             out
                            }
                            ))
 
@@ -434,7 +442,10 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              svalue(widget, index=TRUE) <<- TRUE # all selected
                            },
                            get_value=function(...) {
-                             get_x() %in% svalue(widget)
+                             out <- get_x() %in% svalue(widget)
+                             na_vals <- is.na(get_x())
+                             out[na_vals] <- do_na()
+                             out
                            }
                            ))
 
@@ -447,32 +458,50 @@ RangeItem <- setRefClass("RangeItem",
 
                              g <- ggroup(container=container, expand=TRUE, fill="y")
                              g1 <- ggroup(container=g, horizontal=FALSE, expand=TRUE)
-                             widget[[1]] <<- gedit("", container=g1, width=10, coerce.with=as.numeric)
+                             widget[[1]] <<- gedit("", container=g1, width=10)
 
                              glabel(gettext("to"), container=g)
                              
                              g2 <- ggroup(container=g, horizontal=FALSE, expand=TRUE)
-                             widget[[2]] <<- gedit("", container=g2, width=10, coerce.with=as.numeric)
+                             widget[[2]] <<- gedit("", container=g2, width=10)
                              initialize_item()
                              
                            },
                            initialize_item=function() {
                              sapply(widget, function(i) {
                                svalue(i) <- ""
-                               i[] <- sort(unique(get_x()))
+                               i[] <- sort(unique(get_x(), na.rm=TRUE))
                              })
-                             widget[[1]]$set_value(min(get_x()))
-                             widget[[2]]$set_value(max(get_x()))
+                             widget[[1]]$set_value(min(get_x(), na.rm=TRUE))
+                             widget[[2]]$set_value(max(get_x(), na.rm=TRUE))
 
                            },
                            get_value=function(...) {
+                             vals <- get_x()
                              a <- svalue(widget[[1]])
-                             if(is.null(a) || is.na(a))
-                               a <- -Inf
                              b <- svalue(widget[[2]])
-                             if(is.null(b) || is.na(b))
-                                b <- Inf
-                             a <= get_x() & get_x() <= b
+                             asx <- function(x, a) UseMethod("asx")
+                             asx.default <- function(x, a) as.numeric(a)
+                             asx.integer <- function(x, a) as.integer(a)
+                             asx.character <- function(x, a) as.character(a)
+                             asx.POSIXct <- function(x, a) as.POSIXct(a)
+                             asx.Date <- function(x, a) as.Date(a)
+                             a <- asx(vals,a); b <- asx(vals, b)
+                             no_a <- is.null(a) || is.na(a)
+                             no_b <- is.null(b) || is.na(b)
+
+
+                             if(no_a & no_b) {
+                               out <- rep(TRUE, length(vals))
+                             } else if(no_a) {
+                               out <- (vals <= b)
+                             } else if (no_b) {
+                               out <- (a <= vals)
+                             } else {
+                               out <- (a <= vals & vals <= b)
+                             }
+                             out[is.na(out)] <- do_na()
+                             out
                            }
                            ))
                                 
