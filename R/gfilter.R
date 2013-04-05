@@ -188,10 +188,6 @@ GFilter <- setRefClass("GFilter",
                          },
                          init_ui=function(container, ..., use.scrollwindow) {
                            block <<- ggroup(container=container, horizontal=FALSE, ..., use.scrollwindow=FALSE)
-                           nagp <- ggroup(container=block)
-                           na_filter <<- gcheckbox(gettext("include NA values when filtering"), cont=nagp)
-                           gseparator(cont=block)
-                           
                            container <<- ggroup(container=block, expand=FALSE, horizontal=FALSE)
                            
                            if(allow_edit && !is.null(DF)) {
@@ -203,7 +199,7 @@ GFilter <- setRefClass("GFilter",
                                                    var <- svalue(varname)
                                                    type <- svalue(type, index=TRUE)
                                                    names(types)[type]
-                                                   add_item(var, var, type=type)
+                                                   add_item(var, var, type=type, includeNA=svalue(includeNA))
                                                  }, parent=h$obj)
                                lyt <- glayout(container=w)
                                lyt[1,1] <- gettext("Variable:")
@@ -226,10 +222,14 @@ GFilter <- setRefClass("GFilter",
                                  }
                                  enabled(type) <- TRUE
                                }))
+
                                lyt[2,1] <- gettext("")
+                               lyt[2,2] <- (includeNA <- gcheckbox("Include NA values", cont=lyt, checked=TRUE))
+                               
+                               lyt[3,1] <- gettext("Edit by")
 
                                
-                               lyt[2,2] <- (type <- gradio(types, selected=2, container=lyt))
+                               lyt[3,2] <- (type <- gradio(types, selected=2, container=lyt))
                                enabled(type) <- FALSE # not until a selecctin is ade
                                visible(w) <- TRUE
                              })
@@ -240,7 +240,7 @@ GFilter <- setRefClass("GFilter",
                            ## add initial
                            if(!is.null(initial_vars))
                              sapply(seq_len(nrow(initial_vars)), function(i) {
-                               add_item(initial_vars[i,1], name=initial_vars[i,1], type=initial_vars[i,2])
+                               add_item(initial_vars[i,1], name=initial_vars[i,1], type=initial_vars[i,2], TRUE)
                              })
                            invoke_change_handler()
                          },
@@ -254,7 +254,7 @@ GFilter <- setRefClass("GFilter",
                              x <- DF[,x]
                            x
                          },
-                         add_item=function(x, name=deparse(substitute(x)), type=c("single", "multiple", "range")) {
+                         add_item=function(x, name=deparse(substitute(x)), type=c("single", "multiple", "range"), includeNA=TRUE) {
                            if(missing(type)) 
                              if(is.numeric(get_x(x)))
                                type <- "range"
@@ -268,11 +268,11 @@ GFilter <- setRefClass("GFilter",
 
                            ## dispatch on type
                            if(type == "single")
-                             item <- RadioItem$new(x, name=name, parent=.self)
+                             item <- RadioItem$new(x, name=name, parent=.self, includeNA=includeNA)
                            else if(type == "multiple")
-                             item <- ChoiceItem$new(x, name=name, parent=.self)
+                             item <- ChoiceItem$new(x, name=name, parent=.self, includeNA=includeNA)
                            else
-                             item <- RangeItem$new(x, name=name, parent=.self)
+                             item <- RangeItem$new(x, name=name, parent=.self, includeNA=includeNA)
 
                            l <<- c(l, item)
                            item$make_ui(visible=TRUE)
@@ -318,15 +318,18 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                fields=list(
                                  x="ANY",
                                  name="character",
+                                 includeNA="logical",
                                  parent="ANY",
                                  frame="ANY",
                                  widget="ANY"
                                  ),
                                method=list(
-                                 initialize=function(x="", name=x, parent=NULL, ...) {
+                                 initialize=function(x="", name=x, parent=NULL, includeNA=TRUE,...) {
                                    initFields(x=x,
                                               name=name,
-                                              parent=parent)
+                                              parent=parent,
+                                              includeNA=includeNA
+                                              )
                                    callSuper(...)
                                  },
                                  show=function(...) cat("A filter item\n"),
@@ -394,7 +397,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                  get_value=function(...) {
                                    "Return logical of length x"
                                  },
-                                 do_na = function() svalue(parent$na_filter),
+                                 do_na = function() includeNA,
                                  ## pass off to frame
                                  get_visible=function(...) visible(frame),
                                  set_visible=function(value, ...) visible(frame) <<- value,
@@ -422,7 +425,11 @@ RadioItem <- setRefClass("RadioItem",
                              svalue(widget, index=TRUE) <<- 1L
                            },
                            get_value=function(...) {
-                             out <- get_x() == svalue(widget)
+                             val <- svalue(widget)
+                             if(length(val) == 0) # might have no choices in widget (all NA), This helps..
+                               val <- NA
+
+                             out <- get_x() == val
                              out[is.na(out)] <- do_na()
                              out
                            }
@@ -433,7 +440,7 @@ ChoiceItem <- setRefClass("ChoiceItem",
                            methods=list(
                            make_item_type=function(container) {
                              "Select one from many"
-                             u_x <- sort(unique(get_x()))
+                             u_x <- sort(unique(get_x(), na.rm=TRUE))
                              use.table <- length(u_x) > 4
                              widget <<- gcheckboxgroup(u_x, container=container,
                                                        use.table=use.table,
