@@ -199,7 +199,7 @@ GFilter <- setRefClass("GFilter",
                                                    var <- svalue(varname)
                                                    type <- svalue(type, index=TRUE)
                                                    names(types)[type]
-                                                   add_item(var, var, type=type, includeNA=svalue(includeNA))
+                                                   add_item(var, var, type=type)
                                                  }, parent=h$obj)
                                lyt <- glayout(container=w)
                                lyt[1,1] <- gettext("Variable:")
@@ -223,13 +223,11 @@ GFilter <- setRefClass("GFilter",
                                  enabled(type) <- TRUE
                                }))
 
-                               lyt[2,1] <- gettext("")
-                               lyt[2,2] <- (includeNA <- gcheckbox("Include NA values", cont=lyt, checked=TRUE))
                                
-                               lyt[3,1] <- gettext("Edit by")
+                               lyt[2,1] <- gettext("Edit by")
 
                                
-                               lyt[3,2] <- (type <- gradio(types, selected=2, container=lyt))
+                               lyt[2,2] <- (type <- gradio(types, selected=2, container=lyt))
                                enabled(type) <- FALSE # not until a selecctin is ade
                                visible(w) <- TRUE
                              })
@@ -254,7 +252,7 @@ GFilter <- setRefClass("GFilter",
                              x <- DF[,x]
                            x
                          },
-                         add_item=function(x, name=deparse(substitute(x)), type=c("single", "multiple", "range"), includeNA=TRUE) {
+                         add_item=function(x, name=deparse(substitute(x)), type=c("single", "multiple", "range")) {
                            if(missing(type)) 
                              if(is.numeric(get_x(x)))
                                type <- "range"
@@ -268,11 +266,11 @@ GFilter <- setRefClass("GFilter",
 
                            ## dispatch on type
                            if(type == "single")
-                             item <- RadioItem$new(x, name=name, parent=.self, includeNA=includeNA)
+                             item <- RadioItem$new(x, name=name, parent=.self)
                            else if(type == "multiple")
-                             item <- ChoiceItem$new(x, name=name, parent=.self, includeNA=includeNA)
+                             item <- ChoiceItem$new(x, name=name, parent=.self)
                            else
-                             item <- RangeItem$new(x, name=name, parent=.self, includeNA=includeNA)
+                             item <- RangeItem$new(x, name=name, parent=.self)
 
                            l <<- c(l, item)
                            item$make_ui(visible=TRUE)
@@ -318,7 +316,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                fields=list(
                                  x="ANY",
                                  name="character",
-                                 includeNA="logical",
+                                 includeNA="ANY",
                                  parent="ANY",
                                  frame="ANY",
                                  widget="ANY"
@@ -371,6 +369,12 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                  },
                                  make_buttons=function(frame) {
                                    g <- ggroup(container=frame, horizontal=TRUE)
+
+                                   includeNA <<- gcheckbox("Include NA", checked=FALSE, cont=g)
+                                   addHandlerChanged(includeNA, function(...) {
+                                     parent$invoke_change_handler()
+                                   })
+                                   
                                    addSpring(g) # right justify
                                    gbutton("Reset", container=g, handler=function(h,...) {
                                      initialize_item()
@@ -397,7 +401,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                  get_value=function(...) {
                                    "Return logical of length x"
                                  },
-                                 do_na = function() includeNA,
+                                 do_na = function() svalue(includeNA),
                                  ## pass off to frame
                                  get_visible=function(...) visible(frame),
                                  set_visible=function(value, ...) visible(frame) <<- value,
@@ -440,8 +444,21 @@ ChoiceItem <- setRefClass("ChoiceItem",
                            methods=list(
                            make_item_type=function(container) {
                              "Select one from many"
-                             u_x <- sort(unique(get_x(), na.rm=TRUE))
+                             u_x <- as.character(sort(unique(get_x(), na.rm=TRUE)))
                              use.table <- length(u_x) > 4
+                             vb <- gvbox(container=container)
+                             if(use.table) {
+                               ed <- gedit("", initial.msg="Filter values by...", container=vb)
+                               addHandlerKeystroke(ed, handler=function(h,...) {
+                                 val <- svalue(h$obj)
+                                 if(val == "")
+                                   widget[] <<- u_x
+                                 else
+                                   widget[] <<- Filter(function(u) grepl(val,u), u_x)
+                                 svalue(widget, index=TRUE) <<- TRUE # select all on change
+                               })
+                             }
+                             
                              widget <<- gcheckboxgroup(u_x, container=container,
                                                        use.table=use.table,
                                                        expand=TRUE, fill=TRUE
@@ -461,6 +478,12 @@ ChoiceItem <- setRefClass("ChoiceItem",
                            },
                            make_buttons=function(frame) {
                              g <- ggroup(container=frame, horizontal=TRUE)
+
+                             includeNA <<- gcheckbox("Include NA", checked=FALSE, cont=g)
+                             addHandlerChanged(includeNA, function(...) {
+                               parent$invoke_change_handler()
+                             })
+                             
                              addSpring(g) # right justify
                              gbutton("Reset", container=g, handler=function(h,...) {
                                initialize_item()
