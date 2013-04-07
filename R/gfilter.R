@@ -441,15 +441,32 @@ RadioItem <- setRefClass("RadioItem",
 
 ChoiceItem <- setRefClass("ChoiceItem",
                           contains="BasicFilterItem",
-                          fields=list("old_selection"="ANY"),
+                          fields=list(
+                            "old_selection"="ANY",
+                            "search_type"="ANY"
+                            ),
                            methods=list(
                            make_item_type=function(container) {
                              "Select one from many"
                              u_x <- as.character(sort(unique(get_x(), na.rm=TRUE)))
                              use.table <- length(u_x) > 4 # XXX make 4 part of parent so it can be configure
                              vb <- gvbox(container=container)
+                             search_type <<-  1 # Regular expression is default
                              if(use.table) {
-                               ed <- gedit("", initial.msg="Filter values by...", container=vb)
+                               gp <- ggroup(cont=vb)
+                               ed <- gedit("", initial.msg="Filter values by...", expand=TRUE, container=gp)
+                               gbutton("opts", cont=gp, handler=function(h,...) {
+                                 w1 <- gbasicdialog("Search options", parent=ed)
+                                 r <- gradio(c("Regular expression",
+                                               "Fixed",
+                                               "Ignore case"), 
+                                             cont=w1, handler=function(h,...) {
+                                               search_type <<- svalue(r, index=TRUE)
+                                             })
+                                 svalue(r, index=TRUE) <- search_type
+                                 visible(w1) <- TRUE
+                               })
+                               
                                addHandlerKeystroke(ed, handler=function(h,...) {
                                  ## we keep track of old selection here
                                  ## that updates only when user changes selection, not when filter does
@@ -457,10 +474,19 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                  blockHandlers(widget)
                                  on.exit(unblockHandlers(widget))
                                  val <- svalue(h$obj)
+
+                                 ## how to filter
+                                 f <- function(u) grepl(val, u)
+                                 if(search_type == 2)
+                                   ## fixed, 
+                                   f <- function(u) grepl(val, u, fixed=TRUE)
+                                 else if(search_type == 3)
+                                   f <- function(u) grepl(val, u, ignore.case=TRUE)
+                                 
                                  if(val == "")
                                    widget[] <<- u_x
                                  else
-                                   widget[] <<- Filter(function(u) grepl(val,u), u_x)
+                                   widget[] <<- Filter(f, u_x)
                                  svalue(widget) <<- cur_sel
                                  old_selection <<- cur_sel
                                })
