@@ -455,7 +455,12 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              if(use.table) {
                                gp <- ggroup(cont=vb)
                                ed <- gedit("", initial.msg="Filter values by...", expand=TRUE, container=gp)
-
+                               ed$set_icon("ed-search", "start")
+                               ed$set_icon("ed-remove", "end")
+                               ed$set_icon_handler(function(h,...) {
+                                 svalue(ed) <- ""
+                               }, where="end")
+                               
                                b <- gbutton("opts", cont=gp)
                                r <- gradio(c("Regular expression",
                                              "Fixed",
@@ -466,7 +471,7 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                svalue(r, index=TRUE) <- search_type
                                addPopupMenu(b, gmenu(list(r), popup=TRUE))
                                
-                               addHandlerKeystroke(ed, handler=function(h,...) {
+                               handler=function(h,...) {
                                  ## we keep track of old selection here
                                  ## that updates only when user changes selection, not when filter does
                                  cur_sel <- old_selection
@@ -488,7 +493,9 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                    widget[] <<- Filter(f, u_x)
                                  svalue(widget) <<- cur_sel
                                  old_selection <<- cur_sel
-                               })
+                               }
+                               addHandlerKeystroke(ed, handler)
+                               addHandlerChanged(ed, handler)
                              }
                              
                              widget <<- gcheckboxgroup(u_x, container=container,
