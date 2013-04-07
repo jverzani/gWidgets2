@@ -487,10 +487,13 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                  else if(search_type == 3)
                                    f <- function(u) grepl(val, u, ignore.case=TRUE)
                                  
-                                 if(val == "")
+                                 if(val == "") {
                                    widget[] <<- u_x
-                                 else
-                                   widget[] <<- Filter(f, u_x)
+                                 } else {
+                                   new_vals <-  Filter(f, u_x)
+                                   if (length(new_vals)) widget[] <<- new_vals else widget[] <<- ""
+                                 }
+
                                  svalue(widget) <<- cur_sel
                                  old_selection <<- cur_sel
                                }
