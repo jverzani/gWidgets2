@@ -455,17 +455,16 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              if(use.table) {
                                gp <- ggroup(cont=vb)
                                ed <- gedit("", initial.msg="Filter values by...", expand=TRUE, container=gp)
-                               gbutton("opts", cont=gp, handler=function(h,...) {
-                                 w1 <- gbasicdialog("Search options", parent=ed)
-                                 r <- gradio(c("Regular expression",
-                                               "Fixed",
-                                               "Ignore case"), 
-                                             cont=w1, handler=function(h,...) {
-                                               search_type <<- svalue(r, index=TRUE)
-                                             })
-                                 svalue(r, index=TRUE) <- search_type
-                                 visible(w1) <- TRUE
-                               })
+
+                               b <- gbutton("opts", cont=gp)
+                               r <- gradio(c("Regular expression",
+                                             "Fixed",
+                                             "Ignore case"), 
+                                           handler=function(h,...) {
+                                             search_type <<- svalue(r, index=TRUE)
+                                           })
+                               svalue(r, index=TRUE) <- search_type
+                               addPopupMenu(b, gmenu(list(r), popup=TRUE))
                                
                                addHandlerKeystroke(ed, handler=function(h,...) {
                                  ## we keep track of old selection here
