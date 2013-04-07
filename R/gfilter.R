@@ -441,21 +441,28 @@ RadioItem <- setRefClass("RadioItem",
 
 ChoiceItem <- setRefClass("ChoiceItem",
                           contains="BasicFilterItem",
+                          fields=list("old_selection"="ANY"),
                            methods=list(
                            make_item_type=function(container) {
                              "Select one from many"
                              u_x <- as.character(sort(unique(get_x(), na.rm=TRUE)))
-                             use.table <- length(u_x) > 4
+                             use.table <- length(u_x) > 4 # XXX make 4 part of parent so it can be configure
                              vb <- gvbox(container=container)
                              if(use.table) {
                                ed <- gedit("", initial.msg="Filter values by...", container=vb)
                                addHandlerKeystroke(ed, handler=function(h,...) {
+                                 ## we keep track of old selection here
+                                 ## that updates only when user changes selection, not when filter does
+                                 cur_sel <- old_selection
+                                 blockHandlers(widget)
+                                 on.exit(unblockHandlers(widget))
                                  val <- svalue(h$obj)
                                  if(val == "")
                                    widget[] <<- u_x
                                  else
                                    widget[] <<- Filter(function(u) grepl(val,u), u_x)
-                                 svalue(widget, index=TRUE) <<- TRUE # select all on change
+                                 svalue(widget) <<- cur_sel
+                                 old_selection <<- cur_sel
                                })
                              }
                              
@@ -463,6 +470,9 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                                        use.table=use.table,
                                                        expand=TRUE, fill=TRUE
                                                        )
+                             addHandlerChanged(widget, function(h,...) {
+                               old_selection <<- svalue(h$obj)
+                             })
                              if(length(u_x) >= 4){
                                 size(widget) <<- list(height= 4 * 25)
                              } else {
