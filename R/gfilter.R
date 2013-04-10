@@ -454,7 +454,7 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              u_x <- as.character(sort(unique(get_x(), na.rm=TRUE)))
                              use.table <- length(u_x) > 4 # XXX make 4 part of parent so it can be configure
                              vb <- gvbox(container=container)
-                             search_type <<-  1 # Regular expression is default
+                             search_type <<-  list(ignore.case=FALSE, perl=FALSE, fixed=FALSE)
                              if(use.table) {
                                gp <- ggroup(cont=vb)
                                ed <- gedit("", initial.msg="Filter values by...", expand=TRUE, container=gp)
@@ -465,14 +465,13 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                }, where="end")
                                
                                b <- gbutton("opts", cont=gp)
-                               r <- gradio(c("Regular expression",
-                                             "Fixed",
-                                             "Ignore case"), 
-                                           handler=function(h,...) {
-                                             search_type <<- svalue(r, index=TRUE)
-                                           })
-                               svalue(r, index=TRUE) <- search_type
-                               addPopupMenu(b, gmenu(list(r), popup=TRUE))
+                               btns <- c("ignore.case", "perl", "fixed")
+                               cbs <- lapply(btns, function(i) {
+                                 gcheckbox(i, checked=FALSE, handler=function(h,...) {
+                                   search_type[[i]] <<- svalue(h$obj)
+                                 })
+                               })
+                               addPopupMenu(b, gmenu(cbs, popup=TRUE))
                                
                                handler=function(h,...) {
                                  ## we keep track of old selection here
@@ -483,12 +482,10 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                  val <- svalue(h$obj)
 
                                  ## how to filter
-                                 f <- function(u) grepl(val, u)
-                                 if(search_type == 2)
-                                   ## fixed, 
-                                   f <- function(u) grepl(val, u, fixed=TRUE)
-                                 else if(search_type == 3)
-                                   f <- function(u) grepl(val, u, ignore.case=TRUE)
+                                 f <- function(u) {
+                                   l <- c(list(pattern=val, x=u), search_type)
+                                   do.call(grepl, l)
+                                 }
                                  
                                  if(val == "") {
                                    widget[] <<- u_x
