@@ -362,6 +362,8 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                      f(widget)
 
                                    make_buttons(frame)
+                                   if(any(is.na(get_x())))
+                                     enabled(includeNA) <<- TRUE
                                  },
                                  ## need to subclass these
                                  make_item_type=function(container) {
@@ -371,6 +373,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                    g <- ggroup(container=frame, horizontal=TRUE)
 
                                    includeNA <<- gcheckbox("Include NA", checked=FALSE, cont=g)
+                                   enabled(includeNA) <<- FALSE
                                    addHandlerChanged(includeNA, function(...) {
                                      parent$invoke_change_handler()
                                    })
