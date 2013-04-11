@@ -419,7 +419,7 @@ RadioItem <- setRefClass("RadioItem",
                              "Select one from many"
                              u_x <- sort(unique(get_x()))
                              #if(length(u_x) > 4) 
-                               widget <<- gcombobox(u_x, container=container, anchor=c(-1,0))
+                               widget <<- gcombobox(u_x, container=container, anchor=c(-1,0), editable=TRUE, use_completion=TRUE)
                              #else
                                #widget <<- gradio(u_x, container=container, horizontal=TRUE, anchor=c(-1,0))
 
