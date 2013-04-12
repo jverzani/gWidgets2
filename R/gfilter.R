@@ -362,8 +362,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                      f(widget)
 
                                    make_buttons(frame)
-                                   if(any(is.na(get_x())))
-                                     enabled(includeNA) <<- TRUE
+                                   enabled(includeNA) <<- any(is.na(get_x()))
                                  },
                                  ## need to subclass these
                                  make_item_type=function(container) {
@@ -451,7 +450,7 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              u_x <- as.character(sort(unique(get_x(), na.rm=TRUE)))
                              use.table <- length(u_x) > 4 # XXX make 4 part of parent so it can be configure
                              vb <- gvbox(container=container)
-                             search_type <<-  list(ignore.case=FALSE, perl=FALSE, fixed=FALSE)
+                             search_type <<-  list(ignore.case=TRUE, perl=FALSE, fixed=TRUE)
                              if(use.table) {
                                gp <- ggroup(cont=vb)
                                ed <- gedit("", initial.msg="Filter values by...", expand=TRUE, container=gp)
@@ -462,12 +461,14 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                }, where="end")
                                
                                b <- gbutton("opts", cont=gp)
-                               btns <- c("ignore.case", "perl", "fixed")
-                               cbs <- lapply(btns, function(i) {
-                                 gcheckbox(i, checked=FALSE, handler=function(h,...) {
-                                   search_type[[i]] <<- svalue(h$obj)
-                                 })
-                               })
+                               cbs <- list(gcheckbox("Ignore case", checked=TRUE, handler=function(h,...)
+                                                     search_type[["ignore.case"]] <<- svalue(h$obj)),
+                                           gcheckbox("Perl compatible", checked=FALSE, handler=function(h,...)
+                                                     search_type[["perl"]] <<- svalue(h$obj)),
+                                           gcheckbox("Regex", checked=TRUE, handler=function(h,...)
+                                                     search_type[["fixed"]] <<- !svalue(h$obj))
+                                           )
+                               
                                addPopupMenu(b, gmenu(cbs, popup=TRUE))
                                
                                handler=function(h,...) {
@@ -525,7 +526,8 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              addHandlerChanged(includeNA, function(...) {
                                parent$invoke_change_handler()
                              })
-                             
+                             enabled(includeNA) <- any(is.na(get_x()))
+
                              addSpring(g) # right justify
                              gbutton("Reset", container=g, handler=function(h,...) {
                                initialize_item()
