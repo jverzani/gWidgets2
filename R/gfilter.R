@@ -201,9 +201,11 @@ GFilter <- setRefClass("GFilter",
                                                    names(types)[type]
                                                    add_item(var, var, type=type)
                                                  }, parent=h$obj)
+                               nms <- names(DF)
                                lyt <- glayout(container=w)
                                lyt[1,1] <- gettext("Variable:")
-                               lyt[1,2] <- (varname <- gcombobox(names(DF), selected=1L, # have a selection as otherwise can have issue
+                               lyt[1,2] <- (varname <- gcombobox(nms, selected=1L, # have a selection as otherwise can have issue
+                                                                 editable=length(nms) > 20, use_completion=length(nms) > 20,
                                                                  container=lyt, handler=function(h,...) {
                                  nm <- svalue(h$obj)
                                  var <- DF[[nm]]
