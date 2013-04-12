@@ -203,7 +203,7 @@ GFilter <- setRefClass("GFilter",
                                                  }, parent=h$obj)
                                lyt <- glayout(container=w)
                                lyt[1,1] <- gettext("Variable:")
-                               lyt[1,2] <- (varname <- gcombobox(names(DF), selected=0,
+                               lyt[1,2] <- (varname <- gcombobox(names(DF), selected=1L, # have a selection as otherwise can have issue
                                                                  container=lyt, handler=function(h,...) {
                                  nm <- svalue(h$obj)
                                  var <- DF[[nm]]
@@ -460,24 +460,13 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                  svalue(ed) <- ""
                                }, where="end")
                                
-                               b <- gbutton("opts", cont=gp)
-                               cbs <- list(gcheckbox("Ignore case", checked=TRUE, handler=function(h,...)
-                                                     search_type[["ignore.case"]] <<- svalue(h$obj)),
-                                           gcheckbox("Perl compatible", checked=FALSE, handler=function(h,...)
-                                                     search_type[["perl"]] <<- svalue(h$obj)),
-                                           gcheckbox("Regex", checked=TRUE, handler=function(h,...)
-                                                     search_type[["fixed"]] <<- !svalue(h$obj))
-                                           )
-                               
-                               addPopupMenu(b, gmenu(cbs, popup=TRUE))
-                               
-                               handler=function(h,...) {
+                               search_handler <- function(h,..., do_old=TRUE) {
                                  ## we keep track of old selection here
                                  ## that updates only when user changes selection, not when filter does
                                  cur_sel <- old_selection
                                  blockHandlers(widget)
                                  on.exit(unblockHandlers(widget))
-                                 val <- svalue(h$obj)
+                                 val <- svalue(ed)
 
                                  ## how to filter
                                  f <- function(u) {
@@ -493,10 +482,29 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                  }
 
                                  svalue(widget) <<- cur_sel
-                                 old_selection <<- cur_sel
+                                 if(do_old)
+                                   old_selection <<- cur_sel
                                }
-                               addHandlerKeystroke(ed, handler)
-                               addHandlerChanged(ed, handler)
+
+                               b <- gbutton("opts", cont=gp)
+                               cbs <- list(gcheckbox("Ignore case", checked=TRUE, handler=function(h,...) {
+                                                     search_type[["ignore.case"]] <<- svalue(h$obj)
+                                                     search_handler(do_old=FALSE)
+                                                     }),
+                                           gcheckbox("Regex", checked=FALSE, handler=function(h,...) {
+                                             search_type[["fixed"]] <<- !svalue(h$obj)
+                                             search_handler(do_old=FALSE)                                                     
+                                           }),
+                                           gcheckbox("Perl compatible", checked=FALSE, handler=function(h,...) {
+                                             search_type[["perl"]] <<- svalue(h$obj)
+                                             search_handler(do_old=FALSE)                                                     
+                                           })
+                                           )
+                               
+                               addPopupMenu(b, gmenu(cbs, popup=TRUE))
+
+                               addHandlerKeystroke(ed, search_handler)
+                               addHandlerChanged(ed, search_handler)
                              }
                              
                              widget <<- gcheckboxgroup(u_x, container=container,
@@ -526,7 +534,7 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              addHandlerChanged(includeNA, function(...) {
                                parent$invoke_change_handler()
                              })
-                             enabled(includeNA) <- any(is.na(get_x()))
+                             enabled(includeNA) <<- any(is.na(get_x()))
 
                              addSpring(g) # right justify
                              gbutton("Reset", container=g, handler=function(h,...) {
