@@ -204,6 +204,7 @@ GFilter <- setRefClass("GFilter",
                                nms <- names(DF)
                                lyt <- glayout(container=w)
                                lyt[1,1] <- gettext("Variable:")
+
                                lyt[1,2] <- (varname <- gcombobox(nms, selected=1L, # have a selection as otherwise can have issue
                                                                  editable=length(nms) > 20, use_completion=length(nms) > 20,
                                                                  container=lyt, handler=function(h,...) {
@@ -230,7 +231,7 @@ GFilter <- setRefClass("GFilter",
 
                                
                                lyt[2,2] <- (type <- gradio(types, selected=2, container=lyt))
-                               enabled(type) <- FALSE # not until a selecctin is ade
+#                               enabled(type) <- FALSE # not until a selecctin is ade
                                visible(w) <- TRUE
                              })
                              btn_add.item$set_icon("add")
@@ -470,16 +471,11 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                  on.exit(unblockHandlers(widget))
                                  val <- svalue(ed)
 
-                                 ## how to filter
-                                 f <- function(u) {
-                                   l <- c(list(pattern=val, x=u), search_type)
-                                   do.call(grepl, l)
-                                 }
-                                 
                                  if(val == "") {
                                    widget[] <<- u_x
                                  } else {
-                                   new_vals <-  Filter(f, u_x)
+                                   l <- c(list(pattern=val, x=u_x), search_type)
+                                   new_vals = u_x[do.call(grepl, l)]
                                    if (length(new_vals)) widget[] <<- new_vals else widget[] <<- ""
                                  }
 
