@@ -489,7 +489,7 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                                      search_type[["ignore.case"]] <<- svalue(h$obj)
                                                      search_handler(do_old=FALSE)
                                                      }),
-                                           gcheckbox("Regex", checked=FALSE, handler=function(h,...) {
+                                           gcheckbox("Regex", checked=TRUE, handler=function(h,...) {
                                              search_type[["fixed"]] <<- !svalue(h$obj)
                                              search_handler(do_old=FALSE)                                                     
                                            }),
