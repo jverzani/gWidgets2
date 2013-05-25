@@ -453,7 +453,7 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              u_x <- as.character(sort(unique(get_x(), na.rm=TRUE)))
                              use.table <- length(u_x) > 4 # XXX make 4 part of parent so it can be configure
                              vb <- gvbox(container=container)
-                             search_type <<-  list(ignore.case=TRUE, perl=FALSE, fixed=TRUE)
+                             search_type <<-  list(ignore.case=TRUE, perl=FALSE, fixed=FALSE)
                              if(use.table) {
                                gp <- ggroup(cont=vb)
                                ed <- gedit("", initial.msg="Filter values by...", expand=TRUE, container=gp)
