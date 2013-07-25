@@ -197,6 +197,11 @@ GFilter <- setRefClass("GFilter",
                                w <- gbasicdialog(gettext("Select a variable and selector type"),
                                                  handler=function(h,...) {
                                                    var <- svalue(varname)
+                                                   if(!(var %in% names(DF))) {
+                                                     message(sprintf("There is no variable %s", var))
+                                                     return()
+                                                   }
+                                                   
                                                    type <- svalue(type, index=TRUE)
                                                    names(types)[type]
                                                    add_item(var, var, type=type)
@@ -209,6 +214,10 @@ GFilter <- setRefClass("GFilter",
                                                                  editable=length(nms) > 20, use_completion=length(nms) > 20,
                                                                  container=lyt, handler=function(h,...) {
                                  nm <- svalue(h$obj)
+                                 if(! (nm %in% names(DF))) {
+                                   message("Name is not a match")
+                                 }
+                                 
                                  var <- DF[[nm]]
                                  if(is.numeric(var)) {
 
