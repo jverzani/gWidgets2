@@ -466,6 +466,7 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                search_handler <- function(h,..., do_old=TRUE) {
                                  ## we keep track of old selection here
                                  ## that updates only when user changes selection, not when filter does
+                                 
                                  cur_sel <- old_selection
                                  blockHandlers(widget)
                                  on.exit(unblockHandlers(widget))
@@ -510,7 +511,13 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                                        expand=TRUE, fill=TRUE
                                                        )
                              addHandlerChanged(widget, function(h,...) {
-                               old_selection <<- svalue(h$obj)
+                               new_selection <- svalue(h$obj)
+                               ## we extend selection unless we are clearing with
+                               ## a 0-length new selection
+                               if(length(new_selection) > 0)
+                                 old_selection <<- unique(c(old_selection, svalue(h$obj)))
+                               else
+                                 old_selection <<- svalue(h$obj)
                              })
                              if(length(u_x) >= 4){
                                 size(widget) <<- list(height= 4 * 25)
