@@ -477,7 +477,11 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                  } else {
                                    l <- c(list(pattern=val, x=u_x), search_type)
                                    new_vals = u_x[do.call(grepl, l)]
-                                   if (length(new_vals)) widget[] <<- new_vals else widget[] <<- ""
+                                   if (length(new_vals)) {
+                                     widget[] <<- new_vals
+                                   } else {
+                                     widget[] <<- gettext("No match found")
+                                   }
                                  }
 
                                  svalue(widget) <<- cur_sel
