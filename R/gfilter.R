@@ -216,6 +216,9 @@ GFilter <- setRefClass("GFilter",
                                  nm <- svalue(h$obj)
                                  if(! (nm %in% names(DF))) {
                                    message("Name is not a match")
+                                   visible(type) <- FALSE
+                                 } else {
+                                   visible(type) <- TRUE
                                  }
                                  
                                  var <- DF[[nm]]
@@ -236,7 +239,7 @@ GFilter <- setRefClass("GFilter",
                                }))
 
                                
-                               lyt[2,1] <- gettext("Edit by")
+                               lyt[2,1, anchor=c(-1,1)] <- gettext("Edit by:")
 
                                
                                lyt[2,2, expand=TRUE, fill="x"] <- (type <- gradio(types, selected=2, container=lyt))
