@@ -494,8 +494,9 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                  }
 
                                  svalue(widget) <<- cur_sel
-                                 if(do_old)
-                                   old_selection <<- cur_sel
+                                 ## XXX
+#                                 if(do_old)
+#                                   old_selection <<- cur_sel
                                }
 
                                b <- gbutton("opts", cont=gp)
@@ -523,14 +524,26 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                                        use.table=use.table,
                                                        expand=TRUE, fill=TRUE
                                                        )
+                             old_selection <<- svalue(widget)
+                             
                              addHandlerChanged(widget, function(h,...) {
-                               new_selection <- svalue(h$obj)
-                               ## we extend selection unless we are clearing with
-                               ## a 0-length new selection
-                               if(length(new_selection) > 0)
-                                 old_selection <<- unique(c(old_selection, svalue(h$obj)))
-                               else
-                                 old_selection <<- svalue(h$obj)
+                               ### XXX selection
+                               ## have to be careful, as items may be narrowed
+                               visible_items = widget[]
+                               new <- svalue(h$obj)
+                               old <- intersect(visible_items, old_selection)
+
+                               
+                               added <- setdiff(new, old)
+                               removed <- setdiff(old, new)
+
+                               ## This is sort of tricky, not sure it is correct
+                               if(length(added) > 0) {
+                                 old_selection <<- unique(c(old_selection, added))
+                               }
+                               if(length(removed) > 0) {
+                                 old_selection <<- setdiff(old_selection, removed)
+                               }
                              })
                              if(length(u_x) >= 4){
                                 size(widget) <<- list(height= 4 * 25)
@@ -560,7 +573,7 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                .self$invoke_change_handler()
                              })
                              gbutton("Clear", container=g, handler=function(h,...) {
-                               ## LIVIU to fill in with better?
+                               ## XXX
                                svalue(widget) <<- FALSE
                                .self$invoke_change_handler()
                              })
