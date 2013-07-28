@@ -489,7 +489,8 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                    if (length(new_vals)) {
                                      widget[] <<- new_vals
                                    } else {
-                                     widget[] <<- gettext("No match found")
+                                     widget[] <<- character(0) 
+                                     return()
                                    }
                                  }
 
