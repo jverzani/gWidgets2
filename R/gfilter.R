@@ -239,7 +239,7 @@ GFilter <- setRefClass("GFilter",
                                }))
 
                                
-                               lyt[2,1, anchor=c(-1,1)] <- gettext("Edit by:")
+##                               lyt[2,1, anchor=c(-1,1)] <- gettext("Edit by:")
 
                                
                                lyt[2,2, expand=TRUE, fill="x"] <- (type <- gradio(types, selected=2, container=lyt))
