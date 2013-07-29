@@ -588,7 +588,8 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              }
                            },
                            get_value=function(...) {
-                             out <- get_x() %in% svalue(widget)
+                             ## out <- get_x() %in% svalue(widget)
+                             out <- get_x() %in% old_selection
                              na_vals <- is.na(get_x())
                              out[na_vals] <- do_na()
                              out
