@@ -220,21 +220,25 @@ GFilter <- setRefClass("GFilter",
                                  } else {
                                    visible(type) <- TRUE
                                  }
-                                 
-                                 var <- DF[[nm]]
-                                 if(is.numeric(var)) {
 
-                                   type[] <- types
-                                   svalue(type, index=TRUE) <- 1
-                                 } else if(is.factor(var) || is.character(var)) {
-                                   type[] <- types[1:2]                                   
-                                   svalue(type, index=TRUE) <- 2
-                                 } else if(is.logical(var)) {
-                                   type[] <- types[1:2]
-                                   svalue(type, index=TRUE) <- 1
-                                 } else {
-                                   svalue(type, index=TRUE) <- 2
-                                 }
+                                 var = DF[[nm]]
+                                 lt <- get_avail_types(nm)
+                                 type[] <- lt$types
+                                 svalue(type, index=TRUE) <- lt$ind
+                                 ## print(lt)
+                                 ## if(is.numeric(var)) {
+                                 ##   type[] <- lt$types
+                                 ##   print(list("update type to ", lt$types))
+                                 ##   svalue(type, index=TRUE) <- lt$ind
+                                 ## } else if(is.factor(var) || is.character(var)) {
+                                 ##   type[] <- lt$types                           
+                                 ##   svalue(type, index=TRUE) <- lt$ind
+                                 ## } else if(is.logical(var)) {
+                                 ##   type[] <- lt$types
+                                 ##   svalue(type, index=TRUE) <- lt$ind
+                                 ## } else {
+                                 ##   svalue(type, index=TRUE) <- lt$ind
+                                 ## }
                                  enabled(type) <- TRUE
                                }))
 
@@ -243,7 +247,9 @@ GFilter <- setRefClass("GFilter",
 
                                
                                lyt[2,2, expand=TRUE, fill="x"] <- (type <- gradio(types, selected=2, container=lyt))
-#                               enabled(type) <- FALSE # not until a selecctin is ade
+                               lt <- get_avail_types(nms[1])
+                               type[] <- lt$types
+
                                visible(w) <- TRUE
                              })
                              btn_add.item$set_icon("add")
@@ -256,6 +262,18 @@ GFilter <- setRefClass("GFilter",
                                add_item(initial_vars[i,1], name=initial_vars[i,1], type=initial_vars[i,2], TRUE)
                              })
                            invoke_change_handler()
+                         },
+                         get_avail_types=function(nm) {
+                           var <- DF[[nm]]
+                           if(is.numeric(var)) {
+                             list(types=types, ind=1)
+                           } else if(is.factor(var) || is.character(var)) {
+                             list(types=types[1:2], ind=2)      
+                           } else if(is.logical(var)) {
+                             list(types=types[1:2], ind=1)
+                           } else {
+                             list(types=types, ind=2)
+                           }
                          },
                          connect_df=function() {
                            "connect DF to filter"
