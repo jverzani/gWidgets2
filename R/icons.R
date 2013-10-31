@@ -188,6 +188,7 @@ stockIconFromObject <- function(obj, ..., toolkit = guiToolkit()) {
 ##' Class for icons
 ##'
 ##' @exportClass GWidgets2Icons
+##' @aliases GWidgets2Icons
 ##' @rdname S4-classes
 ##' @name GWidgets2Icons-class
 GWidgets2Icons <- setRefClass("GWidgets2Icons",

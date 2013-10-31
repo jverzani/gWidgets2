@@ -1,5 +1,9 @@
 ## miscellaneous functions
 
+##' @import methods
+##' @import digest
+NULL
+
 ## merge two lists
 ## 
 ## @param x a list

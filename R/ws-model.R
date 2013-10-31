@@ -9,6 +9,7 @@ NULL
 ##' "getting" methods \code{get_by_class}, \code{get_by_function}
 ##' (filter), \code{get_changes}. Use with a \code{gtimer} instance to
 ##' keep up to date with changes to the workspace.
+##' @aliases WSWatcherModel
 ##' @exportClass WSWatcherModel
 ##' @rdname S4-classes
 ##' @name WSWatcherModel-class

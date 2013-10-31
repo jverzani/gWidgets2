@@ -15,7 +15,7 @@ NULL
 ##' @param initial.vars When given, this is a data frame whose first
 ##' column specifies the variables within \code{DF} to filter by and
 ##' whose second column indicates the type of filter desired. The
-##' available types are \code{single" to select one from many, 
+##' available types are \code{single} to select one from many, 
 ##' \code{multiple}, for multiple selection; and \code{range}, to
 ##' specify a from and to value.
 ##' @inheritParams gwidget
@@ -28,7 +28,7 @@ NULL
 ##' pg <- ggroup(container=w)
 ##' df <- gtable(DF, container=pg)
 ##' a <- gfilter(df, initial.vars=data.frame(names(DF),
-##'                    c("single", "multiple", "range", "single", "range").
+##'                    c("single", "multiple", "range", "single", "range"),
 ##'                    stringsAsFactors=FALSE),
 ##'              allow.edit=TRUE,
 ##'              container=pg,
@@ -313,7 +313,7 @@ GFilter <- setRefClass("GFilter",
                            ## remove from GUI
                            delete(container, child$frame)
                            ## remove from list
-                           ind <- gWidgets2:::get_index_in_list(l, child)
+                           ind <- get_index_in_list(l, child)
                            l[[ind]] <<- NULL
                            invoke_change_handler()
                          },

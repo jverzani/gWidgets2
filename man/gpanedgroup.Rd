@@ -35,12 +35,20 @@
   A container for holding two child widgets where the space
   allocated to each can be manipulated by the user with a
   pane between the widgets, or programatticaly via
-  \code{svalue<-}. Child widgets are added in the usual
-  way, typically through the \code{container} argument of a
-  constructor. Only two children may be added. Children
-  expand and fill the allocated space.
+  \code{svalue<-}.  The value specified to \code{svalue<-}
+  can be a number in $[0,1]$, in which case it is a
+  proportion or an integer, in which case it is a pixel
+  size (from the left or the top). The ambiguous case
+  \code{1} or \code{1L} is determined by class. The value
+  of \code{svalue} is in proportion units.
 
   generic for toolkit dispatch
+}
+\details{
+  Child widgets are added in the usual way, typically
+  through the \code{container} argument of a constructor.
+  Only two children may be added. Children expand and fill
+  the allocated space.
 }
 \note{
   There were arguments to specify the children at

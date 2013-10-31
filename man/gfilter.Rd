@@ -36,9 +36,9 @@
   whose first column specifies the variables within
   \code{DF} to filter by and whose second column indicates
   the type of filter desired. The available types are
-  \code{radio}, for single selection; \code{multiple}, for
-  multiple selection; and \code{range}, to specify a from
-  and to value.}
+  \code{single} to select one from many, \code{multiple},
+  for multiple selection; and \code{range}, to specify a
+  from and to value.}
 
   \item{x}{the \code{GFilter} object}
 
@@ -108,7 +108,7 @@ w <- gwindow("Example of gfilter", visible=FALSE)
 pg <- ggroup(container=w)
 df <- gtable(DF, container=pg)
 a <- gfilter(df, initial.vars=data.frame(names(DF),
-                   c("range", "choice", "range", "radio", "range").
+                   c("single", "multiple", "range", "single", "range"),
                    stringsAsFactors=FALSE),
              allow.edit=TRUE,
              container=pg,

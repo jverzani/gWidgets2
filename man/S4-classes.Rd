@@ -1,20 +1,50 @@
 \name{guiWidgetsToolkit-class}
+\alias{BasicToolkitInterface}
 \alias{BasicToolkitInterface-class}
+\alias{Command}
 \alias{Command-class}
+\alias{CommandList}
 \alias{CommandList-class}
+\alias{CommandStack}
 \alias{CommandStack-class}
+\alias{GWidgets2Icons}
 \alias{GWidgets2Icons-class}
+\alias{Handler}
 \alias{Handler-class}
+\alias{Observable}
 \alias{Observable-class}
+\alias{Observer}
 \alias{Observer-class}
+\alias{WSWatcherModel}
 \alias{WSWatcherModel-class}
 \alias{guiWidgetsToolkit-class}
 \title{A class to record the toolkit a gui object uses}
+\usage{
+  Observer(...)
+
+  Handler(...)
+
+  Observable(...)
+
+  BasicToolkitInterface(...)
+
+  WSWatcherModel(...)
+
+  Command(...)
+
+  CommandList(...)
+
+  CommandStack(...)
+
+  GWidgets2Icons(...)
+}
+\arguments{
+  \item{...}{passed to constructor}
+}
 \description{
   A class to record the toolkit a gui object uses
 
-  Reference class to create an observer of an observable
-  object
+  An observer can be observed
 
   Handler is a special observer with obj and actino passed
   as first argument
