@@ -122,8 +122,9 @@ dispose.GText <- function(obj, ...) {
 ##' svalue method
 ##'
 ##' The \code{svalue} method for a gtext object returns a) the buffers
-##' content, b) the selected text (if \code{drop=TRUE}, but not
-##' \code{NULL}), the index of the selection if \code{index=TRUE}
+##' content; b) the selected text (if \code{drop=TRUE}, but not
+##' \code{NULL}), this can be used to set the selected value, as well;
+##' c) the index of the selection if \code{index=TRUE}.
 ##' @inheritParams svalue
 ##' @export
 ##' @rdname gtext

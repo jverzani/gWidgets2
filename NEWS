@@ -1,6 +1,8 @@
 Version 1.0-5
 --------------
 
+* add svalue(gtext_object, drop=TRUE) <- "replace selected value only"
+
 Version 1.0-3, 4
 --------------
 
