@@ -19,7 +19,7 @@ radio <- function(..., initial=1, label=NULL) {
 }
 
 
-slider <- function(min, max, initial=min, step=NULL, ..., label=NULL)
+slider <- function(min, max, initial=min, step=1, ..., label=NULL)
   list(FUN="gslider",from=min, to=max, by=step, value=initial, label=label)
 
 checkbox <- function(initial=FALSE,  label=NULL, ...)

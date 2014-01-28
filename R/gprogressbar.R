@@ -9,6 +9,12 @@ NULL
 ##' methods defined within the package.
 ##' @param value Initial value, between 0 and 100. A value of \code{NULL} will make pulsing bar with indeterminate state. For some toolkits, this must be called periodically to pulse the bar.
 ##' @export
+##' @examples
+##' 
+##' w <- gwindow("progress bar example")
+##' pb <- gprogressbar(cont=w)
+##' for(i in 10:100) {Sys.sleep(.1); svalue(pb) <- i}
+##' 
 gprogressbar <- function(value=10, container=NULL, ..., toolkit=guiToolkit()) {
 
   if(is.character(toolkit))
