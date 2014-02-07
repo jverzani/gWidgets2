@@ -98,7 +98,7 @@ NULL
 ##' }
 ##' 
 gtree <- function(x=NULL, INDICES=NULL,
-                  offspring = NULL, offspring.data = NULL,
+                  offspring = x, offspring.data = NULL,
                   chosen.col = 1, offspring.col=2, icon.col=NULL, tooltip.col=NULL,
                   multiple = FALSE,
                   handler = NULL, action = NULL, container = NULL, ... ,
@@ -111,7 +111,7 @@ gtree <- function(x=NULL, INDICES=NULL,
     "icon.FUN"="Use icon.col and add to the data frame"
   )
 
-  if(!is.null(x)) {
+  if(!is.null(x) && is.data.frame(x)) {
     
     ## kludgy means to place data.frame + INDICES into offspring framework
     index_to_name <- function(i, x) {
@@ -140,7 +140,7 @@ gtree <- function(x=NULL, INDICES=NULL,
       if(length(path) == 0)
         return(rep(TRUE, nrow(items)))
       
-      ind <- INDICES[seq_along(path)]
+      ind <- INICDES[seq_along(path)]
       ind <- sapply(ind, name_to_index, x=items)
       nms <- names(items)[ind]
       f <- function(varname, value) items[[varname]] == value
