@@ -16,7 +16,7 @@ NULL
 ##' @param height height of widget (when width is specified)
 ##' @param font.attr font attributes for text buffer. One can also
 ##' specify font attributes for insertion. The font attributes are
-##' specified with a named vector or list, with names and values
+##' specified with a list with named components, with names and values
 ##' coming from:
 ##' \describe{
 ##' \item{weight}{ in c("light", "normal", "bold", "heavy")}
