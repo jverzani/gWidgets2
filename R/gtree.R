@@ -140,7 +140,7 @@ gtree <- function(x=NULL, INDICES=NULL,
       if(length(path) == 0)
         return(rep(TRUE, nrow(items)))
       
-      ind <- INICDES[seq_along(path)]
+      ind <- INDICES[seq_along(path)]
       ind <- sapply(ind, name_to_index, x=items)
       nms <- names(items)[ind]
       f <- function(varname, value) items[[varname]] == value

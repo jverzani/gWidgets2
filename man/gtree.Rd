@@ -7,7 +7,7 @@
 \alias{update.GTree}
 \title{constructor for widget to display heirarchical data}
 \usage{
-  gtree(x = NULL, INDICES = NULL, offspring = NULL,
+  gtree(x = NULL, INDICES = NULL, offspring = x,
     offspring.data = NULL, chosen.col = 1,
     offspring.col = 2, icon.col = NULL, tooltip.col = NULL,
     multiple = FALSE, handler = NULL, action = NULL,

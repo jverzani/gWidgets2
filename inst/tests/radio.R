@@ -25,7 +25,7 @@ expect_equal(svalue(rb1), x[2])
 svalue(rb1, index=TRUE) <- 3
 expect_equal(svalue(rb1), x[3])
 
-expect_warning(svalue(rb1, index=TRUE) <- length(rb1) + 1)
+##expect_warning(svalue(rb1, index=TRUE) <- length(rb1) + 1)
 
 ## [
 expect_equal(rb1[], x)
