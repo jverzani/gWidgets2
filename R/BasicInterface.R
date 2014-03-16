@@ -14,6 +14,9 @@ define_me <- function(...) {
 
 ##' Reference class to create an observer of an observable object
 ##'
+##' An observer can be observed
+##' @param ... passed to constructor
+##' @aliases Observer 
 ##' @rdname S4-classes
 ##' @name Observer-class
 Observer <- setRefClass("Observer",
@@ -35,6 +38,7 @@ Observer <- setRefClass("Observer",
 
 ##' Handler is a special observer with obj and actino passed as first argument
 ##'
+##' @aliases Handler
 ##' @rdname S4-classes
 ##' @name Handler-class
 Handler <- setRefClass("Handler",
@@ -74,6 +78,7 @@ observer <- function(receiver, handler, action=NULL)
 
 ##' Observable class sets up objects that can be observed. Inherited by template
 ##'
+##' @aliases Observable
 ##' @exportClass Observable
 ##' @rdname S4-classes
 ##' @name Observable-class
@@ -180,6 +185,7 @@ Observable <- setRefClass("Observable",
 ##' perfect, but they do share quite a bit. Perhaps, we could make the
 ##' container class subclass the basic interface.
 ##' @exportClass BasicToolkitInterface
+##' @aliases BasicToolkitInterface
 ##' @rdname S4-classes
 ##' @name BasicToolkitInterface-class
 BasicToolkitInterface <- setRefClass("BasicToolkitInterface",

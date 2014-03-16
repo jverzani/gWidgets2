@@ -1,6 +1,19 @@
-Version 1.0-1
+Version 1.0-5
 --------------
 
-* 11/1/2012: make vignette changes to avoid having to load gWidgets2RGtk2. This means vignette must be manually updated. Use /tests for tests, not vignette
+* add svalue(gtext_object, drop=TRUE) <- "replace selected value only"
+
+Version 1.0-3, 4
+--------------
+
+* fix issue with using methods:::bit
+
+Version 1.0-2
+--------------
+
+* tweaks to get past the CRAN guard.
+
+Version 1.0-1
+--------------
 
 * ... start NEWS file ... Too many changes to document in this new version of gWidgets

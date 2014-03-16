@@ -32,7 +32,7 @@ gmenu <- function(
 
  
   obj <- .gmenu(toolkit,
-                menu.list=menu.list, popup=popup, container=container ,...
+                menu.list=menu.list, popup=popup, container=container , ...
                 )
   check_return_class(obj, "GMenuBar")
   return(obj)

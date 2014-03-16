@@ -16,7 +16,7 @@ NULL
 ##' @param height height of widget (when width is specified)
 ##' @param font.attr font attributes for text buffer. One can also
 ##' specify font attributes for insertion. The font attributes are
-##' specified with a named vector or list, with names and values
+##' specified with a list with named components, with names and values
 ##' coming from:
 ##' \describe{
 ##' \item{weight}{ in c("light", "normal", "bold", "heavy")}
@@ -122,8 +122,9 @@ dispose.GText <- function(obj, ...) {
 ##' svalue method
 ##'
 ##' The \code{svalue} method for a gtext object returns a) the buffers
-##' content, b) the selected text (if \code{drop=TRUE}, but not
-##' \code{NULL}), the index of the selection if \code{index=TRUE}
+##' content; b) the selected text (if \code{drop=TRUE}, but not
+##' \code{NULL}), this can be used to set the selected value, as well;
+##' c) the index of the selection if \code{index=TRUE}.
 ##' @inheritParams svalue
 ##' @export
 ##' @rdname gtext

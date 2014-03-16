@@ -82,7 +82,7 @@ addHandlerChanged.GEdit <- function(obj, handler, action=NULL, ...) NextMethod()
 
 ##' svalue method
 ##'
-##' The \code{svalue} method for a edit object refers to its main property, the text in the box,
+##' The \code{svalue} method for a edit object refers to its main property, the text in the box. 
 ##' @inheritParams svalue
 ##' @export
 ##' @rdname gedit

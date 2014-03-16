@@ -15,7 +15,7 @@ NULL
 ##' @param initial.vars When given, this is a data frame whose first
 ##' column specifies the variables within \code{DF} to filter by and
 ##' whose second column indicates the type of filter desired. The
-##' available types are \code{single" to select one from many, 
+##' available types are \code{single} to select one from many, 
 ##' \code{multiple}, for multiple selection; and \code{range}, to
 ##' specify a from and to value.
 ##' @inheritParams gwidget
@@ -28,7 +28,7 @@ NULL
 ##' pg <- ggroup(container=w)
 ##' df <- gtable(DF, container=pg)
 ##' a <- gfilter(df, initial.vars=data.frame(names(DF),
-##'                    c("single", "multiple", "range", "single", "range").
+##'                    c("single", "multiple", "range", "single", "range"),
 ##'                    stringsAsFactors=FALSE),
 ##'              allow.edit=TRUE,
 ##'              container=pg,
@@ -141,6 +141,7 @@ GFilter <- setRefClass("GFilter",
                          DF="ANY", 
                          initial_vars="ANY",
                          allow_edit="logical",
+                         na_filter = "ANY",
                          container="ANY",
                          l="list",
                          types="ANY",
@@ -196,36 +197,59 @@ GFilter <- setRefClass("GFilter",
                                w <- gbasicdialog(gettext("Select a variable and selector type"),
                                                  handler=function(h,...) {
                                                    var <- svalue(varname)
+                                                   if(!(var %in% names(DF))) {
+                                                     message(sprintf("There is no variable %s", var))
+                                                     return()
+                                                   }
+                                                   
                                                    type <- svalue(type, index=TRUE)
                                                    names(types)[type]
                                                    add_item(var, var, type=type)
                                                  }, parent=h$obj)
-                               lyt <- glayout(container=w)
+                               nms <- names(DF)
+                               lyt <- glayout(container=w, expand=TRUE, fill=TRUE)
                                lyt[1,1] <- gettext("Variable:")
-                               lyt[1,2] <- (varname <- gcombobox(names(DF), selected=0,
+
+                               lyt[1,2, expand=TRUE, fill="x"] <- (varname <- gcombobox(nms, selected=1L, # have a selection as otherwise can have issue
+                                                                 editable=length(nms) > 20, use_completion=length(nms) > 20,
                                                                  container=lyt, handler=function(h,...) {
                                  nm <- svalue(h$obj)
-                                 var <- DF[[nm]]
-                                 if(is.numeric(var)) {
-
-                                   type[] <- types
-                                   svalue(type, index=TRUE) <- 1
-                                 } else if(is.factor(var) || is.character(var)) {
-                                   type[] <- types[1:2]                                   
-                                   svalue(type, index=TRUE) <- 2
-                                 } else if(is.logical(var)) {
-                                   type[] <- types[1:2]
-                                   svalue(type, index=TRUE) <- 1
+                                 if(! (nm %in% names(DF))) {
+                                   message("Name is not a match")
+                                   visible(type) <- FALSE
                                  } else {
-                                   svalue(type, index=TRUE) <- 2
+                                   visible(type) <- TRUE
                                  }
+
+                                 var = DF[[nm]]
+                                 lt <- get_avail_types(nm)
+                                 type[] <- lt$types
+                                 svalue(type, index=TRUE) <- lt$ind
+                                 ## print(lt)
+                                 ## if(is.numeric(var)) {
+                                 ##   type[] <- lt$types
+                                 ##   print(list("update type to ", lt$types))
+                                 ##   svalue(type, index=TRUE) <- lt$ind
+                                 ## } else if(is.factor(var) || is.character(var)) {
+                                 ##   type[] <- lt$types                           
+                                 ##   svalue(type, index=TRUE) <- lt$ind
+                                 ## } else if(is.logical(var)) {
+                                 ##   type[] <- lt$types
+                                 ##   svalue(type, index=TRUE) <- lt$ind
+                                 ## } else {
+                                 ##   svalue(type, index=TRUE) <- lt$ind
+                                 ## }
                                  enabled(type) <- TRUE
                                }))
-                               lyt[2,1] <- gettext("")
 
                                
-                               lyt[2,2] <- (type <- gradio(types, selected=2, container=lyt))
-                               enabled(type) <- FALSE # not until a selecctin is ade
+##                               lyt[2,1, anchor=c(-1,1)] <- gettext("Edit by:")
+
+                               
+                               lyt[2,2, expand=TRUE, fill="x"] <- (type <- gradio(types, selected=2, container=lyt))
+                               lt <- get_avail_types(nms[1])
+                               type[] <- lt$types
+
                                visible(w) <- TRUE
                              })
                              btn_add.item$set_icon("add")
@@ -235,9 +259,21 @@ GFilter <- setRefClass("GFilter",
                            ## add initial
                            if(!is.null(initial_vars))
                              sapply(seq_len(nrow(initial_vars)), function(i) {
-                               add_item(initial_vars[i,1], name=initial_vars[i,1], type=initial_vars[i,2])
+                               add_item(initial_vars[i,1], name=initial_vars[i,1], type=initial_vars[i,2], TRUE)
                              })
                            invoke_change_handler()
+                         },
+                         get_avail_types=function(nm) {
+                           var <- DF[[nm]]
+                           if(is.numeric(var)) {
+                             list(types=types, ind=1)
+                           } else if(is.factor(var) || is.character(var)) {
+                             list(types=types[1:2], ind=2)      
+                           } else if(is.logical(var)) {
+                             list(types=types[1:2], ind=1)
+                           } else {
+                             list(types=types, ind=2)
+                           }
                          },
                          connect_df=function() {
                            "connect DF to filter"
@@ -277,7 +313,7 @@ GFilter <- setRefClass("GFilter",
                            ## remove from GUI
                            delete(container, child$frame)
                            ## remove from list
-                           ind <- gWidgets2:::get_index_in_list(l, child)
+                           ind <- get_index_in_list(l, child)
                            l[[ind]] <<- NULL
                            invoke_change_handler()
                          },
@@ -313,15 +349,18 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                fields=list(
                                  x="ANY",
                                  name="character",
+                                 includeNA="ANY",
                                  parent="ANY",
                                  frame="ANY",
                                  widget="ANY"
                                  ),
                                method=list(
-                                 initialize=function(x="", name=x, parent=NULL, ...) {
+                                 initialize=function(x="", name=x, parent=NULL, includeNA=TRUE,...) {
                                    initFields(x=x,
                                               name=name,
-                                              parent=parent)
+                                              parent=parent,
+                                              includeNA=includeNA
+                                              )
                                    callSuper(...)
                                  },
                                  show=function(...) cat("A filter item\n"),
@@ -355,8 +394,23 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                    else
                                      f(widget)
 
+                                   make_buttons(frame)
+                                   enabled(includeNA) <<- any(is.na(get_x()))
+                                 },
+                                 ## need to subclass these
+                                 make_item_type=function(container) {
+                                   "Make editor for item"
+                                 },
+                                 make_buttons=function(frame) {
                                    g <- ggroup(container=frame, horizontal=TRUE)
-                                   addSpring(g)
+
+                                   includeNA <<- gcheckbox("Include NA", checked=FALSE, cont=g)
+                                   enabled(includeNA) <<- FALSE
+                                   addHandlerChanged(includeNA, function(...) {
+                                     parent$invoke_change_handler()
+                                   })
+                                   
+                                   addSpring(g) # right justify
                                    gbutton("Reset", container=g, handler=function(h,...) {
                                      initialize_item()
                                      .self$invoke_change_handler()
@@ -382,6 +436,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                  get_value=function(...) {
                                    "Return logical of length x"
                                  },
+                                 do_na = function() svalue(includeNA),
                                  ## pass off to frame
                                  get_visible=function(...) visible(frame),
                                  set_visible=function(value, ...) visible(frame) <<- value,
@@ -395,11 +450,8 @@ RadioItem <- setRefClass("RadioItem",
                            make_item_type=function(container) {
                              "Select one from many"
                              u_x <- sort(unique(get_x()))
-                             #if(length(u_x) > 4) 
-                               widget <<- gcombobox(u_x, container=container, anchor=c(-1,0))
-                             #else
-                               #widget <<- gradio(u_x, container=container, horizontal=TRUE, anchor=c(-1,0))
-
+                             lots_o_them <- length(u_x) > 10
+                             widget <<- gcombobox(u_x, container=container, anchor=c(-1,0), editable=lots_o_them, use_completion=lots_o_them)
                              if(is.numeric(u_x))
                                widget$coerce_with <<- as.numeric
                              
@@ -409,21 +461,112 @@ RadioItem <- setRefClass("RadioItem",
                              svalue(widget, index=TRUE) <<- 1L
                            },
                            get_value=function(...) {
-                             get_x() == svalue(widget)
+                             val <- svalue(widget)
+                             if(length(val) == 0) # might have no choices in widget (all NA), This helps..
+                               val <- NA
+
+                             out <- get_x() == val
+                             out[is.na(out)] <- do_na()
+                             out
                            }
                            ))
 
 ChoiceItem <- setRefClass("ChoiceItem",
                           contains="BasicFilterItem",
+                          fields=list(
+                            "old_selection"="ANY",
+                            "search_type"="ANY"
+                            ),
                            methods=list(
                            make_item_type=function(container) {
                              "Select one from many"
-                             u_x <- sort(unique(get_x()))
-                             use.table <- length(u_x) > 4
+                             u_x <- as.character(sort(unique(get_x(), na.rm=TRUE)))
+                             use.table <- length(u_x) > 4 # XXX make 4 part of parent so it can be configure
+                             vb <- gvbox(container=container)
+                             search_type <<-  list(ignore.case=TRUE, perl=FALSE, fixed=FALSE)
+                             if(use.table) {
+                               gp <- ggroup(cont=vb)
+                               ed <- gedit("", initial.msg="Filter values by...", expand=TRUE, container=gp)
+                               ed$set_icon("ed-search", "start")
+                               ed$set_icon("ed-remove", "end")
+                               ed$set_icon_handler(function(h,...) {
+                                 svalue(ed) <- ""
+                               }, where="end")
+                               
+                               search_handler <- function(h,..., do_old=TRUE) {
+                                 ## we keep track of old selection here
+                                 ## that updates only when user changes selection, not when filter does
+                                 
+                                 cur_sel <- old_selection
+                                 blockHandlers(widget)
+                                 on.exit(unblockHandlers(widget))
+                                 val <- svalue(ed)
+
+                                 if(val == "") {
+                                   widget[] <<- u_x
+                                 } else {
+                                   l <- c(list(pattern=val, x=u_x), search_type)
+                                   new_vals = u_x[do.call(grepl, l)]
+                                   if (length(new_vals)) {
+                                     widget[] <<- new_vals
+                                   } else {
+                                     widget[] <<- character(0) 
+                                     return()
+                                   }
+                                 }
+
+                                 svalue(widget) <<- cur_sel
+                                 ## XXX
+#                                 if(do_old)
+#                                   old_selection <<- cur_sel
+                               }
+
+                               b <- gbutton("opts", cont=gp)
+                               cbs <- list(gcheckbox("Ignore case", checked=TRUE, handler=function(h,...) {
+                                                     search_type[["ignore.case"]] <<- svalue(h$obj)
+                                                     search_handler(do_old=FALSE)
+                                                     }),
+                                           gcheckbox("Regex", checked=TRUE, handler=function(h,...) {
+                                             search_type[["fixed"]] <<- !svalue(h$obj)
+                                             search_handler(do_old=FALSE)                                                     
+                                           }),
+                                           gcheckbox("Perl compatible", checked=FALSE, handler=function(h,...) {
+                                             search_type[["perl"]] <<- svalue(h$obj)
+                                             search_handler(do_old=FALSE)                                                     
+                                           })
+                                           )
+                               
+                               addPopupMenu(b, gmenu(cbs, popup=TRUE))
+
+                               addHandlerKeystroke(ed, search_handler)
+                               addHandlerChanged(ed, search_handler)
+                             }
+                             
                              widget <<- gcheckboxgroup(u_x, container=container,
                                                        use.table=use.table,
                                                        expand=TRUE, fill=TRUE
                                                        )
+                             old_selection <<- svalue(widget)
+                             
+                             addHandlerChanged(widget, function(h,...) {
+                               ### XXX selection
+                               ## have to be careful, as items may be narrowed
+                               visible_items = widget[]
+                               new <- svalue(h$obj)
+                               old <- intersect(visible_items, old_selection)
+
+                               
+                               added <- setdiff(new, old)
+                               removed <- setdiff(old, new)
+
+                               ## This is sort of tricky, not sure it is correct
+                               if(length(added) > 0) {
+                                 old_selection <<- unique(c(old_selection, added))
+                               }
+                               if(length(removed) > 0) {
+                                 old_selection <<- setdiff(old_selection, removed)
+                               }
+                             })
                              if(length(u_x) >= 4){
                                 size(widget) <<- list(height= 4 * 25)
                              } else {
@@ -437,8 +580,37 @@ ChoiceItem <- setRefClass("ChoiceItem",
                            initialize_item = function() {
                              svalue(widget, index=TRUE) <<- TRUE # all selected
                            },
+                           make_buttons=function(frame) {
+                             g <- ggroup(container=frame, horizontal=TRUE)
+
+                             includeNA <<- gcheckbox("Include NA", checked=FALSE, cont=g)
+                             addHandlerChanged(includeNA, function(...) {
+                               parent$invoke_change_handler()
+                             })
+                             enabled(includeNA) <<- any(is.na(get_x()))
+
+                             addSpring(g) # right justify
+                             gbutton("Reset", container=g, handler=function(h,...) {
+                               initialize_item()
+                               .self$invoke_change_handler()
+                             })
+                             gbutton("Clear", container=g, handler=function(h,...) {
+                               ## XXX
+                               svalue(widget) <<- FALSE
+                               .self$invoke_change_handler()
+                             })
+                             if(parent$allow_edit) {
+                               gbutton("Remove", container=g, handler=function(h,...) {
+                                 parent$remove_item(.self)
+                               })
+                             }
+                           },
                            get_value=function(...) {
-                             get_x() %in% svalue(widget)
+                             ## out <- get_x() %in% svalue(widget)
+                             out <- get_x() %in% old_selection
+                             na_vals <- is.na(get_x())
+                             out[na_vals] <- do_na()
+                             out
                            }
                            ))
 
@@ -451,32 +623,50 @@ RangeItem <- setRefClass("RangeItem",
 
                              g <- ggroup(container=container, expand=TRUE, fill="y")
                              g1 <- ggroup(container=g, horizontal=FALSE, expand=TRUE)
-                             widget[[1]] <<- gedit("", container=g1, width=10, coerce.with=as.numeric)
+                             widget[[1]] <<- gedit("", container=g1, width=10)
 
                              glabel(gettext("to"), container=g)
                              
                              g2 <- ggroup(container=g, horizontal=FALSE, expand=TRUE)
-                             widget[[2]] <<- gedit("", container=g2, width=10, coerce.with=as.numeric)
+                             widget[[2]] <<- gedit("", container=g2, width=10)
                              initialize_item()
                              
                            },
                            initialize_item=function() {
                              sapply(widget, function(i) {
                                svalue(i) <- ""
-                               i[] <- sort(unique(get_x()))
+                               i[] <- sort(unique(get_x(), na.rm=TRUE))
                              })
-                             widget[[1]]$set_value(min(get_x()))
-                             widget[[2]]$set_value(max(get_x()))
+                             widget[[1]]$set_value(min(get_x(), na.rm=TRUE))
+                             widget[[2]]$set_value(max(get_x(), na.rm=TRUE))
 
                            },
                            get_value=function(...) {
+                             vals <- get_x()
                              a <- svalue(widget[[1]])
-                             if(is.null(a) || is.na(a))
-                               a <- -Inf
                              b <- svalue(widget[[2]])
-                             if(is.null(b) || is.na(b))
-                                b <- Inf
-                             a <= get_x() & get_x() <= b
+                             asx <- function(x, a) UseMethod("asx")
+                             asx.default <- function(x, a) as.numeric(a)
+                             asx.integer <- function(x, a) as.integer(a)
+                             asx.character <- function(x, a) as.character(a)
+                             asx.POSIXct <- function(x, a) as.POSIXct(a)
+                             asx.Date <- function(x, a) as.Date(a)
+                             a <- asx(vals,a); b <- asx(vals, b)
+                             no_a <- is.null(a) || is.na(a)
+                             no_b <- is.null(b) || is.na(b)
+
+
+                             if(no_a & no_b) {
+                               out <- rep(TRUE, length(vals))
+                             } else if(no_a) {
+                               out <- (vals <= b)
+                             } else if (no_b) {
+                               out <- (a <= vals)
+                             } else {
+                               out <- (a <= vals & vals <= b)
+                             }
+                             out[is.na(out)] <- do_na()
+                             out
                            }
                            ))
                                 

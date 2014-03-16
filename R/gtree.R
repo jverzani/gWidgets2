@@ -67,9 +67,12 @@ NULL
 ##' ## This tree looks at recursive objects
 ##' describe <- function(x) UseMethod("describe")
 ##' describe.default <- function(x) sprintf("An object with class %s", class(x)[1])
-##' describe.integer <- function(x) sprintf("An integer with %s value%s", length(x), ifelse(length(x) > 1, "s", ""))
-##' describe.numeric <- function(x) sprintf("A numeric with %s value%s", length(x), ifelse(length(x) > 1, "s", ""))
-##' describe.factor <- function(x) sprint("A factor with %s level%s", length(levels(x)), ifelse(length(levels(x)) > 1, "s", ""))
+##' describe.integer <- function(x) sprintf("An integer with %s value%s", length(x),
+##'    ifelse(length(x) > 1, "s", ""))
+##' describe.numeric <- function(x) sprintf("A numeric with %s value%s", length(x),
+##'    ifelse(length(x) > 1, "s", ""))
+##' describe.factor <- function(x) sprint("A factor with %s level%s", length(levels(x)),
+##'    ifelse(length(levels(x)) > 1, "s", ""))
 ##' 
 ##' offspring <- function(path, obj) {
 ##'   if(length(path) > 0)
@@ -95,7 +98,7 @@ NULL
 ##' }
 ##' 
 gtree <- function(x=NULL, INDICES=NULL,
-                  offspring = NULL, offspring.data = NULL,
+                  offspring = x, offspring.data = NULL,
                   chosen.col = 1, offspring.col=2, icon.col=NULL, tooltip.col=NULL,
                   multiple = FALSE,
                   handler = NULL, action = NULL, container = NULL, ... ,
@@ -108,7 +111,7 @@ gtree <- function(x=NULL, INDICES=NULL,
     "icon.FUN"="Use icon.col and add to the data frame"
   )
 
-  if(!is.null(x)) {
+  if(!is.null(x) && is.data.frame(x)) {
     
     ## kludgy means to place data.frame + INDICES into offspring framework
     index_to_name <- function(i, x) {

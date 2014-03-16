@@ -167,7 +167,7 @@ gconfirm = function(
 ##'   glabel("Edit a data frame", cont=g)
 ##'   df <- gdf(DF, cont=g, expand=TRUE)
 ##'   size(w) <- c(400, 400)
-##'   visible(w) <- TRUE
+##'   out <- visible(w)
 ##' }
 ##' 
 ##' m <- mtcars[1:3, 1:4]

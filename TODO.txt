@@ -1,3 +1,7 @@
+* gfilter -- NA values
+* how to get size of frames
+* add horizontal, not vertical scrollbar
+
 * gfile -- how to set initial directory?
 * Examples: ...
 

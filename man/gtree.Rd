@@ -7,7 +7,7 @@
 \alias{update.GTree}
 \title{constructor for widget to display heirarchical data}
 \usage{
-  gtree(x = NULL, INDICES = NULL, offspring = NULL,
+  gtree(x = NULL, INDICES = NULL, offspring = x,
     offspring.data = NULL, chosen.col = 1,
     offspring.col = 2, icon.col = NULL, tooltip.col = NULL,
     multiple = FALSE, handler = NULL, action = NULL,
@@ -186,9 +186,12 @@ t <- gtree(offspring=offspring, offspring.data=l, cont=w)
 ## This tree looks at recursive objects
 describe <- function(x) UseMethod("describe")
 describe.default <- function(x) sprintf("An object with class \%s", class(x)[1])
-describe.integer <- function(x) sprintf("An integer with \%s value\%s", length(x), ifelse(length(x) > 1, "s", ""))
-describe.numeric <- function(x) sprintf("A numeric with \%s value\%s", length(x), ifelse(length(x) > 1, "s", ""))
-describe.factor <- function(x) sprint("A factor with \%s level\%s", length(levels(x)), ifelse(length(levels(x)) > 1, "s", ""))
+describe.integer <- function(x) sprintf("An integer with \%s value\%s", length(x),
+   ifelse(length(x) > 1, "s", ""))
+describe.numeric <- function(x) sprintf("A numeric with \%s value\%s", length(x),
+   ifelse(length(x) > 1, "s", ""))
+describe.factor <- function(x) sprint("A factor with \%s level\%s", length(levels(x)),
+   ifelse(length(levels(x)) > 1, "s", ""))
 
 offspring <- function(path, obj) {
   if(length(path) > 0)
