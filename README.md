@@ -65,7 +65,7 @@ directory of the package and the package `vignette`.
   stuff, best left unsaid. 
 
 * rethinking some of the argument names, functions etc.. I don't think
-  we need +gcommandline+, +gformlayout+, +ggenericwidget+, etc. These
+  we need `gcommandline`, `gformlayout`, `ggenericwidget`, etc. These
   are best left to a separate package, if at all. Most of the
   arguments were made to be consistent. There weren't major changes,
   but enough to warrant adding a "2" to the package name.

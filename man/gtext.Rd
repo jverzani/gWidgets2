@@ -38,8 +38,8 @@
 
   \item{font.attr}{font attributes for text buffer. One can
   also specify font attributes for insertion. The font
-  attributes are specified with a named vector or list,
-  with names and values coming from: \describe{
+  attributes are specified with a list with named
+  components, with names and values coming from: \describe{
   \item{weight}{ in c("light", "normal", "bold", "heavy")}
   \item{style}{inc("normal", "oblique", "italic")}
   \item{family}{in c("sans", "helvetica", "times",
@@ -120,9 +120,10 @@
   dispose method for gtext clears buffer
 
   The \code{svalue} method for a gtext object returns a)
-  the buffers content, b) the selected text (if
-  \code{drop=TRUE}, but not \code{NULL}), the index of the
-  selection if \code{index=TRUE}
+  the buffers content; b) the selected text (if
+  \code{drop=TRUE}, but not \code{NULL}), this can be used
+  to set the selected value, as well; c) the index of the
+  selection if \code{index=TRUE}.
 }
 \note{
   with \pkg{gWidgetstcltk} the allocation of size to the

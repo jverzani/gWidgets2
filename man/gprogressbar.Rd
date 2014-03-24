@@ -44,4 +44,11 @@
   S3 generic whose methods are implemented in the toolkit
   packages
 }
+\examples{
+\dontrun{
+w <- gwindow("progress bar example")
+pb <- gprogressbar(cont=w)
+for(i in 10:100) {Sys.sleep(.1); svalue(pb) <- i}
+}
+}
 

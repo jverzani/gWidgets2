@@ -90,6 +90,6 @@
   the keystroke information.
 
   The \code{svalue} method for a edit object refers to its
-  main property, the text in the box,
+  main property, the text in the box.
 }
 

@@ -1,14 +1,13 @@
 Package: gWidgets2
 Type: Package
 Title: Rewrite of gWidgets API for simplified GUI construction
-Version: 1.0-5
+Version: 1.0-6
 Author: John Verzani
 Maintainer: John Verzani <jverzani@gmail.com>
 URL: https://github.com/jverzani/gWidgets2
-Description: Re-implementation of gWidgets API. The API is
-    defined in this package. A second, toolkit-specific package is required to use
-    it. There are three in development: gWidgets2RGtk2, gWidgets2Qt, and
-    gWidgets2tcltk.
+Description: Re-implementation of gWidgets API. The API is defined in this
+    package. A second, toolkit-specific package is required to use it. There
+    are three in development: gWidgets2RGtk2, gWidgets2Qt, and gWidgets2tcltk.
 Depends:
     methods,
     digest
