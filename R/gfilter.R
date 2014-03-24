@@ -145,6 +145,7 @@ GFilter <- setRefClass("GFilter",
                          container="ANY",
                          l="list",
                          types="ANY",
+                         #presets="ANY",
                          handler="ANY",
                          action="ANY"
                          ),
@@ -161,6 +162,7 @@ GFilter <- setRefClass("GFilter",
                                       initial_vars=initial_vars,
                                       allow_edit=allow_edit,
                                       types  = c("single"="Select one level", "multiple" = "Select multiple levels", "range"="Select range"),
+                                      #presets <- c("Preset"="Use a head()/tail()/some() filter", "Generic"="Use a generic filter"),
                                       l=list(),
                                       handler=handler,
                                       action=action,
@@ -193,7 +195,30 @@ GFilter <- setRefClass("GFilter",
                            if(allow_edit && !is.null(DF)) {
                              bg <- ggroup(container=block)
                              addSpring(bg)                                
-                             btn_add.item <- gbutton(gettext("Add item"), container=bg, handler=function(h,...) {
+                             btn_add.preset <- gbutton(gettext("Preset"), container=bg, handler=function(h,...) {
+                               w <- gbasicdialog(gettext("Use a preset or generic filter"),
+                                                 handler=function(h,...) {
+                                                   nms <- names(DF)
+                                                   var <- nms[1]
+
+                                                   preset <- svalue(preset, index=TRUE)
+                                                   add_item(var, names(presets)[preset], type=names(presets)[preset])
+                                                 }, parent=h$obj)
+                               #nms <- names(DF)
+                               #presets <- c("preset"=, "generic")
+                               presets <- c("preset"="Use a head()/tail()/some() filter", 
+                                            "generic"="Use a generic filter")
+                               ##disable 'generic' temporarily
+                               presets <- presets[1]
+                               lyt <- glayout(container=w, expand=TRUE, fill=TRUE)
+                               lyt[1,1] <- gettext("Select:")
+                               
+                               lyt[1,2, expand=TRUE, fill="x"] <- (preset <- gradio(presets, selected=1L, 
+                                                      container=lyt))
+                               visible(w) <- TRUE
+                             })
+                             btn_add.preset$set_icon("add")
+                             btn_add.item <- gbutton(gettext("Variable"), container=bg, handler=function(h,...) {
                                w <- gbasicdialog(gettext("Select a variable and selector type"),
                                                  handler=function(h,...) {
                                                    var <- svalue(varname)
@@ -285,7 +310,8 @@ GFilter <- setRefClass("GFilter",
                              x <- DF[,x]
                            x
                          },
-                         add_item=function(x, name=deparse(substitute(x)), type=c("single", "multiple", "range")) {
+                         add_item=function(x, name=deparse(substitute(x)), 
+                                           type=c("single", "multiple", "range", "preset", "generic")) {
                            if(missing(type)) 
                              if(is.numeric(get_x(x)))
                                type <- "range"
@@ -293,7 +319,7 @@ GFilter <- setRefClass("GFilter",
                                type <- "multiple"
                            tmp <- type
                            if(is.numeric(type))
-                             type <- c("single", "multiple", "range")[type]
+                             type <- c("single", "multiple", "range", "preset", "generic")[type]
                            else
                              type <- match.arg(type)
 
@@ -302,8 +328,12 @@ GFilter <- setRefClass("GFilter",
                              item <- RadioItem$new(x, name=name, parent=.self)
                            else if(type == "multiple")
                              item <- ChoiceItem$new(x, name=name, parent=.self)
-                           else
+                           else if(type == "range")
                              item <- RangeItem$new(x, name=name, parent=.self)
+                           else if(type == "preset")
+                             item <- PresetItem$new(x, name=name, parent=.self, includeNA=FALSE)
+                           else if(type == "generic")
+                             item <- GenericItem$new(x, name=name, parent=.self, includeNA=FALSE)
 
                            l <<- c(l, item)
                            item$make_ui(visible=TRUE)
@@ -670,7 +700,76 @@ RangeItem <- setRefClass("RangeItem",
                            }
                            ))
                                 
+PresetItem <- setRefClass("PresetItem",
+                         contains="BasicFilterItem",
+                         methods=list(
+                           make_item_type=function(container) {
+                             "Filter using head()/tail()/some()"
+                             hts <- c("head", "tail", "some")
+                            u_x <- get_x()
+                            n_x <- length(u_x) 
+                             #lots_o_them <- length(u_x) > 10
+                             #widget <<- gcombobox(u_x, container=container, anchor=c(-1,0), editable=lots_o_them, use_completion=lots_o_them)
+                             #if(is.numeric(u_x))
+                              # widget$coerce_with <<- as.numeric
+                            widget <<- list()
+                            g <- ggroup(container=container, expand=TRUE, fill="y")
+                            g1 <- ggroup(container=g, horizontal=FALSE, expand=TRUE)
+                            ##default to 1000 as in RStudio
+                             widget[[1]] <<- gslider(1, n_x, by=10, value=1001, container=g1, 
+                                                anchor=c(-1,0))
+                            widget[[2]] <<- gradio(hts, selected=1, horizontal=TRUE, container=g1)
+                             initialize_item()
+                           },
+                           initialize_item = function() {
+                             svalue(widget[[1]], index=TRUE) <<- 1001L
+                             svalue(widget[[2]], index=TRUE) <<- 1L
+                           },
+                           get_value=function(...) {
+                             val <- svalue(widget[[1]])
+                             meth <- svalue(widget[[2]])
+                             n_x <- length(get_x())
+                             #if(length(val) == 0) # might have no choices in widget (all NA), This helps..
+                              # val <- NA
+                             
+                             #out <- get_x() == val
+                             if(meth=="head") out <- 1:n_x %in% seq_len(val) else
+                               if(meth=="tail") out <- 1:n_x %in% seq.int(to=n_x, length.out=val) else
+                               if(meth=="some") out <- 1:n_x %in% sort(sample(n_x, min(val, n_x)))
+                             out[is.na(out)] <- do_na()
+                             out
+                           }
+                         ))
 
+GenericItem <- setRefClass("GenericItem",
+                          contains="BasicFilterItem",
+                          methods=list(
+                            make_item_type=function(container) {
+                              "Filter using a user-supplied logical vector"
+                              u_x <- get_x()
+                              n_x <- length(u_x) 
+                              widget <<- gedit("", container=container, width=10)
+                              initialize_item()
+                            },
+                            initialize_item = function() {
+                              widget$set_value(TRUE)
+                            },
+                            get_value=function(...) {
+                              val <- svalue(widget)
+                              n_x <- length(get_x())
+                              
+#                                 if(!is.logical(val)) {
+#                                   message(sprintf("The expression doesn't evaluate to a logical vector"))
+#                                   return()
+#                                 } else if(length(val)!=n_x){
+#                                   message(sprintf("The logical vector has different length than the number of rows of the data frame"))
+#                                   return()
+#                                 }
+                             out <- val
+                              out[is.na(out)] <- do_na()
+                              out
+                            }
+                          ))
 
 
 
