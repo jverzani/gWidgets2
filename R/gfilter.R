@@ -145,7 +145,7 @@ GFilter <- setRefClass("GFilter",
                          container="ANY",
                          l="list",
                          types="ANY",
-                         #presets="ANY",
+                         presets="ANY",
                          handler="ANY",
                          action="ANY"
                          ),
@@ -162,7 +162,7 @@ GFilter <- setRefClass("GFilter",
                                       initial_vars=initial_vars,
                                       allow_edit=allow_edit,
                                       types  = c("single"="Select one level", "multiple" = "Select multiple levels", "range"="Select range"),
-                                      #presets <- c("Preset"="Use a head()/tail()/some() filter", "Generic"="Use a generic filter"),
+                                      presets = c("preset"="Use a head()/tail()/some() filter", "generic"="Use a generic filter"),
                                       l=list(),
                                       handler=handler,
                                       action=action,
@@ -204,16 +204,13 @@ GFilter <- setRefClass("GFilter",
                                                    preset <- svalue(preset, index=TRUE)
                                                    add_item(var, names(presets)[preset], type=names(presets)[preset])
                                                  }, parent=h$obj)
-                               #nms <- names(DF)
-                               #presets <- c("preset"=, "generic")
-                               presets <- c("preset"="Use a head()/tail()/some() filter", 
-                                            "generic"="Use a generic filter")
-                               ##disable 'generic' temporarily
-                               presets <- presets[1]
+                               #presets <- c("preset"="Use a head()/tail()/some() filter", 
+                               #             "generic"="Use a generic filter")
                                lyt <- glayout(container=w, expand=TRUE, fill=TRUE)
                                lyt[1,1] <- gettext("Select:")
                                
-                               lyt[1,2, expand=TRUE, fill="x"] <- (preset <- gradio(presets, selected=1L, 
+                               ##disable 'generic' temporarily
+                               lyt[1,2, expand=TRUE, fill="x"] <- (preset <- gradio(presets[1], selected=1L, 
                                                       container=lyt))
                                visible(w) <- TRUE
                              })
@@ -284,7 +281,7 @@ GFilter <- setRefClass("GFilter",
                            ## add initial
                            if(!is.null(initial_vars))
                              sapply(seq_len(nrow(initial_vars)), function(i) {
-                               add_item(initial_vars[i,1], name=initial_vars[i,1], type=initial_vars[i,2], TRUE)
+                               add_item(initial_vars[i,1], name=initial_vars[i,2], type=initial_vars[i,3])
                              })
                            invoke_change_handler()
                          },
@@ -293,11 +290,11 @@ GFilter <- setRefClass("GFilter",
                            if(is.numeric(var)) {
                              list(types=types, ind=1)
                            } else if(is.factor(var) || is.character(var)) {
-                             list(types=types[1:2], ind=2)      
+                             list(types=types[-3], ind=1)      
                            } else if(is.logical(var)) {
-                             list(types=types[1:2], ind=1)
+                             list(types=types[-3], ind=1)
                            } else {
-                             list(types=types, ind=2)
+                             list(types=types, ind=1)
                            }
                          },
                          connect_df=function() {
@@ -331,9 +328,9 @@ GFilter <- setRefClass("GFilter",
                            else if(type == "range")
                              item <- RangeItem$new(x, name=name, parent=.self)
                            else if(type == "preset")
-                             item <- PresetItem$new(x, name=name, parent=.self, includeNA=FALSE)
+                             item <- PresetItem$new(x, name=name, parent=.self)
                            else if(type == "generic")
-                             item <- GenericItem$new(x, name=name, parent=.self, includeNA=FALSE)
+                             item <- GenericItem$new(x, name=name, parent=.self)
 
                            l <<- c(l, item)
                            item$make_ui(visible=TRUE)
@@ -382,6 +379,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                  includeNA="ANY",
                                  parent="ANY",
                                  frame="ANY",
+                                 widgetc="ANY",
                                  widget="ANY"
                                  ),
                                method=list(
@@ -434,14 +432,15 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                  make_buttons=function(frame) {
                                    g <- ggroup(container=frame, horizontal=TRUE)
 
-                                   includeNA <<- gcheckbox("Include NA", checked=FALSE, cont=g)
+                                   includeNA <<- gcheckbox("NA", checked=FALSE, cont=g)
+                                   tooltip(includeNA) <<- "Include NA"
                                    enabled(includeNA) <<- FALSE
                                    addHandlerChanged(includeNA, function(...) {
                                      parent$invoke_change_handler()
                                    })
                                    
                                    addSpring(g) # right justify
-                                   gbutton("Reset", container=g, handler=function(h,...) {
+                                   b_reset <- gbutton("Reset", container=g, handler=function(h,...) {
                                      initialize_item()
                                      .self$invoke_change_handler()
                                    })
@@ -450,6 +449,19 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                        parent$remove_item(.self)
                                      })
                                    }
+                                   disableFilter <- gcheckbox("", checked=FALSE, container=g, handler=function(h,...) {
+                                     if(svalue(disableFilter)){ 
+                                       enabled(widgetc) <<- FALSE 
+                                       enabled(includeNA) <<- FALSE 
+                                       enabled(b_reset) <- FALSE 
+                                     } else if(!svalue(disableFilter)){ 
+                                       enabled(widgetc) <<- TRUE
+                                       enabled(includeNA) <<- any(is.na(get_x()))
+                                       enabled(b_reset) <- TRUE
+                                     }
+                                     .self$invoke_change_handler()
+                                   })
+                                   tooltip(disableFilter) <- "Check to temporarily disable filter"
                                  },
                                  ## need to subclass these
                                  make_item_type=function(container) {
@@ -481,7 +493,8 @@ RadioItem <- setRefClass("RadioItem",
                              "Select one from many"
                              u_x <- sort(unique(get_x()))
                              lots_o_them <- length(u_x) > 10
-                             widget <<- gcombobox(u_x, container=container, anchor=c(-1,0), editable=lots_o_them, use_completion=lots_o_them)
+                             widgetc <<- ggroup(container=container, horizontal = FALSE, expand=TRUE, fill="y")
+                             widget <<- gcombobox(u_x, container=widgetc, anchor=c(-1,0), editable=lots_o_them, use_completion=lots_o_them)
                              if(is.numeric(u_x))
                                widget$coerce_with <<- as.numeric
                              
@@ -491,13 +504,18 @@ RadioItem <- setRefClass("RadioItem",
                              svalue(widget, index=TRUE) <<- 1L
                            },
                            get_value=function(...) {
-                             val <- svalue(widget)
-                             if(length(val) == 0) # might have no choices in widget (all NA), This helps..
-                               val <- NA
+                             if(enabled(widgetc)){
+                               val <- svalue(widget)
+                               if(length(val) == 0) # might have no choices in widget (all NA), This helps..
+                                 val <- NA
 
-                             out <- get_x() == val
-                             out[is.na(out)] <- do_na()
-                             out
+                               out <- get_x() == val
+                               out[is.na(out)] <- do_na()
+                               out
+                             } else if(!enabled(widgetc)){
+                               out <- rep(TRUE, length(get_x()))
+                               out
+                             }
                            }
                            ))
 
@@ -512,7 +530,8 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              "Select one from many"
                              u_x <- as.character(sort(unique(get_x(), na.rm=TRUE)))
                              use.table <- length(u_x) > 4 # XXX make 4 part of parent so it can be configure
-                             vb <- gvbox(container=container)
+                             widgetc <<- ggroup(container=container, horizontal = FALSE, expand=TRUE, fill="y")
+                             vb <- gvbox(container=widgetc)
                              search_type <<-  list(ignore.case=TRUE, perl=FALSE, fixed=FALSE)
                              if(use.table) {
                                gp <- ggroup(cont=vb)
@@ -572,7 +591,7 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                addHandlerChanged(ed, search_handler)
                              }
                              
-                             widget <<- gcheckboxgroup(u_x, container=container,
+                             widget <<- gcheckboxgroup(u_x, container=widgetc,
                                                        use.table=use.table,
                                                        expand=TRUE, fill=TRUE
                                                        )
@@ -608,23 +627,26 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              initialize_item()
                            },
                            initialize_item = function() {
-                             svalue(widget, index=TRUE) <<- TRUE # all selected
+                             svalue(widget, index=TRUE) <<- FALSE # all selected (checked)
                            },
                            make_buttons=function(frame) {
                              g <- ggroup(container=frame, horizontal=TRUE)
 
-                             includeNA <<- gcheckbox("Include NA", checked=FALSE, cont=g)
+                             includeNA <<- gcheckbox("NA", checked=FALSE, cont=g)
+                             tooltip(includeNA) <<- "Include NA"
                              addHandlerChanged(includeNA, function(...) {
                                parent$invoke_change_handler()
                              })
                              enabled(includeNA) <<- any(is.na(get_x()))
 
                              addSpring(g) # right justify
-                             gbutton("Reset", container=g, handler=function(h,...) {
-                               initialize_item()
+                             b_selall <- gbutton("Select all", container=g, handler=function(h,...) {
+                               #initialize_item()
+                               svalue(widget, index=TRUE) <<- TRUE
                                .self$invoke_change_handler()
                              })
-                             gbutton("Clear", container=g, handler=function(h,...) {
+                             b_selall$set_icon("select-all")
+                             b_clear <- gbutton("Clear", container=g, handler=function(h,...) {
                                ## XXX
                                svalue(widget) <<- FALSE
                                .self$invoke_change_handler()
@@ -634,13 +656,33 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                  parent$remove_item(.self)
                                })
                              }
+                             disableFilter <- gcheckbox("", checked=FALSE, container=g, handler=function(h,...) {
+                               if(svalue(disableFilter)){ 
+                                 enabled(widgetc) <<- FALSE 
+                                 enabled(includeNA) <<- FALSE 
+                                 enabled(b_selall) <- FALSE 
+                                 enabled(b_clear) <- FALSE 
+                               } else if(!svalue(disableFilter)){ 
+                                 enabled(widgetc) <<- TRUE
+                                 enabled(includeNA) <<- any(is.na(get_x()))
+                                 enabled(b_selall) <- TRUE
+                                 enabled(b_clear) <- TRUE
+                               }
+                               .self$invoke_change_handler()
+                             })
+                             tooltip(disableFilter) <- "Check to temporarily disable filter"
                            },
                            get_value=function(...) {
                              ## out <- get_x() %in% svalue(widget)
-                             out <- get_x() %in% old_selection
-                             na_vals <- is.na(get_x())
-                             out[na_vals] <- do_na()
-                             out
+                             if(enabled(widgetc)){
+                               out <- get_x() %in% old_selection
+                               na_vals <- is.na(get_x())
+                               out[na_vals] <- do_na()
+                               out
+                             } else if(!enabled(widgetc)){
+                               out <- rep(TRUE, length(get_x()))
+                               out
+                             }
                            }
                            ))
 
@@ -652,12 +694,13 @@ RangeItem <- setRefClass("RangeItem",
                              widget <<- list()
 
                              g <- ggroup(container=container, expand=TRUE, fill="y")
-                             g1 <- ggroup(container=g, horizontal=FALSE, expand=TRUE)
+                             widgetc <<- g
+                             g1 <- ggroup(container=widgetc, horizontal=FALSE, expand=TRUE)
                              widget[[1]] <<- gedit("", container=g1, width=10)
 
-                             glabel(gettext("to"), container=g)
+                             glabel(gettext("to"), container=widgetc)
                              
-                             g2 <- ggroup(container=g, horizontal=FALSE, expand=TRUE)
+                             g2 <- ggroup(container=widgetc, horizontal=FALSE, expand=TRUE)
                              widget[[2]] <<- gedit("", container=g2, width=10)
                              initialize_item()
                              
@@ -672,34 +715,56 @@ RangeItem <- setRefClass("RangeItem",
 
                            },
                            get_value=function(...) {
-                             vals <- get_x()
-                             a <- svalue(widget[[1]])
-                             b <- svalue(widget[[2]])
-                             asx <- function(x, a) UseMethod("asx")
-                             asx.default <- function(x, a) as.numeric(a)
-                             asx.integer <- function(x, a) as.integer(a)
-                             asx.character <- function(x, a) as.character(a)
-                             asx.POSIXct <- function(x, a) as.POSIXct(a)
-                             asx.Date <- function(x, a) as.Date(a)
-                             a <- asx(vals,a); b <- asx(vals, b)
-                             no_a <- is.null(a) || is.na(a)
-                             no_b <- is.null(b) || is.na(b)
+                             if(enabled(widgetc)){
+                               vals <- get_x()
+                               a <- svalue(widget[[1]])
+                               b <- svalue(widget[[2]])
+                               asx <- function(x, a) UseMethod("asx")
+                               asx.default <- function(x, a) as.numeric(a)
+                               asx.integer <- function(x, a) as.integer(a)
+                               asx.character <- function(x, a) as.character(a)
+                               asx.POSIXct <- function(x, a) as.POSIXct(a)
+                               asx.Date <- function(x, a) as.Date(a)
+                               a <- asx(vals,a); b <- asx(vals, b)
+                               no_a <- is.null(a) || is.na(a)
+                               no_b <- is.null(b) || is.na(b)
 
 
-                             if(no_a & no_b) {
-                               out <- rep(TRUE, length(vals))
-                             } else if(no_a) {
-                               out <- (vals <= b)
-                             } else if (no_b) {
-                               out <- (a <= vals)
-                             } else {
-                               out <- (a <= vals & vals <= b)
+                               if(no_a & no_b) {
+                                 out <- rep(TRUE, length(vals))
+                               } else if(no_a) {
+                                 out <- (vals <= b)
+                               } else if (no_b) {
+                                 out <- (a <= vals)
+                               } else {
+                                 out <- (a <= vals & vals <= b)
+                               }
+                               out[is.na(out)] <- do_na()
+                               out
+                             } else if(!enabled(widgetc)){
+                               out <- rep(TRUE, length(get_x()))
+                               out
                              }
-                             out[is.na(out)] <- do_na()
-                             out
-                           }
+                             }
                            ))
-                                
+
+seq_sane <- (function(){
+  #restore.point('f',F)
+  master_seq <- unlist(lapply(seq_len(.Machine$double.digits), function(x){
+    by <- 10^x
+    seq.int(by, 10*by-1, by)
+  }))
+  #master_seq <- c(seq.int(1, 4, 1), seq.int(5, 50, 5), master_seq[-seq_len(5)])
+  master_seq <- c(seq.int(5, 20, 5), master_seq[-seq_len(2)])
+  function(y){
+    #if(any(is.na(y), is.nan(y))) y <- 0
+    if(y<=5) seq.int(1, y, 1) else c(master_seq[master_seq < y], y)
+  }
+})()
+#lapply(c(9,10,11,49,50,51,99,100,101,999,1000,1001,9999,10000,10001,385744), seq_sane)
+#lapply(c(99,523,4548,27304), seq_sane)
+#seq_sane(93)
+
 PresetItem <- setRefClass("PresetItem",
                          contains="BasicFilterItem",
                          methods=list(
@@ -708,39 +773,102 @@ PresetItem <- setRefClass("PresetItem",
                              hts <- c("head", "tail", "some")
                             u_x <- get_x()
                             n_x <- length(u_x) 
-                             #lots_o_them <- length(u_x) > 10
-                             #widget <<- gcombobox(u_x, container=container, anchor=c(-1,0), editable=lots_o_them, use_completion=lots_o_them)
+                            seqn_x <- seq_sane(n_x)
+                            seqn_x.def <- if(any(seqn_x %in% 1000)) which(seqn_x %in% 1000) else 
+                              which(seqn_x %in% n_x)
                              #if(is.numeric(u_x))
                               # widget$coerce_with <<- as.numeric
                             widget <<- list()
                             g <- ggroup(container=container, expand=TRUE, fill="y")
-                            g1 <- ggroup(container=g, horizontal=FALSE, expand=TRUE)
+                            g1 <- ggroup(container=g, horizontal=TRUE, expand=TRUE, fill='x')
+                            widgetc <<- g1
                             ##default to 1000 as in RStudio
-                             widget[[1]] <<- gslider(1, n_x, by=10, value=1001, container=g1, 
-                                                anchor=c(-1,0))
-                            widget[[2]] <<- gradio(hts, selected=1, horizontal=TRUE, container=g1)
+                             #widget[[1]] <<- gslider(1, n_x, by=10, value=1001, container=g1, 
+                             #                   anchor=c(-1,0))
+                            widget[[1]] <<- gradio(hts, selected=1L, horizontal=FALSE, container=widgetc)
+                            addSpring(widgetc)
+                            g2 <- ggroup(container=widgetc, horizontal=FALSE, expand=TRUE, fill='y')
+                            widget[[2]] <<- gcombobox(seqn_x, selected=seqn_x.def, editable=TRUE, 
+                                                      use_completion=TRUE, coerce.with=function(x){
+                                                          ##FIXME allow for negative values, too
+                                                          x <- as.numeric(x[1])  ##take only 1st element
+                                                          if(any(is.na(x), is.nan(x))) x <- 0
+                                                          x <- abs(x)
+                                                          return(x)
+                                                        }, container=g2)
+                                
                              initialize_item()
                            },
                            initialize_item = function() {
-                             svalue(widget[[1]], index=TRUE) <<- 1001L
-                             svalue(widget[[2]], index=TRUE) <<- 1L
+                             ##FIXME how is it possible to avoid redoing this computation
+                             u_x <- get_x()
+                             n_x <- length(u_x) 
+                             seqn_x <- seq_sane(n_x)
+                             seqn_x.def <- if(n_x < 1000) which(seqn_x %in% n_x) else which(seqn_x %in% 1000)
+                             svalue(widget[[1]], index=TRUE) <<- 1L
+                             svalue(widget[[2]], index=TRUE) <<- seqn_x.def
+                           },
+                           make_buttons=function(frame) {
+                             g <- ggroup(container=frame, horizontal=TRUE)
+
+                             includeNA <<- gcheckbox("NA", checked=FALSE, cont=g)
+                             tooltip(includeNA) <<- "Include NA"
+                             enabled(includeNA) <<- FALSE
+                             addHandlerChanged(includeNA, function(...) {
+                               parent$invoke_change_handler()
+                             })
+                             visible(includeNA) <<- FALSE
+                             
+                             addSpring(g) # right justify
+                             b_reset <- gbutton("Reset", container=g, handler=function(h,...) {
+                               initialize_item()
+                               .self$invoke_change_handler()
+                             })
+                             if(parent$allow_edit) {
+                               gbutton("Remove", container=g, handler=function(h,...) {
+                                 parent$remove_item(.self)
+                               })
+                             }
+                             disableFilter <- gcheckbox("", checked=FALSE, container=g, handler=function(h,...) {
+                               if(svalue(disableFilter)){ 
+                                 #if(is.list(widget)){
+                                 #  for(i in 1:length(widget)) widget[[i]] <<- FALSE
+                                 #}
+                                 #enabled(widget[[1]]) <<- FALSE 
+                                 #enabled(widget[[2]]) <<- FALSE 
+                                 enabled(widgetc) <<- FALSE 
+                                 enabled(b_reset) <- FALSE 
+                               } else if(!svalue(disableFilter)){ 
+                                 enabled(widgetc) <<- TRUE 
+                                 enabled(b_reset) <- TRUE 
+                               }
+                               .self$invoke_change_handler()
+                             })
+                             tooltip(disableFilter) <- "Check to temporarily disable filter"
                            },
                            get_value=function(...) {
-                             val <- svalue(widget[[1]])
-                             meth <- svalue(widget[[2]])
-                             n_x <- length(get_x())
-                             #if(length(val) == 0) # might have no choices in widget (all NA), This helps..
-                              # val <- NA
-                             
-                             #out <- get_x() == val
-                             if(meth=="head") out <- 1:n_x %in% seq_len(val) else
-                               if(meth=="tail") out <- 1:n_x %in% seq.int(to=n_x, length.out=val) else
-                               if(meth=="some") out <- 1:n_x %in% sort(sample(n_x, min(val, n_x)))
-                             out[is.na(out)] <- do_na()
-                             out
+                               meth <- svalue(widget[[1]])
+                               val <- svalue(widget[[2]])
+                               #if(any(is.na(val), is.nan(val))) val <- 0
+                               n_x <- length(get_x())
+                               #if(length(val) == 0) # might have no choices in widget (all NA), This helps..
+                                # val <- NA
+                               
+                               #out <- get_x() == val
+                             if(enabled(widgetc)){
+                               if(meth=="head") out <- 1:n_x %in% seq_len(val) else
+                                 if(meth=="tail") out <- 1:n_x %in% seq.int(to=n_x, length.out=val) else
+                                 if(meth=="some") out <- 1:n_x %in% sort(sample(n_x, min(val, n_x)))
+                               out[is.na(out)] <- do_na()
+                               out
+                             } else if(!enabled(widgetc)){
+                               out <- rep(TRUE, n_x)
+                               out
+                             }
                            }
                          ))
 
+##currently not functional
 GenericItem <- setRefClass("GenericItem",
                           contains="BasicFilterItem",
                           methods=list(
