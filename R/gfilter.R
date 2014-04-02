@@ -789,12 +789,12 @@ PresetItem <- setRefClass("PresetItem",
                             addSpring(widgetc)
                             g2 <- ggroup(container=widgetc, horizontal=FALSE, expand=TRUE, fill='y')
                             widget[[2]] <<- gcombobox(seqn_x, selected=seqn_x.def, editable=TRUE, 
-                                                      use_completion=TRUE, coerce.with=function(x){
+                                                      use_completion=TRUE, coerce.with=function(x1){
                                                           ##FIXME allow for negative values, too
-                                                          x <- as.numeric(x[1])  ##take only 1st element
-                                                          if(any(is.na(x), is.nan(x))) x <- 0
-                                                          x <- abs(x)
-                                                          return(x)
+                                                          x1 <- as.numeric(x1[1])  ##take only 1st element
+                                                          if(any(is.na(x1), is.nan(x1))) x1 <- 0
+                                                          x1 <- abs(x1)
+                                                          return(x1)
                                                         }, container=g2)
                                 
                              initialize_item()
