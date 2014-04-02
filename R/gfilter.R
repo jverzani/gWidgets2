@@ -259,7 +259,7 @@ GFilter <- setRefClass("GFilter",
                            ## add initial
                            if(!is.null(initial_vars))
                              sapply(seq_len(nrow(initial_vars)), function(i) {
-                               add_item(initial_vars[i,1], name=initial_vars[i,1], type=initial_vars[i,2], TRUE)
+                               add_item(initial_vars[i,1], name=initial_vars[i,1], type=initial_vars[i,2])
                              })
                            invoke_change_handler()
                          },
