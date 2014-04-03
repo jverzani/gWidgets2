@@ -380,10 +380,11 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                  parent="ANY",
                                  frame="ANY",
                                  widgetc="ANY",
-                                 widget="ANY"
+                                 widget="ANY",
+                                 prevnext="ANY"
                                  ),
                                method=list(
-                                 initialize=function(x="", name=x, parent=NULL, includeNA=TRUE,...) {
+                                 initialize=function(x="", name=x, parent=NULL, includeNA=TRUE, prevnext=list(),...) {
                                    initFields(x=x,
                                               name=name,
                                               parent=parent,
@@ -503,11 +504,70 @@ RadioItem <- setRefClass("RadioItem",
                            initialize_item = function() {
                              svalue(widget, index=TRUE) <<- 1L
                            },
+                           make_buttons=function(frame) {
+                             g <- ggroup(container=frame, horizontal=TRUE)
+
+                             includeNA <<- gcheckbox("NA", checked=FALSE, cont=g)
+                             tooltip(includeNA) <<- "Include NA"
+                             enabled(includeNA) <<- FALSE
+                             addHandlerChanged(includeNA, function(...) {
+                               parent$invoke_change_handler()
+                             })
+                             
+                             addSpring(g) # right justify
+                             prevnext <<- list()
+                             prevnext[["b_next"]] <<- gbutton("", container=g, handler=function(h,...) {
+                               svalue(widget, index=TRUE) <<- (svalue(widget, index=TRUE) + 1L)
+                               .self$invoke_change_handler()
+                             })
+                             prevnext[["b_next"]]$set_icon("go-down")
+                             tooltip(prevnext[["b_next"]]) <<- "Choose the next level"
+                             prevnext[["b_prev"]] <<- gbutton("", container=g, handler=function(h,...) {
+                               svalue(widget, index=TRUE) <<- (svalue(widget, index=TRUE) - 1L)
+                               .self$invoke_change_handler()
+                             })
+                             prevnext[["b_prev"]]$set_icon("go-up")
+                             tooltip(prevnext[["b_prev"]]) <<- "Choose the previous level"
+                             enabled(prevnext[["b_prev"]]) <<- FALSE
+                             b_reset <- gbutton("Reset", container=g, handler=function(h,...) {
+                               initialize_item()
+                               .self$invoke_change_handler()
+                             })
+                             if(parent$allow_edit) {
+                               gbutton("Remove", container=g, handler=function(h,...) {
+                                 parent$remove_item(.self)
+                               })
+                             }
+                             disableFilter <- gcheckbox("", checked=FALSE, container=g, handler=function(h,...) {
+                               if(svalue(disableFilter)){ 
+                                 enabled(widgetc) <<- FALSE 
+                                 enabled(includeNA) <<- FALSE 
+                                 enabled(b_reset) <- FALSE 
+                                 enabled(prevnext[["b_next"]]) <<- FALSE
+                                 enabled(prevnext[["b_prev"]]) <<- FALSE
+                               } else if(!svalue(disableFilter)){ 
+                                 enabled(widgetc) <<- TRUE
+                                 enabled(includeNA) <<- any(is.na(get_x()))
+                                 enabled(b_reset) <- TRUE
+                                 validx <- svalue(widget, index=TRUE)
+                                 if(validx>1) enabled(prevnext[["b_prev"]]) <<- TRUE
+                                 if(validx<length(na.omit(unique(get_x())))) enabled(prevnext[["b_next"]]) <<- TRUE
+                               }
+                               .self$invoke_change_handler()
+                             })
+                             tooltip(disableFilter) <- "Check to temporarily disable filter"
+                           },
                            get_value=function(...) {
                              if(enabled(widgetc)){
                                val <- svalue(widget)
                                if(length(val) == 0) # might have no choices in widget (all NA), This helps..
                                  val <- NA
+                               
+                               validx <- svalue(widget, index=TRUE)
+                               if(validx==1) enabled(prevnext[["b_prev"]]) <<- FALSE else 
+                                  enabled(prevnext[["b_prev"]]) <<- TRUE
+                               if(validx==length(na.omit(unique(get_x())))) enabled(prevnext[["b_next"]]) <<- FALSE else 
+                                  enabled(prevnext[["b_next"]]) <<- TRUE
 
                                out <- get_x() == val
                                out[is.na(out)] <- do_na()
