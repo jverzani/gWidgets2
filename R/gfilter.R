@@ -27,7 +27,7 @@ NULL
 ##' w <- gwindow("Example of gfilter", visible=FALSE)
 ##' pg <- ggroup(container=w)
 ##' df <- gtable(DF, container=pg)
-##' a <- gfilter(df, initial.vars=data.frame(names(DF),
+##' a <- gfilter(df, initial.vars=data.frame(names(DF), names(DF),
 ##'                    c("single", "multiple", "range", "single", "range"),
 ##'                    stringsAsFactors=FALSE),
 ##'              allow.edit=TRUE,
@@ -36,7 +36,7 @@ NULL
 ##'                visible(df) <- h$obj$get_value()
 ##'              }
 ##'              )
-##' size(w) <- c(600, 400)
+##' size(w) <- c(600, 600)
 ##' visible(w) <- TRUE
 ##' }
 gfilter <- function(DF,
