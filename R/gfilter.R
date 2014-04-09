@@ -147,7 +147,8 @@ GFilter <- setRefClass("GFilter",
                          types="ANY",
                          presets="ANY",
                          handler="ANY",
-                         action="ANY"
+                         action="ANY",
+                           new_item_handler="ANY"
                          ),
                        methods=list(
                          initialize=function(
@@ -156,6 +157,7 @@ GFilter <- setRefClass("GFilter",
                            initial_vars=NULL,
                            allow_edit=is.null(initial_vars),
                            handler=NULL, action=NULL,
+                             new_item_handler=NULL,
                            container=NULL,
                            ...) {
                            initFields(DF=DF,
@@ -166,6 +168,7 @@ GFilter <- setRefClass("GFilter",
                                       l=list(),
                                       handler=handler,
                                       action=action,
+                                      new_item_handler=new_item_handler,
                                       toolkit=toolkit
                                       )
                            connect_df()                              
@@ -334,6 +337,8 @@ GFilter <- setRefClass("GFilter",
 
                            l <<- c(l, item)
                            item$make_ui(visible=TRUE)
+                           if (is(new_item_handler, "function"))
+                               new_item_handler()
                            invoke_change_handler()
                          },
                          remove_item=function(child) {
