@@ -713,17 +713,28 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              enabled(includeNA) <<- any(is.na(get_x()))
 
                              addSpring(g) # right justify
+                             b_invert <- gbutton("", cont=g, handler = function(h,...) {
+                                svalue(widget, index=TRUE) <<- setdiff(1:length(widget[]), 
+                                                                       which(widget[] %in% old_selection))
+                               .self$invoke_change_handler()
+                             })
+                             tooltip(b_invert) <- 'Invert selection'
+                             b_invert$set_icon("jump-to")
                              b_selall <- gbutton("Select all", container=g, handler=function(h,...) {
                                #initialize_item()
                                svalue(widget, index=TRUE) <<- TRUE
                                .self$invoke_change_handler()
                              })
+                             tooltip(b_selall) <- 'Select all'
                              b_selall$set_icon("select-all")
                              b_clear <- gbutton("Clear", container=g, handler=function(h,...) {
                                ## XXX
                                svalue(widget) <<- FALSE
                                .self$invoke_change_handler()
                              })
+                             tooltip(b_clear) <- 'Select none'
+                             
+                             addSpace(g, 5) # right justify
                              if(parent$allow_edit) {
                                b_rm <- gbutton("", container=g, handler=function(h,...) {
                                  parent$remove_item(.self)
@@ -737,11 +748,13 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                  enabled(includeNA) <<- FALSE 
                                  enabled(b_selall) <- FALSE 
                                  enabled(b_clear) <- FALSE 
+                                 enabled(b_invert) <- FALSE 
                                } else if(!svalue(disableFilter)){ 
                                  enabled(widgetc) <<- TRUE
                                  enabled(includeNA) <<- any(is.na(get_x()))
                                  enabled(b_selall) <- TRUE
                                  enabled(b_clear) <- TRUE
+                                 enabled(b_invert) <- TRUE 
                                }
                                .self$invoke_change_handler()
                              })
