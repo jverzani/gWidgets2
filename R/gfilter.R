@@ -450,10 +450,14 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                      initialize_item()
                                      .self$invoke_change_handler()
                                    })
+
+                                    addSpace(g, 5) # right justify
                                    if(parent$allow_edit) {
-                                     gbutton("Remove", container=g, handler=function(h,...) {
+                                     b_rm <- gbutton("", container=g, handler=function(h,...) {
                                        parent$remove_item(.self)
                                      })
+                                     b_rm$set_icon("remove")
+                                     tooltip(b_rm) <- "Remove filter"
                                    }
                                    disableFilter <- gcheckbox("", checked=FALSE, container=g, handler=function(h,...) {
                                      if(svalue(disableFilter)){ 
@@ -538,10 +542,14 @@ RadioItem <- setRefClass("RadioItem",
                                initialize_item()
                                .self$invoke_change_handler()
                              })
+
+                             addSpace(g, 5) # right justify
                              if(parent$allow_edit) {
-                               gbutton("Remove", container=g, handler=function(h,...) {
+                               b_rm <- gbutton("", container=g, handler=function(h,...) {
                                  parent$remove_item(.self)
                                })
+                               b_rm$set_icon("remove")
+                               tooltip(b_rm) <- "Remove filter"
                              }
                              disableFilter <- gcheckbox("", checked=FALSE, container=g, handler=function(h,...) {
                                if(svalue(disableFilter)){ 
@@ -717,9 +725,11 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                .self$invoke_change_handler()
                              })
                              if(parent$allow_edit) {
-                               gbutton("Remove", container=g, handler=function(h,...) {
+                               b_rm <- gbutton("", container=g, handler=function(h,...) {
                                  parent$remove_item(.self)
                                })
+                               b_rm$set_icon("remove")
+                               tooltip(b_rm) <- "Remove filter"
                              }
                              disableFilter <- gcheckbox("", checked=FALSE, container=g, handler=function(h,...) {
                                if(svalue(disableFilter)){ 
@@ -889,10 +899,14 @@ PresetItem <- setRefClass("PresetItem",
                                initialize_item()
                                .self$invoke_change_handler()
                              })
+
+                             addSpace(g, 5) # right justify
                              if(parent$allow_edit) {
-                               gbutton("Remove", container=g, handler=function(h,...) {
+                               b_rm <- gbutton("", container=g, handler=function(h,...) {
                                  parent$remove_item(.self)
                                })
+                               b_rm$set_icon("remove")
+                               tooltip(b_rm) <- "Remove filter"
                              }
                              disableFilter <- gcheckbox("", checked=FALSE, container=g, handler=function(h,...) {
                                if(svalue(disableFilter)){ 
