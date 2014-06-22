@@ -439,7 +439,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                    g <- ggroup(container=frame, horizontal=TRUE)
 
                                    includeNA <<- gcheckbox("NA", checked=FALSE, cont=g)
-                                   tooltip(includeNA) <<- "Include NA"
+                                   tooltip(includeNA) <<- "Check to include NA"
                                    enabled(includeNA) <<- FALSE
                                    addHandlerChanged(includeNA, function(...) {
                                      parent$invoke_change_handler()
@@ -513,7 +513,7 @@ RadioItem <- setRefClass("RadioItem",
                              g <- ggroup(container=frame, horizontal=TRUE)
 
                              includeNA <<- gcheckbox("NA", checked=FALSE, cont=g)
-                             tooltip(includeNA) <<- "Include NA"
+                             tooltip(includeNA) <<- "Check to include NA"
                              enabled(includeNA) <<- FALSE
                              addHandlerChanged(includeNA, function(...) {
                                parent$invoke_change_handler()
@@ -692,13 +692,13 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              initialize_item()
                            },
                            initialize_item = function() {
-                             svalue(widget, index=TRUE) <<- FALSE # all selected (checked)
+                             svalue(widget, index=TRUE) <<- FALSE # all NOT selected (unchecked)
                            },
                            make_buttons=function(frame) {
                              g <- ggroup(container=frame, horizontal=TRUE)
 
                              includeNA <<- gcheckbox("NA", checked=FALSE, cont=g)
-                             tooltip(includeNA) <<- "Include NA"
+                             tooltip(includeNA) <<- "Check to include NA"
                              addHandlerChanged(includeNA, function(...) {
                                parent$invoke_change_handler()
                              })
@@ -877,7 +877,7 @@ PresetItem <- setRefClass("PresetItem",
                              g <- ggroup(container=frame, horizontal=TRUE)
 
                              includeNA <<- gcheckbox("NA", checked=FALSE, cont=g)
-                             tooltip(includeNA) <<- "Include NA"
+                             tooltip(includeNA) <<- "Check to include NA"
                              enabled(includeNA) <<- FALSE
                              addHandlerChanged(includeNA, function(...) {
                                parent$invoke_change_handler()
