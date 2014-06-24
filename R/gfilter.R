@@ -615,6 +615,7 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                  svalue(ed) <- ""
                                  focus(ed) <- TRUE
                                }, where="end")
+                               ed$widget$setIconActivatable("primary", FALSE)
                                
                                search_handler <- function(h,..., do_old=TRUE) {
                                  ## we keep track of old selection here
