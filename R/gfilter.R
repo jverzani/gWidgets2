@@ -439,7 +439,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                    g <- ggroup(container=frame, horizontal=TRUE)
 
                                    includeNA <<- gcheckbox("NA", checked=FALSE, cont=g)
-                                   tooltip(includeNA) <<- "Include NA"
+                                   tooltip(includeNA) <<- "Check to include NA"
                                    enabled(includeNA) <<- FALSE
                                    addHandlerChanged(includeNA, function(...) {
                                      parent$invoke_change_handler()
@@ -450,10 +450,14 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
                                      initialize_item()
                                      .self$invoke_change_handler()
                                    })
+
+                                    addSpace(g, 5) # right justify
                                    if(parent$allow_edit) {
-                                     gbutton("Remove", container=g, handler=function(h,...) {
+                                     b_rm <- gbutton("", container=g, handler=function(h,...) {
                                        parent$remove_item(.self)
                                      })
+                                     b_rm$set_icon("remove")
+                                     tooltip(b_rm) <- "Remove filter"
                                    }
                                    disableFilter <- gcheckbox("", checked=FALSE, container=g, handler=function(h,...) {
                                      if(svalue(disableFilter)){ 
@@ -513,7 +517,7 @@ RadioItem <- setRefClass("RadioItem",
                              g <- ggroup(container=frame, horizontal=TRUE)
 
                              includeNA <<- gcheckbox("NA", checked=FALSE, cont=g)
-                             tooltip(includeNA) <<- "Include NA"
+                             tooltip(includeNA) <<- "Check to include NA"
                              enabled(includeNA) <<- FALSE
                              addHandlerChanged(includeNA, function(...) {
                                parent$invoke_change_handler()
@@ -538,10 +542,14 @@ RadioItem <- setRefClass("RadioItem",
                                initialize_item()
                                .self$invoke_change_handler()
                              })
+
+                             addSpace(g, 5) # right justify
                              if(parent$allow_edit) {
-                               gbutton("Remove", container=g, handler=function(h,...) {
+                               b_rm <- gbutton("", container=g, handler=function(h,...) {
                                  parent$remove_item(.self)
                                })
+                               b_rm$set_icon("remove")
+                               tooltip(b_rm) <- "Remove filter"
                              }
                              disableFilter <- gcheckbox("", checked=FALSE, container=g, handler=function(h,...) {
                                if(svalue(disableFilter)){ 
@@ -605,7 +613,9 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                ed$set_icon("ed-remove", "end")
                                ed$set_icon_handler(function(h,...) {
                                  svalue(ed) <- ""
+                                 focus(ed) <- TRUE
                                }, where="end")
+                               ed$widget$setIconActivatable("primary", FALSE)
                                
                                search_handler <- function(h,..., do_old=TRUE) {
                                  ## we keep track of old selection here
@@ -692,34 +702,47 @@ ChoiceItem <- setRefClass("ChoiceItem",
                              initialize_item()
                            },
                            initialize_item = function() {
-                             svalue(widget, index=TRUE) <<- FALSE # all selected (checked)
+                             svalue(widget, index=TRUE) <<- FALSE # all NOT selected (unchecked)
                            },
                            make_buttons=function(frame) {
                              g <- ggroup(container=frame, horizontal=TRUE)
 
                              includeNA <<- gcheckbox("NA", checked=FALSE, cont=g)
-                             tooltip(includeNA) <<- "Include NA"
+                             tooltip(includeNA) <<- "Check to include NA"
                              addHandlerChanged(includeNA, function(...) {
                                parent$invoke_change_handler()
                              })
                              enabled(includeNA) <<- any(is.na(get_x()))
 
                              addSpring(g) # right justify
+                             b_invert <- gbutton("", cont=g, handler = function(h,...) {
+                                svalue(widget, index=TRUE) <<- setdiff(1:length(widget[]), 
+                                                                       which(widget[] %in% old_selection))
+                               .self$invoke_change_handler()
+                             })
+                             tooltip(b_invert) <- 'Invert selection'
+                             b_invert$set_icon("jump-to")
                              b_selall <- gbutton("Select all", container=g, handler=function(h,...) {
                                #initialize_item()
                                svalue(widget, index=TRUE) <<- TRUE
                                .self$invoke_change_handler()
                              })
+                             tooltip(b_selall) <- 'Select all'
                              b_selall$set_icon("select-all")
                              b_clear <- gbutton("Clear", container=g, handler=function(h,...) {
                                ## XXX
                                svalue(widget) <<- FALSE
                                .self$invoke_change_handler()
                              })
+                             tooltip(b_clear) <- 'Select none'
+                             
+                             addSpace(g, 5) # right justify
                              if(parent$allow_edit) {
-                               gbutton("Remove", container=g, handler=function(h,...) {
+                               b_rm <- gbutton("", container=g, handler=function(h,...) {
                                  parent$remove_item(.self)
                                })
+                               b_rm$set_icon("remove")
+                               tooltip(b_rm) <- "Remove filter"
                              }
                              disableFilter <- gcheckbox("", checked=FALSE, container=g, handler=function(h,...) {
                                if(svalue(disableFilter)){ 
@@ -727,11 +750,13 @@ ChoiceItem <- setRefClass("ChoiceItem",
                                  enabled(includeNA) <<- FALSE 
                                  enabled(b_selall) <- FALSE 
                                  enabled(b_clear) <- FALSE 
+                                 enabled(b_invert) <- FALSE 
                                } else if(!svalue(disableFilter)){ 
                                  enabled(widgetc) <<- TRUE
                                  enabled(includeNA) <<- any(is.na(get_x()))
                                  enabled(b_selall) <- TRUE
                                  enabled(b_clear) <- TRUE
+                                 enabled(b_invert) <- TRUE 
                                }
                                .self$invoke_change_handler()
                              })
@@ -877,7 +902,7 @@ PresetItem <- setRefClass("PresetItem",
                              g <- ggroup(container=frame, horizontal=TRUE)
 
                              includeNA <<- gcheckbox("NA", checked=FALSE, cont=g)
-                             tooltip(includeNA) <<- "Include NA"
+                             tooltip(includeNA) <<- "Check to include NA"
                              enabled(includeNA) <<- FALSE
                              addHandlerChanged(includeNA, function(...) {
                                parent$invoke_change_handler()
@@ -889,10 +914,14 @@ PresetItem <- setRefClass("PresetItem",
                                initialize_item()
                                .self$invoke_change_handler()
                              })
+
+                             addSpace(g, 5) # right justify
                              if(parent$allow_edit) {
-                               gbutton("Remove", container=g, handler=function(h,...) {
+                               b_rm <- gbutton("", container=g, handler=function(h,...) {
                                  parent$remove_item(.self)
                                })
+                               b_rm$set_icon("remove")
+                               tooltip(b_rm) <- "Remove filter"
                              }
                              disableFilter <- gcheckbox("", checked=FALSE, container=g, handler=function(h,...) {
                                if(svalue(disableFilter)){ 
