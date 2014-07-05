@@ -563,8 +563,13 @@ RadioItem <- setRefClass("RadioItem",
                                  enabled(includeNA) <<- any(is.na(get_x()))
                                  enabled(b_reset) <- TRUE
                                  validx <- svalue(widget, index=TRUE)
-                                 if(validx>1) enabled(prevnext[["b_prev"]]) <<- TRUE
-                                 if(validx<length(na.omit(unique(get_x())))) enabled(prevnext[["b_next"]]) <<- TRUE
+                                 if(is.na(validx)){ 
+                                    enabled(prevnext[["b_prev"]]) <<- FALSE
+                                    enabled(prevnext[["b_next"]]) <<- FALSE
+                                 } else {
+                                    if(validx>1) enabled(prevnext[["b_prev"]]) <<- TRUE
+                                    if(validx<length(na.omit(unique(get_x())))) enabled(prevnext[["b_next"]]) <<- TRUE
+                                 }
                                }
                                .self$invoke_change_handler()
                              })
@@ -577,10 +582,15 @@ RadioItem <- setRefClass("RadioItem",
                                  val <- NA
                                
                                validx <- svalue(widget, index=TRUE)
-                               if(validx==1) enabled(prevnext[["b_prev"]]) <<- FALSE else 
-                                  enabled(prevnext[["b_prev"]]) <<- TRUE
-                               if(validx==length(na.omit(unique(get_x())))) enabled(prevnext[["b_next"]]) <<- FALSE else 
-                                  enabled(prevnext[["b_next"]]) <<- TRUE
+                               if(is.na(validx)){ 
+                                    enabled(prevnext[["b_prev"]]) <<- FALSE
+                                    enabled(prevnext[["b_next"]]) <<- FALSE
+                               } else {
+                                   if(validx==1) enabled(prevnext[["b_prev"]]) <<- FALSE else 
+                                      enabled(prevnext[["b_prev"]]) <<- TRUE
+                                   if(validx==length(na.omit(unique(get_x())))) enabled(prevnext[["b_next"]]) <<- FALSE else 
+                                      enabled(prevnext[["b_next"]]) <<- TRUE
+                               }
 
                                out <- get_x() == val
                                out[is.na(out)] <- do_na()
