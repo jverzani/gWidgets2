@@ -525,12 +525,6 @@ RadioItem <- setRefClass("RadioItem",
                              
                              addSpring(g) # right justify
                              prevnext <<- list()
-                             prevnext[["b_next"]] <<- gbutton("", container=g, handler=function(h,...) {
-                               svalue(widget, index=TRUE) <<- (svalue(widget, index=TRUE) + 1L)
-                               .self$invoke_change_handler()
-                             })
-                             prevnext[["b_next"]]$set_icon("go-down")
-                             tooltip(prevnext[["b_next"]]) <<- "Choose the next level"
                              prevnext[["b_prev"]] <<- gbutton("", container=g, handler=function(h,...) {
                                svalue(widget, index=TRUE) <<- (svalue(widget, index=TRUE) - 1L)
                                .self$invoke_change_handler()
@@ -538,6 +532,12 @@ RadioItem <- setRefClass("RadioItem",
                              prevnext[["b_prev"]]$set_icon("go-up")
                              tooltip(prevnext[["b_prev"]]) <<- "Choose the previous level"
                              enabled(prevnext[["b_prev"]]) <<- FALSE
+                             prevnext[["b_next"]] <<- gbutton("", container=g, handler=function(h,...) {
+                               svalue(widget, index=TRUE) <<- (svalue(widget, index=TRUE) + 1L)
+                               .self$invoke_change_handler()
+                             })
+                             prevnext[["b_next"]]$set_icon("go-down")
+                             tooltip(prevnext[["b_next"]]) <<- "Choose the next level"
                              b_reset <- gbutton("Reset", container=g, handler=function(h,...) {
                                initialize_item()
                                .self$invoke_change_handler()
