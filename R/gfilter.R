@@ -849,21 +849,22 @@ RangeItem <- setRefClass("RangeItem",
                            ))
 
 seq_sane <- (function(){
-  #restore.point('f',F)
   master_seq <- unlist(lapply(seq_len(.Machine$double.digits), function(x){
     by <- 10^x
     seq.int(by, 10*by-1, by)
   }))
   #master_seq <- c(seq.int(1, 4, 1), seq.int(5, 50, 5), master_seq[-seq_len(5)])
-  master_seq <- c(seq.int(5, 20, 5), master_seq[-seq_len(2)])
+  #master_seq <- c(seq.int(5, 20, 5), master_seq[-seq_len(2)])
   function(y){
     #if(any(is.na(y), is.nan(y))) y <- 0
-    if(y<=5) seq.int(1, y, 1) else c(master_seq[master_seq < y], y)
+    if(y<=10) seq.int(1, y, 1) else 
+      #if(all(y>=200, y<=200)) else
+         c(master_seq[master_seq < y], y)
   }
 })()
-#lapply(c(9,10,11,49,50,51,99,100,101,999,1000,1001,9999,10000,10001,385744), seq_sane)
-#lapply(c(99,523,4548,27304), seq_sane)
-#seq_sane(93)
+# lapply(c(9,10,11,49,50,51,99,100,101,999,1000,1001,9999,10000,10001,385744), seq_sane)
+# lapply(c(99,523,4548,27304), seq_sane)
+# seq_sane(93)
 
 PresetItem <- setRefClass("PresetItem",
                          contains="BasicFilterItem",
