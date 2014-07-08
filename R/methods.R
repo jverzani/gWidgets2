@@ -21,8 +21,11 @@ NULL
 ##' container at construction time. (For some toolkits this is not
 ##' optional, e.g. \pkg{gWidgets2tcltk} or \pkg{gWidgets2WWW2}.)
 ##' @param ... These values are passed to the \code{add} method of the
-##' parent container, and occasionally have been used to sneak in
-##' hidden arguments to toolkit implementations. For example, when
+##' parent container. Examples of values are \code{expand},
+##' \code{fill}, and \code{anchor}, although they're not always
+##' supported by a given widget. For more details see \link{add}.
+##' Occasionally the variable arguments feature has been used to sneak
+##' in hidden arguments to toolkit implementations. For example, when
 ##' using a widget as a menubar object one can specify a parent
 ##' argument to pass in parent information, similar to how the
 ##' argument is used with gaction and the dialogs.
