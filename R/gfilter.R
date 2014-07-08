@@ -525,12 +525,6 @@ RadioItem <- setRefClass("RadioItem",
                              
                              addSpring(g) # right justify
                              prevnext <<- list()
-                             prevnext[["b_next"]] <<- gbutton("", container=g, handler=function(h,...) {
-                               svalue(widget, index=TRUE) <<- (svalue(widget, index=TRUE) + 1L)
-                               .self$invoke_change_handler()
-                             })
-                             prevnext[["b_next"]]$set_icon("go-down")
-                             tooltip(prevnext[["b_next"]]) <<- "Choose the next level"
                              prevnext[["b_prev"]] <<- gbutton("", container=g, handler=function(h,...) {
                                svalue(widget, index=TRUE) <<- (svalue(widget, index=TRUE) - 1L)
                                .self$invoke_change_handler()
@@ -538,6 +532,12 @@ RadioItem <- setRefClass("RadioItem",
                              prevnext[["b_prev"]]$set_icon("go-up")
                              tooltip(prevnext[["b_prev"]]) <<- "Choose the previous level"
                              enabled(prevnext[["b_prev"]]) <<- FALSE
+                             prevnext[["b_next"]] <<- gbutton("", container=g, handler=function(h,...) {
+                               svalue(widget, index=TRUE) <<- (svalue(widget, index=TRUE) + 1L)
+                               .self$invoke_change_handler()
+                             })
+                             prevnext[["b_next"]]$set_icon("go-down")
+                             tooltip(prevnext[["b_next"]]) <<- "Choose the next level"
                              b_reset <- gbutton("Reset", container=g, handler=function(h,...) {
                                initialize_item()
                                .self$invoke_change_handler()
@@ -563,8 +563,13 @@ RadioItem <- setRefClass("RadioItem",
                                  enabled(includeNA) <<- any(is.na(get_x()))
                                  enabled(b_reset) <- TRUE
                                  validx <- svalue(widget, index=TRUE)
-                                 if(validx>1) enabled(prevnext[["b_prev"]]) <<- TRUE
-                                 if(validx<length(na.omit(unique(get_x())))) enabled(prevnext[["b_next"]]) <<- TRUE
+                                 if(is.na(validx)){ 
+                                    enabled(prevnext[["b_prev"]]) <<- FALSE
+                                    enabled(prevnext[["b_next"]]) <<- FALSE
+                                 } else {
+                                    if(validx>1) enabled(prevnext[["b_prev"]]) <<- TRUE
+                                    if(validx<length(na.omit(unique(get_x())))) enabled(prevnext[["b_next"]]) <<- TRUE
+                                 }
                                }
                                .self$invoke_change_handler()
                              })
@@ -577,10 +582,15 @@ RadioItem <- setRefClass("RadioItem",
                                  val <- NA
                                
                                validx <- svalue(widget, index=TRUE)
-                               if(validx==1) enabled(prevnext[["b_prev"]]) <<- FALSE else 
-                                  enabled(prevnext[["b_prev"]]) <<- TRUE
-                               if(validx==length(na.omit(unique(get_x())))) enabled(prevnext[["b_next"]]) <<- FALSE else 
-                                  enabled(prevnext[["b_next"]]) <<- TRUE
+                               if(is.na(validx)){ 
+                                    enabled(prevnext[["b_prev"]]) <<- FALSE
+                                    enabled(prevnext[["b_next"]]) <<- FALSE
+                               } else {
+                                   if(validx==1) enabled(prevnext[["b_prev"]]) <<- FALSE else 
+                                      enabled(prevnext[["b_prev"]]) <<- TRUE
+                                   if(validx==length(na.omit(unique(get_x())))) enabled(prevnext[["b_next"]]) <<- FALSE else 
+                                      enabled(prevnext[["b_next"]]) <<- TRUE
+                               }
 
                                out <- get_x() == val
                                out[is.na(out)] <- do_na()
@@ -839,21 +849,22 @@ RangeItem <- setRefClass("RangeItem",
                            ))
 
 seq_sane <- (function(){
-  #restore.point('f',F)
   master_seq <- unlist(lapply(seq_len(.Machine$double.digits), function(x){
     by <- 10^x
     seq.int(by, 10*by-1, by)
   }))
   #master_seq <- c(seq.int(1, 4, 1), seq.int(5, 50, 5), master_seq[-seq_len(5)])
-  master_seq <- c(seq.int(5, 20, 5), master_seq[-seq_len(2)])
+  #master_seq <- c(seq.int(5, 20, 5), master_seq[-seq_len(2)])
   function(y){
     #if(any(is.na(y), is.nan(y))) y <- 0
-    if(y<=5) seq.int(1, y, 1) else c(master_seq[master_seq < y], y)
+    if(y<=10) seq.int(1, y, 1) else 
+      #if(all(y>=200, y<=200)) else
+         c(master_seq[master_seq < y], y)
   }
 })()
-#lapply(c(9,10,11,49,50,51,99,100,101,999,1000,1001,9999,10000,10001,385744), seq_sane)
-#lapply(c(99,523,4548,27304), seq_sane)
-#seq_sane(93)
+# lapply(c(9,10,11,49,50,51,99,100,101,999,1000,1001,9999,10000,10001,385744), seq_sane)
+# lapply(c(99,523,4548,27304), seq_sane)
+# seq_sane(93)
 
 PresetItem <- setRefClass("PresetItem",
                          contains="BasicFilterItem",
