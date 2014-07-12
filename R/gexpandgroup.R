@@ -14,7 +14,9 @@ NULL
 ##' @export
 ##' @seealso \code{\link{ggroup}} and \code{\link{gframe}}
 ##' @return An object of class \code{GExpandGroup}
-##' inheriting from \code{GFrame} 
+##' inheriting from \code{GFrame}
+##' @example inst/examples/ex-gexpandgroup.R
+
 gexpandgroup <- function(
                          text = "", markup = FALSE, horizontal=TRUE,
                          handler = NULL, action = NULL,
