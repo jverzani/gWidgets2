@@ -133,8 +133,8 @@ Observable <- setRefClass("Observable",
                                 stop("Call with an observer id")
                               
                               signal <- id$signal
-                              ind <- lapply(..observers[[signal]], function(i) identical(i, id$o))
-                              if(any(unlist(ind)) )
+                              ind <- unlist(lapply(..observers[[signal]], identical, id$o))
+                              if(any(ind))
                                 ..observers[[signal]][[which(ind)]] <<- NULL
                               
                             },
@@ -156,8 +156,8 @@ Observable <- setRefClass("Observable",
                                 unblock_observers()
                               } else {
                                 signal <- id$signal
-                                ind <- lapply(..blocked_observers[[signal]], function(i) identical(i, id$o))
-                                if(any(unlist(ind))) 
+                                ind <- unlist(lapply(..blocked_observers[[signal]], identical, id$o))
+                                if(any(ind))
                                   ..blocked_observers[[signal]][[which(ind)]] <<- NULL
                               }
                             },
