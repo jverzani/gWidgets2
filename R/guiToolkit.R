@@ -108,6 +108,15 @@ guiToolkit <- function(name=NULL) {
   ## require the package
   require(sprintf("gWidgets2%s", name, sep=""), character.only=TRUE)
 
+
+  ## check for headless Gtk
+  if (name == "RGtk2") {
+      gtk_initialized <- eval(parse(text=sprintf("RGtk2:::%s", ".gtkInitCheck()")))
+      if (!gtk_initialized)
+          stop("Can't load RGtk2")
+  }
+
+  
   ## we return an instance of the toolkit class
   obj <- new(sprintf("guiWidgetsToolkit%s", name), toolkit = name)
   return(obj)
