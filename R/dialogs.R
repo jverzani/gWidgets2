@@ -116,7 +116,9 @@ gconfirm = function(
   ..., toolkit=guiToolkit()) {
   
   out <- .gconfirm(toolkit,
-                   msg=msg, icon=match.arg(icon),
+                   msg=msg,
+                   title=title,
+                   icon=match.arg(icon),
                    parent=parent,
                    ...)
   if(!is.logical(out))
