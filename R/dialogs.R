@@ -11,6 +11,8 @@ NULL
 ##' @param parent parent object to show near
 ##' @param ... ignored
 ##' @param toolkit toolkit
+##' @seealso \code{\link{gmessage}}, \code{\link{gconfirm}}, 
+##' \code{\link{gbasicdialog}}, \code{\link{galert}}
 ##' @export
 galert = function(
   msg,
@@ -41,6 +43,8 @@ galert = function(
 ##' @param toolkit toolkit
 ##' @return NULL
 ##' @rdname gmessage
+##' @seealso \code{\link{gmessage}}, \code{\link{gconfirm}}, 
+##' \code{\link{gbasicdialog}}, \code{\link{galert}}
 gmessage <- function(msg,
                      title = "message",
                      icon = c("info", "warning", "error", "question"),
@@ -75,6 +79,8 @@ gmessage <- function(msg,
 ##' @return value typed into box or \code{character(0)}
 ##' @export
 ##' @rdname ginput
+##' @seealso \code{\link{gmessage}}, \code{\link{gconfirm}}, 
+##' \code{\link{gbasicdialog}}, \code{\link{galert}}
 ginput <- function(
                    msg, text="",
                    title = "Input",
@@ -108,6 +114,8 @@ ginput <- function(
 ##' @return logical inidicating confirmation
 ##' @export
 ##' @rdname gconfirm
+##' @seealso \code{\link{gmessage}}, \code{\link{gconfirm}}, 
+##' \code{\link{gbasicdialog}}, \code{\link{galert}}
 gconfirm = function(
   msg,
   title = "Confirm",
@@ -156,6 +164,8 @@ gconfirm = function(
 ##' @param ... ignored
 ##' @param toolkit toolkit
 ##' @return A \code{GBasicDialog} instance with a visible method
+##' @seealso \code{\link{gmessage}}, \code{\link{gconfirm}}, 
+##' \code{\link{gbasicdialog}}, \code{\link{galert}}
 ##' @export
 ##' @examples
 ##' \dontrun{

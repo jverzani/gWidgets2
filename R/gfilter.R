@@ -453,7 +453,7 @@ BasicFilterItem <- setRefClass("BasicFilterItem",
 
                                     addSpace(g, 5) # right justify
                                    if(parent$allow_edit) {
-                                     b_rm <- gbutton("", container=g, handler=function(h,...) {
+                                     b_rm <- gbutton("Remove", container=g, handler=function(h,...) {
                                        parent$remove_item(.self)
                                      })
                                      b_rm$set_icon("remove")
@@ -545,7 +545,7 @@ RadioItem <- setRefClass("RadioItem",
 
                              addSpace(g, 5) # right justify
                              if(parent$allow_edit) {
-                               b_rm <- gbutton("", container=g, handler=function(h,...) {
+                               b_rm <- gbutton("Remove", container=g, handler=function(h,...) {
                                  parent$remove_item(.self)
                                })
                                b_rm$set_icon("remove")
@@ -928,7 +928,7 @@ PresetItem <- setRefClass("PresetItem",
 
                              addSpace(g, 5) # right justify
                              if(parent$allow_edit) {
-                               b_rm <- gbutton("", container=g, handler=function(h,...) {
+                               b_rm <- gbutton("Remove", container=g, handler=function(h,...) {
                                  parent$remove_item(.self)
                                })
                                b_rm$set_icon("remove")
