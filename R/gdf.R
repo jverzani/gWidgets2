@@ -8,6 +8,8 @@ NULL
 ##' cell should select that cell, a double click should initiate
 ##' editing of that cell.
 ##'
+##' Contents of the data frame can be accessed via \code{[} and manipulated with \code{[<-}.
+##' 
 ##' The \code{save_data} reference class method can be called to
 ##' save the data into a variable with the specified name.
 ##' @param items data frame to edit
