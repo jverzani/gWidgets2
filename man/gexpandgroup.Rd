@@ -51,6 +51,16 @@ For gexpandgroup, the visible assignment method is overridden to change the disc
 
 The change handler for a expandGroup is called when the group changes visibility
 }
+\examples{
+ if(interactive()) {
+    w <- gwindow("Box containers")
+    g <- gvbox(cont=w)                         # ggroup(horizonta=FALSE, ...)
+    nb <- gnotebook(cont=g); gbutton("one", label="one", cont=nb)
+    gframe("Frame", cont=g)
+    pg <- gpanedgroup(cont=g); gbutton("one", cont=pg); gbutton("two", cont=pg)
+    eg <- gexpandgroup(cont=g, horizontal=FALSE); glabel("Click above to hide", cont=eg); gbutton("one", cont=eg); gbutton("two", cont=eg)
+}
+}
 \seealso{
 \code{\link{ggroup}} and \code{\link{gframe}}
 }

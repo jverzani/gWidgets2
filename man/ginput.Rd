@@ -33,4 +33,8 @@ Constructor for modal dialog to collect a line of text
 
 generic for toolkit dispatch
 }
+\seealso{
+\code{\link{gmessage}}, \code{\link{gconfirm}},
+\code{\link{gbasicdialog}}, \code{\link{galert}}
+}
 

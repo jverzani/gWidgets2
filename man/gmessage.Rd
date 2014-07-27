@@ -27,4 +27,8 @@ Constructor for modal message dialog
 
 generic for toolkit dispatch
 }
+\seealso{
+\code{\link{gmessage}}, \code{\link{gconfirm}},
+\code{\link{gbasicdialog}}, \code{\link{galert}}
+}
 

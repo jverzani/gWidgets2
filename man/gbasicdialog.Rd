@@ -75,4 +75,8 @@ m <- mtcars[1:3, 1:4]
 fix_df(m)
 }
 }
+\seealso{
+\code{\link{gmessage}}, \code{\link{gconfirm}},
+\code{\link{gbasicdialog}}, \code{\link{galert}}
+}
 
