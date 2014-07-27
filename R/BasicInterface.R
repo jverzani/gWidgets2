@@ -147,7 +147,7 @@ Observable <- setRefClass("Observable",
                                   ..blocked_observers[[id$signal]] <<- list(id$o)
                                 else
                                   ..blocked_observers[[id$signal]] <<-
-                                    c(..blocked_observers[[id$signal]], o)
+                                    c(..blocked_observers[[id$signal]], id$o)
                               }
                             },
                             unblock_observer=function(id) {
