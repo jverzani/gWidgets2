@@ -74,7 +74,15 @@ or at construction time. Handlers are functions whose first
 argument, \code{h} in the documentation, is a list with atleast
 two components \code{obj}, referring to the object emitting the
 signal and \code{action}, which passes in user-specified data to
-parameterize the function call.}
+parameterize the function call.
+
+Handlers may also be added via \code{addHandlerXXX} methods for
+the widgets, where \code{XXX} indicates the signal, with a default
+signal mapped to \code{addHandlerChanged}
+(cf. \code{\link{addHandler}} for a listing). These methods pass
+back a handler ID that can be used with \code{blockHandler} and
+\code{unblockHandler} to suppress temporarily the calling of the
+handler.}
 
 \item{action}{User supplied data passed to the handler when it is called}
 
