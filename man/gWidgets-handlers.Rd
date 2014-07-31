@@ -23,6 +23,8 @@
 \alias{addHandlerColumnRightclicked.default}
 \alias{addHandlerColumnclicked}
 \alias{addHandlerColumnclicked.default}
+\alias{addHandlerControlclick}
+\alias{addHandlerControlclick.default}
 \alias{addHandlerDestroy}
 \alias{addHandlerDestroy.default}
 \alias{addHandlerDoubleclick}
@@ -42,6 +44,8 @@
 \alias{addHandlerSelect.default}
 \alias{addHandlerSelectionChanged}
 \alias{addHandlerSelectionChanged.default}
+\alias{addHandlerShiftclick}
+\alias{addHandlerShiftclick.default}
 \alias{addHandlerUnrealize}
 \alias{addHandlerUnrealize.default}
 \alias{addPopupMenu}
@@ -81,6 +85,14 @@ addHandlerDoubleclick(obj, handler, action = NULL, ...)
 addHandlerRightclick(obj, handler, action = NULL, ...)
 
 \method{addHandlerRightclick}{default}(obj, handler, action = NULL, ...)
+
+addHandlerShiftclick(obj, handler, action = NULL, ...)
+
+\method{addHandlerShiftclick}{default}(obj, handler, action = NULL, ...)
+
+addHandlerControlclick(obj, handler, action = NULL, ...)
+
+\method{addHandlerControlclick}{default}(obj, handler, action = NULL, ...)
 
 addHandlerColumnclicked(obj, handler, action = NULL, ...)
 
@@ -227,6 +239,14 @@ Add handler for clicked event
 Default S3 method
 
 Add handler for double click event
+
+Default S3 method
+
+This may not be supported by all toolkits.
+
+Default S3 method
+
+This may not be supported by all toolkits.
 
 Default S3 method
 

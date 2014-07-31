@@ -63,9 +63,6 @@ Contents of the data frame can be accessed via \code{[} and manipulated with \co
 The \code{save_data} reference class method can be called to
 save the data into a variable with the specified name.
 }
-\note{
-need example of do.subset feature using \code{visible<-}
-}
 \examples{
 library(gWidgets2)
 

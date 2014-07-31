@@ -20,7 +20,6 @@ NULL
 ##' @param toolkit toolkit
 ##' @export
 ##' @return An object of class \code{gDf}.
-##' @note need example of do.subset feature using \code{visible<-}
 ##' @example inst/examples/ex-gdf.R
 gdf <- function(
                 items = NULL, 

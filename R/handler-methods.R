@@ -129,6 +129,42 @@ addHandlerRightclick.default <- function(obj, handler, action=NULL, ...)
   obj$add_handler_right_clicked(handler, action=action, ...)
 
 
+##' Add handler for shift click event
+##'
+##' This may not be supported by all toolkits.
+##' @export
+##' @rdname gWidgets-handlers
+addHandlerShiftclick <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerShiftclick")
+
+##' Default S3 method
+##'
+##' @inheritParams addHandler
+##' @export
+##' @rdname gWidgets-handlers
+##' @method addHandlerShiftclick default
+##' @S3method addHandlerShiftclick default
+addHandlerShiftclick.default <- function(obj, handler, action=NULL, ...)
+  obj$add_handler_shift_clicked(handler, action=action, ...)
+
+
+##' Add handler for control+click event
+##'
+##' This may not be supported by all toolkits.
+##' @export
+##' @rdname gWidgets-handlers
+addHandlerControlclick <- function(obj, handler, action=NULL, ...) UseMethod("addHandlerControlclick")
+
+##' Default S3 method
+##'
+##' @inheritParams addHandler
+##' @export
+##' @rdname gWidgets-handlers
+##' @method addHandlerControlclick default
+##' @S3method addHandlerControlclick default
+addHandlerControlclick.default <- function(obj, handler, action=NULL, ...)
+  obj$add_handler_control_clicked(handler, action=action, ...)
+
+
 
 
 ##' Add handler for column click event
