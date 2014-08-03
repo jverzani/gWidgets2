@@ -13,6 +13,10 @@ NULL
 ##' the column specified by \code{chosen.col}), or by index. The
 ##' change handler changes on double-click event. Use add handler
 ##' click to respond to a change in selection.
+##'
+##' Many generic methods for data frames are implemented for
+##' \code{gtable}. These include \code{[}, \code{[<-}, \code{length},
+##' \code{names}, and \code{names<-}
 ##' @param items data.frame specifies items for selection. May be a vector, matrix or data frame
 ##' @param multiple logical allow  multiple selection
 ##' @param chosen.col which value from the row is returned by selection

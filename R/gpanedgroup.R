@@ -18,7 +18,10 @@ NULL
 ##' @param horizontal direction of layout
 ##' @inheritParams gwidget
 ##' @export
-##' @note There were arguments to specify the children at
+##' @note Setting the size is often only possible after the container
+##' has been realized on the screen. In the example, this call of
+##' \code{svalue<-} is done after the parent window is made visible
+##' for this reason. There were arguments to specify the children at
 ##' construction, but these have been removed.
 ##' @examples
 ##' \dontrun{

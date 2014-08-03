@@ -142,6 +142,11 @@ one to specify the column widths. To do so, pass in the values for
 of a list. The value of \code{column.widths} should be a numeric
 vector of pixel widths of length matching the number of columns.
 }
+\details{
+Many generic methods for data frames are implemented for
+\code{gtable}. These include \code{[}, \code{[<-}, \code{length},
+\code{names}, and \code{names<-}
+}
 \examples{
 \dontrun{
 w <- gwindow("gtable example", visible=FALSE)
