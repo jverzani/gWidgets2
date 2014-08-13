@@ -31,7 +31,7 @@ NULL
 ##' addHandlerChanged(nb, handler=function(h,...) {
 ##'   message(sprintf("On page %s", h$page.no)) ## svalue(h$obj) not always right
 ##' })
-##' svalue(nb) <- 2
+##' svalue(nb) <- 2 ## or use "Page two"
 ##' dispose(nb)
 ##' length(nb)
 ##' 
@@ -128,6 +128,42 @@ dispose.GNotebook <- function(obj, ...) {
 ##' @S3method names GNotebook
 "names.GNotebook" <- function(x) x$get_names()
 
+
+##' svalue method
+##'
+##' Set the currently raised tab by index (the default) or name
+##' @param index  \code{TRUE} refer to tab by 1-based
+##' index; \code{FALSE} allows reference by tab label.
+##' @param value assignment value
+##' @export
+##' @usage \method{svalue}{GNotebook} (obj, index=NULL, ...) <- value
+##' @rdname gnotebook
+##' @method svalue<- GNotebook
+##' @S3method svalue<- GNotebook
+"svalue<-.GNotebook" <- function(obj, index=TRUE,  ...,value) {
+    if (!index) {
+        index = TRUE
+        value = match(value, names(obj))
+    }
+    NextMethod()
+}
+
+##' "[" method
+##'
+##' The notebook object contains pages referenced by index. This allows access to underlying page.
+##' @param x \code{GNotebook} object
+##' @param i row index. Either integer or character
+##' @param j ignored
+##' @param drop ignored
+##' @export
+##' @rdname gnotebook
+##' @method [ GNotebook
+##' @S3method [ GNotebook
+"[.GNotebook" <- function(x, i, j, ..., drop=TRUE) {
+    if (is.character(i))
+        i <- match(i, names(x))
+    NextMethod()
+}
 
 ##' add change handler
 ##'
