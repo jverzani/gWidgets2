@@ -29,7 +29,9 @@ gedit(text = "", width = 25, coerce.with = NULL, initial.msg = "",
 message is, then this message is displayed until the widget
 receives the focus}
 
-\item{handler}{Change handler. Called when return key is hit}
+\item{handler}{Change handler. Called when return key is hit. Use
+\code{addHandleBlur} to add a handler when the widget loses focus,
+such as through tab-key navigation.}
 
 \item{action}{passed to handler}
 
@@ -65,7 +67,11 @@ An object of class \code{GEdit}. This has sub-classed methods:
 }
 }
 \description{
-Single line text edit constructor
+The default change handler is called when the return key is
+pressed. It can be useful to also call a handler when the widget
+loses focus. For that, the \code{addHandlerBlur} method is of
+use. (This was the default, but is now not, as it was hard to
+decouple the two when that was desirable.)
 
 generic for toolkit dispatch
 

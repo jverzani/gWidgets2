@@ -4,13 +4,20 @@ NULL
 
 ##' Single line text edit constructor
 ##'
+##' The default change handler is called when the return key is
+##' pressed. It can be useful to also call a handler when the widget
+##' loses focus. For that, the \code{addHandlerBlur} method is of
+##' use. (This was the default, but is now not, as it was hard to
+##' decouple the two when that was desirable.)
 ##' @param text initial text
 ##' @param width number of characters
 ##' @param coerce.with A function or name of function to coerce value with before returning by \code{svalue}
 ##' @param initial.msg If no initial text is given but an initial
 ##' message is, then this message is displayed until the widget
 ##' receives the focus
-##' @param handler Change handler. Called when return key is hit
+##' @param handler Change handler. Called when return key is hit. Use
+##' \code{addHandleBlur} to add a handler when the widget loses focus,
+##' such as through tab-key navigation.
 ##' @param action passed to handler
 ##' @param container parent container
 ##' @param ... passed to \code{add} method of parent
