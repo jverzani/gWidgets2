@@ -447,6 +447,10 @@ add3rdmousePopupMenu.default <-  function(obj, menulist, action=NULL, ...)
   obj$add_3rd_mouse_popup_menu(menulist, action=action, ...)
 
 
+##' Alias for poor punctation choice
+##'
+##' @export
+add3rdMousePopupMenu <- add3rdmousePopupMenu
 
 ##' Specify a widget is a source for a drop action
 ##'
