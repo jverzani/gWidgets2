@@ -409,7 +409,7 @@ addHandlerIdle <- function( ...) {
 
 ##' Add a "popup" menu to the widget
 ##'
-##' Defaults to adding a 3rd mouse popup menu, better known as a
+##' Defaults to adding a right-click mouse popup menu, better known as a
 ##' context menu, though some toolkits have both this and the latter
 ##' provided. 
 ##' @param menulist a list of \code{gaction} items or a \code{gmenu} instance
@@ -427,7 +427,7 @@ addPopupMenu.default <-  function(obj, menulist, action=NULL, ...)
   obj$add_popup_menu(menulist, action=action, ...)
 
 
-##' Add a 3rd-mouse "popup" menu to the widget
+##' Add a context  "popup" menu to the widget
 ##'
 ##' These menus are also known as context menus, though there isn't
 ##' really a good mechanism within \pkg{gWidgets2} to make the menu
@@ -435,17 +435,22 @@ addPopupMenu.default <-  function(obj, menulist, action=NULL, ...)
 ##' @inheritParams addPopupMenu
 ##' @export
 ##' @rdname gWidgets-handlers
-add3rdmousePopupMenu <- function(obj, menulist, action=NULL, ...) UseMethod("add3rdmousePopupMenu")
+addRightclickPopupMenu <- function(obj, menulist, action=NULL, ...) UseMethod("addRightclickPopupMenu")
 
 ##' S3 method for popup menu
 ##'
 ##' @export
 ##' @rdname gWidgets-handlers
-##' @method add3rdmousePopupMenu default
-##' @S3method add3rdmousePopupMenu default
-add3rdmousePopupMenu.default <-  function(obj, menulist, action=NULL, ...)
+##' @method addRightclickPopupMenu default
+##' @S3method addRightclickPopupMenu default
+addRightClickPopupMenu.default <-  function(obj, menulist, action=NULL, ...)
   obj$add_3rd_mouse_popup_menu(menulist, action=action, ...)
 
+
+##' Alias for poor initial name choice
+##'
+##' @export
+add3rdmousePopupMenu <- addRightclickPopupMenu
 
 ##' Alias for poor punctation choice
 ##'
