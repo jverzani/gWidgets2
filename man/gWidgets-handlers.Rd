@@ -48,8 +48,8 @@
 \alias{addHandlerUnrealize.default}
 \alias{addPopupMenu}
 \alias{addPopupMenu.default}
-\alias{addRightClickPopupMenu.default}
 \alias{addRightclickPopupMenu}
+\alias{addRightclickPopupMenu.default}
 \alias{blockHandler}
 \alias{blockHandler.default}
 \alias{blockHandlers}

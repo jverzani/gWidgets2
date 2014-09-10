@@ -443,7 +443,7 @@ addRightclickPopupMenu <- function(obj, menulist, action=NULL, ...) UseMethod("a
 ##' @rdname gWidgets-handlers
 ##' @method addRightclickPopupMenu default
 ##' @S3method addRightclickPopupMenu default
-addRightClickPopupMenu.default <-  function(obj, menulist, action=NULL, ...)
+addRightclickPopupMenu.default <-  function(obj, menulist, action=NULL, ...)
   obj$add_3rd_mouse_popup_menu(menulist, action=action, ...)
 
 
