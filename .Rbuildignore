@@ -2,5 +2,6 @@
 ^\.Rproj\.user$
 ^.*\.Rproj$
 README.asciidoc
+README.md
 Style.txt
 TODO.txt
