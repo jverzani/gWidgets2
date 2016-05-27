@@ -121,14 +121,13 @@ dispose.GNotebook <- function(obj, ...) {
 ##'
 ##' The \code{names} of a notebook are the page tab labels. These may
 ##' be retrieved and set through the \code{names} method.
-##' @param x notebook object
 ##' @export
 ##' @rdname gnotebook
 ##' @method names GNotebook
 ##' @S3method names GNotebook
 "names.GNotebook" <- function(x) x$get_names()
 
-
+#####' @param x notebook object
 ##' svalue method
 ##'
 ##' Set the currently raised tab by index (the default) or name
@@ -140,18 +139,20 @@ dispose.GNotebook <- function(obj, ...) {
 ##' @rdname gnotebook
 ##' @method svalue<- GNotebook
 ##' @S3method svalue<- GNotebook
-"svalue<-.GNotebook" <- function(obj, index=TRUE,  ...,value) {
-    if (!index) {
+"svalue<-.GNotebook" <- function(obj, index=NULL,  ...,value) {
+    if (is.null(index) | !index) {
         index = TRUE
         value = match(value, names(obj))
     }
     NextMethod()
 }
 
+## ##' @param x \code{GNotebook} object
+
+
 ##' "[" method
 ##'
 ##' The notebook object contains pages referenced by index. This allows access to underlying page.
-##' @param x \code{GNotebook} object
 ##' @param i row index. Either integer or character
 ##' @param j ignored
 ##' @param drop ignored

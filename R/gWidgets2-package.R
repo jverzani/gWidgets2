@@ -289,7 +289,7 @@
 ##' 
 ##' \item{\code{\link{addPopupMenu}}}{Add a popup menu}
 ##' 
-##' \item{\code{\link{add3rdmousePopupMenu}}}{Add a popup menu for the
+##' \item{\code{\link{addRightclickPopupMenu}}}{Add a popup menu for the
 ##' right mouse (context menu)}
 ##' 
 ##' \item{\code{\link{addDropSource}}}{Specify widget as a source

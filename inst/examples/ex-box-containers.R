@@ -1,6 +1,6 @@
 ## Expand, fill, anchor,  arguments
 library(gWidgets2)
-
+if(interactive()) {
 
 ##' The box containers (`ggroup`, its alias `gvbox`, `gframe`,
 ##' `gexpandgroup`) have children added through their `add` method, which
@@ -83,3 +83,4 @@ addSpring(exp)                          # tightens up Qt display
 ## * In Qt  use addSpring to adjust weight given to children. LEft aligned by default.
 
 visible(w) <- TRUE
+}

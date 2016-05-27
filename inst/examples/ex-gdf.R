@@ -1,5 +1,5 @@
 library(gWidgets2)
-
+if(interactive()) {
 ## An example of using some controls to modify which rows are displayed using visible<-
 
 X <- mtcars
@@ -38,3 +38,5 @@ addHandlerChanged(combo, handler=function(h,...) {
     val[] <- vars
     svalue(val) == ""
 })
+
+}

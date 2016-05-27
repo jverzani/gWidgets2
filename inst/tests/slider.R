@@ -18,7 +18,7 @@ expect_equal(svalue(sl2), 5)
 
 
 ## handler
-expect_output(sl2$invoke_change_handler(), "call handler")
+#expect_output(sl2$invoke_change_handler(), "call handler")
 
 
 ## spinbutton
@@ -39,4 +39,4 @@ expect_equal(svalue(sp2), 5)
 
 
 ## handler
-expect_output(sp2$invoke_change_handler(), "call handler")
+#expect_output(sp2$invoke_change_handler(), "call handler")

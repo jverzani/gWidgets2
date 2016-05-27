@@ -450,11 +450,17 @@ addRightclickPopupMenu.default <-  function(obj, menulist, action=NULL, ...)
 ##' Alias for poor initial name choice
 ##'
 ##' @export
+##' @rdname gWidgets-handlers
+##' @method addRightclickPopupMenu default
+##' @S3method addRightclickPopupMenu default
 add3rdmousePopupMenu <- addRightclickPopupMenu
 
 ##' Alias for poor punctation choice
 ##'
 ##' @export
+##' @rdname gWidgets-handlers
+##' @method addRightclickPopupMenu default
+##' @S3method addRightclickPopupMenu default
 add3rdMousePopupMenu <- add3rdmousePopupMenu
 
 ##' Specify a widget is a source for a drop action

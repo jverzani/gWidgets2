@@ -77,7 +77,7 @@ guiToolkit <- function(name=NULL) {
       } else if(length(choices) == 1) {
         theChoice <- choices
       } else {
-        theChoice <- menu(choices, title="Select a GUI toolkit")
+        theChoice <- utils::menu(choices, title="Select a GUI toolkit")
         if(theChoice == 0) {
           warning("No toolkit loaded")
           return(NULL)

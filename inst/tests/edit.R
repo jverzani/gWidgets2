@@ -42,4 +42,4 @@ expect_equal(svalue(e2), "added")
 ## [<- typeahead. This is in combobox
 
 ## handler
-expect_output(e6$invoke_change_handler(), "call handler")
+#expect_output(e6$invoke_change_handler(), "call handler")

@@ -35,12 +35,12 @@ expect_equal(svalue(cb1), TRUE)
 expect_equal(cb1[], x[1])
 
 ## [<-
-expect_output(cb1[] <- "new label", "")
+#expect_output(cb1[] <- "new label", "")
 
 
 ## invoke handler
-if(length(cb3$change_signal))
-  expect_output(cb3$invoke_change_handler(), "add handler")
+#if(length(cb3$change_signal))
+#  expect_output(cb3$invoke_change_handler(), "add handler")
 
 
 ##
@@ -85,5 +85,5 @@ expect_equal(cbg1[], x)
 
 
 ## invoke handler
-if(length(cb3$change_signal))
-  expect_output(cb3$invoke_change_handler(), "add handler")
+#if(length(cb3$change_signal))
+#  expect_output(cb3$invoke_change_handler(), "add handler")
