@@ -226,7 +226,6 @@ gbasicdialog <- function(
 ##' @export
 ##' @rdname gbasicdialog
 ##' @method visible GBasicDialog
-##' @S3method visible GBasicDialog
 visible.GBasicDialog <- function(obj, ...) {
   obj$set_visible(TRUE)
 }
@@ -238,7 +237,6 @@ visible.GBasicDialog <- function(obj, ...) {
 ##' @export
 ##' @rdname gbasicdialog
 ##' @method dispose GBasicDialog
-##' @S3method dispose GBasicDialog
 dispose.GBasicDialog <- function(obj, ...) {
   obj$dispose()
 }

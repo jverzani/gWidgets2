@@ -40,7 +40,6 @@ ggraphicsnotebook <- function(
 ##'
 ##' @rdname ggraphicsnotebook
 ##' @method .ggraphicsnotebook default
-##' @S3method .ggraphicsnotebook default
 .ggraphicsnotebook.default <- function(toolkit, width, height, dpi,  container, ...) {
   GGraphicsNotebook$new(toolkit, width=width, height=height, dpi=dpi, container=container, ...)
 }

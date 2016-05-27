@@ -55,7 +55,6 @@ gcalendar <- function(
 ##' @export
 ##' @rdname gcalendar
 ##' @method addHandlerChanged GCalendar
-##' @S3method addHandlerChanged GCalendar
 addHandlerChanged.GCalendar <- function(obj, handler, action=NULL, ...) NextMethod()
 
 
@@ -69,6 +68,5 @@ addHandlerChanged.GCalendar <- function(obj, handler, action=NULL, ...) NextMeth
 ##' @export
 ##' @rdname gcalendar
 ##' @method svalue GCalendar
-##' @S3method svalue GCalendar
 "svalue.GCalendar" <- function(obj, index=NULL, drop=NULL,  ...)   NextMethod()
 

@@ -72,7 +72,6 @@ gwindow <- function(title="Window", visible=TRUE, name=title, width=NULL, height
 ##' @export
 ##' @rdname gwindow
 ##' @method add GWindow
-##' @S3method add GWindow
 add.GWindow <- function(obj, child, expand=NULL, fill=NULL, anchor=NULL, ...) {
   ## one way -- poor man's way -- of double dispatch on obj and class of child
   .add <- function(child, obj, ...) UseMethod(".add")
@@ -91,7 +90,6 @@ add.GWindow <- function(obj, child, expand=NULL, fill=NULL, anchor=NULL, ...) {
 ##' @export
 ##' @rdname gwindow
 ##' @method dispose GWindow
-##' @S3method dispose GWindow
 dispose.GWindow <- function(obj, ...) {
   obj$dispose_window()
 }

@@ -52,7 +52,6 @@ addHandler <- function(obj, signal, handler, action=NULL, ...) UseMethod("addHan
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandler default
-##' @S3method addHandler default
 addHandler.default <- function(obj, signal, handler, action=NULL, ...) 
   obj$add_handler(signal, handler, action=action, ...) 
 
@@ -74,7 +73,6 @@ addHandlerChanged <- function(obj, handler, action=NULL, ...) UseMethod("addHand
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerChanged default
-##' @S3method addHandlerChanged default
 addHandlerChanged.default <- function(obj, handler, action=NULL, ...)
   obj$add_handler_changed(handler, action=action, ...)
 
@@ -90,7 +88,6 @@ addHandlerClicked <- function(obj, handler, action=NULL, ...) UseMethod("addHand
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerClicked default
-##' @S3method addHandlerClicked default
 addHandlerClicked.default <-  function(obj, handler, action=NULL, ...)
     obj$add_handler_clicked(handler, action=action, ...)
 
@@ -106,7 +103,6 @@ addHandlerDoubleclick <- function(obj, handler, action=NULL, ...) UseMethod("add
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerDoubleclick default
-##' @S3method addHandlerDoubleclick default
 addHandlerDoubleclick.default <- function(obj, handler, action=NULL, ...)
   obj$add_handler_double_clicked(handler, action=action, ...)
 
@@ -124,7 +120,6 @@ addHandlerRightclick <- function(obj, handler, action=NULL, ...) UseMethod("addH
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerRightclick default
-##' @S3method addHandlerRightclick default
 addHandlerRightclick.default <- function(obj, handler, action=NULL, ...)
   obj$add_handler_right_clicked(handler, action=action, ...)
 
@@ -142,7 +137,6 @@ addHandlerShiftclick <- function(obj, handler, action=NULL, ...) UseMethod("addH
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerShiftclick default
-##' @S3method addHandlerShiftclick default
 addHandlerShiftclick.default <- function(obj, handler, action=NULL, ...)
   obj$add_handler_shift_clicked(handler, action=action, ...)
 
@@ -160,7 +154,6 @@ addHandlerControlclick <- function(obj, handler, action=NULL, ...) UseMethod("ad
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerControlclick default
-##' @S3method addHandlerControlclick default
 addHandlerControlclick.default <- function(obj, handler, action=NULL, ...)
   obj$add_handler_control_clicked(handler, action=action, ...)
 
@@ -182,7 +175,6 @@ addHandlerColumnclicked <- function(obj, handler, action=NULL, ...) UseMethod("a
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerColumnclicked default
-##' @S3method addHandlerColumnclicked default
 addHandlerColumnclicked.default <- function(obj, handler, action=NULL, ...)
   obj$add_handler_column_clicked(handler, action=action, ...)
 
@@ -201,7 +193,6 @@ addHandlerColumnDoubleclicked <- function(obj, handler, action=NULL, ...) UseMet
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerColumnDoubleclicked default
-##' @S3method addHandlerColumnDoubleclicked default
 addHandlerColumnDoubleclicked.default <- function(obj, handler, action=NULL, ...)
   obj$add_handler_column_double_clicked(handler, action=action, ...)
 
@@ -218,7 +209,6 @@ addHandlerColumnRightclicked <- function(obj, handler, action=NULL, ...) UseMeth
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerColumnRightclicked default
-##' @S3method addHandlerColumnRightclicked default
 addHandlerColumnRightclicked.default <- function(obj, handler, action=NULL, ...)
   obj$add_handler_column_right_clicked(handler, action=action, ...)
 
@@ -237,7 +227,6 @@ addHandlerSelect <- function(obj, handler, action=NULL, ...) UseMethod("addHandl
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerSelect default
-##' @S3method addHandlerSelect default
 addHandlerSelect.default <- function(obj, handler, action=NULL, ...)
   obj$add_handler_select(handler, action=action, ...)
 
@@ -261,7 +250,6 @@ addHandlerSelectionChanged <- function(obj, handler, action=NULL, ...) UseMethod
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerSelectionChanged default
-##' @S3method addHandlerSelectionChanged default
 addHandlerSelectionChanged.default <- function(obj, handler, action=NULL, ...)
   obj$add_handler_selection_changed(handler, action=action, ...)
 
@@ -280,7 +268,6 @@ addHandlerFocus <- function(obj, handler, action=NULL, ...) UseMethod("addHandle
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerFocus default
-##' @S3method addHandlerFocus default
 addHandlerFocus.default <-   function(obj, handler, action=NULL, ...)
   obj$add_handler_focus(handler, action=action, ...)
 
@@ -297,7 +284,6 @@ addHandlerBlur <- function(obj, handler, action=NULL, ...) UseMethod("addHandler
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerBlur default
-##' @S3method addHandlerBlur default
 addHandlerBlur.default <-  function(obj, handler, action=NULL, ...)
   obj$add_handler_blur(handler, action=action, ...)
 
@@ -316,7 +302,6 @@ addHandlerDestroy <- function(obj, handler, action=NULL, ...) UseMethod("addHand
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerDestroy default
-##' @S3method addHandlerDestroy default
 addHandlerDestroy.default <-  function(obj, handler, action=NULL, ...)
   obj$add_handler_destroy(handler, action=action, ...)
 
@@ -337,7 +322,6 @@ addHandlerUnrealize <- function(obj, handler, action=NULL, ...) UseMethod("addHa
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerUnrealize default
-##' @S3method addHandlerUnrealize default
 addHandlerUnrealize.default <-  function(obj, handler, action=NULL, ...)
   obj$add_handler_unrealize(handler, action=action, ...)
 
@@ -357,7 +341,6 @@ addHandlerExpose <- function(obj, handler, action=NULL, ...) UseMethod("addHandl
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerExpose default
-##' @S3method addHandlerExpose default
 addHandlerExpose.default <-  function(obj, handler, action=NULL, ...)
   obj$add_handler_expose(handler, action=action, ...)
 
@@ -376,7 +359,6 @@ addHandlerKeystroke <- function(obj, handler, action=NULL, ...) UseMethod("addHa
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerKeystroke default
-##' @S3method addHandlerKeystroke default
 addHandlerKeystroke.default <-  function(obj, handler, action=NULL, ...)
   obj$add_handler_keystroke(handler, action=action, ...)
 
@@ -394,7 +376,6 @@ addHandlerMouseMotion <- function(obj, handler, action=NULL, ...) UseMethod("add
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerMouseMotion default
-##' @S3method addHandlerMouseMotion default
 addHandlerMouseMotion.default <-  function(obj, handler, action=NULL, ...)
   obj$add_handler_mouse_motion(handler, action=action, ...)
 
@@ -422,7 +403,6 @@ addPopupMenu <- function(obj, menulist, action=NULL, ...) UseMethod("addPopupMen
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addPopupMenu default
-##' @S3method addPopupMenu default
 addPopupMenu.default <-  function(obj, menulist, action=NULL, ...)
   obj$add_popup_menu(menulist, action=action, ...)
 
@@ -442,7 +422,6 @@ addRightclickPopupMenu <- function(obj, menulist, action=NULL, ...) UseMethod("a
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addRightclickPopupMenu default
-##' @S3method addRightclickPopupMenu default
 addRightclickPopupMenu.default <-  function(obj, menulist, action=NULL, ...)
   obj$add_3rd_mouse_popup_menu(menulist, action=action, ...)
 
@@ -452,7 +431,6 @@ addRightclickPopupMenu.default <-  function(obj, menulist, action=NULL, ...)
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addRightclickPopupMenu default
-##' @S3method addRightclickPopupMenu default
 add3rdmousePopupMenu <- addRightclickPopupMenu
 
 ##' Alias for poor punctation choice
@@ -460,7 +438,6 @@ add3rdmousePopupMenu <- addRightclickPopupMenu
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addRightclickPopupMenu default
-##' @S3method addRightclickPopupMenu default
 add3rdMousePopupMenu <- add3rdmousePopupMenu
 
 ##' Specify a widget is a source for a drop action
@@ -484,7 +461,6 @@ addDropSource <- function(obj, handler, action=NULL, data.type=c("text", "object
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addDropSource default
-##' @S3method addDropSource default
 addDropSource.default <-  function(obj, handler, action=NULL, data.type=c("text", "object"), ...)
   obj$add_drop_source(handler, action=action, data.type=match.arg(data.type), ...)
 
@@ -502,7 +478,6 @@ addDropTarget <- function(obj, handler, action=NULL, ...) UseMethod("addDropTarg
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addDropTarget default
-##' @S3method addDropTarget default
 addDropTarget.default <-  function(obj, handler, action=NULL, ...)
   obj$add_drop_target( handler, action=action, ...)
 
@@ -519,7 +494,6 @@ addDragMotion <- function(obj, handler, action=NULL, ...) UseMethod("addDragMoti
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addDragMotion default
-##' @S3method addDragMotion default
 addDragMotion.default <-  function(obj, handler, action=NULL, ...)
   obj$add_drag_motion( handler, action=action, ...)
 
@@ -538,7 +512,6 @@ blockHandlers <- function(obj, ...) UseMethod("blockHandlers")
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method blockHandlers default
-##' @S3method blockHandlers default
 blockHandlers.default <- function(obj, ...) obj$block_handlers(...)
 
 
@@ -558,7 +531,6 @@ blockHandler <- function(obj, ID, ...) UseMethod("blockHandler")
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method blockHandler default
-##' @S3method blockHandler default
 blockHandler.default <- function(obj, ID, ...) obj$block_handler(ID)
 
 
@@ -578,7 +550,6 @@ unblockHandlers <- function(obj, ...) UseMethod("unblockHandlers")
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method unblockHandlers default
-##' @S3method unblockHandlers default
 unblockHandlers.default <- function(obj, ...) obj$unblock_handlers()
 
 ##' method call to unblock a blocked handler
@@ -593,7 +564,6 @@ unblockHandler <- function(obj, ID, ...) UseMethod("unblockHandler")
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method unblockHandler default
-##' @S3method unblockHandler default
 unblockHandler.default <- function(obj, ID, ...) obj$unblock_handler(ID)
 
 
@@ -608,5 +578,4 @@ removeHandler <- function(obj, ID, ...) UseMethod("removeHandler")
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method removeHandler default
-##' @S3method removeHandler default
 removeHandler.default <- function(obj, ID, ...) obj$remove_handler(ID)

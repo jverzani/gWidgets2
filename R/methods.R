@@ -92,7 +92,6 @@ svalue <- function(obj, index=FALSE, drop=NULL, ...) UseMethod("svalue")
 ##' explicity provide it.
 ##' @export
 ##' @rdname svalue
-##' @S3method svalue default
 ##' @method svalue default
 svalue.default <- function(obj, index=NULL, drop=NULL, ...) {
   if(!isExtant(obj)) {
@@ -127,7 +126,6 @@ svalue.default <- function(obj, index=NULL, drop=NULL, ...) {
 ##' @rdname svalue
 ##' @export
 ##' @usage svalue(obj, index=NULL, ...) <- value
-##' @S3method svalue<- default
 ##' @method svalue<- default
 "svalue<-.default" <- function(obj, index=NULL, ..., value) {
   if(!isExtant(obj)) {
@@ -154,7 +152,6 @@ enabled <- function(obj) UseMethod("enabled")
 ##'
 ##' @export
 ##' @rdname enabled
-##' @S3method enabled default
 ##' @method enabled default
 enabled.default <- function(obj) {
   if(isExtant(obj))
@@ -174,7 +171,6 @@ enabled.default <- function(obj) {
 ##' @export
 ##' @usage enabled(obj) <- value
 ##' @rdname enabled
-##' @S3method enabled<- default
 ##' @method enabled<- default
 "enabled<-.default" <- function(obj, value) {
   if(isExtant(obj))
@@ -198,7 +194,6 @@ visible <- function(obj, ...) UseMethod("visible")
 ##'
 ##' @export
 ##' @rdname visible
-##' @S3method visible default
 ##' @method visible default
 visible.default <- function(obj, ...) {
   if(isExtant(obj))
@@ -219,7 +214,6 @@ visible.default <- function(obj, ...) {
 ##' @usage visible(obj) <- value
 ##' @rdname visible
 ##' @method visible<- default
-##' @S3method visible<- default
 "visible<-.default" <- function(obj, value) {
   if(isExtant(obj))
     obj$set_visible(as.logical(value))
@@ -239,7 +233,6 @@ focus <- function(obj) UseMethod("focus")
 ##' @export
 ##' @rdname focus
 ##' @method focus default
-##' @S3method focus default
 focus.default <- function(obj) {
   if(isExtant(obj))
     obj$get_focus()
@@ -262,7 +255,6 @@ focus.default <- function(obj) {
 ##' @usage focus(obj) <- value
 ##' @rdname focus
 ##' @method focus<- default
-##' @S3method focus<- default
 "focus<-.default" <- function(obj, value) {
   if(isExtant(obj))
     obj$set_focus(as.logical(value))
@@ -285,7 +277,6 @@ editable <- function(obj, i) UseMethod("editable")
 ##' @export
 ##' @rdname editable
 ##' @method editable default
-##' @S3method editable default
 editable.default <- function(obj, i) {
   if(isExtant(obj))
     obj$get_editable(i)
@@ -304,7 +295,6 @@ editable.default <- function(obj, i) {
 ##' @usage editable(obj, i) <- value
 ##' @rdname editable
 ##' @method editable<- default
-##' @S3method editable<- default
 "editable<-.default" <- function(obj, i,  value) {
   if(isExtant(obj))
     obj$set_editable(as.logical(value), i)
@@ -323,7 +313,6 @@ font <- function(obj) UseMethod("font")
 ##' @export
 ##' @rdname font
 ##' @method font default
-##' @S3method font default
 font.default <- function(obj) {
   if(isExtant(obj))
     obj$get_font()
@@ -365,7 +354,6 @@ font.default <- function(obj) {
 ##' @usage font(obj) <- value
 ##' @rdname font
 ##' @method font<- default
-##' @S3method font<- default
 "font<-.default" <- function(obj, value) {
   if(isExtant(obj))
     obj$set_font(value)
@@ -385,7 +373,6 @@ tag <- function(obj, key) UseMethod("tag")
 ##' @export
 ##' @rdname tag
 ##' @method tag default
-##' @S3method tag default
 tag.default <- function(obj, key) {
   if(isExtant(obj))
     obj$get_attr(key)
@@ -409,7 +396,6 @@ tag.default <- function(obj, key) {
 ##' @usage tag(obj, key) <- value
 ##' @rdname tag
 ##' @method tag<- default
-##' @S3method tag<- default
 "tag<-.default" <- function(obj, key, value) {
   if(isExtant(obj))
     obj$set_attr(key, value)
@@ -430,7 +416,6 @@ size <- function(obj) UseMethod("size")
 ##' @export
 ##' @rdname size
 ##' @method size default
-##' @S3method size default
 size.default <- function(obj) {
   if(isExtant(obj))
     obj$get_size()
@@ -451,7 +436,6 @@ size.default <- function(obj) {
 ##' @usage size(obj) <- value
 ##' @rdname size
 ##' @method size<- default
-##' @S3method size<- default
 "size<-.default" <- function(obj, value) {
   if(isExtant(obj))
     obj$set_size(value)
@@ -470,7 +454,6 @@ size.default <- function(obj) {
 ##' @export
 ##' @rdname tooltip
 ##' @method tooltip default
-##' @S3method tooltip default
 "tooltip.default" <- function(obj) {
   if(isExtant(obj))
     obj$get_tooltip()
@@ -490,7 +473,6 @@ size.default <- function(obj) {
 ##' @usage tooltip(obj) <- value
 ##' @rdname tooltip
 ##' @method tooltip<- default
-##' @S3method tooltip<- default
 "tooltip<-.default" <- function(obj, value) {
   if(isExtant(obj))
     obj$set_tooltip(paste(value, collapse="\n"))
@@ -511,7 +493,6 @@ undo <- function(obj, ...) UseMethod("undo")
 ##'
 ##' @export
 ##' @rdname undo
-##' @S3method undo GComponent
 ##' @method undo GComponent
 undo.GComponent <- function(obj, ...) {
   if(isExtant(obj))
@@ -534,7 +515,6 @@ redo <- function(obj, ...) UseMethod("redo")
 ##' @export
 ##' @rdname redo
 ##' @method redo GComponent
-##' @S3method redo GComponent
 redo.GComponent <- function(obj, ...) {
   if(isExtant(obj))
     obj$redo(...)
@@ -553,7 +533,6 @@ redo.GComponent <- function(obj, ...) {
 ##' @export
 ##' @rdname isExtant
 ##' @method isExtant default
-##' @S3method isExtant default
 "isExtant.default" <- function(obj) {
   ret <- try(obj$is_extant(), silent=TRUE)
   if(is(ret, "try-error"))
@@ -592,7 +571,6 @@ add <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) UseMethod
 ##'
 ##' @export
 ##' @rdname add
-##' @S3method add default
 ##' @method add default
 add.default <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) {
   if(!isExtant(obj))  return()
@@ -629,7 +607,6 @@ delete <- function(obj, child) UseMethod("delete")
 ##'
 ##' @export
 ##' @rdname add
-##' @S3method delete GContainer
 ##' @method delete GContainer
 delete.GContainer <- function(obj, child) {
   if(isExtant(obj))
@@ -651,7 +628,6 @@ dispose <- function(obj, ...) UseMethod("dispose")
 ##' @export
 ##' @rdname dispose
 ##' @method dispose GComponent
-##' @S3method dispose GComponent
 dispose.GComponent <- function(obj, ...) {
   if(isExtant(obj))
     dispose(getTopLevel(obj))
@@ -675,7 +651,6 @@ getToolkitWidget <- function(obj) UseMethod("getToolkitWidget")
 ##' @export
 ##' @rdname getToolkitWidget
 ##' @method getToolkitWidget default
-##' @S3method getToolkitWidget default
 getToolkitWidget.default <- function(obj) getWidget(obj)
 
 ##' Get underlying toolkit widget from widget slot. Used internally
@@ -691,7 +666,6 @@ getWidget <- function(obj) UseMethod("getWidget")
 ##' @rdname getToolkitWidget
 ##' @export
 ##' @method getWidget GComponent
-##' @S3method getWidget GComponent
 getWidget.GComponent <- function(obj) getWidget(obj$widget)
 
 ## implement getWidget.RGtkObject <- function(obj) obj say
@@ -707,7 +681,6 @@ getBlock <- function(obj) UseMethod("getBlock")
 ##' @rdname getToolkitWidget
 ##' @export
 ##' @method getBlock GComponent
-##' @S3method getBlock GComponent
 getBlock.GComponent <- function(obj) getBlock(obj$block)
 
 
@@ -717,7 +690,6 @@ getBlock.GComponent <- function(obj) getBlock(obj$block)
 ##' @rdname getToolkitWidget
 ##' @export
 ##' @method getBlock GWindow
-##' @S3method getBlock GWindow
 getBlock.GWindow <- function(obj) obj$widget
              
 ##' Get toplevel window containing object
@@ -731,7 +703,6 @@ getTopLevel <- function(obj) UseMethod("getTopLevel")
 ##' @export
 ##' @rdname getToolkitWidget
 ##' @method getTopLevel GComponent
-##' @S3method getTopLevel GComponent
 getTopLevel.GComponent <- function(obj) {
   if(!is(obj, "GComponent"))
     stop("Must call getTopLevel with a GComponent object")
@@ -760,7 +731,6 @@ addSpring <- function(obj) UseMethod("addSpring")
 ##' @export
 ##' @rdname methods
 ##' @method addSpring GContainer
-##' @S3method addSpring GContainer
 addSpring.GContainer <- function(obj) {
   obj$add_spring()
 }
@@ -783,7 +753,6 @@ addSpace <- function(obj, value) UseMethod("addSpace")
 ##' @export
 ##' @rdname methods
 ##' @method addSpace GContainer
-##' @S3method addSpace GContainer
 addSpace.GContainer <- function(obj, value) {
   obj$add_space(value)
 }

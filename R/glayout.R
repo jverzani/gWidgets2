@@ -66,7 +66,6 @@ glayout <- function(
 ##' @export
 ##' @rdname glayout
 ##' @method [ GLayout
-##' @S3method [ GLayout
 "[.GLayout" <- function(x, i, j, ..., drop=TRUE) {
   getWithDefault(drop, TRUE)
 
@@ -99,7 +98,7 @@ glayout <- function(
 ##' @usage \method{[}{GLayout} (x, i ,j, ...) <- value
 ##' @rdname glayout
 ##' @method [<- GLayout
-##' @S3method [<- GLayout
+
 "[<-.GLayout" <- function(x, i, j, ..., value) {
 
   theArgs <- list(...)

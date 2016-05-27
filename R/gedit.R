@@ -81,7 +81,6 @@ gedit <- function(
 ##' @export
 ##' @rdname gedit
 ##' @method addHandlerChanged GEdit
-##' @S3method addHandlerChanged GEdit
 addHandlerChanged.GEdit <- function(obj, handler, action=NULL, ...) NextMethod()
 
 
@@ -93,7 +92,6 @@ addHandlerChanged.GEdit <- function(obj, handler, action=NULL, ...) NextMethod()
 ##' @export
 ##' @rdname gedit
 ##' @method svalue GEdit
-##' @S3method svalue GEdit
 svalue.GEdit <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
 
 
@@ -105,6 +103,5 @@ svalue.GEdit <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
 ##' @export
 ##' @rdname gWidgets2-S3methods
 ##' @method [ GEdit
-##' @S3method [ GEdit
 "[.GEdit" <- function(x, i, j, ..., drop=TRUE) NextMethod()
 

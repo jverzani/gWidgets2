@@ -60,7 +60,6 @@ gtoolbar <- function(
 ##' @export
 ##' @rdname gtoolbar
 ##' @method add GToolBar
-##' @S3method add GToolBar
 add.GToolBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) {
   dispatcher <- function(obj, child) UseMethod("dispatcher")
   dispatcher.GToolBar <- function(child, obj) obj$add_toolbar_items(svalue(child))
@@ -79,5 +78,4 @@ add.GToolBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) 
 ##' @export
 ##' @rdname gtoolbar
 ##' @method svalue<- GToolBar
-##' @S3method svalue<- GToolBar
 "svalue<-.GToolBar" <- function(obj, index=NULL, ..., value) NextMethod()

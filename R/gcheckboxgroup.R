@@ -75,7 +75,6 @@ gcheckboxgroup <- function(
 ##' @export
 ##' @rdname gcheckboxgroup
 ##' @method addHandlerChanged GCheckboxGroup
-##' @S3method addHandlerChanged GCheckboxGroup
 addHandlerChanged.GCheckboxGroup <- function(obj, handler, action=NULL, ...) NextMethod()
 
 
@@ -92,5 +91,4 @@ addHandlerChanged.GCheckboxGroup <- function(obj, handler, action=NULL, ...) Nex
 ##' @export
 ##' @rdname gcheckboxgroup
 ##' @method svalue GCheckboxGroup
-##' @S3method svalue GCheckboxGroup
 "svalue.GCheckboxGroup" <- function(obj, index=NULL,  drop=NULL, ...)   NextMethod()

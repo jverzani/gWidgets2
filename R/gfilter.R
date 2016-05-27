@@ -82,7 +82,6 @@ gfilter <- function(DF,
 ##' @export
 ##' @rdname gfilter
 ##' @method svalue GFilter
-##' @S3method svalue GFilter
 svalue.GFilter <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
 
 
@@ -95,7 +94,6 @@ svalue.GFilter <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
 ##' @export
 ##' @rdname gfilter
 ##' @method [ GFilter
-##' @S3method [ GFilter
 "[.GFilter" <- function(x, i, j, ..., drop=TRUE) {
   if(isExtant(x)) {
     val <- x$get_items(i, j, ..., drop=drop)
@@ -116,7 +114,6 @@ svalue.GFilter <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
 ##' @export
 ##' @rdname gfilter
 ##' @method .gfilter default
-##' @S3method .gfilter default
 .gfilter.default <-  function(
                               toolkit=guiToolkit(),
                               DF,

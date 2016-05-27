@@ -101,7 +101,6 @@ gtable <- function(
 ##' @export
 ##' @rdname gtable
 ##' @method svalue GTable
-##' @S3method svalue GTable
 svalue.GTable <- function(obj, index=NULL, ..., value) NextMethod()
 
 ##' "[" method
@@ -123,7 +122,6 @@ svalue.GTable <- function(obj, index=NULL, ..., value) NextMethod()
 ##' @export
 ##' @rdname gtable
 ##' @method [ GTable
-##' @S3method [ GTable
 "[.GTable" <- function(x, i, j, ..., drop=TRUE) NextMethod()
 
 
@@ -137,7 +135,6 @@ svalue.GTable <- function(obj, index=NULL, ..., value) NextMethod()
 ##' @export
 ##' @rdname gtable
 ##' @method addHandlerChanged GTable
-##' @S3method addHandlerChanged GTable
 addHandlerChanged.GTable <- function(obj, handler, action=NULL, ...) NextMethod()
 
 
@@ -150,7 +147,6 @@ addHandlerChanged.GTable <- function(obj, handler, action=NULL, ...) NextMethod(
 ##' @export
 ##' @rdname gtable
 ##' @method addHandlerDoubleclick GTable
-##' @S3method addHandlerDoubleclick GTable
 addHandlerDoubleclick.GTable <- function(obj, handler, action=NULL, ...) NextMethod()
 
 ##' visible
@@ -164,7 +160,6 @@ addHandlerDoubleclick.GTable <- function(obj, handler, action=NULL, ...) NextMet
 ##' @export
 ##' @rdname gtable
 ##' @method visible GTable
-##' @S3method visible GTable
 visible.GTable <- function(obj, ...) NextMethod()
 
 ##' Set size of table widget
@@ -179,5 +174,4 @@ visible.GTable <- function(obj, ...) NextMethod()
 ##' @usage \method{size}{GTable} (obj) <- value
 ##' @rdname gtable
 ##' @method size<- GTable
-##' @S3method size<- GTable
 "size<-.GTable" <- function(obj, value) NextMethod()

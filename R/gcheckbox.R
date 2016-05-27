@@ -62,7 +62,6 @@ gcheckbox <- function(
 ##' @export
 ##' @rdname gcheckbox
 ##' @method addHandlerChanged GCheckbox
-##' @S3method addHandlerChanged GCheckbox
 addHandlerChanged.GCheckbox <- function(obj, handler, action=NULL, ...) NextMethod()
 
 
@@ -77,7 +76,6 @@ addHandlerChanged.GCheckbox <- function(obj, handler, action=NULL, ...) NextMeth
 ##' @usage \method{svalue}{GCheckbox} (obj, index=NULL, ...) <- value
 ##' @rdname gcheckbox
 ##' @method svalue<- GCheckbox
-##' @S3method svalue<- GCheckbox
 "svalue<-.GCheckbox" <- function(obj, index=NULL,  ...,value) {
   value <- as.logical(value)[1]
   NextMethod()
@@ -96,7 +94,6 @@ addHandlerChanged.GCheckbox <- function(obj, handler, action=NULL, ...) NextMeth
 ##' @usage \method{[}{GCheckbox} (x, i, j, ...) <- value
 ##' @rdname gcheckbox
 ##' @method [<- GCheckbox
-##' @S3method [<- GCheckbox
 "[<-.GCheckbox" <- function(x, i, j, ..., value) {
   value <- as.character(value)[1]
   NextMethod()

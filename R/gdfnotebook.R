@@ -45,7 +45,6 @@ gdfnotebook <- function(
 ##' @export
 ##' @rdname gWidgets2-undocumented
 ##' @method .gdfnotebook default
-##' @S3method .gdfnotebook default
 .gdfnotebook.default <-  function(toolkit,
                                                  items,
                                                  container = NULL, ... ) {

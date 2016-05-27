@@ -36,7 +36,6 @@ addStockIcons <- function(iconNames,iconFiles, ..., toolkit = guiToolkit()) {
 ##' toolkit implementation
 ##' @rdname icons
 ##' @method .addStockIcons default
-##' @S3method .addStockIcons default
 .addStockIcons.default <- function(toolkit, iconNames, iconFiles,... ) {
   ## default implementation
   cur <- .gWidgetsIcons$icons
@@ -71,7 +70,6 @@ getStockIcons = function( ..., toolkit = guiToolkit()) {
 ##'
 ##' @rdname icons
 ##' @method .getStockIcons default
-##' @S3method .getStockIcons default
 .getStockIcons.default <- function(toolkit, ...) {
   .gWidgetsIcons$icons
 }
@@ -98,7 +96,6 @@ getStockIconByName <- function(name, ..., toolkit=guiToolkit()) {
 ##' @param file logical If TRUE, return filename. If FALSE, return toolkit icon object (if possible).
 ##' @rdname icons
 ##' @method .getStockIconByName default
-##' @S3method .getStockIconByName default
 .getStockIconByName.default <- function(toolkit, name, file=TRUE, ...) {
   icons <- .gWidgetsIcons$icons
   i <- match(name, names(icons))
@@ -132,7 +129,6 @@ stockIconFromClass = function(theClass, ..., toolkit = guiToolkit()) {
 ##'
 ##' @rdname icons
 ##' @method .stockIconFromClass default
-##' @S3method .stockIconFromClass default
 .stockIconFromClass.default <- function(toolkit, theClass, ...) {
 
   switch(theClass[1], 
@@ -170,7 +166,6 @@ stockIconFromObject <- function(obj, ..., toolkit = guiToolkit()) {
 ##' 
 ##' @rdname icons
 ##' @method .stockIconFromObject default
-##' @S3method .stockIconFromObject default
 .stockIconFromObject.default <- function(toolkit, obj, ...) {
   .icon <- function(x) UseMethod(".icon")
   .icon.default <- function(x) "symbol-dot.gif"

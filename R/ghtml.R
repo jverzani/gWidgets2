@@ -43,7 +43,6 @@ ghtml <- function(x,
 ##' @usage \method{svalue}{GHtml} (obj, index=TRUE, ...) <- value
 ##' @rdname ghtml
 ##' @method svalue<- GHtml
-##' @S3method svalue<- GHtml
 "svalue<-.GHtml" <- function(obj, index=TRUE,  ..., value) {
   value <- paste(value, collapse="\n")
   NextMethod()

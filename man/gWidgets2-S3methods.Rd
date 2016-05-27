@@ -7,7 +7,6 @@
 \alias{[.GDf}
 \alias{[.GEdit}
 \alias{[<-.GComponent}
-\alias{[<-.GDefaultWidget}
 \alias{dim.GComponent}
 \alias{dimnames.GComponent}
 \alias{dimnames<-.GComponent}
@@ -21,8 +20,6 @@
 \title{Return items}
 \usage{
 \method{[}{GDefaultWidget}(x, i, j, ...)
-
-\method{[}{GDefaultWidget} (x, i, j, ...) <- value
 
 \method{length}{GComponent}(x)
 
@@ -74,8 +71,6 @@ length of object
 }
 \description{
 Return items
-
-Set object's items
 
 Length of object
 

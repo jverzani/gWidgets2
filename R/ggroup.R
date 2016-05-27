@@ -59,7 +59,6 @@ ggroup <- function(horizontal=TRUE, spacing=5, use.scrollwindow=FALSE, container
 ##' @export
 ##' @rdname ggroup
 ##' @method svalue<- GGroup
-##' @S3method svalue<- GGroup
 "svalue<-.GGroup" <- function(obj, index=TRUE,  ..., value) {
   NextMethod()
 }

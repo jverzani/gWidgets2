@@ -68,7 +68,6 @@ glabel <- function(text="", markup=FALSE, editable=FALSE,
 ##' @usage \method{svalue}{GLabel} (obj, index=TRUE, ...) <- value
 ##' @rdname glabel
 ##' @method svalue<- GLabel
-##' @S3method svalue<- GLabel
 "svalue<-.GLabel" <- function(obj, index=TRUE,  ..., value) {
   value <- paste(value, collapse="\n")
   NextMethod()

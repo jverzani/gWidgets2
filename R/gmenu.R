@@ -57,7 +57,6 @@ gmenu <- function(
 ##' @export
 ##' @rdname gmenu
 ##' @method add GMenuBar
-##' @S3method add GMenuBar
 add.GMenuBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) {
   dispatcher <- function(obj, child) UseMethod("dispatcher")
   dispatcher.GMenuBar <- function(child, obj) obj$add_menu_items(obj$widget, svalue(child))
@@ -78,7 +77,6 @@ add.GMenuBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) 
 ##' @export
 ##' @rdname gmenu
 ##' @method svalue GMenuBar
-##' @S3method svalue GMenuBar
 "svalue.GMenuBar" <- function(obj, index=NULL, drop=NULL,...) NextMethod()
 
 ##' "svalue<-" method
@@ -90,5 +88,4 @@ add.GMenuBar <- function(obj, child, expand=FALSE, fill=NULL, anchor=NULL, ...) 
 ##' @usage \method{svalue}{GMenuBar} (obj, index=NULL, ...) <- value
 ##' @rdname gmenu
 ##' @method svalue<- GMenuBar
-##' @S3method svalue<- GMenuBar
 "svalue<-.GMenuBar" <- function(obj, index=NULL, ..., value) NextMethod()

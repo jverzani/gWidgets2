@@ -44,7 +44,6 @@ gbutton <- function(text="",   handler=NULL, action=NULL, container=NULL, ..., t
 ##' @export
 ##' @rdname gbutton
 ##' @method addHandlerChanged GButton
-##' @S3method addHandlerChanged GButton
 addHandlerChanged.GButton <- function(obj, handler, action=NULL, ...) NextMethod()
 
 
@@ -56,6 +55,5 @@ addHandlerChanged.GButton <- function(obj, handler, action=NULL, ...) NextMethod
 ##' @export
 ##' @rdname gbutton
 ##' @method svalue GButton
-##' @S3method svalue GButton
 svalue.GButton <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
 

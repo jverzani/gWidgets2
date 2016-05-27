@@ -64,7 +64,6 @@ gdf <- function(
 ##' @export
 ##' @rdname gdf
 ##' @method addHandlerChanged GDf
-##' @S3method addHandlerChanged GDf
 addHandlerChanged.GDf <- function(obj, handler, action=NULL, ...) NextMethod()
   
 
@@ -75,7 +74,6 @@ addHandlerChanged.GDf <- function(obj, handler, action=NULL, ...) NextMethod()
 ##' @export
 ##' @rdname gdf
 ##' @method svalue GDf
-##' @S3method svalue GDf
 svalue.GDf <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 
 
@@ -87,7 +85,6 @@ svalue.GDf <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 ##' @usage \method{visible}{GDf} (obj) <- value
 ##' @rdname gdf
 ##' @method visible<- GDf
-##' @S3method visible<- GDf
 "visible<-.GDf" <- function(obj, value) NextMethod()
 
 
@@ -100,5 +97,4 @@ svalue.GDf <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 ##' @export
 ##' @rdname gWidgets2-S3methods
 ##' @method [ GDf
-##' @S3method [ GDf
 "[.GDf" <- function(x, i, j, ..., drop=TRUE) NextMethod()

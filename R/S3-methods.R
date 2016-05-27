@@ -11,7 +11,6 @@ NULL
 ##' @export
 ##' @rdname gWidgets2-S3methods
 ##' @method length GComponent
-##' @S3method length GComponent
 length.GComponent <- function(x) {
   if(isExtant(x))
     x$get_length()
@@ -25,7 +24,6 @@ length.GComponent <- function(x) {
 ##' @usage \method{length}{GComponent} (x) <- value
 ##' @rdname gWidgets2-S3methods
 ##' @method length<- GComponent
-##' @S3method length<- GComponent
 "length<-.GComponent" <- function(x, value) {
   if(isExtant(x))
     x$set_length(value)
@@ -37,7 +35,6 @@ length.GComponent <- function(x) {
 ##' @export
 ##' @rdname gWidgets2-S3methods
 ##' @method dim GComponent
-##' @S3method dim GComponent
 dim.GComponent <- function(x) {
   if(isExtant(x))
     x$get_dim()
@@ -50,7 +47,6 @@ dim.GComponent <- function(x) {
 ##' @export
 ##' @rdname gWidgets2-S3methods
 ##' @method names GComponent
-##' @S3method names GComponent
 names.GComponent <- function(x) {
   if(isExtant(x))
     x$get_names()
@@ -62,7 +58,6 @@ names.GComponent <- function(x) {
 ##' @usage \method{names}{GComponent} (x) <- value
 ##' @rdname gWidgets2-S3methods
 ##' @method names<- GComponent
-##' @S3method names<- GComponent
 "names<-.GComponent" <- function(x, value) {
   if(isExtant(x))
     x$set_names(value)
@@ -74,7 +69,6 @@ names.GComponent <- function(x) {
 ##' @export
 ##' @rdname gWidgets2-S3methods
 ##' @method dimnames GComponent
-##' @S3method dimnames GComponent
 dimnames.GComponent <- function(x) {
   if(isExtant(x))
     x$get_dimnames()
@@ -86,7 +80,6 @@ dimnames.GComponent <- function(x) {
 ##' @usage \method{dimnames}{GComponent} (x) <- value
 ##' @rdname gWidgets2-S3methods
 ##' @method dimnames<- GComponent
-##' @S3method dimnames<- GComponent
 "dimnames<-.GComponent" <- function(x, value) {
   if(isExtant(x))
     x$set_dimnames(value)
@@ -105,7 +98,6 @@ dimnames.GComponent <- function(x) {
 ##' @export
 ##' @rdname gWidgets2-S3methods
 ##' @method [ GComponent
-##' @S3method [ GComponent
 "[.GComponent" <- function(x, i, j, ..., drop=TRUE) {
   if(isExtant(x))
     x$get_items(i, j, ..., drop=drop)
@@ -116,7 +108,6 @@ dimnames.GComponent <- function(x) {
 ##' @export
 ##' @rdname gWidgets2-S3methods
 ##' @method [ GContainer
-##' @S3method [ GContainer
 "[.GContainer" <- function(x, i, j, ..., drop=TRUE) {
   if(isExtant(x))
     x$get_items(i, j, ..., drop=TRUE)
@@ -128,7 +119,6 @@ dimnames.GComponent <- function(x) {
 ##' @usage \method{[}{GComponent} (x, i, j, ...) <- value
 ##' @rdname gWidgets2-S3methods
 ##' @method [<- GComponent
-##' @S3method [<- GComponent
 "[<-.GComponent" <- function(x, i, j, ..., value) {
   if(isExtant(x)) 
     x$set_items(value, i, j, ...)
@@ -161,7 +151,6 @@ dimnames.GComponent <- function(x) {
 ##' @export
 ##' @rdname gWidgets2-S3methods
 ##' @method update  GComponent
-##' @S3method update  GComponent
 update.GComponent <- function(object, ...) {
   if(isExtant(object))
     object$update_widget(...)
@@ -173,7 +162,6 @@ update.GComponent <- function(object, ...) {
 ##' @export
 ##' @rdname gWidgets2-S3methods
 ##' @method str GComponent
-##' @S3method str GComponent
 str.GComponent <- function(object, ...) cat(sprintf("Object of class %s\n", class(object)))
 
 

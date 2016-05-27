@@ -93,7 +93,6 @@ insert <- function(obj,value,
 ##' @export
 ##' @rdname gtext
 ##' @method insert GText
-##' @S3method insert GText
 insert.GText <- function(obj, value,
                            where = c("end","beginning","at.cursor"),
                            font.attr=NULL,
@@ -111,7 +110,6 @@ insert.GText <- function(obj, value,
 ##' @export
 ##' @rdname gtext
 ##' @method dispose GText
-##' @S3method dispose GText
 dispose.GText <- function(obj, ...) {
   if(isExtant(obj))
     obj$set_value("")
@@ -129,7 +127,6 @@ dispose.GText <- function(obj, ...) {
 ##' @export
 ##' @rdname gtext
 ##' @method svalue GText
-##' @S3method svalue GText
 svalue.GText <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
 
 ##' Set font for gtext object
@@ -140,5 +137,4 @@ svalue.GText <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
 ##' @usage \method{font}{GText} (obj) <- value
 ##' @rdname font
 ##' @method font<- GText
-##' @S3method font<- GText
 "font<-.GText" <- function(obj, value) NextMethod()

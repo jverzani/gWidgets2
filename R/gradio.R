@@ -55,7 +55,6 @@ gradio <- function(items,selected=1, horizontal=FALSE,
 ##' @inheritParams svalue
 ##' @export
 ##' @rdname gradio
-##' @S3method svalue GRadio
 ##' @method svalue GRadio
 svalue.GRadio <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 
@@ -68,7 +67,6 @@ svalue.GRadio <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 ##' @export
 ##' @usage \method{svalue}{GRadio} (obj,index=NULL,drop=TRUE,...) <- value
 ##' @rdname gradio
-##' @S3method svalue<- GRadio
 ##' @method svalue<- GRadio
 "svalue<-.GRadio" <- function(obj, index=NULL, drop=TRUE, ..., value) {
   if(!is.null(index) && index) {
@@ -95,7 +93,6 @@ svalue.GRadio <- function(obj, index=NULL, drop=TRUE, ...) NextMethod()
 ##' @usage \method{[}{GRadio} (x, i, j, ...) <- value
 ##' @rdname gradio
 ##' @method [<- GRadio
-##' @S3method [<- GRadio
 "[<-.GRadio" <- function(x, i, j, ..., value) {
   ## check input
   if(length(value) != length(value <- unique(value)))

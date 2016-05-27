@@ -99,7 +99,6 @@ gdroplist <- function(...) {
 ##' @usage \method{[}{GComboBox} (x, i , j, ...) <- value
 ##' @rdname gcombobox
 ##' @method [<- GComboBox
-##' @S3method [<- GComboBox
 "[<-.GComboBox" <- function(x, i, j, ..., value) {
 
   value <- .make_gcombobox_items(value)
@@ -119,7 +118,6 @@ gdroplist <- function(...) {
 ##' @export
 ##' @rdname gcombobox
 ##' @method addHandlerChanged GComboBox
-##' @S3method addHandlerChanged GComboBox
 addHandlerChanged.GComboBox <- function(obj, handler, action=NULL, ...) NextMethod()
 
 
@@ -134,6 +132,5 @@ addHandlerChanged.GComboBox <- function(obj, handler, action=NULL, ...) NextMeth
 ##' @export
 ##' @rdname gcombobox
 ##' @method svalue GComboBox
-##' @S3method svalue GComboBox
 svalue.GComboBox <- function(obj, index=NULL, drop=NULL, ...)   NextMethod()
 

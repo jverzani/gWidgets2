@@ -255,7 +255,6 @@ gtree <- function(x=NULL, INDICES=NULL,
 ##' @export
 ##' @rdname gtree
 ##' @method svalue GTree
-##' @S3method svalue GTree
 svalue.GTree <-  function(obj, index=FALSE, drop=TRUE, ...) NextMethod()
 
 ##' \code{svalue<-} method
@@ -271,7 +270,6 @@ svalue.GTree <-  function(obj, index=FALSE, drop=TRUE, ...) NextMethod()
 ##' @usage \method{svalue}{GTree} (obj, index=TRUE, ...) <- value
 ##' @rdname gtree
 ##' @method svalue<- GTree
-##' @S3method svalue<- GTree
 "svalue<-.GTree" <-  function(obj, index=TRUE,  ..., value) NextMethod()
 
 
@@ -286,7 +284,6 @@ svalue.GTree <-  function(obj, index=FALSE, drop=TRUE, ...) NextMethod()
 ##' @export
 ##' @rdname gtree
 ##' @method [ GTree
-##' @S3method [ GTree
 "[.GTree" <- function(x, i, j, ..., drop=FALSE) {
   if(isExtant(x))
     x$get_items(i, j, ..., drop=drop)
@@ -300,5 +297,4 @@ svalue.GTree <-  function(obj, index=FALSE, drop=TRUE, ...) NextMethod()
 ##' @export
 ##' @rdname gtree
 ##' @method update GTree
-##' @S3method update GTree
 update.GTree <- function(object, ...) NextMethod()

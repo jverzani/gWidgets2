@@ -91,7 +91,6 @@ gnotebook <- function(
 ##' @export
 ##' @rdname gnotebook
 ##' @method add GNotebook
-##' @S3method add GNotebook
 add.GNotebook <- function(obj, child, expand, fill, anchor, ...) {
   ## process passed in args
   args <- list(...)
@@ -111,7 +110,6 @@ add.GNotebook <- function(obj, child, expand, fill, anchor, ...) {
 ##' @export
 ##' @rdname gnotebook
 ##' @method dispose GNotebook
-##' @S3method dispose GNotebook
 dispose.GNotebook <- function(obj, ...) {
   obj$remove_current_page()
 }
@@ -124,7 +122,6 @@ dispose.GNotebook <- function(obj, ...) {
 ##' @export
 ##' @rdname gnotebook
 ##' @method names GNotebook
-##' @S3method names GNotebook
 "names.GNotebook" <- function(x) x$get_names()
 
 #####' @param x notebook object
@@ -138,9 +135,9 @@ dispose.GNotebook <- function(obj, ...) {
 ##' @usage \method{svalue}{GNotebook} (obj, index=NULL, ...) <- value
 ##' @rdname gnotebook
 ##' @method svalue<- GNotebook
-##' @S3method svalue<- GNotebook
 "svalue<-.GNotebook" <- function(obj, index=NULL,  ...,value) {
-    if (is.null(index) | !index) {
+    if (is.null(index)) index <- TRUE
+    if (!index) {
         index = TRUE
         value = match(value, names(obj))
     }
@@ -159,7 +156,6 @@ dispose.GNotebook <- function(obj, ...) {
 ##' @export
 ##' @rdname gnotebook
 ##' @method [ GNotebook
-##' @S3method [ GNotebook
 "[.GNotebook" <- function(x, i, j, ..., drop=TRUE) {
     if (is.character(i))
         i <- match(i, names(x))
@@ -175,7 +171,6 @@ dispose.GNotebook <- function(obj, ...) {
 ##' @export
 ##' @rdname gnotebook
 ##' @method addHandlerChanged GNotebook
-##' @S3method addHandlerChanged GNotebook
 addHandlerChanged.GNotebook <- function(obj, handler, action=NULL, ...) {
   NextMethod()
 }

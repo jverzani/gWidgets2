@@ -54,7 +54,6 @@ gexpandgroup <- function(
 ##' @rdname gexpandgroup
 ##' @usage \method{visible}{GExpandGroup} (obj) <- value
 ##' @method visible<- GExpandGroup
-##' @S3method visible<- GExpandGroup
 "visible<-.GExpandGroup" <- function(obj, value) NextMethod()
 
 
@@ -65,7 +64,6 @@ gexpandgroup <- function(
 ##' @export
 ##' @rdname gexpandgroup
 ##' @method addHandlerChanged GExpandGroup
-##' @S3method addHandlerChanged GExpandGroup
 addHandlerChanged.GExpandGroup <- function(obj, handler, action=NULL, ...) NextMethod()
 
 

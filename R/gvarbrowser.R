@@ -74,7 +74,6 @@ gvarbrowser_default_classes <-
 ##' @export
 ##' @rdname gvarbrowser
 ##' @method svalue GVarBrowser
-##' @S3method svalue GVarBrowser
 svalue.GVarBrowser <-  function(obj, index=FALSE, drop=TRUE, ...) NextMethod()
 
 
@@ -110,7 +109,6 @@ short_summary <- function(x) UseMethod("short_summary")
 ##' @export
 ##' @rdname short_summary
 ##' @method short_summary default
-##' @S3method short_summary default
 short_summary.default <- function(x) sprintf("Object with class %s", class(x)[1])
 
 ##' method for generic
@@ -119,7 +117,6 @@ short_summary.default <- function(x) sprintf("Object with class %s", class(x)[1]
 ##' @export
 ##' @rdname short_summary
 ##' @method short_summary numeric
-##' @S3method short_summary numeric
 short_summary.numeric <- function(x) sprintf("Numeric object, length %s", length(x))
 
 ##' method for generic
@@ -128,7 +125,6 @@ short_summary.numeric <- function(x) sprintf("Numeric object, length %s", length
 ##' @export
 ##' @rdname short_summary
 ##' @method short_summary character
-##' @S3method short_summary character
 short_summary.character <- function(x) sprintf("Character object, length %s", length(x))
 
 ##' method for generic
@@ -137,7 +133,6 @@ short_summary.character <- function(x) sprintf("Character object, length %s", le
 ##' @export
 ##' @rdname short_summary
 ##' @method short_summary logical
-##' @S3method short_summary logical
 short_summary.logical <- function(x) sprintf("Logical object, length %s", length(x))
 
 ##' method for generic
@@ -146,7 +141,6 @@ short_summary.logical <- function(x) sprintf("Logical object, length %s", length
 ##' @export
 ##' @rdname short_summary
 ##' @method short_summary data.frame
-##' @S3method short_summary data.frame
 short_summary.data.frame <- function(x) sprintf("Data frame, %s variables %s cases", ncol(x), nrow(x))
 
 ##' method for generic
@@ -155,7 +149,6 @@ short_summary.data.frame <- function(x) sprintf("Data frame, %s variables %s cas
 ##' @export
 ##' @rdname short_summary
 ##' @method short_summary matrix
-##' @S3method short_summary matrix
 short_summary.matrix <- function(x) sprintf("Matrix, %s by %s", ncol(x), nrow(x))
 
 ##' method for generic
@@ -164,7 +157,6 @@ short_summary.matrix <- function(x) sprintf("Matrix, %s by %s", ncol(x), nrow(x)
 ##' @export
 ##' @rdname short_summary
 ##' @method short_summary list
-##' @S3method short_summary list
 short_summary.list <- function(x) sprintf("List with %s components", length(x))
 
 ##' method for generic
@@ -173,7 +165,6 @@ short_summary.list <- function(x) sprintf("List with %s components", length(x))
 ##' @export
 ##' @rdname short_summary
 ##' @method short_summary lm
-##' @S3method short_summary lm
 short_summary.lm <- function(x) sprintf("Model object")
 
 ##' method for generic
@@ -182,5 +173,4 @@ short_summary.lm <- function(x) sprintf("Model object")
 ##' @export
 ##' @rdname short_summary
 ##' @method short_summary function
-##' @S3method short_summary function
 short_summary.function <- function(x) "Function"

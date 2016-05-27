@@ -61,7 +61,6 @@ gstackwidget <- function(container = NULL, ... ,
 ##' @export
 ##' @rdname gnotebook
 ##' @method dispose GStackWidget
-##' @S3method dispose GStackWidget
 dispose.GStackWidget <- function(obj, ...) {
   obj$remove_current_page()
 }

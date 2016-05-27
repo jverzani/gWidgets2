@@ -58,7 +58,6 @@ ggraphics <- function(
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerChanged default
-##' @S3method addHandlerChanged default
 addHandlerChanged.GGraphics <- function(obj, handler, action=NULL, ...)
   obj$add_handler_changed(handler, action=action, ...)
 
@@ -69,7 +68,6 @@ addHandlerChanged.GGraphics <- function(obj, handler, action=NULL, ...)
 ##' @export
 ##' @rdname gWidgets-handlers
 ##' @method addHandlerClicked default
-##' @S3method addHandlerClicked default
 addHandlerClicked.default <-  function(obj, handler, action=NULL, ...)
     obj$add_handler_clicked(handler, action=action, ...)
 
