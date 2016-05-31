@@ -5,9 +5,9 @@ Version: 1.0-7
 Author: John Verzani
 Maintainer: John Verzani <jverzani@gmail.com>
 URL: https://github.com/jverzani/gWidgets2
-Description: Re-implementation of gWidgets API. The API is defined in this
+Description: Re-implementation of the 'gWidgets' API. The API is defined in this
     package. A second, toolkit-specific package is required to use it. There
-    are three in development: gWidgets2RGtk2, gWidgets2Qt, and gWidgets2tcltk.
+    are three in development: 'gWidgets2RGtk2', 'gWidgets2Qt', and 'gWidgets2tcltk'.
 Depends:
     methods,
     digest
