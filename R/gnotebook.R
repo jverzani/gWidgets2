@@ -137,7 +137,7 @@ dispose.GNotebook <- function(obj, ...) {
 ##' @usage \method{svalue}{GNotebook} (obj, index=TRUE, ...) <- value
 ##' @rdname gnotebook
 ##' @method svalue<- GNotebook
-"svalue<-.GNotebook" <- function(obj, index=NULL,  ...,value) {
+"svalue<-.GNotebook" <- function(obj, index=TRUE,  ...,value) {
     if (is.null(index)) index <- TRUE
     if (!index) {
         index = TRUE
