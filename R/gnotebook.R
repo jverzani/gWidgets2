@@ -13,7 +13,9 @@ NULL
 ##' 
 ##' @param tab.pos integer. Position of tabs, 1 on bottom, 2 left, 3
 ##' top, 4 right. (If supported)
-##' @inheritParams gwidget
+##' @param container parent container
+##' @param ... passed to \code{add} method for container
+##' @param toolkit underlying toolkit
 ##' @seealso \code{\link{gstackwidget}} for a similar widget without
 ##' tabs.
 ##' @note In \pkg{gWidgets2} the button arguments of the
@@ -132,7 +134,7 @@ dispose.GNotebook <- function(obj, ...) {
 ##' index; \code{FALSE} allows reference by tab label.
 ##' @param value assignment value
 ##' @export
-##' @usage \method{svalue}{GNotebook} (obj, index=NULL, ...) <- value
+##' @usage \method{svalue}{GNotebook} (obj, index=TRUE, ...) <- value
 ##' @rdname gnotebook
 ##' @method svalue<- GNotebook
 "svalue<-.GNotebook" <- function(obj, index=NULL,  ...,value) {
@@ -170,6 +172,8 @@ dispose.GNotebook <- function(obj, ...) {
 ##' given by \code{svalue} within the handler call.
 ##' @export
 ##' @rdname gnotebook
+##' @param handler handler
+##' @param action passed along to handler via \code{h[["action"]]}.
 ##' @method addHandlerChanged GNotebook
 addHandlerChanged.GNotebook <- function(obj, handler, action=NULL, ...) {
   NextMethod()

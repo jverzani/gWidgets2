@@ -8,7 +8,10 @@ NULL
 ##' @param text frame label
 ##' @param markup does label use markup (toolkit specific)
 ##' @param pos position of label: 0=left, 1=right, some toolkit allow values in between
-##' @inheritParams ggroup
+##' @param horizontal logical. If TRUE, left to right layout, otherwise top to bottom
+##' @param spacing spacing aroud widget 
+##' @param container parent container
+##' @param ... passed through
 ##' @param toolkit toolkit
 ##' @seealso \code{\link{ggroup}} and \code{\link{gexpandgroup}}
 ##' @note to include a scrollwindow, place a \code{ggroup} within this window.

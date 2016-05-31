@@ -1,7 +1,12 @@
 Package: gWidgets2
 Type: Package
+<<<<<<< HEAD
 Title: Rewrite of gWidgets API for simplified GUI construction
 Version: 1.0-7
+=======
+Title: Rewrite of gWidgets API for Simplified GUI Construction
+Version: 1.0-6
+>>>>>>> dadc65c1456c5a965be09dc4e6f8759bbf6ae9d3
 Author: John Verzani
 Maintainer: John Verzani <jverzani@gmail.com>
 URL: https://github.com/jverzani/gWidgets2

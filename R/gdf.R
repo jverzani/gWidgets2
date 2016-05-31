@@ -12,6 +12,8 @@ NULL
 ##' 
 ##' The \code{save_data} reference class method can be called to
 ##' save the data into a variable with the specified name.
+##'
+##' example in \code{inst/examples/ex-gdf.R}
 ##' @param items data frame to edit
 ##' @param container parent container
 ##' @param handler called on cell change
@@ -20,8 +22,8 @@ NULL
 ##' @param toolkit toolkit
 ##' @export
 ##' @return An object of class \code{gDf}.
-##' @example inst/examples/ex-gdf.R
 gdf <- function(
+    
                 items = NULL, 
                 handler=NULL, action=NULL,
                 container = NULL, ... ,
