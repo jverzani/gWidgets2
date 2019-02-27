@@ -196,8 +196,8 @@ GWidgets2Icons <- setRefClass("GWidgets2Icons",
                          callSuper()
                        },
                        update_icons = function() {
-                         path <- system.file("images", package="gWidgets2")
-                         allIcons <- Filter(function(i) i != "README", list.files(path))
+                         allIcons <- Filter(function(i) i != "README", 
+			    list.files(system.file("images", package="gWidgets2")))
                          
                          ## create a hash with name -> location
                          l <- list()
@@ -205,7 +205,9 @@ GWidgets2Icons <- setRefClass("GWidgets2Icons",
                            filename <- sub("\\.xpm$|\\.gif$|\\.jpg$|\\.jpeg$|\\.png$|\\.tiff$","",i)
                            l[[filename]] <- system.file("images", i, package="gWidgets2")
                          }
-                         icons <<- l
+## This breaks staged install. Does commenting these out
+## break toolkits?
+#                         icons <<- l
                        },
                        get_icon_from_name=function(nm) {
                          out <- sapply(nm, function(i) icons[[i]], simplify=FALSE)

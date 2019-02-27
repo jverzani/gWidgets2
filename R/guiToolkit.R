@@ -71,8 +71,7 @@ guiToolkit <- function(name=NULL) {
     if(interactive()) {
       if(length(choices) == 0) {
         message("No toolkit packages are installed.")
-        f <- system.file("install/installing_toolkits.txt", package="gWidgets2")
-        cat(paste(f, "\n"))
+        cat(paste(system.file("install/installing_toolkits.txt", package="gWidgets2"), "\n"))
         return(NULL)
       } else if(length(choices) == 1) {
         theChoice <- choices
