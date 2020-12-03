@@ -105,7 +105,7 @@ guiToolkit <- function(name=NULL) {
 
   
   ## require the package
-  require(sprintf("gWidgets2%s", name, sep=""), character.only=TRUE)
+  require(sprintf("gWidgets2%s", name), character.only=TRUE)
 
 
   ## check for headless Gtk
