@@ -238,5 +238,5 @@ visible.GBasicDialog <- function(obj, ...) {
 ##' @rdname gbasicdialog
 ##' @method dispose GBasicDialog
 dispose.GBasicDialog <- function(obj, ...) {
-  obj$dispose()
+  obj$dispose_window()
 }
